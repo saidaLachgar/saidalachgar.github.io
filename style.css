@@ -1,0 +1,100 @@
+html{
+    height: 100vh;
+    scroll-behavior: smooth;
+}
+body{
+    height: 100vh;
+    background-color: #ffffff;
+}
+a, a:hover {
+    text-decoration: none !important;
+}
+.font-Handwriting{
+    font-family: 'Reenie Beanie', cursive;
+}
+.sd-hover:hover {
+    box-shadow: 0 .5rem 1rem rgba(0,0,0,.15) !important;
+}
+.rounded-4 {
+    border-radius: 1rem !important;
+}
+.font-weight-900{
+    font-weight: 900 !important;
+}
+.text-black{
+    color: #0d0e10;
+}
+.bg-black{
+    background-color: #0d0e10;
+}
+.text-nprimary{
+    color: #C0F1FF;
+}
+.btn-bottom{
+    width: 40px;height: 40px;
+}
+.btn-bottom:hover {
+    opacity: .8;
+}
+.rounded-lg{
+    border-radius: 20px !important;
+}
+.shadow-xl{
+    box-shadow: 0 .1rem 2rem rgba(0,0,0,.9) !important;
+}
+.pointer{
+    cursor: pointer !important;
+}
+
+.top-link {
+    transition: all .15s ease-in-out;
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    display: inline-flex;
+    cursor: pointer;
+    margin: 0 1em 1em 0;    
+  }
+.top-link.show {
+    visibility: visible;
+    opacity: 1;
+  }
+.top-link.hide {
+    visibility: hidden;
+    opacity: 0;
+  }
+
+.underline-cyan{
+    background-repeat: no-repeat;
+    background-position: 0px 100%;
+    background-size: 100% 50%;
+    background-image: url("IMG/Path\ 5.png");
+}
+.slick-prev::before, .slick-next::before {
+    color: #262626 !important;
+}
+
+.centered {
+    position: absolute;
+    margin-top: -69%;
+    left: 32%;
+}
+
+ /* Extra small devices (phones, 768px and down) */
+ @media only screen and (max-width: 768px) {
+     .fs-lg{
+        font-size: 1.2rem;
+     }
+     .fs-xl{
+        font-size: 1.5rem;
+     }
+ }
+ /* Medium devices (landscape tablets, 768px and up) */
+ @media only screen and (min-width: 768px) {
+     .fs-lg{
+        font-size: 1.5rem;
+     }
+     .fs-xl{
+        font-size: 1.9rem;
+     }
+ }

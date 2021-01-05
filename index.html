@@ -16,31 +16,29 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body class="bg-black text-white">  
-    <nav class="navbar navbar-dark bg-black p-3" id="nav">
-        <div class="container p-0">
+    <!-- <div class="fixed-top w-25 h-25" style="transform: rotate(10deg);"></div> -->
+    <nav class="navbar navbar-dark p-0" id="nav">
+        <div class="container p-3">
             <a target="_blink" href="mailto:saidalachgar.r@gmail.com" class="navbar-brand link-light fs-6"><i class="ri-mail-line align-bottom"></i>&nbsp;&nbsp;SAY HELLO</a>
           <div class="d-none d-sm-flex d-md-flex fs-6">
-            <a onclick="document.getElementById('#ABOUT').scrollIntoView({block: 'center'});" href="#ABOUT" class="link-light me-3"><small>About</small></a>
-            <a onclick="document.getElementById('#RESUME').scrollIntoView();" href="#RESUME" class="link-light me-3"><small>Resume</small></a>
-            <a onclick="document.getElementById('#PROJECTS').scrollIntoView({block: 'center'});" href="#PROJECTS" class="link-light me-3"><small>Projects</small></a>
-            <a onclick="document.getElementById('#CONTACT').scrollIntoView();" href="#CONTACT" class="link-light me-3"><small>Contact</small></a>
+            <a onclick="document.getElementById('#ABOUT').scrollIntoView({block: 'center'});" href="#ABOUT" class="link-light me-3">About</a>
+            <a onclick="document.getElementById('#RESUME').scrollIntoView();" href="#RESUME" class="link-light me-3">Resume</a>
+            <a onclick="document.getElementById('#PROJECTS').scrollIntoView({block: 'center'});" href="#PROJECTS" class="link-light me-3">Projects</a>
+            <a onclick="document.getElementById('#Blog').scrollIntoView();" href="#Blog" class="link-light me-3">Blog</a>
           </div>
         </div>
     </nav>
-    <div class="container-fluid" id="container">
-        <div class="row justify-content-center" id="interface">
+    <div class="container-fluid h-100" id="container">
+        <div class="row justify-content-center align-items-center h-100" id="interface">
             <div class="col-11 text-center">
-                <img src="IMG/IMG_1837.jpeg" class="rounded-circle mt-5" style="height: 110px;margin: auto;">
-                <h5 class="mt-4">Hi, I’m Saida <img src="IMG/love-you-gesture.png" style="height: 20px;margin-top: -6px;"></h5><!-- -->
-                <h1 class="text-white mt-4 fw-bold "><span class="underline-cyan">I Build</span> websites<br class="d-none d-sm-block d-md-block"> that run across platforms <br class="d-none d-sm-block d-md-block">& devices.</h1>
-                <h6 class="text-white-50 mt-4 ">Full Stack <b>Web Developer</b> with a Passion <br class="d-none d-sm-block d-md-block">for Thoughtful UI/UX Design, Responsive Web Design <br class="d-none d-sm-block d-md-block">and Visual Development </h6>
-                <a class="btn mt-3 btn-light btn-sm py-2 px-4 rounded-pill border-0 bg-white" target="_blink" href="mailto:saidalachgar.r@gmail.com"><small>CONNECT WITH ME</small></a>
+                <h4 class="text-white-50 mt-3">HELLO! I'M</h4>
+                <h1><span class="typer fw-bold text-white" id="main" data-words="SAIDA LACHGAR,A WEB DEVELOPER" data-delay="100" data-deleteDelay="1500"></span><span class="cursor" data-owner="main"></span></h1>
             </div>
         </div>
         <div class="row justify-content-center">
-            <div class="col-11 col-sm-11 col-md-10 col-lg-8 col-xl-8 col-xxl-8 text-center text-light">
-                <h6 class="lh-1">ABOUT<br>///</h6>
-                <h3 class="fw-bold mt-4 lh-base fs-lg" id="#ABOUT">Dedicated and efficient developer with +3 years experience in application layers, and databases based in Agadir, Morocco. Eexcited to be at deployment phase of my career as web developer. I’m a firm believer that we should never settle. I’m a  self-motivated and self-taught professional who likes to solve problems, I merge a passion for usability and user experience with technical knowledge to create cool digital experiences!</h3>
+            <div class="col-11 col-sm-11 col-md-10 col-lg-9 col-xl-9 col-xxl-9 text-light">
+                <h6 class="display-1 fw-bold">ABOUT</h6>
+                <h3 class="fw-bold lh-base fs-lg" id="#ABOUT">Full stack web developer with a passion for thoughtful UI/UX design, responsive web design and visual development based in Agadir, Morocco. Eexcited to be at deployment phase of my career as web developer. I’m a firm believer that we should never settle. I’m a  self-motivated and self-taught professional who likes to solve problems, I merge a passion for usability and user experience with technical knowledge to create cool digital experiences!</h3>
                 <h5 class="mt-4 small">You can reas more about my biography, experience, skills, education<br class="d-none d-sm-block d-md-block"> and much more in the PDF attached bellow or just keep scrolling<br></h5>
                 <a class="link-light fw-bold small" target="_blank" href="Resume.pdf">My resume (pdf 122kb)</a> 
             </div>
@@ -49,16 +47,18 @@
         <div class="row my-3 justify-content-around">
         <div class="row justify-content-around mt-5">
             <div class="col-11 col-sm-11 col-md-10 col-lg-9 col-xl-9 col-xxl-9 text-white text-left">
-                <h1 id="#RESUME"><span class="fw-bold display-4">Resume</span></h1>
-                <div class="row mt-2 justify-content-center g-5">
+                <h6 id="#RESUME" class="display-1 fw-bold mb-3">RESUME</h6>
+                <div class="row justify-content-center g-5">
                     <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
                         <h3><span class="underline-cyan">EDUCATION</span></h3>
                         <h5 class="mb-0 mt-3">Course in Graphic Design and Advertising</h5>
                         <small>Center Acadymia Consulting –Agadir</small><br>
                         <small class="text-white-50">Feb. 2020</small>
+                        <hr class="w-50" style="opacity: .05;">
                         <h5 class="mb-0 mt-3">IT - Software Development Specialist Technical Diploma</h5>
                         <small>Specialized Institute of Applied Technology of Agadir « ISTA »</small><br>
                         <small class="text-white-50">2017-2019</small>
+                        <hr class="w-50" style="opacity: .05;">
                         <h5 class="mb-0 mt-3">Baccalaureate, Experimental Sciences</h5>
                         <small>Al Mutanabbi High School –Agadir</small><br>
                         <small class="text-white-50">2016-2017</small>
@@ -68,6 +68,7 @@
                         <a href="https://www.maitreelhadeg.com" target="_blank" class="mb-0 link-light fs-6 mt-3">Otman Elhadeg Law-firm<i class="ri-arrow-right-up-line"></i></a><br>
                         <small>Full stack Web Developer</small><br>
                         <small class="text-white-50">Oct. 2019 - Nov. 2020</small>
+                        <hr class="w-50" style="opacity: .05;">
                         <h5 class="mb-0 mt-3">Imrasoft</h5>
                         <small>Student - Web Development</small><br>
                         <small class="text-white-50">March. - Apr. 2019</small>
@@ -80,8 +81,10 @@
                         <b>Proficient in</b> PHP ∙ HTML5 ∙ CSS ∙ BOOTSTRAP ∙ XML<br>
                         <b>Experienced with</b> Laravel ∙ ASP.NET [C#] ∙ JS ∙ JQUERY<br>
                         <b>Familiar with</b> Wordpress<br>
+                        <hr class="w-50" style="opacity: .05;">
                         <h5 class="mb-1 mt-4">Windows applications</h5>
                         <b>Specialized in</b> ADO.NET [C#]
+                        <hr class="w-50" style="opacity: .05;">
                         <h5 class="mb-1 mt-4">Databases design and development</h5>
                         <b>Experienced with</b> Merise ∙ UML ∙ SQL Server ∙ My SQL
                     </div>
@@ -99,7 +102,7 @@
         </div>
         <div class="row my-5 d-none d-sm-block d-md-block"></div>
         <div class="row">
-            <div class="img-container position-absolute end-0 d-none d-lg-block d-xl-block d-xxl-block" style="margin-top: -10%;width: max-content;">
+            <div class="img-container position-absolute end-0 d-none d-lg-block d-xl-block d-xxl-block" style="margin-top: -10%;right: -2% !important;width: max-content;">
                 <img src="IMG/Group 4.png" alt="" >
                 <div class="centered">
                     <h1 class="font-Handwriting text-white-50">Catcha!</h1>
@@ -110,56 +113,46 @@
         </div>
         <div class="row justify-content-center mt-5">
             <div class="col-11 col-sm-11 col-md-10 col-lg-9 col-xl-9 col-xxl-9 py-4 px-2 text-white">
-                <h1 class="fw-bold display-4" id="#PROJECTS">Check what I've been<br class="d-none d-sm-block d-md-block"> Doing <span class="underline-cyan">lately</span></h1>
-                <div class="row my-4"></div>
-                <div class="row my-5 justify-content-around">
-                    <div class="col-xl-5 col-xxl-5 col-sm-12 col-md-12">
-                        <div class="row">
-                            <div class="col-12 bg-white p-4 rounded-4">
-                                <div class="row"><div class="col-12"><span class="badge bg-light text-dark float-end">Laravel</span><span class="badge bg-light text-dark float-end me-2">Bootstrap</span><span class="badge bg-light text-dark float-end me-2">MYSQL</span></div></div><br>
-                                <div class="row mb-3"><div class="col-12"><img src="IMG/Perspective (4).png" class="w-100"></div></div>
-                                <div class="row "><a target="_blank" href="http://ntask-app.herokuapp.com/" class="h5 link-dark">nTask <i class="ri-external-link-fill small"></i></a></div>
-                                <div class="row mt-1"><small class="text-dark" >Simple To-Do application with Laravel.</small></div><br>
-                                <a target="_blank" href="https://github.com/saidaLachgar/ntask.git" class="btn btn-light btn-sm float-end"><i class="ri-github-fill"></i> <b>SOURCE</b></a>
-                            </div>
-                        </div>
-                        <div class="row my-5"></div>
-                        <div class="row">
-                            <div class="col-12 bg-white p-4 rounded-4">
-                                <div class="row"><div class="col-12"><span class="badge bg-light text-dark float-end">PHP</span><span class="badge bg-light text-dark float-end me-2">Bootstrap</span><span class="badge bg-light text-dark float-end me-2">SQL Server</span></div></div><br>
-                                <div class="row mb-3"><div class="col-12"><img src="IMG/Perspective (5).png" class="w-100"></div></div>
-                                <div class="row"><h5 class="text-dark">Imrasoft</h5></div>
-                                <div class="row mt-1"><small class="text-dark" >Web application allowing electronic document management</small></div><br>
-                                <a target="_blank" href="https://github.com/saidaLachgar/imrasoft.git" class="btn btn-light btn-sm float-end"><i class="ri-github-fill"></i> <b>SOURCE</b></a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-5 col-xxl-5 col-sm-12 col-md-12">
-                        <div class="row py-5 pt-5 d-none d-sm-block d-md-block"></div>
-                        <div class="row py-5"></div>
-                        <div class="row">
-                            <div class="col-12 bg-white p-4 rounded-4">
-                                <div class="row"><div class="col-12"><span class="badge bg-light text-dark float-end">PHP</span><span class="badge bg-light text-dark float-end me-2">Bootstrap</span><span class="badge bg-light text-dark float-end me-2">SQL Server</span></div></div><br>
-                                <div class="row mb-3"><div class="col-12"><img src="IMG/Perspective (6).png" class="w-100"></div></div>
-                                <div class="row"><a target="_blank" href="https://maitreelhadeg.com/" class="h5 link-dark">Maître Elhadeg <i class="ri-external-link-fill small"></i></a></div>
-                                <div class="row mt-1"><small class="text-dark" >A law-firm data management App.</small></div>
-                                <a href="#" class="btn btn-light btn-sm float-end disabled"><i class="ri-github-fill"></i> <b>SOURCE</b></a>
-                            </div>
-                        </div>
-                        <div class="row my-5"></div>
-                        <div class="row">
-                            <div class="col-12 bg-white p-4 rounded-4">
-                                <div class="row"><div class="col-12"><span class="badge bg-light text-dark float-end">ADO.net</span><span class="badge bg-light text-dark float-end me-2">Bunifu</span><span class="badge bg-light text-dark float-end me-2">SQL Server</span></div></div><br>
-                                <div class="row mb-3"><div class="col-12"><img src="IMG/Perspective (1).png" class="w-100"></div></div>
-                                <div class="row"><h5 class="text-dark">Gestion Commercial</h5></div>
-                                <div class="row mt-1"><small class="text-dark" >Accounting app, This was the end of study project (PFE).</small></div><br>
-                                <a target="_blank" href="https://github.com/saidaLachgar/gestionCommercial.git" class="btn btn-light btn-sm float-end"><i class="ri-github-fill"></i> <b>SOURCE</b></a>
-                            </div>
-                        </div>
+                <h1 class="fw-bold display-4" id="#PROJECTS">CHECK WHAT I'VE BEEN<br class="d-none d-sm-block d-md-block"> DOING <span class="underline-cyan">LATELY</span></h1>
+                <h6 class="text-dark">- PROJECTS</h6>
+                <div class="row my-5 py-3"></div>
+                <div class="row my-5 justify-content-around align-items-center">
+                    <div class="col-xl-6 col-xxl-6 col-sm-12 col-md-6"><img src="IMG/Perspective (4).png" class="w-100"></div>
+                    <div class="col-xl-6 col-xxl-6 col-sm-12 col-md-6">
+                        <small class="text-white-50">WEBSITE</small>
+                        <p><a target="_blank" href="http://ntask-app.herokuapp.com/" class="h4 text-white">nTask <i class="ri-external-link-fill small"></i></a></p>
+                        <p class="text-white-50">Simple To-Do application with Laravel & MYSQL.</p>
+                        <p><a target="_blank" href="https://github.com/saidaLachgar/ntask.git" class="text-primary">View Project Source</a></p>
                     </div>
                 </div>
+                <div class="row my-5 justify-content-around align-items-center">
+                    <div class="col-xl-6 col-xxl-6 col-sm-12 col-md-6 order-sm-last">
+                        <small class="text-white-50">WEBSITE</small>
+                        <p><a target="_blank" href="https://maitreelhadeg.com/" class="h4 text-white">Maître Elhadeg <i class="ri-external-link-fill small"></i></a></p>
+                        <p class="text-white-50">A law-firm data management App. Allowing digital management of law firm files (Complete client files information with its procedures, court sessions, as well as its deposits and costs). The structure and the script with a high quality that suggesting and set all data automatically using AJAX.</p>
+                    </div>
+                    <div class="col-xl-6 col-xxl-6 col-sm-12 col-md-6"><img src="IMG/Perspective (6).png" class="w-100"></div>
+                </div>
+                <div class="row my-5 justify-content-around align-items-center">
+                    <div class="col-xl-6 col-xxl-6 col-sm-12 col-md-6"><img src="IMG/Perspective (5).png" class="w-100"></div>
+                    <div class="col-xl-6 col-xxl-6 col-sm-12 col-md-6">
+                        <small class="text-white-50">WEBSITE</small>
+                        <p class="h4 text-white">Imrasoft</p>
+                        <p class="text-white-50">Web application allowing electronic document management using PHP & SQL-Server</p>
+                        <p><a target="_blank" href="https://github.com/saidaLachgar/imrasoft.git" class="text-primary">View Project Source</a></p>
+                    </div>
+                </div>
+                <div class="row my-5 justify-content-around align-items-center">
+                    <div class="col-xl-6 col-xxl-6 col-sm-12 col-md-6 order-sm-last">
+                        <small class="text-white-50">WINDOWS APP</small>
+                        <p class="h4 text-white">Gestion Commercial</p>
+                        <p class="text-white-50">Accounting app, This was the end of study project (PFE).</p>
+                        <p><a target="_blank" href="https://github.com/saidaLachgar/gestionCommercial.git" class="text-primary">View Project Source</a></p>
+                    </div>
+                    <div class="col-xl-6 col-xxl-6 col-sm-12 col-md-6"><img src="IMG/Perspective (1).png" class="w-100"></div>
+                </div>
                 <div class="row py-5"></div>
-                <h1 class="fw-bold">Below You Can See Some Of <span class="underline-cyan">Web Designs</span> I Recently Made On Adobe Xd</h1>
+                <h1 class="fw-bold">SOME OF <span class="underline-cyan">WEB DESIGNS</span> I RECENTLY MADE ON ADOBE-XD</h1>
                 <div class="row my-3"></div>
                 <div class="row justify-content-center">
                     <div class="col-12">
@@ -172,18 +165,44 @@
                         </div>
                     </div>
                 </div>
-                <div class="row my-5 py-3 d-none d-sm-block d-md-block"></div>
-                <div class="row py-3"></div>
-                <h1 class="my-5 display-2 text-center" id="#CONTACT">CONTACT ME!</h1>
-                <h1 class="text-center mb-4 fs-xl">If you wanna get in touch, talk to me about a project collaboration or just say hi, you can send me a DM to <a class="link-secondary small" target="_blink" href="https://www.instagram.com/saida.codes/">@saida.codes</a> or <a class="link-secondary small" target="_blink" href="mailto:saidalachgar.r@gmail.com">email</a> me</h1>
-                <h2 class="text-center">Feel free to reach out through any platforms bellow</h2>
-                <h2 class="text-center mb-5 fw-bold">
+                <div class="row py-5"></div>
+                <h1 class="fw-bold" id="#Blog">CHECKOUT A FEW OF MY <span class="underline-cyan">BLOGS</span></h1>
+                <div class="row gx-5 justify-content-around mt-4">
+                    <div class="col-xl-6 col-xxl-6 col-sm-12 col-md-6">
+                        <div class="row my-2"><div class="col-12"><a target="_blank" href="https://lachgarsaida.blogspot.com/2021/01/deploy-your-personal-portfolio-with.html"><img class="w-100" src="IMG/img (4).jpg"/></a></div></div>
+                        <div class="row my-2"><a target="_blank" href="https://lachgarsaida.blogspot.com/2021/01/deploy-your-personal-portfolio-with.html" class="font-monospace text-white-50" style="width: max-content;">January 04, 2021</a></div>
+                        <div class="row my-2"><a target="_blank" href="https://lachgarsaida.blogspot.com/2021/01/deploy-your-personal-portfolio-with.html" class="text-white text-uppercase">Deploy your personal portfolio with a custom domain on Github.</a></div>
+                    </div>
+                    <div class="col-xl-6 col-xxl-6 col-sm-12 col-md-6">
+                        <div class="row my-2"><div class="col-12"><a target="_blank" href="https://lachgarsaida.blogspot.com/2020/12/Laravel-8-Guide-for-Beginners.html"><img class="w-100" src="IMG/img (1).jpg"/></a></div></div>
+                        <div class="row my-2"><a tyle="width: max-content;" target="_blank" href="https://lachgarsaida.blogspot.com/2020/12/Laravel-8-Guide-for-Beginners.html" class="font-monospace text-white-50">January 02, 2021</a></div>
+                        <div class="row my-2"><a target="_blank" href="https://lachgarsaida.blogspot.com/2020/12/Laravel-8-Guide-for-Beginners.html" class="text-white text-uppercase">The Ultimate Laravel 8 Guide for Beginners | Create your First To-Do App.</a></div>
+                    </div>
+                </div>
+                <div class="row gx-5 justify-content-around mt-4">
+                    <div class="col-xl-6 col-xxl-6 col-sm-12 col-md-6">
+                        <div class="row my-2"><div class="col-12"><a target="_blank" href="https://lachgarsaida.blogspot.com/2020/12/why-im-blogging-and-why-you-should-too.html"><img class="w-100" src="IMG/img (2).jpg"/></a></div></div>
+                        <div class="row my-2"><a tyle="width: max-content;" target="_blank" href="https://lachgarsaida.blogspot.com/2020/12/why-im-blogging-and-why-you-should-too.html" class="font-monospace text-white-50">January 01, 2021</a></div>
+                        <div class="row my-2"><a target="_blank" href="https://lachgarsaida.blogspot.com/2020/12/why-im-blogging-and-why-you-should-too.html" class="text-white text-uppercase">Why I’m blogging, and why you should too.</a></div>
+                    </div>
+                    <div class="col-xl-6 col-xxl-6 col-sm-12 col-md-6">
+                        <div class="row my-2"><div class="col-12"><a target="_blank" href="https://lachgarsaida.blogspot.com/2020/12/how-to-become-web-developer.html"><img class="w-100" src="IMG/img (3).jpg"/></a></div></div>
+                        <div class="row my-2"><a tyle="width: max-content;" target="_blank" href="https://lachgarsaida.blogspot.com/2020/12/how-to-become-web-developer.html" class="font-monospace text-white-50">December 21, 2020</a></div>
+                        <div class="row my-2"><a target="_blank" href="https://lachgarsaida.blogspot.com/2020/12/how-to-become-web-developer.html" class="text-white text-uppercase">How to Become a Web Developer.</a></div>
+                    </div>
+                </div>                
+                <div class="row my-5 d-none d-sm-block d-md-block"></div>
+                <div class="row py-5"></div>
+                <h1 class="my-5 display-1 fw-bold">CONTACT ME!</h1>
+                <h1 class="mb-3 fs-xl">IF YOU WANNA GET IN TOUCH, TALK TO ME ABOUT A PROJECT COLLABORATION OR JUST SAY HI, YOU CAN SEND ME A DM TO <a class="link-secondary small" target="_blink" href="https://www.instagram.com/saida.codes/">@SAIDA.CODES</a> OR <a class="link-secondary small" target="_blink" href="mailto:saidalachgar.r@gmail.com">EMAIL</a> ME 
+                    <br>FEEL FREE TO REACH OUT THROUGH ANY PLATFORMS BELLOW</h1>
+                <h2 class="fw-bold">
                     <a class="link-light" target="_blink" onmouseenter="$(this).glitch();" onmouseover="$(this).html('LINKEDIN')" href="https://www.linkedin.com/in/saida-lachgar-03aa37145">LINKEDIN</a>&nbsp;∙&nbsp;
                     <a class="link-light" target="_blink" onmouseenter="$(this).glitch();" onmouseover="$(this).html('GITHUB')" href="https://github.com/saidaLachgar">GITHUB</a>&nbsp;∙&nbsp;
                     <a class="link-light" target="_blink" onmouseenter="$(this).glitch();" onmouseover="$(this).html('INSTAGRAM')" href="https://www.instagram.com/saida.codes/">INSTAGRAM</a>&nbsp;∙&nbsp;
                     <a class="link-light" target="_blink" onmouseenter="$(this).glitch();" onmouseover="$(this).html('DRIBBBLE')" href="https://dribbble.com/saidaQs">DRIBBBLE</a>
                 </h2>
-                <h6 class="text-white-50 text-center font-monospace">// It's a work in progress so check back often!</h6><br>
+                <h6 class="text-white-50 font-monospace">// It's a work in progress so check back often!</h6><br>
             </div>                
         </div>
         <div class="row my-4"></div>
@@ -195,6 +214,7 @@
     <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
     <script src="script.js"></script>
     <script src="glitch.js"></script>
+    <script async src="https://unpkg.com/typer-dot-js@0.1.0/typer.js"></script>
 
 </body>
 </html>

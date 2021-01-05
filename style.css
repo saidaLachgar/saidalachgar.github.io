@@ -102,7 +102,7 @@ body::after {
     background-repeat: no-repeat;
     background-position: 0px 100%;
     background-size: 100% 50%;
-    background-image: url("IMG/Path\ 5.png");
+    background-image: url("IMG/Path5.png");
 }
 .slick-prev::before, .slick-next::before {
     color: #262626 !important;

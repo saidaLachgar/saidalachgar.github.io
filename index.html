@@ -20,16 +20,15 @@
     <link href="style.css" rel="stylesheet">
 </head>
 <body class="bg-black text-white">  
-
     <!-- navbar -->
     <nav class="navbar navbar-dark p-0" id="nav">
         <div class="container p-3">
             <a target="_blank" href="mailto:saidalachgar.r@gmail.com" class="navbar-brand link-light fs-6"><i class="ri-mail-line align-bottom"></i>&nbsp;&nbsp;SAY HELLO</a>
             <div class="d-none d-sm-flex d-md-flex fs-6">
-                <a onclick="document.getElementById('#ABOUT').scrollIntoView({block: 'center'});" href="#ABOUT" class="link-light me-3">About</a>
-                <a onclick="document.getElementById('#RESUME').scrollIntoView();" href="#RESUME" class="link-light me-3">Resume</a>
-                <a onclick="document.getElementById('#PROJECTS').scrollIntoView({block: 'center'});" href="#PROJECTS" class="link-light me-3">Projects</a>
-                <a onclick="document.getElementById('#Blog').scrollIntoView();" href="#Blog" class="link-light me-3">Blog</a>
+                <a onclick="document.getElementById('ABOUT').scrollIntoView({block: 'center'});" href="#ABOUT" class="link-light me-3">About</a>
+                <a onclick="document.getElementById('RESUME').scrollIntoView({block:'start',behavior: 'smooth'});" href="#RESUME" class="link-light me-3">Resume</a>
+                <a onclick="document.getElementById('PROJECTS').scrollIntoView({block: 'center'});" href="#PROJECTS" class="link-light me-3">Projects</a>
+                <a onclick="document.getElementById('Blog').scrollIntoView({block:'start',behavior: 'smooth'});" href="#Blog" class="link-light me-3">Blog</a>
             </div>
         </div>
     </nav>
@@ -234,7 +233,7 @@
         </div>
         <div class="row my-4"></div>
         <!-- scroll to the top -->
-        <div class="top-link hide" id="js-top" style="width: max-content;"><a class="pointer"><div class="btn-bottom shadow-sm rounded-circle d-flex justify-content-center align-items-center bg-white"><i class="fas fa-arrow-up text-body"></i></div></a></div>
+        <div class="top-link hide" id="js-top" style="width: max-content;"><a class="pointer" onclick="document.getElementById('nav').scrollIntoView({block:'start',behavior: 'smooth'});" href="#nav"><div class="btn-bottom shadow-sm rounded-circle d-flex justify-content-center align-items-center bg-white"><i class="fas fa-arrow-up text-body"></i></div></a></div>
     </div>
 
     <!-- JS -->

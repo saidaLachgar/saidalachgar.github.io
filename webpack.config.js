@@ -11,8 +11,7 @@
    },
    output: {
      path: path.resolve(__dirname, './'),
-     filename: 'script.js',
-     publicPath: 'https://github.com/saidaLachgar/saidalachgar.github.io/blob/master/',
+     filename: 'script.js'
    },
    module: {
      rules: [

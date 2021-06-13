@@ -1,6 +1,4 @@
 @import "../../node_modules/bootstrap/scss/bootstrap",
-        '../../node_modules/remixicon/fonts/remixicon.css',
-        '../../node_modules/@fortawesome/fontawesome-free/css/all.css',
         url('https://fonts.googleapis.com/css2?family=Reenie+Beanie&display=swap');
 html{
     height: 100vh;
@@ -93,7 +91,7 @@ img{
     width: 40px;height: 40px;
 }
 .btn-bottom:hover {
-    opacity: .8;
+    opacity: 0.97;
 }
 .rounded-lg{
     border-radius: 20px !important;

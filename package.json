@@ -4,14 +4,10 @@
   "description": "Tools to help while developing the portfolio",
   "main": "index.js",
   "scripts": {
-    "build": "set NODE_ENV=production webpack --progress --colors --debug --display-chunks",
-    "watch": "webpack --progress --colors --debug --display-chunks --watch",
-    "scss-lint": "stylelint \"**/*.scss\" --formatter verbose",
-    "scss-fix": "stylelint \"**/*.scss\" --fix",
-    "lint": "eslint -c .eslintrc.js --ext .js,.vue ./js",
-    "lint-fix": "eslint -c .eslintrc.js --ext .js,.vue ./js --fix"
+    "build": "webpack --progress --colors --debug --display-chunks",
+    "watch": "webpack --progress --colors --debug --display-chunks --watch"
   },
-  "author": "picaxel",
+  "author": "saida",
   "license": "AFL-3.0",
   "devDependencies": {
     "autoprefixer": "^6.7.7",

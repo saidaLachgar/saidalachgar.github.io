@@ -26,6 +26,7 @@
     "webpack-sources": "^0.1.0"
   },
   "dependencies": {
+    "@fancyapps/ui": "^4.0.0-beta.2",
     "@fortawesome/fontawesome-free": "^5.15.3",
     "bootstrap": "^5.0.0-beta3",
     "tiny-slider": "^2.9.3"

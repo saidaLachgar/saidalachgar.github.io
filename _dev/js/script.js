@@ -1,6 +1,6 @@
 import "../../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js";
-import { tns } from '../../node_modules/tiny-slider/src/tiny-slider.js';
-
+import { tns } from 'tiny-slider/src/tiny-slider';
+import { Fancybox } from "@fancyapps/ui";
 
 function resize() {
     var nav = document.querySelector("#nav").offsetHeight;
@@ -22,17 +22,27 @@ const scrollFunc = () => {
 window.addEventListener("scroll", scrollFunc);
 
 //lazy load
-document.addEventListener("DOMContentLoaded", function () {
-    const elements = document.querySelectorAll('img');
-    Array.from(elements).forEach((el) => {
-        el.classList.add('loaded');
-    });
-});
+// document.addEventListener("DOMContentLoaded", function () {
+//     const elements = document.querySelectorAll('img');
+//     Array.from(elements).forEach((el) => {
+//         el.classList.add('loaded');
+//     });
+// });
 //slider
 
 var slider = tns({
     container: '.slider-01',
-    items: 3,
+    responsive: {
+        0: {
+          items: 1
+        },
+        768: {
+          items: 2
+        },
+        992: {
+          items: 3
+        }
+    },
     slideBy: 1,
     mouseDrag: true,
     autoplay: true,

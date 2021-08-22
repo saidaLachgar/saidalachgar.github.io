@@ -1,5 +1,6 @@
 @import "../../node_modules/bootstrap/scss/bootstrap",
-        url('https://fonts.googleapis.com/css2?family=Reenie+Beanie&display=swap');
+        url('https://fonts.googleapis.com/css2?family=Reenie+Beanie&display=swap'),
+        "../../node_modules/@fancyapps/ui/dist/fancybox.css";
 html{
     height: 100vh;
     scroll-behavior: smooth;
@@ -48,14 +49,8 @@ body::after {
 nav a{
     font-size: 14px !important;    
 }
-img{
-    -webkit-filter: blur(5px);
-    filter: blur(5px);
-    transition: filter 1000ms ease-out;
-    &.loaded{
-        -webkit-filter: blur(0px);
-        filter: blur(0px);
-    }
+.pointer{
+    cursor: pointer !important;
 }
 .tns-ovh{
     overflow: hidden;
@@ -201,7 +196,6 @@ img{
  .glitch {
     position: relative;
     width: 84px;
-    margin-left: 10px;
     &:hover:before {
         content: attr(data-text);
         position: absolute;

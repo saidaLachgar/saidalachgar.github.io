@@ -1,4 +1,5 @@
-Hello, I'm SAIDA. I built this web site, to keep adding Portfolio items as I keep developing stuff
+Hello, I'm SAIDA. Welcome to my corner of the internet. I'm glad you're here!
+I built this web site, to keep adding Portfolio items as I keep developing stuff
 
 # https://saidalachgar.github.io/
 

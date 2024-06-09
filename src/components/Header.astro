@@ -1,0 +1,115 @@
+---
+import presentation from '@/data/presentation'
+import { Icon } from 'astro-icon/components'
+import ResponsiveToggle from './ResponsiveToggle.astro'
+import TimeComponent from './TimeComponent.astro'
+import SkipToContent from '../components/SkipToContent.astro'
+---
+
+<header>
+  <SkipToContent />
+  <div class="menu container">
+    <div class="logo">
+      <a href="/"><Icon name="logo" width={87} height={87} /></a>
+    </div>
+
+    <nav class="navigation" aria-label="Main navigation desktop">
+      <ul>
+        <li class="menu-item">
+          <a href="/#about">about</a>
+        </li>
+        <li class="menu-item">
+          <a href="/#services">services</a>
+        </li>
+        <li class="menu-item">
+          <a href="/projects/">projects</a>
+        </li>
+        <li class="menu-item">
+          <a href="/blog/">blog</a>
+        </li>
+        <li class="menu-item">
+          <a href="/contact/">contact</a>
+        </li>
+      </ul>
+    </nav>
+
+    <div class="info">
+      <div class="contact">
+        <a href={`mailto:${presentation.mail}`}>{presentation.mail}</a><br />
+        <a href={`tel:${presentation.phone}`}>{presentation.phone}</a>
+      </div>
+      <div class="coordinate">
+        <p>{presentation.location} <TimeComponent /></p>
+        <p>{presentation.coordinate}</p>
+      </div>
+    </div>
+  </div>
+</header>
+
+<style lang="scss" is:global>
+  // @use '../assets/scss/base/outline' as *;
+  // @use '../assets/scss/base/breakpoint' as *;
+  // @use '../assets/scss/base/outline' as *;
+  header {
+    top: 0;
+    padding-top: var(--default-space);
+    position: sticky;
+    text-transform: lowercase;
+    z-index: 1000;
+    .menu {
+      display: flex;
+      justify-content: space-between;
+    }
+    .logo {
+      width: 75%;
+    }
+    .info {
+      width: auto;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .navigation {
+      flex: 1;
+    }
+  }
+</style>
+
+<script>
+  // Function to change the favicon
+  const title = document.title
+  let interval
+  let changeFavicon = (iconPath: string) => {
+    const link = document.querySelector("link[rel*='icon']")
+    link.href = iconPath
+  }
+
+  // Event listener for visibility change
+  document.addEventListener('visibilitychange', function () {
+    if (document.hidden) {
+      setTimeout(() => {
+        if (document.hidden) {
+          // Page is not visible, change favicon to sleeping emoji
+          changeFavicon('/favicon-sleep.png')
+
+          // Function to update tab title with ellipsis animation
+          let ellipsisCount = 1
+          interval = setInterval(function () {
+            const ellipsis = 'Zzzz' + '.'.repeat(ellipsisCount - 1)
+            document.title = ellipsis
+            ellipsisCount = (ellipsisCount % 3) + 1 // Loop between 1, 2, 3
+          }, 1000) // Adjust the interval as needed
+        }
+      }, 5000)
+    } else {
+      // Page is visible again, revert to default favicon
+      changeFavicon('/favicon-shy.png')
+      clearInterval(interval)
+      document.title = 'Welcome Back, Explorer!'
+      setTimeout(() => {
+        changeFavicon('/favicon.svg')
+        setTimeout(() => (document.title = title), 1000)
+      }, 1000)
+    }
+  })
+</script>

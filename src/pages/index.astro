@@ -1,0 +1,26 @@
+---
+import Stats from '@/components/Stats.astro'
+import About from '../components/About.astro'
+import Work from '../components/Work.astro'
+import Hero from '../components/Hero.astro'
+import Blog from '../components/Blog.astro'
+// import Blog from '../components/Blog.astro'
+import Services from '../components/Services.astro'
+import Figure from '../components/Figure.astro'
+import DefaultLayout from '../layouts/DefaultLayout.astro'
+import Playground from '@/components/Playground.astro'
+---
+
+<DefaultLayout
+  title="Saida Lachgar - Frontend Web Developer Portfolio"
+  description="A frontend web developer, blends thoughtful UI/UX design with technical expertise. Specializing in JS, Angular, Symfony, and more. Elevate your digital experiences with unique themes, SEO optimization, responsive design, and interactive motions!"
+>
+  <Hero />
+  <About />
+  <Stats />
+  <Services />
+  <Figure />
+  <Work />
+  <Playground />
+  <Blog />
+</DefaultLayout>

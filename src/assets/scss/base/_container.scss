@@ -1,0 +1,19 @@
+// | -------------------------------------------------------------
+// | Container
+// | -------------------------------------------------------------
+
+@use 'breakpoint' as *;
+
+.container {
+  margin: 0 auto;
+  padding: 0 var(--default-space);
+  max-width: 100%;
+
+  @include breakpoint(large) {
+    max-width: 1820px;
+  }
+
+  &.stretch {
+    max-width: 100%;
+  }
+}

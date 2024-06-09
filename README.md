@@ -1,6 +1,11 @@
-Hello, I'm SAIDA. Welcome to my corner of the internet. I'm glad you're here!
-I built this web site, to keep adding Portfolio items as I keep developing stuff
 
-# https://saidalachgar.github.io/
+## 🚀 Getting started
 
-![LANDING PAGE](https://github.com/saidaLachgar/saidalachgar.github.io/blob/master/_dev/images/Screenshot.png?raw=true)
+| Command           | Action                                       |
+| :---------------- | :------------------------------------------- |
+| `npm install`     | Installs dependencies                        |
+| `npm run dev`     | Starts local dev server at `localhost:4321`  |
+| `npm run build`   | Build your production site to `./dist/`      |
+| `npm run preview` | Preview your build locally, before deploying |
+
+https://github.com/markteekman/accessible-astro-starter

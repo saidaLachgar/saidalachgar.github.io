@@ -1,0 +1,39 @@
+// | -------------------------------------------------------------
+// | Button
+// | -------------------------------------------------------------
+
+.button {
+  display: inline-block;
+  padding: 0.75rem 1rem;
+  font-weight: bold;
+  text-decoration: none;
+  text-align: center;
+  color: var(--neutral-900);
+  background-color: var(--primary-100);
+  border: 3px solid var(--primary-100);
+  border-radius: 3px;
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out;
+
+  &:hover,
+  &:focus {
+    text-decoration: underline;
+    background-color: var(--primary-200);
+    border-color: var(--primary-200);
+  }
+
+  &:visited {
+    color: var(--neutral-900);
+  }
+
+
+  &.has-icon {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+
+    [data-icon] {
+      height: auto;
+      width: 30px;
+    }
+  }
+}

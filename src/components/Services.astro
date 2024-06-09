@@ -1,0 +1,61 @@
+---
+import services, { type Service } from '@/data/services'
+import { Icon } from 'astro-icon/components'
+---
+
+<section class="services container">
+  <h2 class="title">Services</h2>
+  <ul class="list">
+    {
+      services.length !== 0 &&
+        services.map((service: Service) => (
+          <li class="item">
+            <Icon name={service.icon.name} width={service.icon.width} height={service.icon.height} />
+            <div class="content">
+              <h3 class="subtitle">{service.title}</h3>
+              <p class="description">{service.description}</p>
+            </div>
+          </li>
+        ))
+    }
+  </ul>
+</section>
+
+<style lang="scss">
+  .services {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 320px;
+    margin-bottom: 100px;
+    position: relative;
+    .title {
+      font-size: 27px;
+      font-weight: 500;
+      text-transform: uppercase;
+      top: var(--default-space);
+      position: sticky;
+    }
+    .description {
+      color: rgba(255, 255, 255, 0.7);
+      font-size: 22px;
+    }
+    .subtitle {
+      margin-bottom: 30px;
+      font-size: 27px;
+      text-transform: uppercase;
+      font-weight: 500;
+    }
+    .item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 100px;
+    }
+    .list {
+      max-width: 853px;
+    }
+    .content {
+      width: 50%;
+    }
+  }
+</style>

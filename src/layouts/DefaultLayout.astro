@@ -1,0 +1,35 @@
+---
+import '../assets/scss/globals.scss'
+import SiteMeta from '../components/SiteMeta.astro'
+import Header from '../components/Header.astro'
+import Footer from '../components/Footer.astro'
+
+const {
+  title,
+  description,
+  url,
+  image = '/social-preview-image.png',
+} = Astro.props
+---
+
+<html lang="en" dir="ltr">
+  <head>
+    <SiteMeta
+      title={title}
+      description={description}
+      url={url ?? Astro.site}
+      image={image}
+    />
+  </head>
+  <body>
+    <Header />
+    <main id="main-content" transition:animate="fade">
+      <slot />
+    </main>
+    <Footer />
+
+    <style lang="scss" is:global>
+    </style>
+
+  </body>
+</html>

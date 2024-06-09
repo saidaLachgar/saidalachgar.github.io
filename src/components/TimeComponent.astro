@@ -1,0 +1,27 @@
+<time id="CurrentTime"></time>
+
+<script>
+  document.addEventListener('astro:page-load', () => {
+    let CurrentTime = document.getElementById('CurrentTime')
+    const getTime = () => {
+      try {
+        const now = new Date()
+        const formatter = new Intl.DateTimeFormat('en-US', {
+          timeZone: 'Africa/Casablanca',
+          hour: 'numeric',
+          minute: 'numeric',
+        })
+        CurrentTime!.textContent = formatter.format(now)
+      } catch (error) {
+        console.error('Error getting time:', error)
+        CurrentTime!.textContent = ''
+      }
+    }
+
+    // Initial update
+    getTime()
+
+    // Update every second
+    setInterval(getTime, 60000)
+  })
+</script>

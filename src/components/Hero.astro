@@ -1,0 +1,101 @@
+---
+import video from '../assets/img/presentation.mp4'
+import poster from '../assets/img/video-poster.png'
+import { Icon } from 'astro-icon/components'
+---
+
+<section class="hero container">
+  <div class="visually-hidden">
+    <h1>Experienced Frontend Web Developer - Saida Lachgar</h1>
+    <p>
+      Welcome to my digital realm! As a seasoned frontend web developer, I embark on a journey to redefine the online
+      experience. My expertise lies in crafting pixel-perfect and responsive websites, blending art with functionality.
+      Beyond the code, I'm driven by a passion for innovation, breaking digital barriers, and constructing inclusive
+      online spaces. Whether transforming designs into reality or delving into backend intricacies, I thrive on
+      ambitious projects that push the boundaries of digital creativity.
+    </p>
+  </div>
+  <div class="content">
+    <p class="title">Frontend developer & full-stack capable</p>
+    <div class="presentation">
+      <div class="video" id="play-video">
+        <video src={video} width="307" height="307" id="video" poster={poster.src}></video>
+        <button>
+          <Icon name="play" />
+        </button>
+      </div>
+      <p class="caption">Welcome to my corner of the<br />internet I'm glad you're here!</p>
+    </div>
+  </div>
+</section>
+
+<script>
+  const playVideo = document.querySelector('#play-video')
+  const video = document.querySelector('#video')
+  playVideo.addEventListener('click', () => (video.paused ? video.play() : video.pause()))
+  video.addEventListener('play', () => video.classList.add('playing'))
+  video.addEventListener('pause', () => video.classList.remove('playing'))
+  video.addEventListener('ended', () => video.classList.remove('playing'))
+</script>
+
+<style lang="scss">
+  .hero {
+    position: relative;
+    padding-top: 100px;
+    .content {
+      display: flex;
+      align-items: stretch;
+    }
+    .title {
+      font-size: 170px;
+      flex: 1;
+      text-transform: uppercase;
+      font-weight: 500;
+      line-height: 1.2;
+    }
+    .caption {
+      position: sticky;
+      bottom: var(--default-space);
+    }
+
+    .visually-hidden {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      margin: -1px;
+      padding: 0;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      border: 0;
+    }
+    .presentation {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: flex-end;
+    }
+    .video {
+      position: sticky;
+      top: 150px;
+      margin-bottom: 100px;
+      z-index: 1;
+    }
+    video {
+      border-radius: 100%;
+      &.playing + button {
+        transform: scale(0.5);
+        opacity: 0;
+        pointer-events: none;
+      }
+    }
+    button {
+      background: transparent;
+      margin: -42px auto;
+      display: block;
+      transition: all 0.2s ease;
+      &:hover {
+        transform: scale(1.1);
+      }
+    }
+  }
+</style>

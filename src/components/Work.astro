@@ -1,0 +1,135 @@
+---
+import { projects, type Project } from '@/data/projects'
+import { Icon } from 'astro-icon/components'
+---
+
+<section class="work container">
+  <div class="header">
+    <p class="subtitle">Area of Expertise</p>
+    <h2 class="title">Selected<br />Works</h2>
+    <p class="description">
+      Over the past 4 years, I've had the privilege to work on so many cool projects, i’ve worked in areas including
+      APIs and Integration, responsive web design, eCommerce, CMS, SEO... Here's a few.
+    </p>
+  </div>
+
+  <div class="content">
+    <ul>
+      {
+        projects.map((project: Project) => (
+          <li>
+            <a href={project.link}>
+              <p class="name">
+                <>
+                  <span>
+                    {project.name} - {project.status}
+                  </span>
+                  <i />
+                </>
+              </p>
+              <span class="role">{project.role}</span>
+              <span class="year">{project.year}</span>
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+    <p class="more">
+      <Icon name="arrow-down" />
+      <u>See all projects</u>
+      <sup>({projects.length})</sup>
+    </p>
+  </div>
+</section>
+
+<script>
+  const more = document.querySelector('.work .more')
+  const list = document.querySelector('.work ul')
+  more?.addEventListener('click', () => {
+    more.remove()
+    list?.classList.add('active')
+  })
+</script>
+
+<style lang="scss">
+  .work {
+    margin-top: 150px;
+    margin-bottom: 150px;
+    .content {
+      max-width: 760px;
+    }
+    .subtitle {
+      font-size: 11px;
+    }
+    .title {
+      font-size: 64px;
+      margin: 30px 0;
+      font-family: var(--font-family-secondary);
+    }
+    .description {
+      font-size: 13px;
+      margin: 0 0 70px;
+      max-width: 478px;
+    }
+    .more {
+      font-size: 18px;
+      display: flex;
+      column-gap: 7px;
+      align-items: center;
+      text-transform: uppercase;
+      margin: 0 auto;
+      width: max-content;
+      cursor: pointer;
+      sup {
+        margin-top: -10px;
+      }
+      svg {
+        margin-top: 2px;
+      }
+    }
+    ul {
+      &:not(.active) {
+        max-height: 540px;
+        overflow: hidden;
+        position: relative;
+        &::after {
+          content: '';
+          width: 100%;
+          height: 100%;
+          pointer-events: none;
+          background: linear-gradient(0deg, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0.1) 100%);
+          position: absolute;
+          left: 0;
+          top: 0;
+        }
+      }
+      li {
+        margin-bottom: 40px;
+      }
+      a {
+        display: grid;
+        align-items: center;
+        column-gap: 10px;
+        grid-template-columns: minmax(0, 1fr) repeat(2, auto);
+      }
+    }
+    .name {
+      font-size: 18px;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      column-gap: 10px;
+      i {
+        flex: 1;
+        height: 1px;
+        background-color: rgb(255, 255, 255, 0.1);
+      }
+    }
+    .role {
+      font-size: 13px;
+    }
+    .year {
+      font-size: 11px;
+    }
+  }
+</style>

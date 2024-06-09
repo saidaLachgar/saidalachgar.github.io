@@ -1,0 +1,71 @@
+---
+import articles, { type Blog } from '@/data/blog'
+---
+
+<section class="blog container">
+  <div class="header">
+    <h2 class="title">Blog</h2>
+    <p class="description">
+      Get cozy with my digital storytelling. My blogs are like warm, friendly chats about web development.
+    </p>
+  </div>
+
+  <ul>
+    {
+      articles.map((article: Blog) => (
+        <li>
+          <a href={article.slug}>
+            <span class="date">{article.date}</span>
+            <span class="name">{article.title}</span>
+            <span class="time">{article.time}</span>
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+</section>
+
+<script></script>
+
+<style lang="scss">
+  .blog {
+    margin-top: 200px;
+    margin-bottom: 300px;
+    .title {
+      font-size: 64px;
+      margin: 30px 0;
+      font-family: var(--font-family-secondary);
+    }
+    .description {
+      font-size: 13px;
+      margin: 0 0 70px;
+      max-width: 478px;
+    }
+
+    ul {
+      li {
+        margin-bottom: 40px;
+        width: max-content;
+      }
+      a {
+        display: grid;
+        align-items: center;
+        column-gap: 20px;
+        grid-template-columns: 100px repeat(2, auto);
+      }
+    }
+    .name {
+      font-size: 20px;
+      font-weight: 500;
+    }
+
+    .date,
+    .time {
+      font-size: 14px;
+      opacity: 0.8;
+    }
+    .time {
+      align-self: flex-end;
+    }
+  }
+</style>

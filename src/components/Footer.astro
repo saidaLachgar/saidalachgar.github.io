@@ -1,0 +1,120 @@
+---
+import { Icon } from 'astro-icon/components'
+---
+
+<footer>
+  <section class="container">
+    <p class="ping-me">
+      Ping me for <span>cool</span> collaborations<br /> and front-end <span>magic 😎</span>
+      <!-- <br /><small>Let's chat about awesome projects, can't wait to connect!</small> -->
+    </p>
+    <ul>
+      <li class="mail">
+        <span
+          ><i>saidalachgar.r@gmail.com</i>
+          <Icon name="click-to-copy" width={100} height={100} />
+          <small class="copy-message"></small>
+        </span>
+      </li>
+      <li>
+        <a href=""><Icon name="arrow-top-right" />Linkedin</a>
+      </li>
+      <li>
+        <a href=""><Icon name="arrow-top-right" />Instagram</a>
+      </li>
+      <li>
+        <a href=""><Icon name="arrow-top-right" />CV / Resume</a>
+      </li>
+    </ul>
+  </section>
+</footer>
+
+<script>
+  const mail = document.querySelector('.mail i')
+  const svg = document.querySelector('.mail svg')
+  const copyMessage = document.querySelector('.mail .copy-message')
+  mail.addEventListener('mousemove', (e) => {
+    svg.style.top = e.clientY + 'px'
+    svg.style.left = e.clientX + 'px'
+  })
+  mail?.addEventListener('click', () => {
+    if (!navigator.clipboard) {
+      return
+    }
+    navigator.clipboard.writeText(mail.innerText || mail.textContent).then(
+      () => {
+        copyMessage.textContent = '( copied! )'
+      },
+      () => {
+        copyMessage.textContent = '( sorry copying to clipboard failed )'
+      }
+    )
+    setTimeout(() => {
+      copyMessage.textContent = ''
+    }, 2000)
+  })
+</script>
+
+<style lang="scss">
+  footer {
+    ul {
+      display: flex;
+      padding: 100px 0 80px;
+      .mail {
+        flex: 1;
+        i {
+          font-size: 30px;
+          text-decoration: underline;
+          font-family: var(--font-family-secondary);
+          position: relative;
+          transform: skew(-10deg);
+          cursor: none;
+          margin-right: 10px;
+          &:hover + svg {
+            opacity: 1;
+            scale: 1;
+            animation: rotating 15s linear infinite;
+          }
+        }
+        svg {
+          position: absolute;
+          opacity: 0;
+          pointer-events: none;
+          transition: opacity 0.2s ease, scale 0.2s ease;
+          transform: translateX(-50%) translateY(-50%) rotate(4deg);
+          scale: 0.5;
+          top: 50%;
+          left: 50%;
+          will-change: transform;
+        }
+        small {
+          transform: scale(1);
+          opacity: 1;
+          transition: opacity 0.2s ease, transform 0.2s ease;
+          &:empty {
+            opacity: 0;
+            transform: scale(0.5);
+          }
+        }
+      }
+    }
+    .ping-me {
+      font-size: 25px;
+      span {
+        font-family: var(--font-family-secondary);
+      }
+      small {
+        font-size: 20px;
+        opacity: 0.6;
+      }
+    }
+  }
+  @keyframes rotating {
+    from {
+      transform: translateX(-50%) translateY(-50%) rotate(0deg);
+    }
+    to {
+      transform: translateX(-50%) translateY(-50%) rotate(360deg);
+    }
+  }
+</style>

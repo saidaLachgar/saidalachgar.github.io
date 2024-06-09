@@ -1,0 +1,36 @@
+---
+import { projectStats, type ProjectStats } from '@/data/projects'
+---
+
+<ul class="stats container">
+  {
+    projectStats.length !== 0 &&
+      projectStats.map((stats: ProjectStats) => (
+        <li>
+          <p class="value">
+            {stats.value}
+            <sup class="caption">{stats.caption}</sup>
+          </p>
+          <p class="label">{stats.label}</p>
+        </li>
+      ))
+  }
+</ul>
+
+<style lang="scss">
+  .stats {
+    margin-top: 100px;
+    display: flex;
+    justify-content: space-between;
+    .label {
+      font-size: 24px;
+    }
+    .caption {
+      font-size: 48px;
+    }
+    .value {
+      font-size: 168px;
+      font-weight: 500;
+    }
+  }
+</style>

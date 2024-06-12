@@ -19,9 +19,9 @@ import { Icon } from 'astro-icon/components'
     <p class="title">Frontend developer & full-stack capable</p>
     <div class="presentation">
       <div class="video" id="play-video">
-        <video src={video} width="307" height="307" id="video" poster={poster.src}></video>
+        <video src={video} width="307" height="307" id="video" playsinline poster={poster.src}></video>
         <button>
-          <Icon name="play" />
+          <Icon name="play" width={73} height={73} />
         </button>
       </div>
       <p class="caption">Welcome to my corner of the<br />internet I'm glad you're here!</p>
@@ -39,6 +39,7 @@ import { Icon } from 'astro-icon/components'
 </script>
 
 <style lang="scss">
+  @use '../assets/scss/base/mixins' as *;
   .hero {
     position: relative;
     padding-top: 100px;
@@ -47,11 +48,11 @@ import { Icon } from 'astro-icon/components'
       align-items: stretch;
     }
     .title {
-      font-size: 170px;
       flex: 1;
       text-transform: uppercase;
       font-weight: 500;
       line-height: 1.2;
+      @include clamp(font-size, 60px, 9vw, 170px);
     }
     .caption {
       position: sticky;
@@ -82,6 +83,8 @@ import { Icon } from 'astro-icon/components'
     }
     video {
       border-radius: 100%;
+      max-width: 25vw;
+
       &.playing + button {
         transform: scale(0.5);
         opacity: 0;
@@ -93,8 +96,44 @@ import { Icon } from 'astro-icon/components'
       margin: -42px auto;
       display: block;
       transition: all 0.2s ease;
+      position: relative;
+      z-index: 2;
+      color: #000;
       &:hover {
         transform: scale(1.1);
+      }
+    }
+    @media (max-width: 860px) {
+      padding-top: 40px;
+      .title {
+        @include clamp(font-size, 39px, 11vw, 170px);
+      }
+
+      .caption {
+        position: static;
+      }
+      .content {
+        flex-direction: column;
+        row-gap: 40px;
+      }
+      .presentation {
+        align-items: flex-start;
+      }
+
+      .video {
+        align-self: center;
+        position: static;
+        margin-bottom: 70px;
+        button {
+          margin: -30px auto;
+          svg {
+            width: 50px;
+            height: auto;
+          }
+        }
+        video {
+          max-width: 45vw;
+        }
       }
     }
   }

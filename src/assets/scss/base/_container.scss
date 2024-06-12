@@ -8,6 +8,9 @@
   margin: 0 auto;
   padding: 0 var(--default-space);
   max-width: 100%;
+  @media (max-width: 655px) {
+    padding: 0 25px;
+  }
 
   @include breakpoint(large) {
     max-width: 1820px;

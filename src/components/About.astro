@@ -28,12 +28,28 @@
     }
     .description {
       font-size: 25px;
-      width: 40%;
+      max-width: 692px;
       p {
         margin-bottom: 50px;
       }
       span {
         font-family: var(--font-family-secondary);
+      }
+    }
+    @media (max-width: 1065px) {
+      margin-top: 100px;
+      flex-direction: column;
+
+      .title {
+        order: 0;
+        position: static;
+      }
+
+      .description {
+        font-size: 20px;
+        width: 100%;
+        line-height: 30px;
+        margin-top: 20px;
       }
     }
   }

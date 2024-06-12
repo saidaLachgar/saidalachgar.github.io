@@ -4,7 +4,11 @@ import { Icon } from 'astro-icon/components'
 ---
 
 <section class="services container">
-  <h2 class="title">Services</h2>
+  <div class="header">
+    <p class="subtitle">What I Offer</p>
+    <h2 class="title">Services</h2>
+    <p class="description">Delivering custom web solutions tailored to your needs.</p>
+  </div>
   <ul class="list">
     {
       services.length !== 0 &&
@@ -26,36 +30,91 @@ import { Icon } from 'astro-icon/components'
     display: flex;
     justify-content: space-between;
     margin-top: 320px;
-    margin-bottom: 100px;
+    margin-bottom: 200px;
+    column-gap: 80px;
     position: relative;
-    .title {
-      font-size: 27px;
-      font-weight: 500;
-      text-transform: uppercase;
-      top: var(--default-space);
+    align-items: flex-start;
+    .header {
+      top: 200px;
+      padding-bottom: 100px;
       position: sticky;
+      .subtitle {
+        font-size: 11px;
+      }
+      .title {
+        font-size: 64px;
+        margin: 30px 0;
+        font-family: var(--font-family-secondary);
+      }
+      .description {
+        margin: 0 0 70px;
+        max-width: 478px;
+      }
     }
     .description {
       color: rgba(255, 255, 255, 0.7);
       font-size: 22px;
     }
-    .subtitle {
-      margin-bottom: 30px;
-      font-size: 27px;
-      text-transform: uppercase;
-      font-weight: 500;
-    }
     .item {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      margin-bottom: 100px;
+      column-gap: 40px;
+      &:not(:last-child) {
+        margin-bottom: 100px;
+      }
+      svg {
+        max-width: 15vw;
+        height: auto;
+      }
+
+      .subtitle {
+        margin-bottom: 30px;
+        font-size: 27px;
+        text-transform: uppercase;
+        font-weight: 500;
+      }
     }
     .list {
+      flex: 1;
       max-width: 853px;
     }
     .content {
-      width: 50%;
+      max-width: 450px;
+      flex: 1;
+    }
+
+    @media (max-width: 1070px) {
+      margin-top: 150px;
+      margin-bottom: 50px;
+      flex-direction: column;
+    }
+    @media (max-width: 1230px) {
+      .header {
+        padding-bottom: 20px;
+        position: static;
+        .description {
+          max-width: unset;
+        }
+      }
+      .item {
+        flex-direction: column;
+        align-items: flex-start;
+        row-gap: 40px;
+
+        .subtitle {
+          font-size: 24px;
+        }
+        svg {
+          max-width: 110px;
+          margin-right: auto;
+        }
+      }
+
+      .content {
+        max-width: unset;
+        width: 100%;
+      }
     }
   }
 </style>

@@ -46,6 +46,7 @@ import articles, { type Blog } from '@/data/blog'
       li {
         margin-bottom: 40px;
         width: max-content;
+        max-width: 100%;
       }
       a {
         display: grid;
@@ -66,6 +67,15 @@ import articles, { type Blog } from '@/data/blog'
     }
     .time {
       align-self: flex-end;
+    }
+    @media (max-width: 655px) {
+      margin-top: 70px;
+      margin-bottom: 130px;
+
+      ul a {
+        grid-template-columns: 1fr;
+        row-gap: 10px;
+      }
     }
   }
 </style>

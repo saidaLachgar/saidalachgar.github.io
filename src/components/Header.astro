@@ -1,9 +1,8 @@
 ---
 import presentation from '@/data/presentation'
 import { Icon } from 'astro-icon/components'
-import ResponsiveToggle from './ResponsiveToggle.astro'
-import TimeComponent from './TimeComponent.astro'
 import SkipToContent from '../components/SkipToContent.astro'
+import TimeComponent from './TimeComponent.astro'
 ---
 
 <header>
@@ -64,6 +63,7 @@ import SkipToContent from '../components/SkipToContent.astro'
       width: 75%;
     }
     .info {
+      min-width: 160px;
       width: auto;
       display: flex;
       flex-direction: column;
@@ -71,6 +71,21 @@ import SkipToContent from '../components/SkipToContent.astro'
     }
     .navigation {
       flex: 1;
+      min-width: 100px;
+    }
+    @media (max-width: 655px) {
+      .logo {
+        width: 100%;
+        svg {
+          margin-left: auto;
+          height: 50px;
+          width: auto;
+        }
+      }
+      .navigation,
+      .info {
+        display: none;
+      }
     }
   }
 </style>

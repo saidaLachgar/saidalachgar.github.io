@@ -1,0 +1,19 @@
+@mixin clamp(
+  $property,
+  $min-size,
+  $scaler,
+  $max-size,
+  $min-size-left: false,
+  $scaler-left: false,
+  $max-size-left: false
+) {
+  @if $min-size-left ==false {
+    #{$property}: #{'min(max(#{$min-size},#{$scaler}),#{$max-size})'};
+  } @else if $min-size-left ==0 or $min-size-left ==auto {
+    #{$property}: #{'min(max(#{$min-size},#{$scaler}),#{$max-size})'}
+      $min-size-left;
+  } @else {
+    #{$property}: #{'min(max(#{$min-size},#{$scaler}),#{$max-size})'}
+      #{'min(max(#{$min-size-left},#{$scaler-left}),#{$max-size-left})'};
+  }
+}

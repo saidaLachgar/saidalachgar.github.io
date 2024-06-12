@@ -16,14 +16,14 @@ import { Icon } from 'astro-icon/components'
           <small class="copy-message"></small>
         </span>
       </li>
-      <li>
-        <a href=""><Icon name="arrow-top-right" />Linkedin</a>
+      <li class="link">
+        <a href=""><Icon name="arrow-top-right" width={18} height={18} />Linkedin</a>
       </li>
-      <li>
-        <a href=""><Icon name="arrow-top-right" />Instagram</a>
+      <li class="link">
+        <a href=""><Icon name="arrow-top-right" width={18} height={18} />Instagram</a>
       </li>
-      <li>
-        <a href=""><Icon name="arrow-top-right" />CV / Resume</a>
+      <li class="link">
+        <a href=""><Icon name="arrow-top-right" width={18} height={18} />CV / Resume</a>
       </li>
     </ul>
   </section>
@@ -59,13 +59,15 @@ import { Icon } from 'astro-icon/components'
   footer {
     ul {
       display: flex;
-      padding: 100px 0 80px;
+      padding: 100px 0 60px;
+      column-gap: 15px;
+      align-items: center;
       .mail {
         flex: 1;
         i {
-          font-size: 30px;
-          text-decoration: underline;
+          font-size: 23px;
           font-family: var(--font-family-secondary);
+          text-decoration: underline;
           position: relative;
           transform: skew(-10deg);
           cursor: none;
@@ -97,15 +99,61 @@ import { Icon } from 'astro-icon/components'
           }
         }
       }
+      .link a {
+        font-size: 14px;
+        font-weight: 700;
+        padding: 15px;
+        border: 1px solid rgb(255, 255, 255, 0.08);
+        background-color: rgb(255, 255, 255, 0.08);
+        transition: background-color 0.3s ease-in;
+        border-radius: 28px;
+        padding: 11px 15px;
+
+        svg {
+          margin-right: 6px;
+          vertical-align: -4px;
+        }
+
+        &:hover {
+          background-color: rgba(255, 255, 255, 0.15);
+        }
+      }
     }
     .ping-me {
       font-size: 25px;
+      text-transform: uppercase;
       span {
+        font-size: 33px;
+        text-transform: lowercase;
         font-family: var(--font-family-secondary);
       }
       small {
         font-size: 20px;
         opacity: 0.6;
+      }
+    }
+    @media (max-width: 655px) {
+      .ping-me {
+        font-size: 15px;
+        span {
+          font-size: 20px;
+        }
+      }
+
+      ul {
+        padding: 40px 0 60px;
+        flex-wrap: wrap;
+        row-gap: 50px;
+        .link a {
+          font-size: 10px;
+        }
+        .mail {
+          width: 100%;
+          flex: unset;
+          i {
+            font-size: 18px;
+          }
+        }
       }
     }
   }

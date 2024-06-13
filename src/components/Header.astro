@@ -15,19 +15,19 @@ import TimeComponent from './TimeComponent.astro'
     <nav class="navigation" aria-label="Main navigation desktop">
       <ul>
         <li class="menu-item">
-          <a href="/#about">about</a>
+          <a href="#about">about</a>
         </li>
         <li class="menu-item">
-          <a href="/#services">services</a>
+          <a href="#services">services</a>
         </li>
         <li class="menu-item">
-          <a href="/projects/">projects</a>
+          <a href="#projects">projects</a>
         </li>
         <li class="menu-item">
-          <a href="/blog/">blog</a>
+          <a href="#blog">blog</a>
         </li>
         <li class="menu-item">
-          <a href="/contact/">contact</a>
+          <a href="#playground">playground</a>
         </li>
       </ul>
     </nav>
@@ -55,12 +55,27 @@ import TimeComponent from './TimeComponent.astro'
     position: sticky;
     text-transform: lowercase;
     z-index: 1000;
+    ul {
+      width: max-content;
+      a {
+        transition: opacity 0.3s ease;
+      }
+      &:hover a {
+        opacity: 0.5;
+      }
+      a:hover {
+        opacity: 1;
+      }
+    }
     .menu {
       display: flex;
       justify-content: space-between;
     }
     .logo {
       width: 75%;
+      svg {
+        animation: rotatingLogo 50s linear infinite;
+      }
     }
     .info {
       min-width: 160px;
@@ -68,6 +83,13 @@ import TimeComponent from './TimeComponent.astro'
       display: flex;
       flex-direction: column;
       justify-content: space-between;
+      a {
+        transition: transform 0.3s ease;
+        display: inline-block;
+        &:hover {
+          transform: translateX(2px);
+        }
+      }
     }
     .navigation {
       flex: 1;
@@ -86,6 +108,14 @@ import TimeComponent from './TimeComponent.astro'
       .info {
         display: none;
       }
+    }
+  }
+  @keyframes rotatingLogo {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
     }
   }
 </style>

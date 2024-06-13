@@ -5,9 +5,11 @@
 html {
   box-sizing: border-box;
   scroll-behavior: smooth;
-
+  :target {
+    scroll-margin-top: 150px;
+  }
   @media (prefers-reduced-motion: reduce) {
-    scroll-behavior: auto;
+    // scroll-behavior: auto;
 
     // body * {
     //   animation-duration: 0s !important;

@@ -80,11 +80,14 @@ import { Icon } from 'astro-icon/components'
       top: 150px;
       margin-bottom: 100px;
       z-index: 1;
+      &:hover button {
+        transform: scale(1.1);
+      }
     }
     video {
       border-radius: 100%;
       max-width: 25vw;
-
+      cursor: pointer;
       &.playing + button {
         transform: scale(0.5);
         opacity: 0;
@@ -99,9 +102,6 @@ import { Icon } from 'astro-icon/components'
       position: relative;
       z-index: 2;
       color: #000;
-      &:hover {
-        transform: scale(1.1);
-      }
     }
     @media (max-width: 860px) {
       padding-top: 40px;

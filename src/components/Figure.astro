@@ -1,18 +1,14 @@
 ---
-import { Image } from 'astro:assets';
-import img from '../assets/img/img.jpg';
+import { Image } from 'astro:assets'
+import img from '../assets/img/img.jpg'
 ---
 
-<Image
-    src={img}
-    alt="saida's portfolio - developer"
-    width="1728"
-    height="1152"
-    class="figure"
-  />
+<Image src={img} alt="saida's portfolio - developer" width="1728" height="1152" class="figure" data-reveal />
 <style lang="scss">
-  .figure{
+  .figure {
     width: 100%;
     height: auto;
+    position: relative;
+    z-index: 100;
   }
 </style>

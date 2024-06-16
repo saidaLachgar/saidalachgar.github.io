@@ -12,7 +12,6 @@ import { Icon } from 'astro-icon/components'
       <li class="mail">
         <span
           ><i>saidalachgar.r@gmail.com</i>
-          <Icon name="click-to-copy" width={100} height={100} />
           <small class="copy-message"></small>
         </span>
       </li>
@@ -28,15 +27,18 @@ import { Icon } from 'astro-icon/components'
     </ul>
   </section>
 </footer>
+<Icon class="click-to-copy" name="click-to-copy" width={100} height={100} />
 
 <script>
   const mail = document.querySelector('.mail i')
-  const svg = document.querySelector('.mail svg')
+  const svg = document.querySelector('.click-to-copy')
   const copyMessage = document.querySelector('.mail .copy-message')
   mail.addEventListener('mousemove', (e) => {
     svg.style.top = e.clientY + 'px'
     svg.style.left = e.clientX + 'px'
   })
+  mail.addEventListener('mouseenter', (e) => svg?.classList.add('active'))
+  mail.addEventListener('mouseleave', (e) => svg?.classList.remove('active'))
   mail?.addEventListener('click', () => {
     if (!navigator.clipboard) {
       return
@@ -57,9 +59,11 @@ import { Icon } from 'astro-icon/components'
 
 <style lang="scss">
   footer {
+    z-index: 100;
+    position: relative;
     ul {
       display: flex;
-      padding: 100px 0 60px;
+      padding: 100px 0 80px;
       column-gap: 15px;
       align-items: center;
       .mail {
@@ -72,23 +76,8 @@ import { Icon } from 'astro-icon/components'
           transform: skew(-10deg);
           cursor: none;
           margin-right: 10px;
-          &:hover + svg {
-            opacity: 1;
-            scale: 1;
-            animation: rotating 15s linear infinite;
-          }
         }
-        svg {
-          position: absolute;
-          opacity: 0;
-          pointer-events: none;
-          transition: opacity 0.2s ease, scale 0.2s ease;
-          transform: translateX(-50%) translateY(-50%) rotate(4deg);
-          scale: 0.5;
-          top: 50%;
-          left: 50%;
-          will-change: transform;
-        }
+
         small {
           transform: scale(1);
           opacity: 1;
@@ -132,6 +121,7 @@ import { Icon } from 'astro-icon/components'
         opacity: 0.6;
       }
     }
+
     @media (max-width: 655px) {
       .ping-me {
         font-size: 15px;
@@ -143,7 +133,7 @@ import { Icon } from 'astro-icon/components'
       ul {
         padding: 40px 0 60px;
         flex-wrap: wrap;
-        row-gap: 50px;
+        row-gap: 35px;
         .link a {
           font-size: 10px;
         }
@@ -157,12 +147,20 @@ import { Icon } from 'astro-icon/components'
       }
     }
   }
-  @keyframes rotating {
-    from {
-      transform: translateX(-50%) translateY(-50%) rotate(0deg);
-    }
-    to {
-      transform: translateX(-50%) translateY(-50%) rotate(360deg);
+  .click-to-copy {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s ease, scale 0.2s ease;
+    transform: translateX(-50%) translateY(-50%) rotate(4deg);
+    scale: 0.5;
+    top: 50%;
+    left: 50%;
+    will-change: transform;
+    &.active {
+      opacity: 1;
+      scale: 1;
+      animation: rotating 15s linear infinite;
     }
   }
 </style>

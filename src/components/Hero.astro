@@ -16,13 +16,18 @@ import { Icon } from 'astro-icon/components'
     </p>
   </div>
   <div class="content">
-    <p class="title">Frontend developer & full-stack capable</p>
+    <div class="title">
+      <p><span>Frontend</span></p>
+      <p><span>developer &</span></p>
+      <p><span>full-stack</span></p>
+      <p><span>capable</span></p>
+    </div>
     <div class="presentation">
       <div class="video" id="play-video">
-        <video src={video} width="307" height="307" id="video" playsinline poster={poster.src}></video>
+        <!-- <video src={video} width="307" height="307" id="video" playsinline poster={poster.src}></video>
         <button>
           <Icon name="play" width={73} height={73} />
-        </button>
+        </button> -->
       </div>
       <p class="caption">Welcome to my corner of the<br />internet I'm glad you're here!</p>
     </div>
@@ -30,19 +35,19 @@ import { Icon } from 'astro-icon/components'
 </section>
 
 <script>
-  const playVideo = document.querySelector('#play-video')
-  const video = document.querySelector('#video')
-  playVideo.addEventListener('click', () => (video.paused ? video.play() : video.pause()))
-  video.addEventListener('play', () => video.classList.add('playing'))
-  video.addEventListener('pause', () => video.classList.remove('playing'))
-  video.addEventListener('ended', () => video.classList.remove('playing'))
+  // const playVideo = document.querySelector('#play-video')
+  // const video = document.querySelector('#video')
+  // playVideo.addEventListener('click', () => (video.paused ? video.play() : video.pause()))
+  // video.addEventListener('play', () => video.classList.add('playing'))
+  // video.addEventListener('pause', () => video.classList.remove('playing'))
+  // video.addEventListener('ended', () => video.classList.remove('playing'))
 </script>
 
 <style lang="scss">
   @use '../assets/scss/base/mixins' as *;
   .hero {
     position: relative;
-    padding-top: 100px;
+    padding-top: 150px;
     .content {
       display: flex;
       align-items: stretch;
@@ -51,12 +56,32 @@ import { Icon } from 'astro-icon/components'
       flex: 1;
       text-transform: uppercase;
       font-weight: 500;
-      line-height: 1.2;
+      line-height: 1.1;
+
       @include clamp(font-size, 60px, 9vw, 170px);
+      span {
+        display: block;
+        animation: reveal 1.6s cubic-bezier(0.77, 0, 0.175, 1) 0s forwards;
+        opacity: 0;
+      }
+      p {
+        overflow: hidden;
+        &:nth-child(2) span {
+          animation-delay: 0.6s;
+        }
+        &:nth-child(3) span {
+          animation-delay: 1s;
+        }
+        &:nth-child(4) span {
+          animation-delay: 1.4s;
+        }
+      }
     }
     .caption {
       position: sticky;
       bottom: var(--default-space);
+      opacity: 0;
+      animation: reveal 1.6s cubic-bezier(0.77, 0, 0.175, 1) 1.4s forwards;
     }
 
     .visually-hidden {
@@ -80,6 +105,8 @@ import { Icon } from 'astro-icon/components'
       top: 150px;
       margin-bottom: 100px;
       z-index: 1;
+      opacity: 0;
+      animation: reveal 1.6s cubic-bezier(0.77, 0, 0.175, 1) 1.4s forwards;
       &:hover button {
         transform: scale(1.1);
       }

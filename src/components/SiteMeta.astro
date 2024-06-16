@@ -2,14 +2,15 @@
 import { ViewTransitions } from 'astro:transitions'
 
 const { title, description, url, image } = Astro.props
-
 ---
+
 <!-- config meta -->
 <meta charset="utf-8" />
-<meta name="robots" content="index, follow">
+<meta name="robots" content="index, follow" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no" />
+<meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)" />
 <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-<meta http-equiv="content-language" content="en">
+<meta http-equiv="content-language" content="en" />
 
 <!-- favicon -->
 <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
@@ -18,7 +19,10 @@ const { title, description, url, image } = Astro.props
 <meta name="title" content={title} />
 <meta name="description" content={description} />
 <meta name="author" content="Saida lachgar" />
-<meta name="keyword" content="Frontend Web Developer, UI/UX Design, JavaScript, Angular, Symfony, E-commerce Theme Styling, SEO Optimization, Responsive Design, Code Review, Three.js, GSAP, Web Development, Symfony, Wordpress, PrestaShop, React, Astro, Merise, UML, SQL Server, MySQL, Firebase, Git, npm, yarn, webpack, vite, Core Web Vitals, Cross-Browser Compatibility, Code Refactoring, Migration, Interactive Motions, Adobe Creative, Microsoft Office, Arabic, French, English">
+<meta
+  name="keyword"
+  content="Frontend Web Developer, UI/UX Design, JavaScript, Angular, Symfony, E-commerce Theme Styling, SEO Optimization, Responsive Design, Code Review, Three.js, GSAP, Web Development, Symfony, Wordpress, PrestaShop, React, Astro, Merise, UML, SQL Server, MySQL, Firebase, Git, npm, yarn, webpack, vite, Core Web Vitals, Cross-Browser Compatibility, Code Refactoring, Migration, Interactive Motions, Adobe Creative, Microsoft Office, Arabic, French, English"
+/>
 
 <!-- open graph -->
 <meta property="og:title" content={title} />

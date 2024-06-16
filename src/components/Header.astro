@@ -33,32 +33,45 @@ import TimeComponent from './TimeComponent.astro'
     </nav>
 
     <div class="info">
-      <div class="contact">
-        <a href={`mailto:${presentation.mail}`}>{presentation.mail}</a><br />
-        <a href={`tel:${presentation.phone}`}>{presentation.phone}</a>
-      </div>
-      <div class="coordinate">
-        <p>{presentation.location} <TimeComponent /></p>
-        <p>{presentation.coordinate}</p>
-      </div>
+      <ul class="contact">
+        <li><a href={`mailto:${presentation.mail}`}>{presentation.mail}</a></li>
+        <li><a href={`tel:${presentation.phone}`}>{presentation.phone}</a></li>
+      </ul>
+      <ul class="coordinate">
+        <li><p>{presentation.location} <TimeComponent /></p></li>
+        <li><p>{presentation.coordinate}</p></li>
+      </ul>
     </div>
   </div>
 </header>
 
-<style lang="scss" is:global>
-  // @use '../assets/scss/base/outline' as *;
-  // @use '../assets/scss/base/breakpoint' as *;
-  // @use '../assets/scss/base/outline' as *;
+<style lang="scss">
   header {
     top: 0;
     padding-top: var(--default-space);
     position: sticky;
     text-transform: lowercase;
     z-index: 1000;
-    ul {
+    .navigation ul {
       width: max-content;
+      li {
+        opacity: 0;
+        animation: reveal 1.6s cubic-bezier(0.77, 0, 0.175, 1) 0s forwards;
+        &:nth-child(2) {
+          animation-delay: 0.3s;
+        }
+        &:nth-child(3) {
+          animation-delay: 0.6s;
+        }
+        &:nth-child(4) {
+          animation-delay: 0.9s;
+        }
+        &:nth-child(5) {
+          animation-delay: 1.2s;
+        }
+      }
       a {
-        transition: opacity 0.3s ease;
+        transition: opacity 0.6s ease;
       }
       &:hover a {
         opacity: 0.5;
@@ -67,12 +80,35 @@ import TimeComponent from './TimeComponent.astro'
         opacity: 1;
       }
     }
+    .contact li {
+      opacity: 0;
+      animation: reveal 1.6s cubic-bezier(0.77, 0, 0.175, 1) 0s forwards;
+      a {
+        transition: transform 0.6s ease;
+        display: inline-block;
+        &:hover {
+          transform: translateX(5px);
+        }
+      }
+      &:nth-child(2) {
+        animation-delay: 0.3s;
+      }
+    }
+    .coordinate li {
+      opacity: 0;
+      animation: reveal 1.6s cubic-bezier(0.77, 0, 0.175, 1) 0.6s forwards;
+      &:nth-child(2) {
+        animation-delay: 0.9s;
+      }
+    }
     .menu {
       display: flex;
       justify-content: space-between;
     }
     .logo {
       width: 75%;
+      opacity: 0;
+      animation: reveal 1.6s cubic-bezier(0.77, 0, 0.175, 1) 0s forwards;
       svg {
         animation: rotatingLogo 50s linear infinite;
       }
@@ -83,13 +119,6 @@ import TimeComponent from './TimeComponent.astro'
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      a {
-        transition: transform 0.3s ease;
-        display: inline-block;
-        &:hover {
-          transform: translateX(2px);
-        }
-      }
     }
     .navigation {
       flex: 1;
@@ -110,33 +139,16 @@ import TimeComponent from './TimeComponent.astro'
       }
     }
   }
-  @keyframes rotatingLogo {
-    from {
-      transform: rotate(0deg);
-    }
-    to {
-      transform: rotate(360deg);
-    }
-  }
 </style>
 
 <script>
-  // Function to change the favicon
   const title = document.title
   let interval
-  let changeFavicon = (iconPath: string) => {
-    const link = document.querySelector("link[rel*='icon']")
-    link.href = iconPath
-  }
-
   // Event listener for visibility change
   document.addEventListener('visibilitychange', function () {
     if (document.hidden) {
       setTimeout(() => {
         if (document.hidden) {
-          // Page is not visible, change favicon to sleeping emoji
-          changeFavicon('/favicon-sleep.png')
-
           // Function to update tab title with ellipsis animation
           let ellipsisCount = 1
           interval = setInterval(function () {
@@ -148,11 +160,9 @@ import TimeComponent from './TimeComponent.astro'
       }, 5000)
     } else {
       // Page is visible again, revert to default favicon
-      changeFavicon('/favicon-shy.png')
       clearInterval(interval)
       document.title = 'Welcome Back, Explorer!'
       setTimeout(() => {
-        changeFavicon('/favicon.svg')
         setTimeout(() => (document.title = title), 1000)
       }, 1000)
     }

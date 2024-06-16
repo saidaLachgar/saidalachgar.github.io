@@ -3,7 +3,7 @@ import articles, { type Blog } from '@/data/blog'
 ---
 
 <section class="blog container" id="blog">
-  <div class="header">
+  <div class="header" data-reveal>
     <h2 class="title">Blog</h2>
     <p class="description">
       Get cozy with my digital storytelling. My blogs are like warm, friendly chats about web development.
@@ -13,7 +13,7 @@ import articles, { type Blog } from '@/data/blog'
   <ul>
     {
       articles.map((article: Blog) => (
-        <li>
+        <li data-reveal>
           <a href={article.slug}>
             <span class="date">{article.date}</span>
             <span class="name">{article.title}</span>
@@ -24,8 +24,6 @@ import articles, { type Blog } from '@/data/blog'
     }
   </ul>
 </section>
-
-<script></script>
 
 <style lang="scss">
   .blog {
@@ -43,16 +41,23 @@ import articles, { type Blog } from '@/data/blog'
     }
 
     ul {
+      &:hover a {
+        opacity: 0.5;
+      }
       li {
-        margin-bottom: 40px;
         width: max-content;
         max-width: 100%;
       }
       a {
         display: grid;
+        padding: 20px 0;
         align-items: center;
         column-gap: 20px;
         grid-template-columns: 100px repeat(2, auto);
+        transition: opacity 0.6s ease;
+        &:hover {
+          opacity: 1;
+        }
       }
     }
     .name {

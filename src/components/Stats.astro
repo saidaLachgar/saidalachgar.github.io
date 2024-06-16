@@ -2,7 +2,7 @@
 import { projectStats, type ProjectStats } from '@/data/projects'
 ---
 
-<ul class="stats container">
+<ul class="stats container" data-reveal>
   {
     projectStats.length !== 0 &&
       projectStats.map((stats: ProjectStats) => (

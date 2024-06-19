@@ -28,6 +28,8 @@ import img4 from '../assets/img/playground-tmv.png'
 
 <style lang="scss">
   .playground {
+    max-width: 2270px;
+    margin: 0 auto;
     .infinite-text {
       display: flex;
       background-color: #000;
@@ -49,6 +51,11 @@ import img4 from '../assets/img/playground-tmv.png'
       row-gap: 50px;
       img {
         margin: 0 auto;
+        transition: all 0.3s ease;
+        &:hover {
+          filter: brightness(0.8);
+          transform: scale(1.03);
+        }
       }
       a:nth-child(2) {
         grid-row: 2/3;

@@ -18,18 +18,34 @@ import { Icon } from 'astro-icon/components'
       {
         projects.map((project: Project) => (
           <li data-reveal>
-            <a href={project.link}>
+            <div class="project">
               <p class="name">
                 <>
                   <span>
-                    {project.name} - {project.status}
+                    {project.name} - {project.platform}
                   </span>
                   <i />
                 </>
               </p>
               <span class="role">{project.role}</span>
               <span class="year">{project.year}</span>
-            </a>
+            </div>
+            <div class="description">
+              <p>
+                <b>STATUS: </b>
+                {project.status}
+              </p>
+              <p>
+                <b>DESCRIPTION: </b>
+                {project.info}
+              </p>
+              {project.site && (
+                <a class="link" href={'https://' + project.site}>
+                  {project.site}
+                  <Icon name="arrow-top-right" width={16} height={16} />
+                </a>
+              )}
+            </div>
           </li>
         ))
       }
@@ -43,11 +59,22 @@ import { Icon } from 'astro-icon/components'
 </section>
 
 <script>
+  // show more
   const more = document.querySelector('.work .more')
   const list = document.querySelector('.work ul')
   more?.addEventListener('click', () => {
     more.remove()
     list?.classList.add('active')
+  })
+
+  // show details
+  document.querySelectorAll('.work .project').forEach((project) => {
+    project.addEventListener('click', () => {
+      let lastActive = document.querySelector('.work li.show')
+      lastActive && lastActive.classList.remove('show')
+      project.parentElement.classList.add('show')
+      list.classList.add('hasActiveChild')
+    })
   })
 </script>
 
@@ -72,6 +99,12 @@ import { Icon } from 'astro-icon/components'
       font-size: 13px;
       margin: 0 0 70px;
       max-width: 478px;
+      p {
+        margin-bottom: 6px;
+      }
+      b {
+        font-weight: bold;
+      }
     }
     .more {
       font-size: 18px;
@@ -91,15 +124,17 @@ import { Icon } from 'astro-icon/components'
       }
     }
     ul {
-      li:hover {
+      li:hover,
+      li.show {
         z-index: 2;
         position: relative;
       }
-      &:hover {
+      &:hover,
+      &.hasActiveChild {
         &::after {
           opacity: 0.8;
         }
-        a {
+        li.active {
           opacity: 0.5;
         }
       }
@@ -120,17 +155,28 @@ import { Icon } from 'astro-icon/components'
           transition: opacity 0.6s ease;
         }
       }
-      a {
-        display: grid;
-        align-items: center;
-        column-gap: 10px;
-        padding: 20px 0;
-        grid-template-columns: minmax(0, 1fr) repeat(2, auto);
+
+      li {
         transition: opacity 0.6s ease;
-        &:hover {
-          opacity: 1;
+        &.active:hover,
+        &.show {
+          opacity: 1 !important;
+        }
+        &:not(.show) .description {
+          display: none;
+        }
+        .description {
+          margin-bottom: 15px;
         }
       }
+    }
+    .project {
+      display: grid;
+      align-items: center;
+      column-gap: 10px;
+      cursor: pointer;
+      padding: 20px 0;
+      grid-template-columns: minmax(0, 1fr) repeat(2, auto);
     }
     .name {
       font-size: 18px;
@@ -149,6 +195,29 @@ import { Icon } from 'astro-icon/components'
     }
     .year {
       font-size: 11px;
+    }
+
+    .link {
+      font-size: 12px;
+      padding: 6px 15px 8px;
+      display: block;
+      width: max-content;
+      margin-top: 15px;
+      font-weight: 700;
+      border: 1px solid rgb(255, 255, 255, 0.08);
+      background-color: rgb(255, 255, 255, 0.08);
+      transition: background-color 0.3s ease-in;
+      border-radius: 28px;
+
+      svg {
+        margin-left: 4px;
+        vertical-align: -3px;
+        margin-right: -2px;
+      }
+
+      &:hover {
+        background-color: rgba(255, 255, 255, 0.1);
+      }
     }
     @media (max-width: 655px) {
       margin-top: 60px;

@@ -52,14 +52,13 @@ import { Icon } from 'astro-icon/components'
       }
     }
     .description {
-      color: rgba(255, 255, 255, 0.7);
-      font-size: 22px;
+      color: rgba(255, 255, 255, 0.6);
+      font-size: 20px;
     }
     .item {
       display: flex;
-      align-items: center;
-      justify-content: space-between;
-      column-gap: 40px;
+      align-items: flex-start;
+      column-gap: 50px;
       &:not(:last-child) {
         margin-bottom: 100px;
       }
@@ -69,15 +68,16 @@ import { Icon } from 'astro-icon/components'
       }
 
       .subtitle {
-        margin-bottom: 30px;
-        font-size: 27px;
         text-transform: uppercase;
         font-weight: 500;
+        margin-bottom: 9px;
+        font-size: 25px;
+        line-height: 1.5;
       }
     }
     .list {
       flex: 1;
-      max-width: 853px;
+      max-width: 600px;
     }
     .content {
       max-width: 450px;

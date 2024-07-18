@@ -33,28 +33,30 @@ import { Icon } from 'astro-icon/components'
   const mail = document.querySelector('.mail i')
   const svg = document.querySelector('.click-to-copy')
   const copyMessage = document.querySelector('.mail .copy-message')
-  mail.addEventListener('mousemove', (e) => {
-    svg.style.top = e.clientY + 'px'
-    svg.style.left = e.clientX + 'px'
-  })
-  mail.addEventListener('mouseenter', (e) => svg?.classList.add('active'))
-  mail.addEventListener('mouseleave', (e) => svg?.classList.remove('active'))
-  mail?.addEventListener('click', () => {
-    if (!navigator.clipboard) {
-      return
-    }
-    navigator.clipboard.writeText(mail.innerText || mail.textContent).then(
-      () => {
-        copyMessage.textContent = '( copied! )'
-      },
-      () => {
-        copyMessage.textContent = '( sorry copying to clipboard failed )'
+  if (mail) {
+    mail.addEventListener('mousemove', (e) => {
+      svg.style.top = e.clientY + 'px'
+      svg.style.left = e.clientX + 'px'
+    })
+    mail.addEventListener('mouseenter', (e) => svg?.classList.add('active'))
+    mail.addEventListener('mouseleave', (e) => svg?.classList.remove('active'))
+    mail?.addEventListener('click', () => {
+      if (!navigator.clipboard) {
+        return
       }
-    )
-    setTimeout(() => {
-      copyMessage.textContent = ''
-    }, 2000)
-  })
+      navigator.clipboard.writeText(mail.innerText || mail.textContent).then(
+        () => {
+          copyMessage.textContent = '( copied! )'
+        },
+        () => {
+          copyMessage.textContent = '( sorry copying to clipboard failed )'
+        }
+      )
+      setTimeout(() => {
+        copyMessage.textContent = ''
+      }, 2000)
+    })
+  }
 </script>
 
 <style lang="scss">
@@ -91,7 +93,6 @@ import { Icon } from 'astro-icon/components'
       .link a {
         font-size: 14px;
         font-weight: 700;
-        padding: 15px;
         border: 1px solid rgb(255, 255, 255, 0.08);
         background-color: rgb(255, 255, 255, 0.08);
         transition: background-color 0.3s ease-in;

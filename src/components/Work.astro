@@ -1,6 +1,10 @@
 ---
 import { projects, type Project } from '@/data/projects'
+import type { ImageMetadata } from 'astro'
 import { Icon } from 'astro-icon/components'
+import { Image } from 'astro:assets'
+
+const images = import.meta.glob<{ default: ImageMetadata }>('../assets/img/project-*.png')
 ---
 
 <section class="work container" id="projects">
@@ -16,9 +20,9 @@ import { Icon } from 'astro-icon/components'
   <div class="content">
     <ul>
       {
-        projects.map((project: Project) => (
+        projects.map((project: Project, key: number) => (
           <li data-reveal>
-            <div class="project">
+            <div class="project" data-target={`project-${key}`}>
               <p class="name">
                 <>
                   <span>
@@ -29,22 +33,6 @@ import { Icon } from 'astro-icon/components'
               </p>
               <span class="role">{project.role}</span>
               <span class="year">{project.year}</span>
-            </div>
-            <div class="description">
-              <p>
-                <b>STATUS: </b>
-                {project.status}
-              </p>
-              <p>
-                <b>DESCRIPTION: </b>
-                {project.info}
-              </p>
-              {project.site && (
-                <a class="link" href={'https://' + project.site}>
-                  {project.site}
-                  <Icon name="arrow-top-right" width={16} height={16} />
-                </a>
-              )}
             </div>
           </li>
         ))
@@ -58,6 +46,80 @@ import { Icon } from 'astro-icon/components'
   </div>
 </section>
 
+{
+  projects.map((project: Project, key: number) => (
+    <div class="work-description" id={`project-${key}`}>
+      <div class="container">
+        <button class="back">
+          <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" fill="none" viewBox="0 0 10 10">
+            <path stroke="#fff" stroke-linecap="round" stroke-linejoin="round" d="M9 5H1m0 0 4 4M1 5l4-4" />
+          </svg>
+          Back
+        </button>
+        <p class="title">{project.name}</p>
+        {project.link && (
+          <a class="link" target="_blank" href={'https://' + project.link}>
+            {project.link}
+            <Icon name="arrow-top-right" width={16} height={16} />
+          </a>
+        )}
+        <div class="info">
+          <div class="details">
+            <p class="brief">{project.description}</p>
+            <ul>
+              <li>
+                <b>Industry</b>
+                {project.industry}
+              </li>
+              <li>
+                <b>Status</b>
+                {project.status}
+              </li>
+              <li>
+                <b>Technologies</b>
+                {project.techs?.join(', ')}
+              </li>
+              <li>
+                <b>Role</b>
+                {project.role}
+              </li>
+            </ul>
+          </div>
+          <ul class="challenges">
+            {project.challenges && (
+              <li>
+                <b>Challenges</b>
+                <ul>
+                  {project.challenges.map((challenge) => (
+                    <li>⬩ {challenge}.</li>
+                  ))}
+                </ul>
+              </li>
+            )}
+            {project.solutions && (
+              <li>
+                <b>Solutions</b>
+                <ul>
+                  {project.solutions.map((solution) => (
+                    <li>⬩ {solution}.</li>
+                  ))}
+                </ul>
+              </li>
+            )}
+          </ul>
+        </div>
+        <div class="images">
+          {project.images?.map((src: string) => (
+            <li>
+              <Image src={images[`../assets/img/project-${src}.png`]()} alt={project.name} width="557" height="317" />
+            </li>
+          ))}
+        </div>
+      </div>
+    </div>
+  ))
+}
+
 <script>
   // show more
   const more = document.querySelector('.work .more')
@@ -70,11 +132,58 @@ import { Icon } from 'astro-icon/components'
   // show details
   document.querySelectorAll('.work .project').forEach((project) => {
     project.addEventListener('click', () => {
-      let lastActive = document.querySelector('.work li.show')
-      lastActive && lastActive.classList.remove('show')
-      project.parentElement.classList.add('show')
-      list.classList.add('hasActiveChild')
+      let target = document.querySelector(`#${project.dataset.target}`)
+      target.classList.add('show')
     })
+  })
+
+  document.querySelectorAll('.work-description .back').forEach((button) => {
+    button.addEventListener('click', () => {
+      let target = button.closest('.work-description')
+      target.classList.remove('show')
+    })
+  })
+
+  const siders = document.querySelectorAll('.work-description .images')
+  siders?.forEach((sider) => {
+    sider.style.cursor = 'grab'
+
+    let pos = { top: 0, left: 0, x: 0, y: 0 }
+
+    const mouseDownHandler = function (e) {
+      sider.style.cursor = 'grabbing'
+
+      pos = {
+        left: sider.scrollLeft,
+        top: sider.scrollTop,
+        // Get the current mouse position
+        x: e.clientX,
+        y: e.clientY,
+      }
+
+      document.addEventListener('mousemove', mouseMoveHandler)
+      document.addEventListener('mouseup', mouseUpHandler)
+    }
+
+    const mouseMoveHandler = function (e) {
+      // How far the mouse has been moved
+      const dx = e.clientX - pos.x
+      const dy = e.clientY - pos.y
+
+      // Scroll the element
+      sider.scrollTop = pos.top - dy
+      sider.scrollLeft = pos.left - dx
+    }
+
+    const mouseUpHandler = function () {
+      sider.style.cursor = 'grab'
+
+      document.removeEventListener('mousemove', mouseMoveHandler)
+      document.removeEventListener('mouseup', mouseUpHandler)
+    }
+
+    // Attach the handler
+    sider.addEventListener('mousedown', mouseDownHandler)
   })
 </script>
 
@@ -124,20 +233,6 @@ import { Icon } from 'astro-icon/components'
       }
     }
     ul {
-      li:hover,
-      li.show {
-        z-index: 2;
-        position: relative;
-      }
-      &:hover,
-      &.hasActiveChild {
-        &::after {
-          opacity: 0.8;
-        }
-        li.active {
-          opacity: 0.5;
-        }
-      }
       &:not(.active) {
         max-height: 540px;
         overflow: hidden;
@@ -158,15 +253,12 @@ import { Icon } from 'astro-icon/components'
 
       li {
         transition: opacity 0.6s ease;
-        &.active:hover,
-        &.show {
+        &:hover {
+          z-index: 2;
+          position: relative;
+        }
+        &.active:hover {
           opacity: 1 !important;
-        }
-        &:not(.show) .description {
-          display: none;
-        }
-        .description {
-          margin-bottom: 15px;
         }
       }
     }
@@ -190,6 +282,7 @@ import { Icon } from 'astro-icon/components'
         background-color: rgb(255, 255, 255, 0.1);
       }
     }
+
     .role {
       font-size: 13px;
     }
@@ -197,26 +290,86 @@ import { Icon } from 'astro-icon/components'
       font-size: 11px;
     }
 
-    .link {
-      font-size: 12px;
-      padding: 6px 15px 8px;
-      display: block;
-      width: max-content;
-      margin-top: 15px;
-      font-weight: 700;
-      border: 1px solid rgb(255, 255, 255, 0.08);
-      background-color: rgb(255, 255, 255, 0.08);
-      transition: background-color 0.3s ease-in;
-      border-radius: 28px;
-
-      svg {
-        margin-left: 4px;
-        vertical-align: -3px;
-        margin-right: -2px;
+    &-description {
+      position: fixed;
+      top: 0;
+      left: 0;
+      background-color: #0d0d0d;
+      transition: all 0.5s cubic-bezier(0.47, 0, 0.745, 0.715);
+      width: 100%;
+      z-index: 110;
+      overflow-y: auto;
+      height: 100vh;
+      padding: 200px 0 100px;
+      &:not(.show) {
+        top: 100vw;
+        opacity: 0;
+        pointer-events: none;
+      }
+      img {
+        border-radius: 15px;
+        pointer-events: none;
+        max-width: unset;
       }
 
-      &:hover {
-        background-color: rgba(255, 255, 255, 0.1);
+      .title {
+        font-size: 160px;
+        margin-bottom: 54px;
+      }
+      .back {
+        background-color: transparent;
+        color: #fff;
+      }
+      .images {
+        list-style: none;
+        display: flex;
+        overflow-x: auto;
+        -ms-overflow-style: none; /* Internet Explorer 10+ */
+        scrollbar-width: none; /* Firefox */
+        width: calc(100vw - (100vw - 1712px) / 2);
+        user-select: none;
+        max-width: calc(100dvw - 20px);
+        margin: 0 auto;
+        &::-webkit-scrollbar {
+          display: none; /* Safari and Chrome */
+        }
+        li {
+          padding-right: 40px;
+        }
+      }
+
+      .info {
+        display: flex;
+        justify-content: space-between;
+        margin: 70px 0 80px;
+        b {
+          display: block;
+          font-weight: 700;
+          margin-bottom: 10px;
+        }
+      }
+
+      .link {
+        text-transform: uppercase;
+        font-weight: 700;
+      }
+      .challenges {
+        max-width: 433px;
+        > li:not(:last-child) {
+          margin-bottom: 40px;
+        }
+      }
+      .brief {
+        margin-bottom: 40px;
+      }
+      .details {
+        max-width: 595px;
+        ul {
+          display: grid;
+          grid-template-columns: repeat(2, auto);
+          row-gap: 40px;
+          column-gap: 40px;
+        }
       }
     }
     @media (max-width: 655px) {

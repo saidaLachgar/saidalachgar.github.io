@@ -136,6 +136,17 @@ const projects: Project[] = [
     platform: 'Php',
     role: 'Frontend',
     status: 'RELEASED',
+    challenges: [
+      "Complex Product Page Requirements",
+      "Handling a Very Large Products Database",
+      "Building from Scratch with Scalability in Mind",
+      "Managing Extensive Features Leading to Website Size",
+    ],
+    solutions: [
+      "Developed Custom Product Pages with Interactive Features",
+      "Integrated Algolia for Efficient Search Functionality",
+      "Implemented SEO Best Practices, Including Optimized Image Handling",
+    ],
   },
   {
     name: 'Picaxel',

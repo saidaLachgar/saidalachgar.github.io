@@ -58,10 +58,15 @@ const images = import.meta.glob<{ default: ImageMetadata }>('../assets/img/proje
         </button>
         <p class="title">{project.name}</p>
         {project.link && (
-          <a class="link" target="_blank" href={'https://' + project.link}>
-            {project.link}
-            <Icon name="arrow-top-right" width={16} height={16} />
-          </a>
+          typeof project.link !== "object" ? (
+            <a class="link" target="_blank" href={'https://' + project.link}>
+              {project.link}
+              <Icon name="arrow-top-right" width={16} height={16} />
+            </a>
+          ) : (
+            <a href={project.link[0]}>App store</a>
+            <a href={project.link[1]}>Google play</a>
+          )
         )}
         <div class="info">
           <div class="details">

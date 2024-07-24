@@ -5,10 +5,10 @@ type Social = {
 
 type Presentation = {
   mail: string;
-  phone: string;
+  sms: string;
+  sms_link: string;
   title: string;
   location: string;
-  coordinate: string;
   description: string;
   socials: Social[];
   profile?: string;
@@ -16,9 +16,9 @@ type Presentation = {
 
 const presentation: Presentation = {
   mail: "hello@saidalachgar.com",
-  phone: "+212641346928",
+  sms_link: "+212641346928",
+  sms: "(212) 641-346928",
   location: 'morocco, ag',
-  coordinate: '30.4147° N, 9.6089° W',
   title: "Hi, I’m Maxence 👋",
   // profile: "/profile.webp",
   description:

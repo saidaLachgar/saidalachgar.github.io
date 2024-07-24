@@ -1,5 +1,5 @@
 export type Project = {
-  link?: string | string[]
+  link?: string | { [key: string]: string }
   name: string
   year: number
   platform: string
@@ -67,7 +67,7 @@ const projects: Project[] = [
   },
   // Hifi Filter
   {
-    name: 'Hifi Filter',
+    name: 'HIFI FILTER',
     link: 'hifi-filter.com',
     year: 2021,
     platform: 'WordPress',
@@ -225,7 +225,7 @@ const projects: Project[] = [
     platform: 'Vite.js/Firebase',
     status: 'PLAYGROUND',
     role: 'Full Stack',
-    images: ['xx', 'xx', 'xx', 'xx'],
+    // images: ['xx', 'xx', 'xx', 'xx'],
     industry: 'Productivity',
     techs: ['Vite.js', 'Firebase', 'Markdown', 'CSS'],
     description: 'A minimalistic notes taking application designed for personal use, featuring a clean interface with a markdown editor and preview',
@@ -246,7 +246,7 @@ const projects: Project[] = [
   //   platform: 'Astro',
   //   status: 'RELEASED',
   //   role: 'Full Stack, Design',
-  //   images: ['xx', 'xx', 'xx', 'xx'],
+  // images: ['xx', 'xx', 'xx', 'xx'],
   //   industry: 'xx',
   //   techs: ['xx'],
   //   description: '',
@@ -261,7 +261,7 @@ const projects: Project[] = [
     platform: 'MERN stack',
     status: 'PLAYGROUND',
     role: 'Full Stack, Design',
-    images: [''],
+    // images: [''],
     industry: 'Innovation and Creativity',
     techs: ['MongoDB', 'Express.js', 'React', 'Node.js', 'Vercel'],
     description: 'A playground website where people can share their ideas for websites and apps, fostering creativity and innovation. It serves as a valuable resource for developers and entrepreneurs looking for new project ideas or opportunities to improve existing platforms. ',
@@ -283,7 +283,7 @@ const projects: Project[] = [
     platform: 'Symfony',
     status: 'RELEASED',
     role: 'Full Stack',
-    images: ['xx', 'xx', 'xx', 'xx'],
+    // images: ['xx', 'xx', 'xx', 'xx'],
     industry: 'Self-Storage, Real Estate',
     techs: ['Symfony'],
     description: 'Yesbox is a self-storage company located in Hauts-de-France. The website provides information about their storage units and automates the process of requesting quotes and checking box availability.',
@@ -306,7 +306,7 @@ const projects: Project[] = [
     platform: 'Three.js',
     status: 'PLAYGROUND',
     role: 'Frontend, Design',
-    images: ['xx', 'xx', 'xx', 'xx'],
+    // images: ['xx', 'xx', 'xx', 'xx'],
     industry: 'Interactive Learning, Astronomy',
     techs: ['JavaScript', 'Three.js', 'nPoint'],
     description: 'Planetary Facts is a one-page interactive educational website that provides detailed information about the planets in our solar system. The standout feature of this site is the use of Three.js to create realistic 3D models of the planets. Each planet is textured and rendered on a 3D canvas that allows users to rotate and explore the planets, offering a visually engaging and immersive learning experience',
@@ -327,7 +327,7 @@ const projects: Project[] = [
     platform: 'Prestashop',
     status: 'RELEASED',
     role: 'Frontend',
-    images: ['xx', 'xx', 'xx', 'xx'],
+    // images: ['xx', 'xx', 'xx', 'xx'],
     industry: 'Cosmetics & Home Products',
     techs: ['Prestashop'],
     description: 'Les Sens de Marrakech is a French brand based in Morocco, specializing in cosmetics and home products with natural ingredients. The project involves developing a custom PrestaShop theme to enhance the online store’s visibility, navigation, and user experience. The custom theme, designed based on a Figma mockup, aims to reflect the brand’s colors and streamline the ordering process.',
@@ -349,7 +349,7 @@ const projects: Project[] = [
     platform: 'WordPress',
     status: 'RELEASED',
     role: 'Full Stack',
-    images: ['xx', 'xx', 'xx', 'xx'],
+    // images: ['xx', 'xx', 'xx', 'xx'],
     industry: 'Removals & Relocations',
     techs: ['Wordpress'],
     description: "It's a company specialized in national and international removals for individuals as well as companies",
@@ -372,7 +372,7 @@ const projects: Project[] = [
     platform: 'WordPress',
     status: 'RELEASED',
     role: 'Full Stack',
-    images: ['xx', 'xx', 'xx', 'xx'],
+    // images: ['xx', 'xx', 'xx', 'xx'],
     industry: 'Physiotherapy',
     techs: ['Wordpress'],
     description: 'Website for a local physiotherapist to showcase services and provide contact information',
@@ -393,7 +393,7 @@ const projects: Project[] = [
     platform: 'WordPress',
     status: 'RELEASED',
     role: 'Full Stack',
-    images: ['xx', 'xx', 'xx', 'xx'],
+    // images: ['xx', 'xx', 'xx', 'xx'],
     industry: 'Accounting',
     techs: ['Wordpress', "OpenStreetMap", "Enfold"],
     description: 'Accounting firm providing expert support in accounting, tax, social, and legal management. The site features their services and methods',
@@ -406,6 +406,7 @@ const projects: Project[] = [
       "Implementing features to facilitate easy navigation and access to key information"
     ],
   },
+  // Arganpalace
   {
     name: 'Arganpalace',
     link: 'arganpalace.com',
@@ -413,12 +414,18 @@ const projects: Project[] = [
     platform: 'Symfony',
     status: 'RELEASED',
     role: 'Frontend',
-    images: ['xx', 'xx', 'xx', 'xx'],
-    industry: 'xx',
-    techs: ['xx'],
-    description: '',
-    challenges: [],
-    solutions: [],
+    // images: ['xx', 'xx', 'xx', 'xx'],
+    industry: 'Wellness and Spa',
+    techs: ['Symfony', 'SonataAdmin'],
+    description: 'A reservation website for a local Moroccan Hammam and Massage Center',
+    challenges: [
+      "Developing a reservation system that integrates with the center’s scheduling",
+      "Creating an intuitive user interface that highlights services and pricing",
+    ],
+    solutions: [
+      "Building a custom reservation system",
+      "Designing a user-friendly interface that effectively showcases services and pricing"
+    ],
   },
   // {
   //   name: 'Top global music',
@@ -440,7 +447,7 @@ const projects: Project[] = [
     platform: 'Symfony',
     status: 'UNRELEASED',
     role: 'Frontend',
-    images: ['xx', 'xx', 'xx', 'xx'],
+    // images: ['xx', 'xx', 'xx', 'xx'],
     industry: 'xx',
     techs: ['xx'],
     description: '',
@@ -454,7 +461,7 @@ const projects: Project[] = [
   //   platform: 'Symfony',
   //   status: 'RELEASED',
   //   role: 'Frontend',
-  //   images: ['xx','xx','xx','xx'],
+  // images: ['xx','xx','xx','xx'],
   //   industry: 'xx',
   //   techs: ['xx'],
   //   description: '',
@@ -468,7 +475,7 @@ const projects: Project[] = [
   //   platform: 'React',
   //   status: 'RELEASED',
   //   role: 'Frontend',
-  //   images: ['xx','xx','xx','xx'],
+  // images: ['xx','xx','xx','xx'],
   //   industry: 'xx',
   //   techs: ['xx'],
   //   description: '',
@@ -489,6 +496,7 @@ const projects: Project[] = [
   // challenges: [],
   // solutions: [],
   // },
+  // Centre dentaire founty
   {
     name: 'Centre dentaire founty',
     link: 'centredentairefounty.ma',
@@ -496,35 +504,47 @@ const projects: Project[] = [
     platform: 'WordPress',
     status: 'RELEASED',
     role: 'Full Stack',
-    images: ['xx', 'xx', 'xx', 'xx'],
-    industry: 'xx',
-    techs: ['xx'],
-    description: '',
-    challenges: [],
-    solutions: [],
+    // images: ['xx', 'xx', 'xx', 'xx'],
+    industry: 'Dental',
+    techs: ['WordPress', 'GSAP', 'Google maps'],
+    description: "A local dental clinic. The site showcases the dentist's specialties and provides detailed information about the doctor and her office",
+    challenges: [
+      "Integrating GSAP for smooth animations without compromising site performance",
+      "Implementing multi-language support, including preparation for RTL languages"
+    ],
+    solutions: [
+      "Configuring contact forms and location maps for enhanced client interaction",
+      "Developing intuitive navigation and clear calls-to-action to enhance user experience"
+    ],
   },
-
+  // Centre Dentaire Essaoui
+  {
+    name: 'Centre Dentaire Essaoui',
+    link: 'centredentaireessaoui.ma',
+    year: 2023,
+    platform: 'WordPress',
+    status: 'RELEASED',
+    role: 'Full Stack',
+    // images: ['xx', 'xx', 'xx', 'xx'],
+    industry: 'Dental',
+    techs: ['WordPress', 'Google maps'],
+    description: "A local dental clinic. The site showcases the dentist's specialties and provides detailed information about the doctor and her office",
+    challenges: [
+      "Creating a minimalist design that effectively highlights the doctor's specialties and office information",
+      "Implementing multi-language support, including RTL languages"
+    ],
+    solutions: [
+      "Configuring contact forms and location maps for enhanced client interaction",
+      "Developing intuitive navigation and clear calls-to-action to enhance user experience"
+    ],
+  },
   // {
-  //   name: 'Centre Dentaire Essaoui',
-  //   link: 'centredentaireessaoui.ma',
-  //   year: 2023,
-  //   platform: 'WordPress',
-  //   status: 'RELEASED',
-  //   role: 'Full Stack',
-  //   images: ['xx','xx','xx','xx'],
-  //   industry: 'xx',
-  //   techs: ['xx'],
-  //   description: '',
-  //   challenges: [],
-  //   solutions: [],
-  // },
-  // {
-  //   name: 'Congres',
+  // name: 'Congres',
   // link: 'xx.com',
-  //   year: 2023,
-  //   platform: 'Prestashop theme',
-  //   status: 'RELEASED',
-  //   role: 'Frontend',
+  // year: 2023,
+  // platform: 'Prestashop theme',
+  // status: 'RELEASED',
+  // role: 'Frontend',
   // images: ['xx','xx','xx','xx'],
   // industry: 'xx',
   // techs: ['xx'],
@@ -532,20 +552,35 @@ const projects: Project[] = [
   // challenges: [],
   // solutions: [],
   // },
+  // Agadir Oufella
   {
-    name: 'AGOF tickets',
-    link: 'tickets.agadir-oufella.ma',
+    name: 'Agadir Oufella',
+    link: {
+      'Website': 'agadir-oufella.ma',
+      'History': 'https://www.agadir-oufella.ma/fr/histoire-et-heritage/',
+      'Tickets': 'tickets.agadir-oufella.ma',
+      'App store': 'https://apps.apple.com/fr/app/agadir-oufella/id6450891651',
+      'Google play': 'https://play.google.com/store/apps/details?id=com.agadiroufella.app204353&pli=1'
+    },
     year: 2023,
-    platform: 'Symfony',
+    platform: 'Multi-platform',
     status: 'RELEASED',
     role: 'Frontend',
-    images: ['xx', 'xx', 'xx', 'xx'],
-    industry: 'xx',
-    techs: ['xx'],
-    description: '',
-    challenges: [],
-    solutions: [],
+    // images: ['xx', 'xx', 'xx', 'xx'],
+    industry: 'Tourism',
+    techs: ['WordPress', "Symfony", "React Native", 'GSAP', 'OpenSeadragon'],
+    description: 'Developed a multi-platform project for Agadir Oufella, a historical touristic site. The project includes a WordPress website for general information, a Symfony-based platform for ticket sales, and a React Native app for an audio guide',
+    challenges: [
+      "Implementing smooth animations and interactive elements",
+      "Coordinating development across WordPress, Symfony, and React Native for seamless integration"
+    ],
+    solutions: [
+      "Using the GSAP library for dynamic and engaging historical content",
+      "Integrating OpenSeadragon for an interactive 3D map experience",
+      "Ensuring seamless multi-language support and RTL functionality for Arabic"
+    ],
   },
+  // Golf market place
   {
     name: 'Golf market place',
     link: 'golfmarketplace.com',
@@ -553,30 +588,21 @@ const projects: Project[] = [
     platform: 'Sylius',
     status: 'RELEASED',
     role: 'Frontend',
-    images: ['xx', 'xx', 'xx', 'xx'],
-    industry: 'xx',
-    techs: ['xx'],
-    description: '',
-    challenges: [],
-    solutions: [],
+    // images: ['xx', 'xx', 'xx', 'xx'],
+    industry: 'eCommerce',
+    techs: ['Sylius', 'Symfony', 'Stripe'],
+    description: 'European platform for online golf equipment sales, featuring a unique catalog with exclusive brands',
+    challenges: [
+      "Overriding Sylius to create a highly customized and unique interface",
+      "Ensuring the platform can handle a diverse and exclusive product catalog",
+      "Implementing multi-language support for various European languages"
+    ],
+    solutions: [
+      "Customizing Sylius extensively to meet the specific design and functionality requirements",
+      "Optimizing the platform for a seamless user experience with an exclusive product catalog",
+      "Integrating multi-language support to cater to a European audience"
+    ],
   },
-  {
-    name: 'AGOF App',
-    link: [
-      'https://apps.apple.com/fr/app/agadir-oufella/id6450891651',
-      'https://play.google.com/store/apps/details?id=com.agadiroufella.app204353&pli=1'],
-    year: 2023,
-    platform: 'React Native',
-    status: 'RELEASED',
-    role: 'Frontend',
-    images: ['xx', 'xx', 'xx', 'xx'],
-    industry: 'xx',
-    techs: ['xx'],
-    description: '',
-    challenges: [],
-    solutions: [],
-  },
-
   // {
   //   name: 'The Movie Vault',
   // link: 'xx.com',
@@ -591,7 +617,7 @@ const projects: Project[] = [
   // challenges: [],
   // solutions: [],
   // },
-
+  // Inzee.Care
   {
     name: 'Inzee.Care',
     link: 'inzee.care',
@@ -599,27 +625,19 @@ const projects: Project[] = [
     platform: 'Wordpress',
     status: 'RELEASED',
     role: 'Frontend',
-    images: ['xx', 'xx', 'xx', 'xx'],
-    industry: 'xx',
+    // images: ['xx', 'xx', 'xx', 'xx'],
+    industry: 'Healthcare',
     techs: ['xx'],
-    description: '',
-    challenges: [],
-    solutions: [],
-  },
-
-  {
-    name: 'Agadir Oufella',
-    link: 'agadir-oufella.ma',
-    year: 2022,
-    platform: 'WordPress',
-    status: 'RELEASED',
-    role: 'Frontend',
-    images: ['xx', 'xx', 'xx', 'xx'],
-    industry: 'xx',
-    techs: ['xx'],
-    description: '',
-    challenges: [],
-    solutions: [],
+    description: 'A platform connecting patients seeking home healthcare with independent nurses, physiotherapists, and speech therapists. The WordPress site provides comprehensive information about the Inzee Care platform, detailing services, solutions, and pricing for professionals, establishments, and patients.',
+    challenges: [
+      "Creating a wide range of custom Gutenberg components that align with the brand's design",
+      "Ensuring the website maintains high performance and SEO standards",
+      "Providing a user-friendly interface with detailed information about services and solutions",
+    ],
+    solutions: [
+      "Developing custom JS and CSS for each component to minimize asset file sizes",
+      "Achieving a high Google PageSpeed score by optimizing the site’s performance"
+    ],
   },
 
   // {
@@ -629,7 +647,7 @@ const projects: Project[] = [
   //   platform: 'WordPress',
   //   status: 'RELEASED',
   //   role: 'Full Stack',
-  //   images: ['xx','xx','xx','xx'],
+  // images: ['xx','xx','xx','xx'],
   //   industry: 'xx',
   //   techs: ['xx'],
   //   description: '',
@@ -643,7 +661,7 @@ const projects: Project[] = [
   //   platform: 'WordPress',
   //   status: 'RELEASED',
   //   role: 'Full Stack',
-  //   images: ['xx','xx','xx','xx'],
+  // images: ['xx','xx','xx','xx'],
   //   industry: 'xx',
   //   techs: ['xx'],
   //   description: '',
@@ -657,7 +675,7 @@ const projects: Project[] = [
   //   platform: 'Laravel',
   //   status: 'RELEASED',
   //   role: 'Full Stack',
-  //   images: ['xx','xx','xx','xx'],
+  // images: ['xx','xx','xx','xx'],
   //   industry: 'xx',
   //   techs: ['xx'],
   //   description: '',
@@ -670,7 +688,7 @@ const projects: Project[] = [
   //   platform: 'Php',
   //   status: 'RELEASED',
   //   role: 'Full Stack',
-  //   images: ['xx','xx','xx','xx'],
+  // images: ['xx','xx','xx','xx'],
   //   industry: 'xx',
   //   techs: ['xx'],
   //   description: '',

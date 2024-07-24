@@ -33,17 +33,67 @@ import TimeComponent from './TimeComponent.astro'
     </nav>
 
     <div class="info">
+      <ul class="coordinate">
+        <li>
+          <button
+            data-cal-namespace="15min"
+            data-cal-config='{"layout":"month_view"}'
+            data-cal-link="saidalachgar/15min">Let's Collaborate – Book a Call</button
+          >
+        </li>
+        <li><p>{presentation.location} <TimeComponent /></p></li>
+      </ul>
       <ul class="contact">
         <li><a href={`mailto:${presentation.mail}`}>{presentation.mail}</a></li>
-        <li><a href={`tel:${presentation.phone}`}>{presentation.phone}</a></li>
-      </ul>
-      <ul class="coordinate">
-        <li><p>{presentation.location} <TimeComponent /></p></li>
-        <li><p>{presentation.coordinate}</p></li>
+        <li><a href={`sms:${presentation.sms_link}`}>text {presentation.sms}</a></li>
       </ul>
     </div>
   </div>
 </header>
+
+<!-- Cal element-click embed code begins -->
+<script type="text/javascript">
+  ;(function (C, A, L) {
+    let p = function (a, ar) {
+      a.q.push(ar)
+    }
+    let d = C.document
+    C.Cal =
+      C.Cal ||
+      function () {
+        let cal = C.Cal
+        let ar = arguments
+        if (!cal.loaded) {
+          cal.ns = {}
+          cal.q = cal.q || []
+          d.head.appendChild(d.createElement('script')).src = A
+          cal.loaded = true
+        }
+        if (ar[0] === L) {
+          const api = function () {
+            p(api, arguments)
+          }
+          const namespace = ar[1]
+          api.q = api.q || []
+          if (typeof namespace === 'string') {
+            cal.ns[namespace] = cal.ns[namespace] || api
+            p(cal.ns[namespace], ar)
+            p(cal, ['initNamespace', namespace])
+          } else p(cal, ar)
+          return
+        }
+        p(cal, ar)
+      }
+  })(window, 'https://app.cal.com/embed/embed.js', 'init')
+  Cal('init', '15min', { origin: 'https://cal.com' })
+  Cal.ns['15min']('ui', {
+    theme: 'dark',
+    styles: { branding: { brandColor: '#000000' } },
+    hideEventTypeDetails: true,
+    layout: 'month_view',
+  })
+</script>
+<!-- Cal element-click embed code ends -->
 
 <style lang="scss">
   header {
@@ -71,27 +121,33 @@ import TimeComponent from './TimeComponent.astro'
         }
       }
       a {
-        transition: opacity 0.6s ease;
+        transition: all 0.6s ease;
+        display: block;
       }
       &:hover a {
         opacity: 0.5;
       }
       a:hover {
         opacity: 1;
+        transform: translate(0, 1.5px);
       }
     }
     .contact li {
       opacity: 0;
       animation: reveal 1.6s cubic-bezier(0.77, 0, 0.175, 1) 0s forwards;
-      a {
-        transition: transform 0.6s ease;
-        display: inline-block;
-        &:hover {
-          transform: translateX(5px);
-        }
-      }
       &:nth-child(2) {
         animation-delay: 0.3s;
+      }
+    }
+    .coordinate button,
+    .contact a {
+      transition: transform 0.6s ease;
+      display: inline-block;
+      background-color: transparent;
+      color: #fff;
+      font-family: inherit;
+      &:hover {
+        transform: translateX(5px);
       }
     }
     .coordinate li {

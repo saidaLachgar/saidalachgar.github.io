@@ -50,24 +50,16 @@ const images = import.meta.glob<{ default: ImageMetadata }>('../assets/img/proje
   projects.map((project: Project, key: number) => (
     <div class="work-description" id={`project-${key}`}>
       <div class="container">
-        <button class="back">
-          <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" fill="none" viewBox="0 0 10 10">
-            <path stroke="#fff" stroke-linecap="round" stroke-linejoin="round" d="M9 5H1m0 0 4 4M1 5l4-4" />
-          </svg>
-          Back
-        </button>
         <p class="title">{project.name}</p>
-        {project.link && (
-          typeof project.link !== "object" ? (
+        {project.link &&
+          (typeof project.link !== 'object' ? (
             <a class="link" target="_blank" href={'https://' + project.link}>
               {project.link}
               <Icon name="arrow-top-right" width={16} height={16} />
             </a>
           ) : (
-            <a href={project.link[0]}>App store</a>
-            <a href={project.link[1]}>Google play</a>
-          )
-        )}
+            Object.entries(project.link).map(([key, value]) => <a href={value}>{key}</a>)
+          ))}
         <div class="info">
           <div class="details">
             <p class="brief">{project.description}</p>
@@ -120,6 +112,20 @@ const images = import.meta.glob<{ default: ImageMetadata }>('../assets/img/proje
             </li>
           ))}
         </div>
+        <div class="nav">
+          <button class="close">
+            <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" fill="none" viewBox="0 0 10 10">
+              <path stroke="#fff" stroke-linecap="round" stroke-linejoin="round" d="M5 5 1 9m4-4L1 1m4 4 4-4M5 5l4 4" />
+            </svg>{' '}
+            Close
+          </button>
+          <button class="next">
+            Next project{' '}
+            <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" fill="none" viewBox="0 0 10 10">
+              <path stroke="#fff" stroke-linecap="round" stroke-linejoin="round" d="M1 5h8m0 0L5 9m4-4L5 1" />
+            </svg>
+          </button>
+        </div>
       </div>
     </div>
   ))
@@ -142,7 +148,7 @@ const images = import.meta.glob<{ default: ImageMetadata }>('../assets/img/proje
     })
   })
 
-  document.querySelectorAll('.work-description .back').forEach((button) => {
+  document.querySelectorAll('.work-description .close').forEach((button) => {
     button.addEventListener('click', () => {
       let target = button.closest('.work-description')
       target.classList.remove('show')
@@ -316,15 +322,23 @@ const images = import.meta.glob<{ default: ImageMetadata }>('../assets/img/proje
         pointer-events: none;
         max-width: unset;
       }
-
+      button {
+        background-color: transparent;
+        color: #fff;
+        font: inherit;
+      }
       .title {
         font-size: 160px;
         margin-bottom: 54px;
+        max-width: 75%;
+        font-weight: 600;
       }
-      .back {
-        background-color: transparent;
-        color: #fff;
+      .nav {
+        margin-top: 50px;
+        display: flex;
+        justify-content: space-between;
       }
+
       .images {
         list-style: none;
         display: flex;
@@ -335,6 +349,7 @@ const images = import.meta.glob<{ default: ImageMetadata }>('../assets/img/proje
         user-select: none;
         max-width: calc(100dvw - 20px);
         margin: 0 auto;
+        font-size: 0;
         &::-webkit-scrollbar {
           display: none; /* Safari and Chrome */
         }
@@ -360,8 +375,12 @@ const images = import.meta.glob<{ default: ImageMetadata }>('../assets/img/proje
       }
       .challenges {
         max-width: 433px;
-        > li:not(:last-child) {
-          margin-bottom: 40px;
+        > li {
+          text-indent: -10px;
+          padding-left: 10px;
+          &:not(:last-child) {
+            margin-bottom: 40px;
+          }
         }
       }
       .brief {

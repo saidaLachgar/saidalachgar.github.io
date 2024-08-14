@@ -1,13 +1,13 @@
 <section class="about container" id="about" data-reveal>
   <h2 class="title">About</h2>
   <div class="description">
-    <p>Hi! am Saida, a web developer based in Morocco.</p>
+    <p>Hi! am Saida, a senior frontend web developer with a strong track.</p>
     <p>
-      I've spent years <span>Perfecting</span> the art of turning designs into pixel-perfect, performant, accessible, and
+      I've spent years <span>perfecting</span> the art of turning designs into pixel-perfect, performant, accessible, and
       responsive
-      <span>Websites</span> I'm truly passionate about the entire <span>development</span> spectrum!
+      <span>websites</span> I'm truly passionate about the entire <span>development</span> spectrum!
     </p>
-    <p>You can read more about my biography, experience, skills, education and much more in the PDF attached bellow</p>
+    <!-- <p>You can read more about my biography, experience, skills, education and much more in the PDF attached bellow</p> -->
     <a href="#" target="_blank">My resume (pdf 122kb)</a>
   </div>
 </section>
@@ -17,22 +17,22 @@
     display: flex;
     justify-content: space-between;
     position: relative;
-    margin-top: 300px;
+    margin-top: 200px;
+    padding-top: 100px;
     .title {
       font-size: 27px;
       font-weight: 500;
       text-transform: uppercase;
-      order: 2;
-      top: var(--default-space);
-      position: sticky;
+      display: none;
     }
     .description {
-      font-size: 25px;
+      font-size: 20px;
       max-width: 692px;
       p {
         margin-bottom: 50px;
       }
       span {
+        font-size: 25px;
         font-family: var(--font-family-secondary);
       }
     }
@@ -41,8 +41,7 @@
       flex-direction: column;
 
       .title {
-        order: 0;
-        position: static;
+        display: block;
       }
 
       .description {

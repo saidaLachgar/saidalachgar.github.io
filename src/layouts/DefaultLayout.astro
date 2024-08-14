@@ -12,28 +12,17 @@ const { title, description, url, image = '/social-preview-image.png' } = Astro.p
     <SiteMeta title={title} description={description} url={url ?? Astro.site} image={image} />
   </head>
   <body style="background-color: #000;">
-    <div id="loader"></div>
-    <div id="main" style="display: none;">
+    <div id="loader" style="display: none;"></div>
+    <div id="main">
       <Header />
       <main id="main-content" transition:animate="fade">
         <slot />
+        <i id="overlay"></i>
       </main>
       <Footer />
     </div>
     <!-- <div id="revealPoint">Reveal Point</div> -->
     <style lang="scss" is:global>
-      // #revealPoint {
-      //   position: fixed;
-      //   height: 20px;
-      //   width: 100%;
-      //   left: 0;
-      //   bottom: 350px;
-      //   color: red;
-      //   padding: 7px;
-      //   margin: 0;
-      //   border-bottom: 1px solid red;
-      // }
-
       #overlay,
       #loader {
         width: 100vw;
@@ -101,7 +90,7 @@ const { title, description, url, image = '/social-preview-image.png' } = Astro.p
         clearInterval(intervalId)
         document.getElementById('loader').style.display = 'none'
         document.getElementById('main').style.display = 'block'
-      }, 2000)
+      }, 1500)
 
       // reveal
       document.body.addEventListener('scroll', () => {

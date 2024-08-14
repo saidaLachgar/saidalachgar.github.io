@@ -1,0 +1,139 @@
+---
+import { projects, type Project } from '@/data/projects'
+import DefaultLayout from '../layouts/DefaultLayout.astro'
+import { Image } from 'astro:assets'
+import { Icon } from 'astro-icon/components'
+const videos = import.meta.glob<{ default: string }>('../assets/videos/*.mp4', { eager: true })
+const images = import.meta.glob<{ default: ImageMetadata }>('../assets/img/project-*.png')
+---
+
+<DefaultLayout
+  title="Saida Lachgar - Frontend Web Developer Portfolio"
+  description="A frontend web developer, blends thoughtful UI/UX design with technical expertise. Specializing in JS, Angular, Symfony, and more. Elevate your digital experiences with unique themes, SEO optimization, responsive design, and interactive motions!"
+>
+  <section class="work container" id="projects">
+    <div class="header" data-reveal>
+      <h1 class="title">Projects</h1>
+    </div>
+
+    <div class="content">
+      <ul>
+        {
+          projects.map((project: Project, key: number) => (
+            <li data-reveal>
+              <div class="project" data-target={`project-${key}`}>
+                {/* <Image
+                  src={images[`../assets/img/project-${project.images![0]}.png`]()}
+                  alt={project.name}
+                  width="557"
+                  height="317"
+                /> */}
+                <span class="name">{project.name}</span>
+                <span class="platform">{project.platform}</span>
+              </div>
+            </li>
+          ))
+        }
+      </ul>
+      <a href="/projects" class="more" data-reveal>
+        <Icon name="arrow-top-right" width={27} height={27} />
+        <u>See all projects</u>
+        <sup>({projects.length})</sup>
+      </a>
+    </div>
+  </section>
+  {
+    projects.slice(0, 8).map((project: Project, key: number) => (
+      <div class="work-description" id={`project-${key}`}>
+        <div class="container">
+          <button class="close">
+            Close{' '}
+            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="none" viewBox="0 0 10 10">
+              <path stroke="#fff" stroke-linecap="round" stroke-linejoin="round" d="M5 5 1 9m4-4L1 1m4 4 4-4M5 5l4 4" />
+            </svg>
+          </button>
+          <p class="title">{project.name}</p>
+          {project.link &&
+            (typeof project.link !== 'object' ? (
+              <a class="link" target="_blank" href={'https://' + project.link}>
+                {project.link}
+                <Icon name="arrow-top-right" width={16} height={16} />
+              </a>
+            ) : (
+              Object.entries(project.link).map(([key, value]) => <a href={value}>{key}</a>)
+            ))}
+          <div class="info">
+            <div class="details">
+              <p class="brief">{project.description}</p>
+              <ul>
+                <li>
+                  <b>Industry</b>
+                  {project.industry}
+                </li>
+                <li>
+                  <b>Status</b>
+                  {project.status}
+                </li>
+                <li>
+                  <b>Technologies</b>
+                  {project.techs?.join(', ')}
+                </li>
+                <li>
+                  <b>Role</b>
+                  {project.role}
+                </li>
+              </ul>
+            </div>
+            <ul class="challenges">
+              {project.challenges && (
+                <li>
+                  <b>Challenges</b>
+                  <ul>
+                    {project.challenges.map((challenge) => (
+                      <li>⬩ {challenge}.</li>
+                    ))}
+                  </ul>
+                </li>
+              )}
+              {project.solutions && (
+                <li>
+                  <b>Solutions</b>
+                  <ul>
+                    {project.solutions.map((solution) => (
+                      <li>⬩ {solution}.</li>
+                    ))}
+                  </ul>
+                </li>
+              )}
+            </ul>
+          </div>
+          <div class="images">
+            {project.images?.map((src: string) => (
+              <li>
+                {!!Number(src) ? (
+                  <Image
+                    src={images[`../assets/img/project-${src}.png`]()}
+                    alt={project.name}
+                    width="557"
+                    height="317"
+                  />
+                ) : (
+                  <video autoplay muted loop playsinline>
+                    <source src={videos[`../assets/videos/${src}.mp4`]?.default} type="video/mp4" />
+                    Your browser does not support the video tag.
+                  </video>
+                )}
+              </li>
+            ))}
+          </div>
+          <button class="next">
+            Next project{' '}
+            <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" fill="none" viewBox="0 0 10 10">
+              <path stroke="#fff" stroke-linecap="round" stroke-linejoin="round" d="M1 5h8m0 0L5 9m4-4L5 1" />
+            </svg>
+          </button>
+        </div>
+      </div>
+    ))
+  }
+</DefaultLayout>

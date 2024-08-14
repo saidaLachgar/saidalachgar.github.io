@@ -36,6 +36,7 @@ import TimeComponent from './TimeComponent.astro'
       <ul class="coordinate">
         <li>
           <button
+            id="book-a-call"
             data-cal-namespace="15min"
             data-cal-config='{"layout":"month_view"}'
             data-cal-link="saidalachgar/15min">Let's Collaborate – Book a Call</button
@@ -134,9 +135,9 @@ import TimeComponent from './TimeComponent.astro'
     }
     .contact li {
       opacity: 0;
-      animation: reveal 1.6s cubic-bezier(0.77, 0, 0.175, 1) 0s forwards;
+      animation: reveal 1.6s cubic-bezier(0.77, 0, 0.175, 1) 0.9s forwards;
       &:nth-child(2) {
-        animation-delay: 0.3s;
+        animation-delay: 1.2s;
       }
     }
     .coordinate button,

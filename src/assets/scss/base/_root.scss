@@ -15,14 +15,3 @@
   color: #000;
   background-color: #fff;
 }
-
-@keyframes reveal {
-  0% {
-    opacity: 0;
-    transform: translate(0, 100%) skew(-12deg) rotate(2deg);
-  }
-  100% {
-    transform: translate(0, 0);
-    opacity: 1;
-  }
-}

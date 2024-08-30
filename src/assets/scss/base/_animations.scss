@@ -12,20 +12,19 @@
 
 @keyframes rotating {
   from {
-    transform: translateX(-50%) translateY(-50%) rotate(0deg);
-  }
-
-  to {
-    transform: translateX(-50%) translateY(-50%) rotate(360deg);
-  }
-}
-
-@keyframes rotatingLogo {
-  from {
     transform: rotate(0deg);
   }
 
   to {
     transform: rotate(360deg);
+  }
+}
+
+@keyframes loopText {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(-100%, 0, 0);
   }
 }

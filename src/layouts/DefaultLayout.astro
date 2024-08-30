@@ -58,53 +58,65 @@ const { title, description, url, image = '/social-preview-image.png' } = Astro.p
           scale: 1;
         }
       }
+      .seo-text {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        margin: -1px;
+        padding: 0;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        border: 0;
+      }
     </style>
     <script>
-      // greeting loading
-      const greetings = [
-        'Hello',
-        'Hola',
-        'Bonjour',
-        'Hallo',
-        'Ciao',
-        'こんにちは',
-        '안녕하세요',
-        '您好',
-        'Здравствуйте',
-        'Olá',
-        'مرحبا',
-        'नमस्ते',
-      ]
+      document.addEventListener('astro:page-load', () => {
+        // greeting loading
+        const greetings = [
+          'Hello',
+          'Hola',
+          'Bonjour',
+          'Hallo',
+          'Ciao',
+          'こんにちは',
+          '안녕하세요',
+          '您好',
+          'Здравствуйте',
+          'Olá',
+          'مرحبا',
+          'नमस्ते',
+        ]
 
-      let currentGreeting = 0
-      const greetingElement = document.getElementById('loader')
+        let currentGreeting = 0
+        const greetingElement = document.getElementById('loader')
 
-      function changeGreeting() {
-        greetingElement.textContent = greetings[currentGreeting]
-        currentGreeting = (currentGreeting + 1) % greetings.length
-      }
-
-      const intervalId = setInterval(changeGreeting, 120)
-
-      setTimeout(function () {
-        clearInterval(intervalId)
-        document.getElementById('loader').style.display = 'none'
-        document.getElementById('main').style.display = 'block'
-      }, 1500)
-
-      // reveal
-      document.body.addEventListener('scroll', () => {
-        var revealPoint = 200
-        var revealElement = document.querySelectorAll('[data-reveal]')
-        for (var i = 0; i < revealElement.length; i++) {
-          var windowHeight = window.innerHeight
-          var revealTop = revealElement[i].getBoundingClientRect().top
-          if (revealTop < windowHeight - revealPoint) {
-            revealElement[i].classList.add('active')
-          } else {
-            revealElement[i].classList.remove('active')
-          }
+        function changeGreeting() {
+          greetingElement.textContent = greetings[currentGreeting]
+          currentGreeting = (currentGreeting + 1) % greetings.length
         }
+
+        const intervalId = setInterval(changeGreeting, 120)
+
+        setTimeout(function () {
+          clearInterval(intervalId)
+          document.getElementById('loader').style.display = 'none'
+          document.getElementById('main').style.display = 'block'
+        }, 1500)
+
+        // reveal
+        document.body.addEventListener('scroll', () => {
+          var revealPoint = 200
+          var revealElement = document.querySelectorAll('[data-reveal]')
+          for (var i = 0; i < revealElement.length; i++) {
+            var windowHeight = window.innerHeight
+            var revealTop = revealElement[i].getBoundingClientRect().top
+            if (revealTop < windowHeight - revealPoint) {
+              revealElement[i].classList.add('active')
+            } else {
+              revealElement[i].classList.remove('active')
+            }
+          }
+        })
       })
     </script>
   </body>

@@ -1,139 +1,138 @@
 ---
-import { projects, type Project } from '@/data/projects'
+import WorkDetails from '@/components/WorkDetails.astro'
+import { playground, projects } from '@/data/projects'
 import DefaultLayout from '../layouts/DefaultLayout.astro'
-import { Image } from 'astro:assets'
-import { Icon } from 'astro-icon/components'
-const videos = import.meta.glob<{ default: string }>('../assets/videos/*.mp4', { eager: true })
-const images = import.meta.glob<{ default: ImageMetadata }>('../assets/img/project-*.png')
+
+// Combine and sort the projects
+const allProjects = [...projects, ...playground]
+  .map((data, key) => ({ ...data, key }))
+  .sort((a, b) => b.year - a.year || a.name.localeCompare(b.name))
+const badge = (status: string) => (['PLAYGROUND', 'STUDY CASE'].includes(status) ? status : '')
 ---
 
 <DefaultLayout
-  title="Saida Lachgar - Frontend Web Developer Portfolio"
-  description="A frontend web developer, blends thoughtful UI/UX design with technical expertise. Specializing in JS, Angular, Symfony, and more. Elevate your digital experiences with unique themes, SEO optimization, responsive design, and interactive motions!"
+  title="Saida Lachgar - Frontend Web Developer Project Showcase"
+  description="Showcase of innovative projects developed by a highly skilled developer. Explore diverse industries, technologies, and challenges overcome in the fields of eCommerce, Tourism, Healthcare, and more."
 >
-  <section class="work container" id="projects">
-    <div class="header" data-reveal>
-      <h1 class="title">Projects</h1>
+  <section class="container" id="projects">
+    <div class="header">
+      <h1 class="title">All<br />Projects</h1>
+      <p class="seo-text">
+        Welcome to my portfolio! Discover the projects that demonstrate my expertise in web development,
+        problem-solving, and innovative solutions across various industries.
+      </p>
     </div>
 
     <div class="content">
       <ul>
+        <li class="thead">
+          <input type="text" id="filter-year" placeholder="Year" />
+          <input type="text" id="filter-role" placeholder="Role" />
+          <input type="text" id="filter-name" placeholder="Name" />
+          <input type="text" id="filter-platform" placeholder="Platform" />
+          <input type="text" id="filter-industry" placeholder="Industry" />
+        </li>
         {
-          projects.map((project: Project, key: number) => (
+          allProjects.map((project) => (
             <li data-reveal>
-              <div class="project" data-target={`project-${key}`}>
-                {/* <Image
-                  src={images[`../assets/img/project-${project.images![0]}.png`]()}
-                  alt={project.name}
-                  width="557"
-                  height="317"
-                /> */}
-                <span class="name">{project.name}</span>
-                <span class="platform">{project.platform}</span>
+              <div class="project" data-target={`project-${project.key}`}>
+                <span class="year">{project.year ?? '-'}</span>
+                <span class="role">{project.role ?? '-'}</span>
+                <h2 class="name">
+                  {project.name ?? '-'}&nbsp;
+                  <span class="badge">{badge(project.status)}</span>
+                </h2>
+                <span class="platform">{project.platform ?? '-'}</span>
+                <span class="industry">{project.industry ?? '-'}</span>
               </div>
             </li>
           ))
         }
       </ul>
-      <a href="/projects" class="more" data-reveal>
-        <Icon name="arrow-top-right" width={27} height={27} />
-        <u>See all projects</u>
-        <sup>({projects.length})</sup>
-      </a>
     </div>
   </section>
-  {
-    projects.slice(0, 8).map((project: Project, key: number) => (
-      <div class="work-description" id={`project-${key}`}>
-        <div class="container">
-          <button class="close">
-            Close{' '}
-            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="none" viewBox="0 0 10 10">
-              <path stroke="#fff" stroke-linecap="round" stroke-linejoin="round" d="M5 5 1 9m4-4L1 1m4 4 4-4M5 5l4 4" />
-            </svg>
-          </button>
-          <p class="title">{project.name}</p>
-          {project.link &&
-            (typeof project.link !== 'object' ? (
-              <a class="link" target="_blank" href={'https://' + project.link}>
-                {project.link}
-                <Icon name="arrow-top-right" width={16} height={16} />
-              </a>
-            ) : (
-              Object.entries(project.link).map(([key, value]) => <a href={value}>{key}</a>)
-            ))}
-          <div class="info">
-            <div class="details">
-              <p class="brief">{project.description}</p>
-              <ul>
-                <li>
-                  <b>Industry</b>
-                  {project.industry}
-                </li>
-                <li>
-                  <b>Status</b>
-                  {project.status}
-                </li>
-                <li>
-                  <b>Technologies</b>
-                  {project.techs?.join(', ')}
-                </li>
-                <li>
-                  <b>Role</b>
-                  {project.role}
-                </li>
-              </ul>
-            </div>
-            <ul class="challenges">
-              {project.challenges && (
-                <li>
-                  <b>Challenges</b>
-                  <ul>
-                    {project.challenges.map((challenge) => (
-                      <li>⬩ {challenge}.</li>
-                    ))}
-                  </ul>
-                </li>
-              )}
-              {project.solutions && (
-                <li>
-                  <b>Solutions</b>
-                  <ul>
-                    {project.solutions.map((solution) => (
-                      <li>⬩ {solution}.</li>
-                    ))}
-                  </ul>
-                </li>
-              )}
-            </ul>
-          </div>
-          <div class="images">
-            {project.images?.map((src: string) => (
-              <li>
-                {!!Number(src) ? (
-                  <Image
-                    src={images[`../assets/img/project-${src}.png`]()}
-                    alt={project.name}
-                    width="557"
-                    height="317"
-                  />
-                ) : (
-                  <video autoplay muted loop playsinline>
-                    <source src={videos[`../assets/videos/${src}.mp4`]?.default} type="video/mp4" />
-                    Your browser does not support the video tag.
-                  </video>
-                )}
-              </li>
-            ))}
-          </div>
-          <button class="next">
-            Next project{' '}
-            <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" fill="none" viewBox="0 0 10 10">
-              <path stroke="#fff" stroke-linecap="round" stroke-linejoin="round" d="M1 5h8m0 0L5 9m4-4L5 1" />
-            </svg>
-          </button>
-        </div>
-      </div>
-    ))
-  }
+  <WorkDetails data={[...projects, ...playground]} client:idle />
 </DefaultLayout>
+
+<script>
+  document.addEventListener('astro:page-load', () => {
+    const cells = ['year', 'role', 'name', 'platform', 'industry']
+    document.addEventListener('input', () => {
+      const filters = cells.map((id) => document.getElementById(`filter-${id}`).value.toLowerCase())
+      console.log('filters', filters)
+
+      document.querySelectorAll('.project').forEach((project) => {
+        const matches = cells.every((id, i) =>
+          project.querySelector(`.${id}`).textContent.toLowerCase().includes(filters[i])
+        )
+        console.log('matches', matches)
+        project.classList.toggle('hidden', !matches)
+      })
+    })
+  })
+</script>
+
+<style lang="scss">
+  @use '../assets/scss/base/mixins' as *;
+  .title {
+    font-size: min(max(60px, 14vw), 240px);
+    font-weight: 700;
+    text-transform: uppercase;
+    line-height: 1.1;
+    margin: 15vh 0 40px;
+    text-align: right;
+    animation: reveal 1.6s cubic-bezier(0.77, 0, 0.175, 1) 0.4s forwards;
+  }
+  .badge {
+    font-size: 10px;
+    text-transform: lowercase;
+    border: 1px solid #fff;
+    border-radius: 5px;
+    padding: 1px 4px 3px;
+    &:empty {
+      display: none;
+    }
+  }
+  .thead,
+  .project {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+    > * {
+      padding: 15px 0;
+      font-weight: 400;
+      font-size: 14px;
+      line-height: 1;
+    }
+    input {
+      background-color: #000;
+      color: #fff;
+      border: 0;
+      &:focus-visible,
+      &:focus {
+        box-shadow: none;
+        outline: 0;
+      }
+      &::placeholder {
+        opacity: 1;
+        color: #fff;
+      }
+    }
+  }
+  .content {
+    animation: reveal 1.6s cubic-bezier(0.77, 0, 0.175, 1) 0.4s forwards;
+  }
+  .project {
+    cursor: pointer;
+    &:hover {
+      background-color: rgba(255, 255, 255, 0.08);
+      z-index: 1000;
+    }
+    &.hidden {
+      display: none;
+    }
+    .name {
+      text-transform: uppercase;
+    }
+  }
+</style>

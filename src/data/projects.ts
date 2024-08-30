@@ -1,7 +1,7 @@
 export type Project = {
   link?: string | { [key: string]: string }
   name: string
-  year?: number
+  year: number
   platform?: string
   techs?: string[]
   images?: string[]
@@ -104,7 +104,7 @@ const projects: Project[] = [
     status: 'RELEASED',
     role: 'Frontend',
     images: ['43', '27', '18', 'tots', '9'],
-    industry: 'E-commerce (Bathroom Furniture and Accessories)',
+    industry: 'Bathroom Furniture and Accessories',
     techs: ['PHP', 'Webpack', 'Algolia'],
     description: 'tots.fr is an e-commerce website specializing in the online sales of bathroom furniture, and all accessories needed to create or renovate bathroom.',
     challenges: [
@@ -243,6 +243,7 @@ const projects: Project[] = [
     status: 'RELEASED',
     role: 'Frontend',
     images: ['ldb', '50', '38', '36', '35'],
+    industry: 'Cosmetics',
     techs: ['Prestashop'],
     challenges: [
       "Customizing checkout process to improve user experience",
@@ -280,17 +281,20 @@ const projects: Project[] = [
   // todo 🏁
   {
     name: 'Portfolio',
-    link: 'saidalachgar.site',
+    link: 'saidalachgar.dev',
     year: 2024,
     platform: 'Astro',
     status: 'RELEASED',
     role: 'Full Stack, Design',
     // images: ['xx', 'xx', 'xx', 'xx'],
-    industry: 'xx',
-    techs: ['xx'],
-    description: '',
-    challenges: [],
-    solutions: [],
+    industry: 'Personal',
+    techs: ['Astro'],
+    description: 'A personal portfolio showcasing a collection of projects across various platforms and industries, highlighting skills in web and app development. Built using Astro, the portfolio emphasizes performance, modern web standards, and showcases professional accomplishments with an interactive and engaging design',
+    challenges: [
+      "Customizable and lightweight, optimized for fast performance",
+      "Interactive project showcases with detailed descriptions and visuals",
+      "Responsive design ensuring compatibility across all devices"
+    ],
   },
   // Les Sens de Marrakech
   {
@@ -400,20 +404,27 @@ const projects: Project[] = [
       "Designing a user-friendly interface that effectively showcases services and pricing"
     ],
   },
-  // {
-  //   name: 'Myseelver',
-  //   link: 'myseelver.com/diapo/098',
-  //   year: 2024,
-  //   platform: 'React',
-  //   status: 'RELEASED',
-  //   role: 'Frontend',
-  // images: ['xx','xx','xx','xx'],
-  //   industry: 'xx',
-  //   techs: ['xx'],
-  //   description: '',
-  //   challenges: [],
-  //   solutions: [],
-  // },
+  {
+    name: 'Myseelver',
+    year: 2024,
+    platform: 'React',
+    status: 'RELEASED',
+    role: 'Frontend',
+    // images: ['xx','xx','xx','xx'],
+    industry: 'Elderly Care, Residence Management',
+    techs: ['React', 'Polyfills'],
+    description: 'A customizable app for elderly residences. Designed for TV screens, it displays weather, events, menus, news, and more, with automatic page transitions',
+    challenges: [
+      "Ensuring compatibility with very old browser versions across different types of TV screens",
+      "Creating a responsive and visually engaging interface suitable for display on TV screens",
+      "Integrating various data sources, including APIs for weather, news, and residence-specific information",
+    ],
+    solutions: [
+      "Implementing polyfills and using compatible libraries to ensure the app runs smoothly on outdated browsers",
+      "Designing a flexible and dynamic UI that adapts to various screen sizes and resolutions",
+      "Employing API integrations for real-time updates on weather, news, events, and other information",
+    ],
+  },
   // Centre dentaire founty
   {
     name: 'Centre dentaire founty',
@@ -511,16 +522,24 @@ const projects: Project[] = [
 const playground: Project[] = [
   // The Movie Vault 🏁
   {
-    name: 'The Movie Vault',
+    name: 'The Movie Vault (Concept)',
+    year: 2023,
     status: 'STUDY CASE',
     role: 'Design',
-    images: ['xx', 'xx', 'xx', 'playground-the-movie-vault'],
-    industry: 'xx',
-    techs: ['xx'],
+    images: ['41', '41', '41', 'playground-the-movie-vault'],
+    industry: 'Entertainment, Movies',
     subtitle: 'Shows and movies filter and more (study case)',
-    description: '',
-    challenges: [],
-    solutions: [],
+    description: 'The Movie Vault is a conceptual design for a tool aimed at improving movie search experiences with advanced filtering options, tracking shows, creating wishlists, and managing favorites lists. It addresses the limitations of streaming services and IMDb by providing a user-friendly interface and robust search functionality. This project was designed for fun, with the potential to develop into a real hobby project',
+    challenges: [
+      "Advanced filters for movie searches, allowing users to sort by genre, release date, ratings, and more",
+      "Options for tracking watched shows, creating wishlists, and saving favorites",
+      "A clean, user-friendly design that prioritizes ease of navigation and accessibility",
+    ],
+    solutions: [
+      "Designing a filtering system that surpasses the complexity of existing platforms",
+      "Creating an intuitive user interface that appeals to both casual and dedicated movie enthusiasts",
+      "Planning for a scalable architecture that could support future development into a functional application",
+    ],
   },
   // Planetary facts
   {
@@ -598,12 +617,15 @@ const playground: Project[] = [
     status: 'PLAYGROUND',
     role: 'Frontend, Design',
     images: ['playground-top-global-music'],
-    industry: 'xx',
-    techs: ['xx'],
+    industry: 'Entertainment, Music',
+    techs: ['Vite.js', 'Spotify API'],
     subtitle: 'Top songs right now on spotify',
-    description: '',
-    challenges: [],
-    solutions: [],
+    description: 'A playful one-page website display trending music, features a modern interactive design to explore the latest hits around the world. This project was created as a personal experiment in using Vite.js and Spotify API',
+    solutions: [
+      "Experimented with Vite.js for rapid development and hot module replacement",
+      "Focused on creating a visually appealing and interactive design",
+      "Used API integration to pull real-time data, enhancing the app’s dynamic nature"
+    ],
   },
 ]
 

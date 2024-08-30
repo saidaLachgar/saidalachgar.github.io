@@ -9,7 +9,7 @@ import TimeComponent from './TimeComponent.astro'
   <SkipToContent />
   <div class="menu container">
     <div class="logo">
-      <a href="/"><Icon name="logo" width={87} height={87} /></a>
+      <a href="/" data-astro-prefetch="load"><Icon name="logo" width={87} height={87} /></a>
     </div>
 
     <nav class="navigation" aria-label="Main navigation desktop">
@@ -167,7 +167,7 @@ import TimeComponent from './TimeComponent.astro'
       opacity: 0;
       animation: reveal 1.6s cubic-bezier(0.77, 0, 0.175, 1) 0s forwards;
       svg {
-        animation: rotatingLogo 50s linear infinite;
+        animation: rotating 50s linear infinite;
       }
     }
     .info {
@@ -214,7 +214,7 @@ import TimeComponent from './TimeComponent.astro'
             ellipsisCount = (ellipsisCount % 3) + 1 // Loop between 1, 2, 3
           }, 1000) // Adjust the interval as needed
         }
-      }, 5000)
+      }, 60000)
     } else {
       // Page is visible again, revert to default favicon
       clearInterval(interval)

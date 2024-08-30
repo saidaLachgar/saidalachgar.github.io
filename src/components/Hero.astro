@@ -1,11 +1,5 @@
----
-import video from '../assets/img/presentation.mp4'
-import poster from '../assets/img/video-poster.png'
-import { Icon } from 'astro-icon/components'
----
-
 <section class="hero container">
-  <div class="visually-hidden">
+  <div class="seo-text">
     <h1>Experienced Frontend Web Developer - Saida Lachgar</h1>
     <p>
       Welcome to my digital realm! As a seasoned frontend web developer, I embark on a journey to redefine the online
@@ -55,7 +49,7 @@ import { Icon } from 'astro-icon/components'
     .title {
       flex: 1;
       text-transform: uppercase;
-      font-weight: 500;
+      font-weight: 700;
       line-height: 1.1;
 
       @include clamp(font-size, 60px, 9vw, 170px);
@@ -84,52 +78,42 @@ import { Icon } from 'astro-icon/components'
       animation: reveal 1.6s cubic-bezier(0.77, 0, 0.175, 1) 1.4s forwards;
     }
 
-    .visually-hidden {
-      position: absolute;
-      width: 1px;
-      height: 1px;
-      margin: -1px;
-      padding: 0;
-      overflow: hidden;
-      clip: rect(0, 0, 0, 0);
-      border: 0;
-    }
     .presentation {
       display: flex;
       flex-direction: column;
       justify-content: space-between;
       align-items: flex-end;
     }
-    .video {
-      position: sticky;
-      top: 150px;
-      margin-bottom: 100px;
-      z-index: 1;
-      opacity: 0;
-      animation: reveal 1.6s cubic-bezier(0.77, 0, 0.175, 1) 1.4s forwards;
-      &:hover button {
-        transform: scale(1.1);
-      }
-    }
-    video {
-      border-radius: 100%;
-      max-width: 25vw;
-      cursor: pointer;
-      &.playing + button {
-        transform: scale(0.5);
-        opacity: 0;
-        pointer-events: none;
-      }
-    }
-    button {
-      background: transparent;
-      margin: -42px auto;
-      display: block;
-      transition: all 0.2s ease;
-      position: relative;
-      z-index: 2;
-      color: #000;
-    }
+    // .video {
+    //   position: sticky;
+    //   top: 150px;
+    //   margin-bottom: 100px;
+    //   z-index: 1;
+    //   opacity: 0;
+    //   animation: reveal 1.6s cubic-bezier(0.77, 0, 0.175, 1) 1.4s forwards;
+    //   &:hover button {
+    //     transform: scale(1.1);
+    //   }
+    // }
+    // video {
+    //   border-radius: 100%;
+    //   max-width: 25vw;
+    //   cursor: pointer;
+    //   &.playing + button {
+    //     transform: scale(0.5);
+    //     opacity: 0;
+    //     pointer-events: none;
+    //   }
+    // }
+    // button {
+    //   background: transparent;
+    //   margin: -42px auto;
+    //   display: block;
+    //   transition: all 0.2s ease;
+    //   position: relative;
+    //   z-index: 2;
+    //   color: #000;
+    // }
     @media (max-width: 860px) {
       padding-top: 40px;
       .title {
@@ -147,21 +131,21 @@ import { Icon } from 'astro-icon/components'
         align-items: flex-start;
       }
 
-      .video {
-        align-self: center;
-        position: static;
-        margin-bottom: 70px;
-        button {
-          margin: -30px auto;
-          svg {
-            width: 50px;
-            height: auto;
-          }
-        }
-        video {
-          max-width: 45vw;
-        }
-      }
+      // .video {
+      //   align-self: center;
+      //   position: static;
+      //   margin-bottom: 70px;
+      //   button {
+      //     margin: -30px auto;
+      //     svg {
+      //       width: 50px;
+      //       height: auto;
+      //     }
+      //   }
+      //   video {
+      //     max-width: 45vw;
+      //   }
+      // }
     }
   }
 </style>

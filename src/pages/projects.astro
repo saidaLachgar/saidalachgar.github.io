@@ -2,11 +2,11 @@
 import WorkDetails from '@/components/WorkDetails.astro'
 import { playground, projects } from '@/data/projects'
 import DefaultLayout from '../layouts/DefaultLayout.astro'
+import { Icon } from 'astro-icon/components'
 
 // Combine and sort the projects
-const allProjects = [...projects, ...playground]
-  .map((data, key) => ({ ...data, key }))
-  .sort((a, b) => b.year - a.year || a.name.localeCompare(b.name))
+const allProjects = [...projects, ...playground].map((data, key) => ({ ...data, key }))
+// .sort((a, b) => b.year - a.year || a.name.localeCompare(b.name))
 const badge = (status: string) => (['PLAYGROUND', 'STUDY CASE'].includes(status) ? status : '')
 ---
 
@@ -14,7 +14,33 @@ const badge = (status: string) => (['PLAYGROUND', 'STUDY CASE'].includes(status)
   title="Saida Lachgar - Frontend Web Developer Project Showcase"
   description="Showcase of innovative projects developed by a highly skilled developer. Explore diverse industries, technologies, and challenges overcome in the fields of eCommerce, Tourism, Healthcare, and more."
 >
-  <section class="container" id="projects">
+  <form class="passcode">
+    <section>
+      <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 256 256"
+        ><path
+          fill="#fff"
+          d="M208 84h-36V56a44 44 0 0 0-88 0v28H48a12 12 0 0 0-12 12v112a12 12 0 0 0 12 12h160a12 12 0 0 0 12-12V96a12 12 0 0 0-12-12M92 56a36 36 0 0 1 72 0v28H92Zm120 152a4 4 0 0 1-4 4H48a4 4 0 0 1-4-4V96a4 4 0 0 1 4-4h160a4 4 0 0 1 4 4Zm-76-56a8 8 0 1 1-8-8a8 8 0 0 1 8 8"
+        ></path></svg
+      >
+      <p>
+        <strong>To ensure privacy and client confidentiality, this section requires a passcode.</strong>
+        <br />Please enter the passcode below to continue. If you need access, please request a passcode via
+        <a
+          target="_blank"
+          href="mailto:hello@saidalachgar.com?subject=Token Request&body=Hello,%0D%0A%0D%0AMy name is [Your Name] and I would like to request access to the projects page for [Reason].%0D%0A%0D%0AThank you!"
+          >this link</a
+        > and share your details
+      </p>
+      <fieldset>
+        <input id="token-input" type="text" placeholder="Enter Passcode to access" />
+        <button id="token-check" type="button">
+          <Icon name="arrow-top-right" width={11} height={11} />
+        </button>
+      </fieldset>
+    </section>
+    <a href="/" data-astro-prefetch="load">Close</a>
+  </form>
+  <section class="container projects" id="projects" style="display: none">
     <div class="header">
       <h1 class="title">All<br />Projects</h1>
       <p class="seo-text">
@@ -51,7 +77,8 @@ const badge = (status: string) => (['PLAYGROUND', 'STUDY CASE'].includes(status)
       </ul>
     </div>
   </section>
-  <WorkDetails data={[...projects, ...playground]} client:idle />
+  <div></div>
+  <WorkDetails data={[...projects, ...playground]} />
 </DefaultLayout>
 
 <script>
@@ -69,11 +96,130 @@ const badge = (status: string) => (['PLAYGROUND', 'STUDY CASE'].includes(status)
         project.classList.toggle('hidden', !matches)
       })
     })
+
+    const validateToken = (token) => {
+      try {
+        // Decode the token
+        const decodedPayload = JSON.parse(atob(token))
+        const now = new Date().getTime()
+
+        // Check if the token has expired
+        if (now > decodedPayload.exp) {
+          alert('Token expired. Please request a new token.')
+          return
+        }
+        localStorage.setItem('passcode', token)
+        document.querySelector('.passcode').style.display = 'none'
+        setTimeout(() => {
+          document.querySelector('#projects').style.display = 'block'
+        }, 10)
+      } catch (error) {
+        alert('Invalid token.')
+      }
+    }
+
+    // Example usage: validating the token
+    document.getElementById('token-check')?.addEventListener('click', () => {
+      const inputToken = document.getElementById('token-input')?.value
+      validateToken(inputToken)
+    })
+
+    const storedToken = localStorage.getItem('passcode')
+    if (storedToken) {
+      validateToken(storedToken)
+    }
   })
 </script>
 
 <style lang="scss">
   @use '../assets/scss/base/mixins' as *;
+
+  .passcode {
+    background-color: #000;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: grid;
+    z-index: 1100;
+    text-align: center;
+
+    section {
+      margin: auto;
+      max-width: 530px;
+      font-size: 14px;
+      padding-bottom: 5vh;
+      opacity: 0;
+      animation: reveal 1.6s cubic-bezier(0.77, 0, 0.175, 1) 2s forwards;
+    }
+
+    > a {
+      position: fixed;
+      right: 40px;
+      top: 40px;
+    }
+
+    input {
+      background-color: #000;
+      border: none;
+      border-bottom: 1px solid #fff;
+      color: #fff;
+      text-transform: uppercase;
+      padding: 4px 20px 0 0;
+      width: 205px;
+      opacity: 0.8;
+      transition: opacity 0.3s ease;
+      &::placeholder {
+        color: #fff;
+        opacity: 1;
+      }
+      &:focus-visible,
+      &:focus,
+      :not(:placeholder-shown) {
+        outline: none;
+        box-shadow: none;
+        &,
+        + button {
+          opacity: 1;
+        }
+      }
+    }
+
+    button {
+      border: none;
+      transition: opacity 0.3s ease;
+      opacity: 0.8;
+      background-color: #000;
+      margin-left: -15px;
+    }
+
+    fieldset {
+      border: none;
+      width: max-content;
+      margin: 40px auto 0;
+      &:hover {
+        button,
+        input {
+          opacity: 1;
+        }
+      }
+    }
+
+    p {
+      margin-top: 30px;
+      line-height: 1.5;
+      a {
+        text-decoration: underline;
+      }
+    }
+    br {
+      line-height: 3;
+    }
+  }
+  .projects[style*='display: none'] + div {
+    min-height: 100vh;
+  }
   .title {
     font-size: min(max(60px, 14vw), 240px);
     font-weight: 700;
@@ -81,6 +227,7 @@ const badge = (status: string) => (['PLAYGROUND', 'STUDY CASE'].includes(status)
     line-height: 1.1;
     margin: 15vh 0 40px;
     text-align: right;
+    opacity: 0;
     animation: reveal 1.6s cubic-bezier(0.77, 0, 0.175, 1) 0.4s forwards;
   }
   .badge {
@@ -120,8 +267,10 @@ const badge = (status: string) => (['PLAYGROUND', 'STUDY CASE'].includes(status)
     }
   }
   .content {
+    opacity: 0;
     animation: reveal 1.6s cubic-bezier(0.77, 0, 0.175, 1) 0.4s forwards;
   }
+
   .project {
     cursor: pointer;
     &:hover {

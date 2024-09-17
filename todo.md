@@ -1,24 +1,28 @@
-# PHASE 1
-[-] change big image + fontsize 0
-[-] Fix responsive
-
-- work content 🤙
-  [-] a private page where i shows all cases with a grid and filter :)
-  [-] ? scroll vertical project images or add a nice drag circle instead
+# 👉 BEFORE DEPLOY 🔥
 
 # PHASE 2
 
-[] hover
-https://www.oda.services/ projects/blog
-https://source.paris/en/ hero
-https://guglieri.com/talks tablep
+## IMPORTANT
 
-[] infinit scroll
+- [-] prev/next home not working!!
+- [-] Fix responsive
+- [-] blog content
+  [_] Git flow for hotfix/merge using gui https://mohamed-kashif.medium.com/git-flow-for-hotfix-39ea74c488af
+  [_] https://dev.to/rossellafer/seo-tips-for-your-developer-portfolio-26fm
+  [_] 10 tips every frontend developer should know (see youtube page in notes)
+- [-] projects bad images
+  [_] Planetary facts
+  [_] The Movie Vault
+- [-] fix loading issue while navigating
 
-# PHASE 3
+## NOT IMPORTANT
 
-[] blog content
-[] add blog page for seo
+[-] change big image + fontsize 0
+[-] ? scroll vertical project images or add a nice drag circle instead
+
+---
+
+# 👉 AFTER DEPLOY ✨
 
 # PHASE 4
 
@@ -26,15 +30,33 @@ https://guglieri.com/talks tablep
 [] Social card
 https://x.com/DannPetty/status/1783714260578672991/video/1
 
+SVG Automatically optimized sprites https://www.astroicon.dev/guides/components/#automatically-optimized-sprites
+
+---
+
+# PHASE 5
+
+- ar fr en version
+- tab navigation
+- dark/light mode
+- infinit scroll wearemotto.com
+- minimap
+- Terminal exprience https://github.com/Cveinnt/LiveTerm
+  https://liveterm.vercel.app/
+  https://terminal.satnaing.dev/
+
+# inspiration
+
+https://zajno.com/work
+rotated circle https://www.helloelva.com/
+playground https://studiofables.com/fr/projets
++++ https://www.humanastudio.com/
+blog hover https://nelson.co/
+grid style https://format-3.co/work
+
+token https://chatgpt.com/share/ef2d4a2d-3666-4616-8023-55f7f1c2e87c
+
 # should i?
 
 [] messagge mounir
 i wanna submit a website on awwword hopping for wining a nominee, the website am submitting is my portfolio where in a specific section i wanna add some selected work, but scence Picaxel worK AS white brand with most of businesse i wanted to ask if it's applies on employer too, if so, here are websites that i would present, please et me know which ones i can't include
-
-# PHASE
-
-france version
-
-
-https://www.helloelva.com/
-https://zajno.com/work

@@ -70,7 +70,19 @@ const { title, description, url, image = '/social-preview-image.png' } = Astro.p
       }
     </style>
     <script>
+      document.addEventListener('click', (event) => {
+        if (event.target.closest('a')) {
+          const loader = document.getElementById('loader')
+          if (loader) {
+            loader.classList.remove('hidden')
+          }
+        }
+      })
       document.addEventListener('astro:page-load', () => {
+        const loader = document.getElementById('loader')
+        if (loader) {
+          loader.classList.add('hidden')
+        }
         // greeting loading
         const greetings = [
           'Hello',

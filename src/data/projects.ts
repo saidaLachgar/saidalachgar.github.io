@@ -242,7 +242,7 @@ const projects: Project[] = [
     platform: 'Prestashop',
     status: 'RELEASED',
     role: 'Frontend',
-    images: ['ldb', '50', '38', '36', '35'],
+    images: ['50', '38', '36', 'ldb', '35'],
     industry: 'Cosmetics',
     techs: ['Prestashop'],
     challenges: [

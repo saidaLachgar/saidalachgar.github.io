@@ -28,3 +28,12 @@
     transform: translate3d(-100%, 0, 0);
   }
 }
+
+@keyframes loading {
+  0% {
+    background-position: -700px 0;
+  }
+  100% {
+    background-position: 700px 0;
+  }
+}

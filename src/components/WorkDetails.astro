@@ -13,7 +13,7 @@ const { data } = Astro.props
   data.map((project: Project, key: number) => (
     <div class="work-description" id={`project-${key}`}>
       <div class="container">
-        <button class="close">
+        <button class="close" title="esc">
           Close{' '}
           <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="none" viewBox="0 0 10 10">
             <path stroke="#fff" stroke-linecap="round" stroke-linejoin="round" d="M5 5 1 9m4-4L1 1m4 4 4-4M5 5l4 4" />
@@ -75,8 +75,8 @@ const { data } = Astro.props
           </ul>
         </div>
         <ul class="carousel">
-          {project.images?.map((src: string) => (
-            <li>
+          {(project.status === 'PLAYGROUND' ? project.images!.slice(0, -1) : project.images)?.map((src: string) => (
+            <li class:list={[{ video: !Number(src) }]}>
               {!!Number(src) ? (
                 <Image
                   src={imagesProjects[`../assets/img/project-${src}.png`]()}
@@ -93,9 +93,14 @@ const { data } = Astro.props
             </li>
           ))}
         </ul>
-        <button class="next">
-          Next project <Icon name="arrow-top-right" width={10} height={10} />
-        </button>
+        <div class="actions">
+          <button class="prev">
+            <Icon class="actions-icon" name="right-key" width={22} height={25} /> Previous project
+          </button>
+          <button class="next">
+            Next project <Icon class="actions-icon" name="right-key" width={22} height={25} />
+          </button>
+        </div>
       </div>
     </div>
   ))
@@ -119,26 +124,57 @@ const { data } = Astro.props
       })
     })
 
-    // next
-    document.querySelectorAll('.work-description .next').forEach((button) => {
-      button.addEventListener('click', () => {
-        // get next
-        let target = button.closest('.work-description')
-        let current = document.querySelector(`[data-target=${target.id}]`)
-        let next = current.closest('li').nextElementSibling
-        if (next) {
-          ;(next.querySelector('[data-target]') ?? next).click()
-        } else {
-          // first item in ul
-          current.closest('ul')?.querySelector('[data-target]').click()
-          target.classList.remove('show')
-        }
-        setTimeout(() => {
+    // next/prev
+    const navigate = (button, next) => {
+      let target = button.closest('.work-description')
+      let current = document.querySelector(`[data-target=${target.id}]`)
+      let currentLi = current.closest('li')
+      let nextOrPrev = next ? currentLi.nextElementSibling : currentLi.previousElementSibling
+      if (nextOrPrev && !nextOrPrev.classList.contains('thead')) {
+        ;(nextOrPrev.querySelector('[data-target]') ?? nextOrPrev).click()
+      } else {
+        // first/last item in ul
+        const ul = current.closest('ul')
+        ul.querySelector(`li:${next ? 'nth-child(2)' : 'last-child'} [data-target]`).click()
+        console.log(`li:${next ? 'nth-child(2)' : 'last-child'} [data-target]`)
+        target.classList.remove('show')
+      }
+      setTimeout(
+        () => {
           // close current
           target.classList.remove('show')
-        }, 1000)
+        },
+        next ? 1000 : 0
+      )
+    }
+
+    document.querySelectorAll('.work-description .actions button').forEach((button) => {
+      button.addEventListener('click', () => {
+        navigate(button, button.classList.contains('next'))
       })
     })
+
+    document.addEventListener(
+      'keydown',
+      (e) => {
+        const next = document.querySelector('.work-description.show .next')
+        const prev = document.querySelector('.work-description.show .prev')
+        const close = document.querySelector('.work-description.show .close')
+        const ArrowRight = e.key === 'ArrowRight'
+        const ArrowLeft = e.key === 'ArrowLeft'
+        const Escape = e.key === 'Escape'
+        if ((ArrowLeft || ArrowRight || Escape) && !!next) {
+          e.preventDefault()
+          if (Escape) {
+            close?.dispatchEvent(new Event('click'))
+          } else {
+            navigate(ArrowRight ? next : prev, ArrowRight)
+          }
+          return false
+        }
+      },
+      false
+    )
 
     // carousel (drag)
     const siders = document.querySelectorAll('.carousel')
@@ -240,14 +276,28 @@ const { data } = Astro.props
     .close {
       position: sticky;
       top: 0px;
-    }
-    .next,
-    .close {
       margin-left: auto;
       display: block;
     }
-    .next {
+    .actions {
       margin-top: 80px;
+      justify-content: center;
+      display: flex;
+      column-gap: 20px;
+      button {
+        display: flex;
+        align-items: center;
+        column-gap: 7px;
+        &:hover svg {
+          opacity: 0.9;
+        }
+      }
+      &-icon {
+        transition: opacity 0.2s ease;
+      }
+      .prev svg {
+        transform: scale(-1, 1);
+      }
     }
 
     .info {
@@ -316,6 +366,16 @@ const { data } = Astro.props
         justify-content: center;
         background-color: #151414;
         overflow: hidden;
+        &:not(.video) {
+          animation-duration: 1.8s;
+          animation-fill-mode: forwards;
+          animation-iteration-count: infinite;
+          animation-name: loading;
+          animation-timing-function: linear;
+          background: #151414;
+          background: linear-gradient(to right, #151414 0%, rgba(245, 245, 245, 0.04) 28%, #151414 50%);
+          background-size: 700px;
+        }
       }
     }
   }

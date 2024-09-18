@@ -1,0 +1,53 @@
+---
+import type { Page } from 'astro'
+import Link from './Link.astro'
+import { useTranslations } from '@/i18n'
+
+const t = useTranslations()
+
+type Props = {
+  page: Page
+}
+
+const {
+  page: {
+    currentPage,
+    lastPage,
+    url: { prev, next },
+  },
+} = Astro.props
+---
+
+<nav class="pagination">
+  {!prev && <span class="disabled">{t('components.pagination.previous')}</span>}
+  {
+    prev && (
+      <Link href={`${prev}#content`} rel="prev">
+        {t('components.pagination.previous')}
+      </Link>
+    )
+  }
+  <span>
+    {currentPage} of {lastPage}
+  </span>
+  {!next && <span class="disabled">{t('components.pagination.next')}</span>}
+  {
+    next && (
+      <Link href={`${next}#content`} rel="next">
+        {t('components.pagination.next')}
+      </Link>
+    )
+  }
+</nav>
+
+<style lang="scss">
+  .pagination {
+    display: flex;
+    font-size: 12px;
+    margin-top: 40px;
+    column-gap: 20px;
+    .disabled {
+      opacity: 0.7;
+    }
+  }
+</style>

@@ -184,21 +184,67 @@ declare module 'astro:content' {
 	>;
 
 	type ContentEntryMap = {
-		"posts": {
-"01-the-power-of-react-hooks copy.md": {
-	id: "01-the-power-of-react-hooks copy.md";
-  slug: "the-power-of-react-hooks";
+		"authors": {
+"default.mdx": {
+	id: "default.mdx";
+  slug: "default";
   body: string;
-  collection: "posts";
-  data: InferEntrySchema<"posts">
-} & { render(): Render[".md"] };
-"02-untitled.md": {
-	id: "02-untitled.md";
-  slug: "untitled";
+  collection: "authors";
+  data: InferEntrySchema<"authors">
+} & { render(): Render[".mdx"] };
+};
+"blog": {
+"exploring-gpt.mdx": {
+	id: "exploring-gpt.mdx";
+  slug: "exploring-gpt";
   body: string;
-  collection: "posts";
-  data: InferEntrySchema<"posts">
-} & { render(): Render[".md"] };
+  collection: "blog";
+  data: InferEntrySchema<"blog">
+} & { render(): Render[".mdx"] };
+"sample-post.mdx": {
+	id: "sample-post.mdx";
+  slug: "sample-post";
+  body: string;
+  collection: "blog";
+  data: InferEntrySchema<"blog">
+} & { render(): Render[".mdx"] };
+"simple-layout-with-cover.mdx": {
+	id: "simple-layout-with-cover.mdx";
+  slug: "simple-layout-with-cover";
+  body: string;
+  collection: "blog";
+  data: InferEntrySchema<"blog">
+} & { render(): Render[".mdx"] };
+"simple-layout.mdx": {
+	id: "simple-layout.mdx";
+  slug: "simple-layout";
+  body: string;
+  collection: "blog";
+  data: InferEntrySchema<"blog">
+} & { render(): Render[".mdx"] };
+"two-columns-with-cover.mdx": {
+	id: "two-columns-with-cover.mdx";
+  slug: "two-columns-with-cover";
+  body: string;
+  collection: "blog";
+  data: InferEntrySchema<"blog">
+} & { render(): Render[".mdx"] };
+};
+"tags": {
+"default.mdx": {
+	id: "default.mdx";
+  slug: "default";
+  body: string;
+  collection: "tags";
+  data: InferEntrySchema<"tags">
+} & { render(): Render[".mdx"] };
+"git.mdx": {
+	id: "git.mdx";
+  slug: "git";
+  body: string;
+  collection: "tags";
+  data: InferEntrySchema<"tags">
+} & { render(): Render[".mdx"] };
 };
 
 	};

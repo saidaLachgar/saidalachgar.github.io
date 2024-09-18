@@ -6,13 +6,13 @@ import Hero from '../components/Hero.astro'
 import Blog from '../components/Blog.astro'
 import Services from '../components/Services.astro'
 import Figure from '../components/Figure.astro'
-import DefaultLayout from '../layouts/DefaultLayout.astro'
+import RootLayout from '@/layouts/RootLayout.astro'
+import { useTranslations } from '@/i18n'
+
+const t = useTranslations()
 ---
 
-<DefaultLayout
-  title="Saida Lachgar - Frontend Web Developer Portfolio"
-  description="A frontend web developer, blends thoughtful UI/UX design with technical expertise. Specializing in JS, Angular, Symfony, and more. Elevate your digital experiences with unique themes, SEO optimization, responsive design, and interactive motions!"
->
+<RootLayout title={t('siteMetadata.title')} description={t('siteMetadata.description')}>
   <Hero />
   <About />
   <Stats />
@@ -21,4 +21,4 @@ import DefaultLayout from '../layouts/DefaultLayout.astro'
   <Work />
   <!-- <Work client:visible /> -->
   <Blog />
-</DefaultLayout>
+</RootLayout>

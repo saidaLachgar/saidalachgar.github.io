@@ -1,11 +1,13 @@
-import { defineConfig } from 'astro/config'
-import { SITE_URL } from './src/data/config'
-import astroMetaTags from 'astro-meta-tags'
+import mdx from '@astrojs/mdx'
 import netlify from '@astrojs/netlify'
 import sitemap from '@astrojs/sitemap'
 import compress from 'astro-compress'
 import icon from 'astro-icon'
-import mdx from '@astrojs/mdx'
+import astroMetaTags from 'astro-meta-tags'
+import metaTags from 'astro-meta-tags'
+import robotsTxt from 'astro-robots-txt'
+import { defineConfig } from 'astro/config'
+import { SITE_URL } from './src/data/config'
 
 // https://astro.build/config
 export default defineConfig({
@@ -17,6 +19,8 @@ export default defineConfig({
     compress(),
     astroMetaTags(),
     sitemap(),
+    metaTags(),
+    robotsTxt(),
     icon({
       iconDir: 'src/assets/icons',
     }),

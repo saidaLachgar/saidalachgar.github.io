@@ -1,0 +1,31 @@
+---
+import Link from './Link.astro'
+import { type CollectionEntry, getEntry } from 'astro:content'
+
+interface Props {
+  tag?: CollectionEntry<'tags'>
+  slug?: CollectionEntry<'tags'>['slug']
+}
+let TagProp = Astro.props.tag
+
+if (!TagProp && Astro.props.slug) {
+  TagProp = await getEntry('tags', Astro.props.slug)
+}
+const { slug, data } = TagProp!
+---
+
+<Link href={`/tags/${slug}`} class="tag">
+  {data.name}
+</Link>
+
+<style lang="scss">
+  .tag {
+    font-size: 12px;
+    font-weight: 700;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    background-color: rgba(255, 255, 255, 0.08);
+    transition: background-color 0.3s ease-in;
+    border-radius: 28px;
+    padding: 6px 12px;
+  }
+</style>

@@ -1,0 +1,169 @@
+---
+import FormattedDate from '@/components/FormattedDate.astro'
+import { useTranslations } from '@/i18n'
+import type { Page } from 'astro'
+import { getCollection, type CollectionEntry } from 'astro:content'
+import Link from '../components/Link.astro'
+import Pagination from '../components/Pagination.astro'
+import Tag from '../components/Tag.astro'
+import RootLayout from './RootLayout.astro'
+
+const t = useTranslations()
+
+interface Props {
+  title: string
+  description: string
+  titleTemplate?: string
+  page: Page<CollectionEntry<'blog'>>
+  robots?: string
+}
+
+const tags = await getCollection('tags')
+const posts = await getCollection('blog')
+
+function tagCount(slug: CollectionEntry<'tags'>['slug']) {
+  if (!posts) {
+    return 0
+  }
+  return posts.filter((post) => post.data.tags.some((tag) => tag.slug === slug)).length
+}
+
+function isSamePath(path: string) {
+  return Astro.url.pathname === path
+}
+
+const { title, description, robots, page, titleTemplate } = Astro.props
+const hasDefaultSlot = Astro.slots.has('default')
+const isBlogPage = Astro.url.pathname.startsWith('/blog')
+---
+
+<RootLayout {title} {description} {robots} {titleTemplate}>
+  <section class="blog container">
+    <div class="header">
+      <h1 class="title">{title}</h1>
+      <p class="sr-only">
+        {isBlogPage && t('pages.blog.intro')}
+        {hasDefaultSlot && <slot />}
+      </p>
+    </div>
+
+    <ul class="tags-list" id="content" data-reveal>
+      <li>
+        {
+          isBlogPage ? (
+            <p class="tag-link active">{t('layouts.listWithTagsLayout.allPosts')}</p>
+          ) : (
+            <Link href="/blog" class="tag-link">
+              {t('layouts.listWithTagsLayout.allPosts')}
+            </Link>
+          )
+        }
+      </li>
+      {
+        tags.map(({ slug, data }) => (
+          <li>
+            {isSamePath(`/tag/${slug}`) ? (
+              <p class="tag-link active">{`${data.name} (${tagCount(slug)})`}</p>
+            ) : (
+              <Link href={`/tags/${slug}`} class="tag-link" aria-label={`View posts tagged ${data.name}`}>
+                {`${data.name} (${tagCount(slug)})`}
+              </Link>
+            )}
+          </li>
+        ))
+      }
+    </ul>
+
+    <ul class="articles">
+      {
+        page.data.map(({ slug, data: { date, title, summary, tags } }) => (
+          <li data-reveal>
+            <article class="article">
+              <dl>
+                <dt class="sr-only">{t('layouts.listWithTagsLayout.publishedAt')}</dt>
+                <dd class="date">
+                  <FormattedDate date={date} />
+                </dd>
+              </dl>
+              <h2 class="name">
+                <Link href={`/blog/${slug}`} class="text-gray-900 dark:text-gray-100">
+                  {title}
+                </Link>
+              </h2>
+              <p class="summary">{summary}</p>
+              <div class="tags">
+                {tags.map(({ slug }) => (
+                  <Tag slug={slug} />
+                ))}
+              </div>
+            </article>
+          </li>
+        ))
+      }
+    </ul>
+    {(page.url.next || page.url.prev) && <Pagination page={page} />}
+  </section>
+</RootLayout>
+
+<style lang="scss">
+  .tags-list {
+    display: flex;
+    width: max-content;
+    column-gap: 10px;
+    margin: 0 0 70px;
+
+    .tag-link {
+      opacity: 0.5;
+      transition: all 0.6s ease;
+      display: block;
+      &.active {
+        opacity: 1;
+        text-decoration: underline;
+      }
+    }
+    &:hover .tag-link.active {
+      opacity: 0.5;
+    }
+    .tag-link:hover {
+      opacity: 1;
+      transform: translate(0, 1.5px);
+    }
+  }
+  .blog {
+    .title {
+      font-size: min(max(60px, 14vw), 240px);
+      font-weight: 700;
+      text-transform: uppercase;
+      line-height: 1.1;
+      margin: 15vh 0 40px;
+      text-align: right;
+      opacity: 0;
+      animation: reveal 1.6s cubic-bezier(0.77, 0, 0.175, 1) 0.4s forwards;
+    }
+  }
+  .articles {
+    width: max-content;
+    max-width: 50vw;
+  }
+  .article {
+    margin-bottom: 30px;
+    padding-bottom: 30px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    .date {
+      font-size: 12px;
+      opacity: 0.8;
+    }
+    .name {
+      font-size: 18px;
+      margin: 10px 0;
+    }
+    .summary {
+      font-size: 14px;
+      opacity: 0.7;
+    }
+    .tags {
+      display: flex;
+      margin-top: 20px;
+    }
+  }
+</style>

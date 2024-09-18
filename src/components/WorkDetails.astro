@@ -133,10 +133,13 @@ const { data } = Astro.props
       if (nextOrPrev && !nextOrPrev.classList.contains('thead')) {
         ;(nextOrPrev.querySelector('[data-target]') ?? nextOrPrev).click()
       } else {
-        // first/last item in ul
         const ul = current.closest('ul')
-        ul.querySelector(`li:${next ? 'nth-child(2)' : 'last-child'} [data-target]`).click()
-        console.log(`li:${next ? 'nth-child(2)' : 'last-child'} [data-target]`)
+        // Go to first/last item in ul depnding on prev/next (where if it's a table go to 2nd to skip thead)
+        const isTable = ul.classList.contains('table')
+        const isCarousel = ul.classList.contains('carousel-inner')
+        ul.querySelector(
+          `li:${next ? (isTable ? 'nth-child(2)' : 'first-child') : 'last-child'}${isCarousel ? '' : ' [data-target]'}`
+        ).click()
         target.classList.remove('show')
       }
       setTimeout(

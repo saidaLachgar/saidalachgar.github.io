@@ -1,8 +1,12 @@
 ---
+import presentation from '@/data/presentation'
 import WorkDetails from '@/components/WorkDetails.astro'
 import { playground, projects } from '@/data/projects'
-import DefaultLayout from '../layouts/DefaultLayout.astro'
 import { Icon } from 'astro-icon/components'
+import RootLayout from '@/layouts/RootLayout.astro'
+import { useTranslations } from '@/i18n'
+
+const t = useTranslations()
 
 // Combine and sort the projects
 const allProjects = [...projects, ...playground].map((data, key) => ({ ...data, key }))
@@ -10,10 +14,7 @@ const allProjects = [...projects, ...playground].map((data, key) => ({ ...data, 
 const badge = (status: string) => (['PLAYGROUND', 'STUDY CASE'].includes(status) ? status : '')
 ---
 
-<DefaultLayout
-  title="Saida Lachgar - Frontend Web Developer Project Showcase"
-  description="Showcase of innovative projects developed by a highly skilled developer. Explore diverse industries, technologies, and challenges overcome in the fields of eCommerce, Tourism, Healthcare, and more."
->
+<RootLayout title={t('pages.projects.metaTitle')} description={t('pages.projects.metaDescription')}>
   <form class="passcode">
     <section>
       <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 256 256"
@@ -27,8 +28,8 @@ const badge = (status: string) => (['PLAYGROUND', 'STUDY CASE'].includes(status)
         <br />Please enter the passcode below to continue. If you need access, please request a passcode via
         <a
           target="_blank"
-          href="mailto:hello@saidalachgar.com?subject=Token Request&body=Hello,%0D%0A%0D%0AMy name is [Your Name] and I would like to request access to the projects page for [Reason].%0D%0A%0D%0AThank you!"
-          >this link</a
+          onClick={`javascript:window.open('mailto:${presentation.mail}?subject=Token Request&body=Hello,%0D%0A%0D%0AMy name is [Your Name] and I would like to request access to the projects page for [Reason].%0D%0A%0D%0AThank you!', 'mail');event.preventDefault();`}
+          href="#">this link</a
         > and share your details
       </p>
       <fieldset>
@@ -37,20 +38,21 @@ const badge = (status: string) => (['PLAYGROUND', 'STUDY CASE'].includes(status)
           <Icon name="arrow-top-right" width={11} height={11} />
         </button>
       </fieldset>
+      <p id="form-message"></p>
     </section>
     <a href="/" data-astro-prefetch="load">Close</a>
   </form>
   <section class="container projects" id="projects" style="display: none">
     <div class="header">
       <h1 class="title">All<br />Projects</h1>
-      <p class="seo-text">
+      <p class="sr-only">
         Welcome to my portfolio! Discover the projects that demonstrate my expertise in web development,
         problem-solving, and innovative solutions across various industries.
       </p>
     </div>
 
     <div class="content">
-      <ul>
+      <ul class="table">
         <li class="thead">
           <input type="text" id="filter-year" placeholder="Year" />
           <input type="text" id="filter-role" placeholder="Role" />
@@ -79,14 +81,13 @@ const badge = (status: string) => (['PLAYGROUND', 'STUDY CASE'].includes(status)
   </section>
   <div></div>
   <WorkDetails data={[...projects, ...playground]} />
-</DefaultLayout>
+</RootLayout>
 
 <script>
   document.addEventListener('astro:page-load', () => {
     const cells = ['year', 'role', 'name', 'platform', 'industry']
     document.addEventListener('input', () => {
       const filters = cells.map((id) => document.getElementById(`filter-${id}`).value.toLowerCase())
-      console.log('filters', filters)
 
       document.querySelectorAll('.project').forEach((project) => {
         const matches = cells.every((id, i) =>
@@ -105,7 +106,7 @@ const badge = (status: string) => (['PLAYGROUND', 'STUDY CASE'].includes(status)
 
         // Check if the token has expired
         if (now > decodedPayload.exp) {
-          alert('Token expired. Please request a new token.')
+          document.getElementById('form-message').textContent = 'Token expired. Please request a new token.'
           return
         }
         localStorage.setItem('passcode', token)
@@ -114,14 +115,18 @@ const badge = (status: string) => (['PLAYGROUND', 'STUDY CASE'].includes(status)
           document.querySelector('#projects').style.display = 'block'
         }, 10)
       } catch (error) {
-        alert('Invalid token.')
+        document.getElementById('form-message').textContent = 'Invalid token.'
       }
     }
 
-    // Example usage: validating the token
-    document.getElementById('token-check')?.addEventListener('click', () => {
+    document.getElementById('token-check').addEventListener('click', () => {
       const inputToken = document.getElementById('token-input')?.value
       validateToken(inputToken)
+    })
+
+    document.querySelector('.passcode').addEventListener('submit', (e) => {
+      e.preventDefault()
+      document.getElementById('token-check').dispatchEvent(new Event('click'))
     })
 
     const storedToken = localStorage.getItem('passcode')
@@ -166,7 +171,7 @@ const badge = (status: string) => (['PLAYGROUND', 'STUDY CASE'].includes(status)
       border-bottom: 1px solid #fff;
       color: #fff;
       text-transform: uppercase;
-      padding: 4px 20px 0 0;
+      padding: 4px 20px 5px 0;
       width: 205px;
       opacity: 0.8;
       transition: opacity 0.3s ease;
@@ -236,6 +241,7 @@ const badge = (status: string) => (['PLAYGROUND', 'STUDY CASE'].includes(status)
     border: 1px solid #fff;
     border-radius: 5px;
     padding: 1px 4px 3px;
+    white-space: nowrap;
     &:empty {
       display: none;
     }
@@ -282,6 +288,7 @@ const badge = (status: string) => (['PLAYGROUND', 'STUDY CASE'].includes(status)
     }
     .name {
       text-transform: uppercase;
+      line-height: 1.2;
     }
   }
 </style>

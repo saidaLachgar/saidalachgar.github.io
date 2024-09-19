@@ -5,6 +5,7 @@ import { playground, projects } from '@/data/projects'
 import { Icon } from 'astro-icon/components'
 import RootLayout from '@/layouts/RootLayout.astro'
 import { useTranslations } from '@/i18n'
+import SectionContainer from '@/components/SectionContainer.astro'
 
 const t = useTranslations()
 
@@ -15,72 +16,74 @@ const badge = (status: string) => (['PLAYGROUND', 'STUDY CASE'].includes(status)
 ---
 
 <RootLayout title={t('pages.projects.metaTitle')} description={t('pages.projects.metaDescription')}>
-  <form class="passcode">
-    <section>
-      <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 256 256"
-        ><path
-          fill="#fff"
-          d="M208 84h-36V56a44 44 0 0 0-88 0v28H48a12 12 0 0 0-12 12v112a12 12 0 0 0 12 12h160a12 12 0 0 0 12-12V96a12 12 0 0 0-12-12M92 56a36 36 0 0 1 72 0v28H92Zm120 152a4 4 0 0 1-4 4H48a4 4 0 0 1-4-4V96a4 4 0 0 1 4-4h160a4 4 0 0 1 4 4Zm-76-56a8 8 0 1 1-8-8a8 8 0 0 1 8 8"
-        ></path></svg
-      >
-      <p>
-        <strong>To ensure privacy and client confidentiality, this section requires a passcode.</strong>
-        <br />Please enter the passcode below to continue. If you need access, please request a passcode via
-        <a
-          target="_blank"
-          onClick={`javascript:window.open('mailto:${presentation.mail}?subject=Token Request&body=Hello,%0D%0A%0D%0AMy name is [Your Name] and I would like to request access to the projects page for [Reason].%0D%0A%0D%0AThank you!', 'mail');event.preventDefault();`}
-          href="#">this link</a
-        > and share your details
-      </p>
-      <fieldset>
-        <input id="token-input" type="text" placeholder="Enter Passcode to access" />
-        <button id="token-check" type="button">
-          <Icon name="arrow-top-right" width={11} height={11} />
-        </button>
-      </fieldset>
-      <p id="form-message"></p>
-    </section>
-    <a href="/" data-astro-prefetch="load">Close</a>
-  </form>
-  <section class="container projects" id="projects" style="display: none">
-    <div class="header">
-      <h1 class="title">All<br />Projects</h1>
-      <p class="sr-only">
-        Welcome to my portfolio! Discover the projects that demonstrate my expertise in web development,
-        problem-solving, and innovative solutions across various industries.
-      </p>
-    </div>
+  <SectionContainer>
+    <form class="passcode">
+      <section>
+        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 256 256"
+          ><path
+            fill="#fff"
+            d="M208 84h-36V56a44 44 0 0 0-88 0v28H48a12 12 0 0 0-12 12v112a12 12 0 0 0 12 12h160a12 12 0 0 0 12-12V96a12 12 0 0 0-12-12M92 56a36 36 0 0 1 72 0v28H92Zm120 152a4 4 0 0 1-4 4H48a4 4 0 0 1-4-4V96a4 4 0 0 1 4-4h160a4 4 0 0 1 4 4Zm-76-56a8 8 0 1 1-8-8a8 8 0 0 1 8 8"
+          ></path></svg
+        >
+        <p>
+          <strong>To ensure privacy and client confidentiality, this section requires a passcode.</strong>
+          <br />Please enter the passcode below to continue. If you need access, please request a passcode via
+          <a
+            target="_blank"
+            onClick={`javascript:window.open('mailto:${presentation.mail}?subject=Token Request&body=Hello,%0D%0A%0D%0AMy name is [Your Name] and I would like to request access to the projects page for [Reason].%0D%0A%0D%0AThank you!', 'mail');event.preventDefault();`}
+            href="#">this link</a
+          > and share your details
+        </p>
+        <fieldset>
+          <input id="token-input" type="text" placeholder="Enter Passcode to access" />
+          <button id="token-check" type="button">
+            <Icon name="arrow-top-right" width={11} height={11} />
+          </button>
+        </fieldset>
+        <p id="form-message"></p>
+      </section>
+      <a href="/" data-astro-prefetch="load">Close</a>
+    </form>
+    <section class="projects" id="projects" style="display: none">
+      <div class="header">
+        <h1 class="title">All<br />Projects</h1>
+        <p class="sr-only">
+          Welcome to my portfolio! Discover the projects that demonstrate my expertise in web development,
+          problem-solving, and innovative solutions across various industries.
+        </p>
+      </div>
 
-    <div class="content">
-      <ul class="table">
-        <li class="thead">
-          <input type="text" id="filter-year" placeholder="Year" />
-          <input type="text" id="filter-role" placeholder="Role" />
-          <input type="text" id="filter-name" placeholder="Name" />
-          <input type="text" id="filter-platform" placeholder="Platform" />
-          <input type="text" id="filter-industry" placeholder="Industry" />
-        </li>
-        {
-          allProjects.map((project) => (
-            <li data-reveal>
-              <div class="project" data-target={`project-${project.key}`}>
-                <span class="year">{project.year ?? '-'}</span>
-                <span class="role">{project.role ?? '-'}</span>
-                <h2 class="name">
-                  {project.name ?? '-'}&nbsp;
-                  <span class="badge">{badge(project.status)}</span>
-                </h2>
-                <span class="platform">{project.platform ?? '-'}</span>
-                <span class="industry">{project.industry ?? '-'}</span>
-              </div>
-            </li>
-          ))
-        }
-      </ul>
-    </div>
-  </section>
-  <div></div>
-  <WorkDetails data={[...projects, ...playground]} />
+      <div class="content">
+        <ul class="table">
+          <li class="thead">
+            <input type="text" id="filter-year" placeholder="Year" />
+            <input type="text" id="filter-role" placeholder="Role" />
+            <input type="text" id="filter-name" placeholder="Name" />
+            <input type="text" id="filter-platform" placeholder="Platform" />
+            <input type="text" id="filter-industry" placeholder="Industry" />
+          </li>
+          {
+            allProjects.map((project) => (
+              <li data-reveal>
+                <div class="project" data-target={`project-${project.key}`}>
+                  <span class="year">{project.year ?? '-'}</span>
+                  <span class="role">{project.role ?? '-'}</span>
+                  <h2 class="name">
+                    {project.name ?? '-'}&nbsp;
+                    <span class="badge">{badge(project.status)}</span>
+                  </h2>
+                  <span class="platform">{project.platform ?? '-'}</span>
+                  <span class="industry">{project.industry ?? '-'}</span>
+                </div>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+    </section>
+    <div></div>
+    <WorkDetails data={[...projects, ...playground]} />
+  </SectionContainer>
 </RootLayout>
 
 <script>

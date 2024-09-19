@@ -1,33 +1,49 @@
 ---
-import { useTranslations } from "@/i18n";
-import FacebookShareButton from "./social-buttons/FacebookShareButton.astro";
-import LinkedInShareButton from "./social-buttons/LinkedInShareButton.astro";
-import RedditShareButton from "./social-buttons/RedditShareButton.astro";
-import TwitterShareButton from "./social-buttons/TwitterShareButton.astro";
+import { useTranslations } from '@/i18n'
+import FacebookShareButton from './social-buttons/FacebookShareButton.astro'
+import LinkedInShareButton from './social-buttons/LinkedInShareButton.astro'
+import TwitterShareButton from './social-buttons/TwitterShareButton.astro'
+import CopyShareButton from './social-buttons/CopyShareButton.astro'
 
-const t = useTranslations();
+const t = useTranslations()
 
 type Props = {
-  title: string;
-  description: string;
-  via?: string;
-  class?: string;
-};
+  title: string
+  description: string
+  via?: string
+  class?: string
+}
 
-const { title, description, via } = Astro.props;
+const { title, description, via } = Astro.props
 ---
 
-<div class="flex gap-2" class:list={Astro.props.class}>
+<div class="social-share-buttons" class:list={Astro.props.class}>
+  <CopyShareButton />
   <FacebookShareButton />
   <LinkedInShareButton />
-  <RedditShareButton {title} />
   <TwitterShareButton {description} {via} />
-  <span>{t("components.socialShareButtons.sharing")}</span>
 </div>
 
-<style>
+<style style="scss">
   :global(.social-share-btn) {
-    width: 24px;
-    height: 24px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    background-color: rgba(255, 255, 255, 0.08);
+    transition: background-color 0.3s ease-in;
+    border-radius: 28px;
+    padding: 6px 12px;
+    font-size: 12px;
+    font-weight: 700;
+    &:not(.copy) {
+      width: 34px;
+      height: 34px;
+      padding: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+  .social-share-buttons {
+    display: flex;
+    column-gap: 10px;
   }
 </style>

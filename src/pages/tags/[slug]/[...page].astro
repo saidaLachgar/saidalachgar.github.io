@@ -1,54 +1,46 @@
 ---
-import { getCollection, type CollectionEntry } from "astro:content";
-
+export const prerender = true
+import { getCollection, type CollectionEntry } from 'astro:content'
 // import ListLayout from "@/layouts/ListLayout.astro";
-import { ITEMS_PER_PAGE } from "@/consts";
-import { excludeDrafts, sortBlogPosts } from "@/functions";
-import ListWithTagsLayout from "@/layouts/ListWithTagsLayout.astro";
-import type { Page } from "astro";
-import { useTranslations } from "@/i18n";
+import { ITEMS_PER_PAGE } from '@/consts'
+import { excludeDrafts, sortBlogPosts } from '@/functions'
+import { useTranslations } from '@/i18n'
+import ListWithTagsLayout from '@/layouts/ListWithTagsLayout.astro'
+import type { Page } from 'astro'
 
-const t = useTranslations();
+const t = useTranslations()
 
 interface Props {
-  page: Page<CollectionEntry<"blog">>;
-  entry: CollectionEntry<"tags">;
+  page: Page<CollectionEntry<'blog'>>
+  entry: CollectionEntry<'tags'>
 }
 
 export async function getStaticPaths({ paginate }) {
-  const tags = await getCollection("tags");
-  const posts = await getCollection("blog", excludeDrafts).then(sortBlogPosts);
+  const tags = await getCollection('tags')
+  const posts = await getCollection('blog', excludeDrafts).then(sortBlogPosts)
 
   return tags.flatMap((entry) => {
-    const tagPosts = posts.filter((post) =>
-      post.data.tags.some(({ slug }) => slug === entry.slug)
-    );
+    const tagPosts = posts.filter((post) => post.data.tags.some(({ slug }) => slug === entry.slug))
     return paginate(tagPosts, {
       pageSize: ITEMS_PER_PAGE,
       params: { slug: entry.slug },
       props: { entry },
-    });
-  });
+    })
+  })
 }
 
-const { page, entry } = Astro.props;
-const { Content } = await entry.render();
+const { page, entry } = Astro.props
+const { Content } = await entry.render()
 
-let robots;
-let titleTemplate = "";
+let robots
+let titleTemplate = ''
 if (page.currentPage > 1) {
   // Ask search engines to not index paginated pages
-  robots = "noindex, follow";
-  titleTemplate = t("seo.pagination.page", { page: `${page.currentPage}` }); // `%s - Page ${page.currentPage}`;
+  robots = 'noindex, follow'
+  titleTemplate = t('seo.pagination.page', { page: `${page.currentPage}` }) // `%s - Page ${page.currentPage}`;
 }
 ---
 
-<ListWithTagsLayout
-  title={entry.data.name}
-  description={entry.data.description}
-  page={page}
-  {robots}
-  {titleTemplate}
->
+<ListWithTagsLayout title={entry.data.name} description={entry.data.description} page={page} {robots} {titleTemplate}>
   <Content />
 </ListWithTagsLayout>

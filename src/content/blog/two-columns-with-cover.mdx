@@ -1,25 +1,57 @@
 ---
-title: Two columns layout with cover
-summary: This is a two columns layout with a cover image. The cover image is set in the frontmatter of the markdown file.
+title: "Mastering Rebase with Git Fork: A Quick Visual Guide"
+summary: This guide provides a detailed walkthrough of the Git Rebase command using Git Fork, a visual Git client. Rebasing is one of Git’s two key methods for integrating changes between branches, with the other being git merge. While merges create a new commit that ties together branches, rebasing allows you to apply changes from one branch on top of another, effectively rewriting commit history in a cleaner, linear fashion..
 postLayout: column
-date: '2024-02-12'
-cover: '@/assets/img/og-image.png'
+date: '2024-09-19'
+cover: '@/assets/img/rewriting-history-git-rebase.png'
 ---
+### Why Rebase?
 
-This is a two columns layout with a cover image. The cover image is set in the frontmatter of the markdown file.
+Rebasing keeps your commit history clean and linear, making it easier to follow changes. It’s a great way to keep your branch up to date without cluttering the commit log with unnecessary merges.
 
-The cover image is displayed on the top of the page, and the content is displayed in two columns.
+## Step 1: Switch to Your Feature Branch
 
-The cover image is responsive and will adapt to the screen size.
+Let’s say you're working on a feature branch and want to rebase it onto the latest `develop` branch.
 
-To use it, set the `postLayout` frontmatter to `column` and add a `cover` field with the path to the image. Or leave `postLayout` empty and add a `cover` field with the path to the image.
+1. In **Git Fork**, select your feature branch from the **Branches** pane.
+2. Double-click to switch to it.
 
-```yaml
+For example:
+- You are on `feature/new-feature`.
+
+{/* <Image src="/images/git-fork-branch.png" alt="Git Fork Branch View" /> */}
+
+## Step 2: Start the Rebase
+
+Now it’s time to rebase your feature branch onto `develop` to get the latest changes.
+
+1. Right-click on the `develop` branch.
+2. Select **Rebase onto develop**.
+
+Git Fork will now attempt to apply the commits from your feature branch on top of the latest `develop` branch.
+
+{/* <Image src="/images/git-fork-rebase.png" alt="Git Fork Rebase Option" /> */}
+
+## Step 3: Handle Conflicts (if any)
+
+Sometimes, rebasing can result in conflicts. If this happens:
+
+1. Git Fork will notify you of any conflicts.
+2. Open the **Conflicts** tab, where you can resolve them by selecting which changes to keep.
+3. Once resolved, click **Mark as Resolved** and continue the rebase process.
+
+Git Fork makes conflict resolution easy with a clear interface.
+
+{/* <Image src="/images/git-fork-conflicts.png" alt="Git Fork Conflict Resolution" /> */}
+
+## Step 4: Finalize and Push Changes
+
+After successfully rebasing, you’ll need to push your updated branch to the remote repository.
+
+1. Click the **Push** button at the top.
+2. You may need to check the option to **force push** since the branch’s history has been rewritten during the rebase.
+
 ---
-title: Two columns layout with cover
-postLayout: column // or leave it empty
-date: '2024-02-12'
-cover: '@/assets/img/og-image.png'
----
-```
+**Done!**
 
+And that’s it—you’ve just successfully rebased a branch using **Git Fork** without touching the terminal. Now your feature branch is in sync with `develop`, and the commit history looks clean and organized!

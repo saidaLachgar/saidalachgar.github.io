@@ -29,6 +29,9 @@ function tagCount(slug: CollectionEntry<'tags'>['slug']) {
 }
 
 function isSamePath(path: string) {
+  console.log(Astro.url.pathname)
+  console.log('path', Astro.url.pathname === path)
+
   return Astro.url.pathname === path
 }
 
@@ -41,10 +44,10 @@ const isBlogPage = Astro.url.pathname.startsWith('/blog')
   <section class="blog container">
     <div class="header">
       <h1 class="title">{title}</h1>
-      <p class="sr-only">
+      <div class="sr-only">
         {isBlogPage && t('pages.blog.intro')}
         {hasDefaultSlot && <slot />}
-      </p>
+      </div>
     </div>
 
     <ul class="tags-list" id="content" data-reveal>
@@ -62,7 +65,7 @@ const isBlogPage = Astro.url.pathname.startsWith('/blog')
       {
         tags.map(({ slug, data }) => (
           <li>
-            {isSamePath(`/tag/${slug}`) ? (
+            {isSamePath(`/tags/${slug}`) ? (
               <p class="tag-link active">{`${data.name} (${tagCount(slug)})`}</p>
             ) : (
               <Link href={`/tags/${slug}`} class="tag-link" aria-label={`View posts tagged ${data.name}`}>
@@ -116,14 +119,15 @@ const isBlogPage = Astro.url.pathname.startsWith('/blog')
       opacity: 0.5;
       transition: all 0.6s ease;
       display: block;
+      padding-bottom: 10px;
+      border-bottom: 1px solid transparent;
       &.active {
         opacity: 1;
-        text-decoration: underline;
+        border-color: #fff;
+        pointer-events: none;
       }
     }
-    &:hover .tag-link.active {
-      opacity: 0.5;
-    }
+
     .tag-link:hover {
       opacity: 1;
       transform: translate(0, 1.5px);

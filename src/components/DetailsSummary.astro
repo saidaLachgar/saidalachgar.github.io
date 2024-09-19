@@ -1,18 +1,30 @@
 ---
 type Props = {
-  title: string;
-  class?: string;
-};
+  title: string
+  class?: string
+}
 
-const { title, class: className } = Astro.props;
+const { title, class: className } = Astro.props
 ---
 
-<details
-  class:list={className}
-  class="prose dark:prose-invert block w-full max-w-none"
->
-  <summary class="cursor-pointer md:p-4 p-3">{title}</summary>
-  <div class="md:px-4 px-3 md:pb-4 pb-3">
-    <slot />
-  </div>
+<details class:list={className}>
+  <summary>{title}</summary>
+  <div class="content"><slot /></div>
 </details>
+
+<style lang="scss">
+  :global(details li) {
+    margin-bottom: 5px;
+  }
+  details {
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    margin-bottom: 30px;
+    div {
+      padding: 0 15px 15px;
+    }
+  }
+  summary {
+    padding: 15px;
+    cursor: pointer;
+  }
+</style>

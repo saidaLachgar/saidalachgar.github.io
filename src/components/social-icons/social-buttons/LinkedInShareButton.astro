@@ -1,23 +1,9 @@
 ---
-import LinkedinIcon from "../icons/Linkedin.astro";
+import { Icon } from 'astro-icon/components'
 
-const URL = `https://www.linkedin.com/sharing/share-offsite/?url=${Astro.request.url}`;
+const URL = `https://www.linkedin.com/sharing/share-offsite/?url=${Astro.request.url}`
 ---
 
-<a
-  class="social-share-btn"
-  target="_blank"
-  href={URL}
-  rel="noopener noreferrer"
->
-  <LinkedinIcon />
+<a class="social-share-btn" target="_blank" href={URL} rel="noopener noreferrer">
+  <Icon name="linkedin" width={20} height={20} />
 </a>
-
-<style>
-  a {
-    margin-right: 10px;
-  }
-  svg:hover {
-    fill: #0a66c2;
-  }
-</style>

@@ -1,0 +1,32 @@
+---
+import { Icon } from 'astro-icon/components'
+---
+
+<span class="social-share-btn copy" role="button">
+  <Icon name="copy" width={20} height={20} />
+  <small class="copy-message"></small>
+  <span>copy link</span>
+</span>
+
+<script define:vars={{ url: Astro.request.url }}>
+  const shareButton = document.querySelector('.social-share-btn')
+  const copyMessage = document.querySelector('.social-share-btn .copy-message')
+  if (shareButton && copyMessage) {
+    shareButton.addEventListener('click', () => {
+      if (!navigator.clipboard) {
+        return
+      }
+      navigator.clipboard.writeText(url).then(
+        () => {
+          copyMessage.textContent = '( copied! )'
+        },
+        () => {
+          copyMessage.textContent = '( sorry copying to clipboard failed )'
+        }
+      )
+      setTimeout(() => {
+        copyMessage.textContent = ''
+      }, 2000)
+    })
+  }
+</script>

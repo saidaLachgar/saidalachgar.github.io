@@ -1,0 +1,77 @@
+---
+import { useTranslations } from '@/i18n'
+import { Icon } from 'astro-icon/components'
+
+const t = useTranslations()
+
+const { audio } = Astro.props
+---
+
+<div class="audio-player">
+  <div class="play-pause-btn" id="play-pause" onclick="toggleAudio()">
+    <Icon name="pause" class="pause" />
+    <Icon name="play" class="play" />
+    <span class="label">{t('layouts.postLayout.listen')}</span>
+    <span class="time" id="time-remaining">00:00</span>
+  </div>
+  <audio id="audio" src={audio} preload="auto" hidden></audio>
+</div>
+
+<style lang="scss">
+  .play-pause-btn {
+    cursor: pointer;
+    .play,
+    .pause {
+      width: 18px;
+      height: auto;
+    }
+
+    &:not(.playing) {
+      .pause,
+      .time {
+        display: none;
+      }
+    }
+    &.playing {
+      .label,
+      .play {
+        display: none;
+      }
+    }
+  }
+</style>
+
+<script is:inline>
+  const audio = document.getElementById('audio')
+  const playPauseBtn = document.getElementById('play-pause')
+  const timeRemaining = document.getElementById('time-remaining')
+
+  // Toggle play and pause
+  function toggleAudio() {
+    if (audio.paused) {
+      audio.play()
+      playPauseBtn.classList.add('playing')
+    } else {
+      audio.pause()
+      playPauseBtn.classList.remove('playing')
+    }
+  }
+
+  // Update time remaining
+  audio.addEventListener('timeupdate', () => {
+    const timeLeft = Math.ceil(audio.duration - audio.currentTime)
+    timeRemaining.textContent = formatTime(timeLeft)
+  })
+
+  // Format time in MM:SS
+  function formatTime(seconds) {
+    const mins = Math.floor(seconds / 60)
+    const secs = seconds % 60
+    return `${mins}:${secs.toString().padStart(2, '0')}`
+  }
+
+  // Set initial duration once the metadata is loaded
+  audio.addEventListener('loadedmetadata', () => {
+    timeRemaining.textContent = formatTime(audio.duration)
+  })
+</script>

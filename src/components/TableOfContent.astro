@@ -1,0 +1,72 @@
+---
+import Link from './Link.astro'
+
+type Props = {
+  headings: {
+    slug: string
+    text: string
+    depth: number
+  }[]
+}
+
+const { headings } = Astro.props
+---
+
+<ul id="table-of-content">
+  {
+    headings.map(({ slug, text, depth }) => (
+      <li
+        class:list={{
+          'depth-2': depth === 2,
+          'depth-3': depth === 3,
+          'depth-4': depth === 4,
+          'depth-5': depth === 5,
+          'depth-6': depth === 6,
+        }}
+      >
+        <Link href={`#${slug}`}>{text}</Link>
+      </li>
+    ))
+  }
+</ul>
+
+<style lang="scss">
+  ul {
+    list-style: none !important;
+    margin: 0;
+    font-size: 14px;
+    li {
+      margin-bottom: 15px;
+    }
+    a {
+      text-decoration: none;
+      transition: text-decoration 0.3s ease;
+    }
+    .active {
+      text-decoration: underline;
+    }
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    document.addEventListener('scroll', () => {
+      const sections = document.querySelectorAll('h2[id], h3[id], h4[id]') // Select all section headers
+      const tocLinks = document.querySelectorAll('#table-of-content a') // Select all ToC links
+
+      // let scrollPosition = window.scrollY + window.innerHeight / 2 // Get current scroll position (50% of viewport)
+      let scrollPosition = window.scrollY + 200 // Adjust for 200px from top
+
+      sections.forEach((section, index) => {
+        const sectionTop = section.offsetTop
+        const sectionHeight = section.offsetHeight
+
+        // Check if the section is in view (50% of the viewport)
+        if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+          tocLinks.forEach((link) => link.classList.remove('active')) // Remove active class from all links
+          tocLinks[index].classList.add('active') // Add active class to the current link
+        }
+      })
+    })
+  })
+</script>

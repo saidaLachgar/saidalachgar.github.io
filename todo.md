@@ -2,6 +2,8 @@
 
 **IMPORTANT**
 
+- [x] add drag https://format-3.co/work
+- [-] on on menu link show arrow down with changing the text ex: https://www.humanastudio.com
 - [-] Fix responsive
 - [-] blog content
   - [-] Git flow for hotfix/merge using gui https://mohamed-kashif.medium.com/git-flow-for-hotfix-39ea74c488af

@@ -1,17 +1,17 @@
 ---
-import { Image } from 'astro:assets'
-import SectionContainer from '@/components/SectionContainer.astro'
-import PageTitle from '@/components/PageTitle.astro'
-import Link from '@/components/Link.astro'
-import RootLayout from './RootLayout.astro'
-import { type CollectionEntry, getEntries } from 'astro:content'
+import BlogAudio from '@/components/BlogAudio.astro'
 import FormattedDate from '@/components/FormattedDate.astro'
-import Tag from '@/components/Tag.astro'
+import Link from '@/components/Link.astro'
+import PageTitle from '@/components/PageTitle.astro'
 import PostCover from '@/components/PostCover.astro'
-import DetailsSummary from '@/components/DetailsSummary.astro'
+import SectionContainer from '@/components/SectionContainer.astro'
+import TableOfContent from '@/components/TableOfContent.astro'
+import Tag from '@/components/Tag.astro'
 import SocialShareButtons from '@/components/social-icons/SocialShareButtons.astro'
 import { POST_METADATA } from '@/consts'
 import { useTranslations } from '@/i18n'
+import { getEntries, type CollectionEntry } from 'astro:content'
+import RootLayout from './RootLayout.astro'
 
 const t = useTranslations()
 
@@ -42,154 +42,223 @@ const { Content, headings } = await post.render()
   <SectionContainer>
     <article class="blog-article">
       <header>
-        <Link href="/blog" class="" aria-label={t('layouts.postLayout.backToBlog')}>
-          &larr; {t('layouts.postLayout.backToBlog')}
-        </Link>
+        <!-- <Link href="/blog" class="back-to-blog" aria-label={t('layouts.postLayout.backToBlog')}>
+          <Icon name="arrow-top-right" width={11} height={11} />{t('layouts.postLayout.backToBlog')}
+        </Link> -->
         <!-- title -->
         <PageTitle>{post.data.title}</PageTitle>
+        <!-- more info (date/audio) -->
+        <dl class="article-infos">
+          <dt class="sr-only">{t('layouts.postLayout.publishedAt')}</dt>
+          <dd>
+            <FormattedDate date={post.data.date} />
+          </dd>
+          {
+            post.data.duration && (
+              <>
+                <dt class="sr-only">{t('layouts.postLayout.duration')}</dt>
+                <dd>{t('layouts.postLayout.duration.read', { duration: post.data.duration })}</dd>
+              </>
+            )
+          }
+          {
+            post.data.audio && (
+              <>
+                <dt class="sr-only">{t('layouts.postLayout.listen')}</dt>
+                <dd>
+                  <BlogAudio audio={post.data.audio} />
+                </dd>
+              </>
+            )
+          }
+        </dl>
         <!-- summary -->
-        {POST_METADATA.showSummary && <p class="summary">{post.data.summary}</p>}
+        {POST_METADATA.showSummary && <p class="article-summary">{post.data.summary}</p>}
         <!-- cover -->
         {post.data.cover && POST_METADATA.showCover && <PostCover {post} />}
       </header>
 
       <div class="content">
-        <!-- draft -->
-        {
-          post.data.draft && (
-            <div class="">
-              <p class="">{t('layouts.postLayout.draftMessage')}</p>
-            </div>
-          )
-        }
-        <!-- table Of Contents -->
-        {
-          headings.length > 0 && POST_METADATA.showTableOfContents && (
-            <DetailsSummary class="" title={t('layouts.postLayout.tableOfContents')}>
-              <ul class="">
-                {headings.map(({ slug, text, depth }) => (
-                  <li
-                    class:list={{
-                      'depth-2': depth === 2,
-                      'depth-3': depth === 3,
-                      'depth-4': depth === 4,
-                      'depth-5': depth === 5,
-                      'depth-6': depth === 6,
-                    }}
-                  >
-                    <Link href={`#${slug}`}>{text}</Link>
-                  </li>
-                ))}
-              </ul>
-            </DetailsSummary>
-          )
-        }
-
-        <!-- content -->
-        <slot />
-        <Content />
-      </div>
-
-      <footer>
-        <div class="footer-top">
-          <!-- tags -->
+        <aside class="article-sidebar">
+          <!-- table Of Contents -->
+          {headings.length > 0 && POST_METADATA.showTableOfContents && <TableOfContent headings={headings} />}
+          <!-- draft -->
           {
-            tags && (
-              <div class="tags">
-                {tags.map((tag) => (
-                  <Tag tag={tag} />
-                ))}
+            post.data.draft && (
+              <div class="">
+                <p class="">{t('layouts.postLayout.draftMessage')}</p>
               </div>
             )
           }
-          <!-- share -->
-          <SocialShareButtons title={post.data.title} description={post.data.summary} />
-        </div>
-
-        <!-- next || prev -->
-        {
-          (next || prev) && (
-            <div class="flex justify-between py-4 xl:block xl:space-y-8 xl:py-8">
-              {prev && (
+          <div class="article-nav">
+            <hr />
+            <!-- next || prev -->
+            {
+              prev && (
                 <div>
-                  <h2 class="text-xs uppercase tracking-wide text-gray-500 dark:text-gray-400">
-                    {t('layouts.postLayout.previousPost')}
-                  </h2>
-                  <div class="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400">
+                  <b>{t('layouts.postLayout.previousPost')}</b>
+                  <div>
                     <Link href={`/blog/${prev.slug}`}>{prev.data.title}</Link>
                   </div>
                 </div>
-              )}
-              {next && (
+              )
+            }
+            {
+              next && (
                 <div>
-                  <h2 class="text-xs uppercase tracking-wide text-gray-500 dark:text-gray-400">
-                    {t('layouts.postLayout.nextPost')}
-                  </h2>
-                  <div class="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400">
+                  <b>{t('layouts.postLayout.nextPost')}</b>
+                  <div>
                     <Link href={`/blog/${next.slug}`}>{next.data.title}</Link>
                   </div>
                 </div>
-              )}
-            </div>
-          )
-        }
+              )
+            }
+            <!-- related -->
+            {
+              related.length > 0 && (
+                <div class="">
+                  <b class="">{t('layouts.postLayout.relatedPosts')}</b>
+                  <ul class="">
+                    {related.map((post) => (
+                      <li class="">
+                        <Link href={`/blog/${post.slug}`}>{post.data.title}</Link>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )
+            }
+            <hr />
+            <b>Tags</b>
+            <!-- tags -->
+            {
+              tags && (
+                <div class="tags">
+                  {tags.map((tag) => (
+                    <Tag tag={tag} />
+                  ))}
+                </div>
+              )
+            }
+            <hr />
+          </div>
 
-        <!-- related -->
-        {
-          related.length > 0 && (
-            <div class="py-4 xl:pb-8">
-              <h2 class="text-xs uppercase tracking-wide text-gray-500 dark:text-gray-400">
-                {t('layouts.postLayout.relatedPosts')}
-              </h2>
-              <ul class="flex flex-wrap gap-2 xl:space-x-0 xl:space-y-0">
-                {related.map((post) => (
-                  <li class="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400">
-                    <Link href={`/blog/${post.slug}`}>{post.data.title}</Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          )
-        }
-      </footer>
+          <!-- share -->
+          <SocialShareButtons title={post.data.title} description={post.data.summary} />
+        </aside>
+        <!-- content -->
+        <div class="article">
+          <slot />
+          <Content />
+        </div>
+      </div>
     </article>
+
+    <!-- author -->
+    <!-- <dl>
+        <dt>{t('layouts.postLayout.authors')}</dt>
+        <dd>
+          <ul>
+            {
+              authors.map(({ data, slug }) => (
+                <>
+                  <li>
+                    {data.avatar && (
+                      <Image src={data.avatar} width={38} height={38} alt="avatar" class="h-10 w-10 rounded-full" />
+                    )}
+                    <dl>
+                      <dt>{t('layouts.postLayout.authorName')}</dt>
+                      <dd>{data.name}</dd>
+                      <dt>{t('layouts.postLayout.authorTwitter')}</dt>
+                      <dd>
+                        {data.twitter && (
+                          <Link href={data.twitter}>{data.twitter.replace('https://twitter.com/', '@')}</Link>
+                        )}
+                      </dd>
+                    </dl>
+                  </li>
+                  <li>{data.occupation && data.company ? `${data.occupation} at ${data.company}` : data.company}</li>
+                </>
+              ))
+            }
+          </ul>
+        </dd>
+      </dl> -->
   </SectionContainer>
 </RootLayout>
 
 <style lang="scss">
   .blog-article {
     padding-top: 80px;
-    font-size: 16px;
-    .page-title {
+    font-size: 18px;
+    .article-title {
+      font-size: 33px;
+      margin-top: 20px;
+    }
+    .article-infos {
       border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-      font-size: 28px;
       padding-bottom: 30px;
       margin: 30px 0;
+      display: flex;
+      column-gap: 25px;
+      font-size: 14px;
+      opacity: 0.8;
     }
-    .summary {
+    .article-sidebar {
+      position: sticky;
+      padding-top: 20px;
+      top: 180px;
+      max-width: 320px;
+      flex: 1;
+    }
+    .article-nav {
+      font-size: 14px;
+      b {
+        display: block;
+        font-size: 15px;
+        margin-bottom: 10px;
+      }
+      hr {
+        margin: 40px 0;
+        opacity: 0.15;
+      }
+    }
+    .back-to-blog svg {
+      margin-right: 7px;
+      transform: scale(-1, 1);
+      vertical-align: 0px;
+    }
+    .article-summary {
       opacity: 0.8;
       max-width: 1300px;
     }
-    .footer-top {
-      display: flex;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-      justify-content: space-between;
-      padding-bottom: 50px;
-      margin: 50px 0;
-    }
+
     .tags {
       display: flex;
       column-gap: 10px;
+      margin-top: 20px;
     }
-    :global(p, h2, h3, h4) {
-      margin-bottom: 15px;
+    .content {
+      display: flex;
+      column-gap: 80px;
+      align-items: flex-start;
+    }
+    .article {
+      flex: 1;
       max-width: 1300px;
     }
-    :global(p + h2, p + h3, p + h4) {
-      margin-top: 25px;
+    :global(p, h2, h3, h4) {
+      margin-bottom: 20px;
+      line-height: 1.7;
+    }
+    :global(p + h2, p + h3, p + h4, ul + h2, ul + h3, ul + h4, ol + h2, ol + h3, ol + h4) {
+      margin-top: 50px;
+    }
+    :global(h2) {
+      font-size: 30px;
     }
     :global(li) {
-      margin-bottom: 5px;
+      margin-bottom: 10px;
     }
     :global(hr) {
       margin-bottom: 15px;
@@ -205,10 +274,16 @@ const { Content, headings } = await post.render()
     :global(ul) {
       list-style: disc;
     }
+    :global(hr) {
+      border: none;
+      height: 1px;
+      color: #fff; /* old IE */
+      background-color: #fff;
+      margin: 70px 0 40px;
+      opacity: 0.2;
+    }
     :global(code) {
-      font-size: 12px;
-      font-weight: 700;
-      background-color: rgba(255, 255, 255, 0.08);
+      background-color: rgba(255, 255, 255, 0.2);
       transition: background-color 0.3s ease-in;
       border-radius: 5px;
       padding: 2px 5px;

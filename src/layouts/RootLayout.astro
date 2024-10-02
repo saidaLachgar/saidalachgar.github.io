@@ -39,6 +39,7 @@ type Props = {
       </main>
       <Footer />
     </div>
+
     <!-- <div id="revealPoint">Reveal Point</div> -->
     <script>
       document.addEventListener('click', (event) => {
@@ -87,12 +88,12 @@ type Props = {
         }, 1500)
 
         // reveal
-        document.body.addEventListener('scroll', () => {
-          var revealPoint = 200
-          var revealElement = document.querySelectorAll('[data-reveal]')
+        document.addEventListener('scroll', () => {
+          const revealPoint = 200
+          const revealElement = document.querySelectorAll('[data-reveal]')
           for (var i = 0; i < revealElement.length; i++) {
-            var windowHeight = window.innerHeight
-            var revealTop = revealElement[i].getBoundingClientRect().top
+            const windowHeight = window.innerHeight
+            const revealTop = revealElement[i].getBoundingClientRect().top
             if (revealTop < windowHeight - revealPoint) {
               revealElement[i].classList.add('active')
             } else {

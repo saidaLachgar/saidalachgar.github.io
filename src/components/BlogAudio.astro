@@ -47,14 +47,25 @@ const { audio } = Astro.props
   const timeRemaining = document.getElementById('time-remaining')
 
   // Toggle play and pause
-  function toggleAudio() {
+  const pauseAudio = () => {
+    audio.pause()
+    playPauseBtn.classList.remove('playing')
+  }
+
+  const toggleAudio = () => {
     if (audio.paused) {
       audio.play()
       playPauseBtn.classList.add('playing')
-    } else {
-      audio.pause()
-      playPauseBtn.classList.remove('playing')
+      return
     }
+    pauseAudio()
+  }
+
+  // Format time in MM:SS
+  const formatTime = (seconds) => {
+    const mins = Math.floor(seconds / 60)
+    const secs = seconds % 60
+    return `${mins}:${parseInt(secs, 10).toString().padStart(2, '0')}`
   }
 
   // Update time remaining
@@ -62,13 +73,10 @@ const { audio } = Astro.props
     const timeLeft = Math.ceil(audio.duration - audio.currentTime)
     timeRemaining.textContent = formatTime(timeLeft)
   })
-
-  // Format time in MM:SS
-  function formatTime(seconds) {
-    const mins = Math.floor(seconds / 60)
-    const secs = seconds % 60
-    return `${mins}:${secs.toString().padStart(2, '0')}`
-  }
+  //
+  audio.addEventListener('ended', () => {
+    playPauseBtn.classList.remove('playing')
+  })
 
   // Set initial duration once the metadata is loaded
   audio.addEventListener('loadedmetadata', () => {

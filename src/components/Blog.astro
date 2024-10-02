@@ -1,29 +1,47 @@
 ---
-import articles, { type Blog } from '@/data/blog'
+import { getCollection } from 'astro:content'
+import { excludeDrafts, sortBlogPosts } from '@/functions'
+import { ITEMS_PER_PAGE } from '@/consts'
+import { useTranslations } from '@/i18n'
+import Link from './Link.astro'
+import FormattedDate from './FormattedDate.astro'
+import SectionContainer from './SectionContainer.astro'
+
+const t = useTranslations()
+const posts = await getCollection('blog', excludeDrafts).then(sortBlogPosts)
 ---
 
-<section class="blog container" id="blog">
-  <div class="header" data-reveal>
-    <h2 class="title">Blog</h2>
-    <p class="description">
-      Get cozy with my digital storytelling. My blogs are like warm, friendly chats about web development.
-    </p>
-  </div>
+<SectionContainer>
+  <div class="blog" id="blog">
+    <div class="header" data-reveal>
+      <h2 class="title">Blog</h2>
+      <p class="description">
+        Get cozy with my digital storytelling. My blogs are like warm, friendly chats about web development.
+      </p>
+    </div>
 
-  <ul>
-    {
-      articles.map((article: Blog) => (
-        <li data-reveal>
-          <a href={article.slug}>
-            <span class="date">{article.date}</span>
-            <span class="name">{article.title}</span>
-            <span class="time">{article.time}</span>
-          </a>
-        </li>
-      ))
-    }
-  </ul>
-</section>
+    <ul>
+      {
+        posts.slice(0, ITEMS_PER_PAGE).map(({ slug, data }) => (
+          <li data-reveal>
+            <Link href={`/blog/${slug}`}>
+              <span class="date">
+                <FormattedDate date={data.date} />
+              </span>
+              <span class="name">{data.title}</span>
+              <span class="time">{data.duration}</span>
+            </Link>
+          </li>
+        ))
+      }
+    </ul>
+
+    <a href="/blog" class="more" data-reveal data-astro-prefetch="viewport">
+      <u>See all articles</u>
+      <sup>({posts.length})</sup>
+    </a>
+  </div>
+</SectionContainer>
 
 <style lang="scss">
   .blog {
@@ -72,7 +90,23 @@ import articles, { type Blog } from '@/data/blog'
     .time {
       align-self: flex-end;
     }
-    @media (max-width: 655px) {
+
+    .more {
+      font-size: 18px;
+      display: flex;
+      column-gap: 5px;
+      align-items: center;
+      text-transform: uppercase;
+      margin-top: 20px;
+      width: max-content;
+      cursor: pointer;
+      sup {
+        margin-top: -3px;
+        font-size: 14px;
+      }
+    }
+
+    @media (max-width: 860px) {
       margin-top: 70px;
       margin-bottom: 130px;
 

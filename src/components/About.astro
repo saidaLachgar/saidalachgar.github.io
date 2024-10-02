@@ -1,5 +1,5 @@
 <section class="about container" id="about" data-reveal>
-  <h2 class="title">About</h2>
+  <h2 class="sr-only">About</h2>
   <div class="description">
     <p>Hi! am Saida, a senior frontend web developer with a strong track.</p>
     <p>
@@ -19,12 +19,7 @@
     position: relative;
     margin-top: 200px;
     padding-top: 100px;
-    .title {
-      font-size: 27px;
-      font-weight: 500;
-      text-transform: uppercase;
-      display: none;
-    }
+
     .description {
       font-size: 20px;
       max-width: 692px;
@@ -37,18 +32,21 @@
       }
     }
     @media (max-width: 1065px) {
-      margin-top: 100px;
+      margin-top: 0px;
+      padding-top: 0;
       flex-direction: column;
 
-      .title {
-        display: block;
-      }
-
       .description {
-        font-size: 20px;
+        font-size: 14px;
         width: 100%;
-        line-height: 30px;
-        margin-top: 20px;
+        line-height: 1.4;
+        margin-top: 40px;
+        p {
+          margin-bottom: 15px;
+        }
+        span {
+          font-size: 16px;
+        }
       }
     }
   }

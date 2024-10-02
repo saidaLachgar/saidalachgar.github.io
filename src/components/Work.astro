@@ -99,9 +99,9 @@ const items = Array(9).fill('PLAYGROUND')
     })
 
     // carousel (scroll)
-    document.body.addEventListener('scroll', horizontalScroll)
-    let sticky = document.querySelector('.carousel-outer')
-    let stickyParent = document.querySelector('.carousel-container')
+    document.addEventListener('scroll', horizontalScroll)
+    let sticky = document.querySelector('.playground .carousel-outer')
+    let stickyParent = document.querySelector('.playground .carousel-container')
     let scrollWidth = sticky.scrollWidth
     let verticalScrollHeight = stickyParent.getBoundingClientRect().height - sticky.getBoundingClientRect().height
     let topOffset = window.innerHeight / 2 - 282
@@ -232,7 +232,7 @@ const items = Array(9).fill('PLAYGROUND')
     }
     @media (max-width: 655px) {
       margin-top: 60px;
-      margin-bottom: 40px;
+      margin-bottom: 110px;
     }
   }
 
@@ -242,9 +242,11 @@ const items = Array(9).fill('PLAYGROUND')
     min-height: 100vh;
     --slide-width: 557px;
     --slide-marge: 40px;
-    --slide-count: 3;
+    --slide-count: 4;
     --slides-width: calc((var(--slide-width) + var(--slide-marge)) * var(--slide-count));
-
+    @media (max-width: 600px) {
+      --slide-width: 80vw;
+    }
     .carousel-container {
       height: var(--slides-width);
     }
@@ -332,6 +334,9 @@ const items = Array(9).fill('PLAYGROUND')
     @media (max-width: 655px) {
       .infinite-text p {
         animation-duration: 4s;
+      }
+      .cursor {
+        display: none;
       }
     }
   }

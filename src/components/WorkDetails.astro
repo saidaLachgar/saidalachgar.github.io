@@ -112,8 +112,24 @@ const { data } = Astro.props
 <script>
   document.addEventListener('astro:page-load', () => {
     // cursor
-    document.querySelectorAll('.carousel-outer').forEach((carousel) => {
+    document.querySelectorAll('.work-description .carousel-outer').forEach((carousel) => {
       const cursor = carousel.querySelector('.carousel-cursor')
+      const carouselInner = carousel.querySelector('.carousel')
+      if (!cursor) {
+        return
+      }
+
+      const updateCursorVisibility = () => {
+        if (carouselInner.scrollWidth > carouselInner.clientWidth) {
+          cursor.style.display = 'block' // Show cursor if carousel is scrollable
+        } else {
+          cursor.style.display = 'none' // Hide cursor if carousel is not scrollable
+        }
+      }
+
+      updateCursorVisibility()
+      window.addEventListener('resize', updateCursorVisibility)
+
       carousel.addEventListener('mousemove', ({ clientX, clientY }) => {
         const { left, top } = carousel.getBoundingClientRect()
         cursor.style.left = `${clientX - left}px`
@@ -126,6 +142,7 @@ const { data } = Astro.props
       project.addEventListener('click', () => {
         let target = document.querySelector(`#${project.dataset.target}`)
         target.classList.add('show')
+        document.body.style.overflow = 'hidden'
       })
     })
 
@@ -134,6 +151,7 @@ const { data } = Astro.props
       button.addEventListener('click', () => {
         let target = button.closest('.work-description')
         target.classList.remove('show')
+        document.body.style.overflow = 'unset'
       })
     })
 
@@ -359,8 +377,7 @@ const { data } = Astro.props
       overflow-x: auto;
       -ms-overflow-style: none; /* Internet Explorer 10+ */
       scrollbar-width: none; /* Firefox */
-      width: calc(100vw - (100vw - 1712px) / 2);
-      max-width: calc(100dvw - 20px);
+      width: calc(100vw - (100vw - 1710px) / 2);
       margin: 0 auto;
       user-select: none;
       &::-webkit-scrollbar {

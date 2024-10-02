@@ -31,7 +31,6 @@ const blog = defineCollection({
     summary: z.string(),
     images: z.string().optional(),
     authors: z.array(reference('authors')).default(['default']),
-    postLayout: z.enum(['simple', 'column']).default(POST_METADATA.defaultLayout as 'simple' | 'column'),
     canonicalUrl: z.string().optional(), // Maybe remove later, as Astro provide a better solution for canonical urls
     // Add related posts
     related: z.array(reference('blog')).default([]),

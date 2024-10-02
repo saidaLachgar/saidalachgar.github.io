@@ -97,6 +97,7 @@ import { Icon } from 'astro-icon/components'
         position: static;
         .description {
           max-width: unset;
+          opacity: 0.7;
         }
       }
       .item {
@@ -105,14 +106,18 @@ import { Icon } from 'astro-icon/components'
         row-gap: 40px;
 
         .subtitle {
-          font-size: 24px;
+          font-size: 18px;
+          line-height: 1.2;
+          text-transform: unset;
         }
         svg {
           max-width: 110px;
           margin-right: auto;
         }
       }
-
+      .description {
+        font-size: 14px;
+      }
       .content {
         max-width: unset;
         width: 100%;

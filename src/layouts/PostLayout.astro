@@ -12,6 +12,7 @@ import { POST_METADATA } from '@/consts'
 import { useTranslations } from '@/i18n'
 import { getEntries, type CollectionEntry } from 'astro:content'
 import RootLayout from './RootLayout.astro'
+import { Icon } from 'astro-icon/components'
 
 const t = useTranslations()
 
@@ -42,9 +43,9 @@ const { Content, headings } = await post.render()
   <SectionContainer>
     <article class="blog-article">
       <header>
-        <!-- <Link href="/blog" class="back-to-blog" aria-label={t('layouts.postLayout.backToBlog')}>
+        <Link href="/blog" class="article-back" aria-label={t('layouts.postLayout.backToBlog')}>
           <Icon name="arrow-top-right" width={11} height={11} />{t('layouts.postLayout.backToBlog')}
-        </Link> -->
+        </Link>
         <!-- title -->
         <PageTitle>{post.data.title}</PageTitle>
         <!-- more info (date/audio) -->
@@ -78,76 +79,81 @@ const { Content, headings } = await post.render()
         {post.data.cover && POST_METADATA.showCover && <PostCover {post} />}
       </header>
 
-      <div class="content">
+      <div class="article-content">
         <aside class="article-sidebar">
-          <!-- table Of Contents -->
-          {headings.length > 0 && POST_METADATA.showTableOfContents && <TableOfContent headings={headings} />}
           <!-- draft -->
           {
             post.data.draft && (
-              <div class="">
-                <p class="">{t('layouts.postLayout.draftMessage')}</p>
+              <p>
+                <i>{t('layouts.postLayout.draftMessage')}</i>
+                <hr />
+              </p>
+            )
+          }
+
+          <!-- table Of Contents -->
+          {headings.length > 1 && POST_METADATA.showTableOfContents && <TableOfContent headings={headings} />}
+
+          <!-- next || prev -->
+          <hr />
+          {
+            prev && (
+              <div>
+                <b>{t('layouts.postLayout.previousPost')}</b>
+                <div>
+                  <Link href={`/blog/${prev.slug}`}>{prev.data.title}</Link>
+                </div>
+                {next && <br />}
               </div>
             )
           }
-          <div class="article-nav">
-            <hr />
-            <!-- next || prev -->
-            {
-              prev && (
+          {
+            next && (
+              <div>
+                <b>{t('layouts.postLayout.nextPost')}</b>
                 <div>
-                  <b>{t('layouts.postLayout.previousPost')}</b>
-                  <div>
-                    <Link href={`/blog/${prev.slug}`}>{prev.data.title}</Link>
-                  </div>
+                  <Link href={`/blog/${next.slug}`}>{next.data.title}</Link>
                 </div>
-              )
-            }
-            {
-              next && (
-                <div>
-                  <b>{t('layouts.postLayout.nextPost')}</b>
-                  <div>
-                    <Link href={`/blog/${next.slug}`}>{next.data.title}</Link>
-                  </div>
-                </div>
-              )
-            }
-            <!-- related -->
-            {
-              related.length > 0 && (
-                <div class="">
-                  <b class="">{t('layouts.postLayout.relatedPosts')}</b>
-                  <ul class="">
-                    {related.map((post) => (
-                      <li class="">
-                        <Link href={`/blog/${post.slug}`}>{post.data.title}</Link>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              )
-            }
-            <hr />
-            <b>Tags</b>
-            <!-- tags -->
-            {
-              tags && (
-                <div class="tags">
-                  {tags.map((tag) => (
-                    <Tag tag={tag} />
+              </div>
+            )
+          }
+
+          <!-- related -->
+          {
+            related.length > 0 && (
+              <div>
+                <br />
+                <b>{t('layouts.postLayout.relatedPosts')}</b>
+                <ul>
+                  {related.map((post) => (
+                    <li>
+                      <Link href={`/blog/${post.slug}`}>{post.data.title}</Link>
+                    </li>
                   ))}
-                </div>
-              )
-            }
-            <hr />
-          </div>
+                </ul>
+              </div>
+            )
+          }
+
+          <!-- tags -->
+          <hr />
+          <b>Tags</b>
+          {
+            tags && (
+              <div class="article-tags">
+                {tags.map((tag) => (
+                  <Tag tag={tag} />
+                ))}
+              </div>
+            )
+          }
 
           <!-- share -->
+          <hr />
           <SocialShareButtons title={post.data.title} description={post.data.summary} />
         </aside>
         <!-- content -->
-        <div class="article">
+        <div class="article-slot">
           <slot />
           <Content />
         </div>
@@ -187,14 +193,16 @@ const { Content, headings } = await post.render()
   </SectionContainer>
 </RootLayout>
 
-<style lang="scss">
+<style lang="scss" is:global>
   .blog-article {
     padding-top: 80px;
     font-size: 18px;
+
     .article-title {
       font-size: 33px;
       margin-top: 20px;
     }
+
     .article-infos {
       border-bottom: 1px solid rgba(255, 255, 255, 0.2);
       padding-bottom: 30px;
@@ -204,89 +212,120 @@ const { Content, headings } = await post.render()
       font-size: 14px;
       opacity: 0.8;
     }
-    .article-sidebar {
-      position: sticky;
-      padding-top: 20px;
-      top: 180px;
-      max-width: 320px;
-      flex: 1;
-    }
-    .article-nav {
-      font-size: 14px;
-      b {
-        display: block;
-        font-size: 15px;
-        margin-bottom: 10px;
-      }
-      hr {
-        margin: 40px 0;
-        opacity: 0.15;
-      }
-    }
-    .back-to-blog svg {
-      margin-right: 7px;
-      transform: scale(-1, 1);
-      vertical-align: 0px;
-    }
+
     .article-summary {
       opacity: 0.8;
       max-width: 1300px;
     }
 
-    .tags {
+    .article-tags {
       display: flex;
       column-gap: 10px;
       margin-top: 20px;
     }
-    .content {
+
+    .article-content {
       display: flex;
       column-gap: 80px;
       align-items: flex-start;
+
+      hr {
+        border: none;
+        height: 1px;
+        color: #fff; /* old IE */
+        background-color: #fff;
+        margin: 70px 0 40px;
+        opacity: 0.2;
+      }
     }
-    .article {
+
+    .article-slot {
       flex: 1;
       max-width: 1300px;
+      p,
+      h2,
+      h3,
+      h4 {
+        margin-bottom: 20px;
+        line-height: 1.7;
+      }
+
+      p + h2,
+      p + h3,
+      p + h4,
+      ul + h2,
+      ul + h3,
+      ul + h4,
+      ol + h2,
+      ol + h3,
+      ol + h4 {
+        margin-top: 50px;
+      }
+
+      h2 {
+        font-size: 30px;
+      }
+
+      li {
+        margin-bottom: 10px;
+      }
+
+      ol,
+      ul {
+        margin-bottom: 25px;
+        margin-left: 18px;
+        text-indent: 5px;
+      }
+
+      ol {
+        list-style: decimal;
+      }
+
+      ul {
+        list-style: disc;
+      }
+
+      p code {
+        background-color: rgba(255, 255, 255, 0.2);
+        transition: background-color 0.3s ease-in;
+        border-radius: 5px;
+        padding: 2px 5px;
+      }
     }
-    :global(p, h2, h3, h4) {
-      margin-bottom: 20px;
-      line-height: 1.7;
+
+    .article-sidebar {
+      position: sticky;
+      padding-top: 20px;
+      top: 180px;
+      max-width: 320px;
+      font-size: 14px;
+      flex: 1;
+      b {
+        display: block;
+        font-size: 15px;
+        margin-bottom: 10px;
+      }
+
+      hr {
+        margin: 40px 0;
+        opacity: 0.15;
+      }
     }
-    :global(p + h2, p + h3, p + h4, ul + h2, ul + h3, ul + h4, ol + h2, ol + h3, ol + h4) {
-      margin-top: 50px;
+
+    .article-back {
+      font-size: 16px;
+      svg {
+        margin-right: 7px;
+        transform: scale(-1, 1);
+        vertical-align: 0px;
+      }
     }
-    :global(h2) {
-      font-size: 30px;
-    }
-    :global(li) {
-      margin-bottom: 10px;
-    }
-    :global(hr) {
-      margin-bottom: 15px;
-    }
-    :global(ol, ul) {
-      margin-bottom: 25px;
-      margin-left: 18px;
-      text-indent: 5px;
-    }
-    :global(ol) {
-      list-style: decimal;
-    }
-    :global(ul) {
-      list-style: disc;
-    }
-    :global(hr) {
-      border: none;
-      height: 1px;
-      color: #fff; /* old IE */
-      background-color: #fff;
-      margin: 70px 0 40px;
-      opacity: 0.2;
-    }
-    :global(code) {
-      background-color: rgba(255, 255, 255, 0.2);
-      transition: background-color 0.3s ease-in;
+
+    .astro-code {
+      padding: 15px;
       border-radius: 5px;
-      padding: 2px 5px;
+      margin-bottom: 20px;
+      background-color: #121212 !important;
     }
   }
 </style>

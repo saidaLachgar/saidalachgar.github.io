@@ -2,9 +2,8 @@
 
 **IMPORTANT**
 
-- [x] add drag https://format-3.co/work
-- [-] on on menu link show arrow down with changing the text ex: https://www.humanastudio.com
-- [-] Fix responsive
+- [-] use drag of tots for work slider
+- [-] home playground mobile is broken
 - [-] blog content
   - [-] Git flow for hotfix/merge using gui https://mohamed-kashif.medium.com/git-flow-for-hotfix-39ea74c488af
   - [-] https://dev.to/rossellafer/seo-tips-for-your-developer-portfolio-26fm

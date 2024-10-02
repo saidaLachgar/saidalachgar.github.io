@@ -246,8 +246,8 @@ const { Content, headings } = await post.render()
       h2,
       h3,
       h4 {
-        margin-bottom: 20px;
-        line-height: 1.7;
+        margin-bottom: 35px;
+        line-height: 1.3;
       }
 
       p + h2,
@@ -300,6 +300,9 @@ const { Content, headings } = await post.render()
       max-width: 320px;
       font-size: 14px;
       flex: 1;
+      @media (max-width: 992px) {
+        display: none;
+      }
       b {
         display: block;
         font-size: 15px;

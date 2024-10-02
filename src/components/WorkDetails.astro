@@ -3,6 +3,7 @@ import type { Project } from '@/data/projects'
 import type { ImageMetadata } from 'astro'
 import { Icon } from 'astro-icon/components'
 import { Image } from 'astro:assets'
+import drag from '../assets/img/drag-left.gif'
 
 const imagesProjects = import.meta.glob<{ default: ImageMetadata }>('../assets/img/project-*.png')
 const videos = import.meta.glob<{ default: string }>('../assets/videos/*.mp4', { eager: true })
@@ -96,6 +97,7 @@ const { data } = Astro.props
           </ul>
           <Icon class="carousel-cursor" name="drag-cursor" width={80} height={80} />
         </div>
+        <Image src={drag} alt="drag" width="30" height="30" class="drag-mobile" format="gif" />
         <div class="actions">
           <button class="prev">
             <Icon class="actions-icon" name="right-key" width={22} height={25} /> Previous project
@@ -253,6 +255,7 @@ const { data } = Astro.props
 </script>
 
 <style lang="scss">
+  @use '../assets/scss/base/mixins' as *;
   .work-description {
     position: fixed;
     top: 0;
@@ -299,10 +302,13 @@ const { data } = Astro.props
       font: inherit;
     }
     .title {
-      font-size: 160px;
       margin-bottom: 54px;
       max-width: 75%;
       font-weight: 600;
+      @include clamp(font-size, 60px, 9vw, 160px);
+      @media (max-width: 900px) {
+        max-width: 100%;
+      }
     }
     .close {
       position: sticky;
@@ -339,6 +345,10 @@ const { data } = Astro.props
         display: block;
         font-weight: 700;
         margin-bottom: 10px;
+      }
+      @media (max-width: 1070px) {
+        flex-direction: column;
+        row-gap: 50px;
       }
     }
 
@@ -380,6 +390,11 @@ const { data } = Astro.props
       width: calc(100vw - (100vw - 1710px) / 2);
       margin: 0 auto;
       user-select: none;
+      max-width: calc(100vw - 45px);
+
+      @media (max-width: 655px) {
+        max-width: calc(100vw - 25px);
+      }
       &::-webkit-scrollbar {
         display: none; /* Safari and Chrome */
       }
@@ -431,6 +446,15 @@ const { data } = Astro.props
           opacity: 1;
           scale: 1;
         }
+      }
+    }
+    .drag-mobile {
+      width: 40px;
+      height: 40px;
+      margin: 16px auto 0;
+      display: none;
+      @media (hover: none) {
+        display: block;
       }
     }
   }

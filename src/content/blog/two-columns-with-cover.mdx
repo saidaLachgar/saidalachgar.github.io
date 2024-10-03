@@ -6,51 +6,49 @@ audio: 'https://samplelib.com/lib/preview/mp3/sample-3s.mp3'
 duration: '2m 6s'
 cover: '@/assets/img/rewriting-history-git-rebase.png'
 ---
+import Figcaption from "@/components/Figcaption.astro"
+import step1 from "@/assets/img/1-switch-to-feature-branch.png"
+import step2 from "@/assets/img/2-start-the-rebase.png"
+import step3 from "@/assets/img/4-resolve-conflicts.png"
+import step4 from "@/assets/img/6-continue-rebase.png"
+import step5 from "@/assets/img/8-force-push-since-history-has-been-rewritten.png"
+import step6 from "@/assets/img/3-handle-conflicts.png"
+import step7 from "@/assets/img/5-selecting-which-changes-to-keep.png"
+import step8 from "@/assets/img/7-finalize-and-push-changes.png"
+
+
 ## Why Rebase?
 
 Rebasing keeps your commit history clean and linear, making it easier to follow changes. It’s a great way to keep your branch up to date without cluttering the commit log with unnecessary merges.
 
 ## Step 1: Switch to Your Feature Branch
 
-Let’s say you're working on a feature branch and want to rebase it onto the latest `develop` branch.
-
-1. In **Git Fork**, select your feature branch from the **Branches** pane.
-2. Double-click to switch to it.
-
-For example:
-- You are on `feature/new-feature`.
-
-{/* <Image src="/images/git-fork-branch.png" alt="Git Fork Branch View" /> */}
+Let’s say you're working on a `feature/new-feature` branch and want to rebase it onto the latest `develop` branch.
+<Figcaption src={step1} alt="">Select your feature branch from the **Branches** pane and **double-click** to switch to it.</Figcaption>
 
 ## Step 2: Start the Rebase
 
 Now it’s time to rebase your feature branch onto `develop` to get the latest changes.
 
-1. Right-click on the `develop` branch.
-2. Select **Rebase onto develop**.
+<Figcaption src={step2} alt="">Right-click on the `develop` branch and select **Rebase onto develop**.</Figcaption>
 
-Git Fork will now attempt to apply the commits from your feature branch on top of the latest `develop` branch.
-
-{/* <Image src="/images/git-fork-rebase.png" alt="Git Fork Rebase Option" /> */}
+Git Fork will now attempt to apply the commits from your feature branch on top of the latest commits of `develop` branch.
 
 ## Step 3: Handle Conflicts (if any)
 
 Sometimes, rebasing can result in conflicts. If this happens:
 
-1. Git Fork will notify you of any conflicts.
-2. Open the **Conflicts** tab, where you can resolve them by selecting which changes to keep.
-3. Once resolved, click **Mark as Resolved** and continue the rebase process.
+1. <Figcaption src={step3} alt="">Git Fork will notify you of any conflicts.</Figcaption>
+2. <Figcaption src={step4} alt="">Click on resolve</Figcaption>, <Figcaption src={step5} alt="">so you can resolve conflicts by selecting which changes to keep.<br /> &nbsp;you can also keep both changes, or set the final change in the output panel manuly</Figcaption>
+3. <Figcaption src={step6} alt="">Once resolved, click **Continue rebase** and continue the rebase process.</Figcaption>
 
-Git Fork makes conflict resolution easy with a clear interface.
-
-{/* <Image src="/images/git-fork-conflicts.png" alt="Git Fork Conflict Resolution" /> */}
 
 ## Step 4: Finalize and Push Changes
 
 After successfully rebasing, you’ll need to push your updated branch to the remote repository.
 
-1. Click the **Push** button at the top.
-2. You may need to check the option to **force push** since the branch’s history has been rewritten during the rebase.
+1. <Figcaption src={step7} alt="">Click the **Push** button at the top.</Figcaption>
+2. <Figcaption src={step8} alt="">You will need to check the option to **force push** since the branch’s history has been rewritten during the rebase.</Figcaption>
 
 ---
 **Done!**

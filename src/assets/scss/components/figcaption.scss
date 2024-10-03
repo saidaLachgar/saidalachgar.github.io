@@ -1,0 +1,46 @@
+.picture-in-picture {
+  vertical-align: -2px;
+  color: #a8a8a8;
+}
+
+.blog-figure {
+  display: inline;
+
+  figcaption {
+    display: inline;
+  }
+
+  img {
+    border: 1px solid #2c2c2d;
+    border-radius: 5px;
+    position: absolute;
+    pointer-events: none;
+    opacity: 0;
+    z-index: 12;
+    max-width: 100%;
+    max-height: 70vh;
+    width: auto;
+    transition: opacity 0.3s ease-in;
+    margin-top: 15px;
+    box-shadow: 0px 100px 100px 100px rgba(0, 0, 0, 0.5);
+  }
+
+  span {
+    background-color: transparent;
+    transition: background-color 0.3s ease-in;
+    border-radius: 5px;
+    padding: 0 5px;
+    margin: 0 -5px;
+    cursor: default;
+  }
+
+  &:hover {
+    img {
+      opacity: 1;
+    }
+
+    span {
+      background-color: rgba(255, 255, 255, 0.15);
+    }
+  }
+}

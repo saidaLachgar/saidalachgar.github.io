@@ -54,15 +54,11 @@ const { headings } = Astro.props
       const sections = document.querySelectorAll('h2[id], h3[id], h4[id]') // Select all section headers
       const tocLinks = document.querySelectorAll('#table-of-content a') // Select all ToC links
 
-      // let scrollPosition = window.scrollY + window.innerHeight / 2 // Get current scroll position (50% of viewport)
-      let scrollPosition = window.scrollY + 200 // Adjust for 200px from top
-
       sections.forEach((section, index) => {
-        const sectionTop = section.offsetTop
-        const sectionHeight = section.offsetHeight
+        const sectionTop = section.getBoundingClientRect().top
 
         // Check if the section is in view (50% of the viewport)
-        if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+        if (sectionTop <= 200 && sectionTop > 0) {
           tocLinks.forEach((link) => link.classList.remove('active')) // Remove active class from all links
           tocLinks[index].classList.add('active') // Add active class to the current link
         }

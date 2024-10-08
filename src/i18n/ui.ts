@@ -4,7 +4,7 @@ export const ui = {
   'en': {
     // Site Metadata
     'siteMetadata.title': 'Saida Lachgar - Frontend Web Developer Portfolio',
-    'siteMetadata.description': 'A frontend web developer, blends thoughtful UI/UX design with technical expertise. Specializing in JS, Angular, Symfony, and more. Elevate your digital experiences with unique themes, SEO optimization, responsive design, and interactive motions!',
+    'siteMetadata.description': 'A frontend web developer, blends thoughtful UI/UX design with technical expertise. Specializing in React, Symfony, and more. Elevate your digital experiences with unique themes, SEO optimization, responsive design, and interactive motions!',
     'siteMetadata.language': 'en-US',
 
     // Pages

@@ -1,0 +1,95 @@
+---
+title: "DevTools Tips to Boost Your Web Development"
+summary: DevTools is a powerful set of tools for web development. Here are some handy tips to help you work more efficiently
+date: '2024-09-19'
+audio: 'https://samplelib.com/lib/preview/mp3/sample-3s.mp3'
+duration: '2m 6s'
+cover: '@/assets/img/rewriting-history-git-rebase.png'
+---
+import Figcaption from "@/components/Figcaption.astro"
+import step1 from "@/assets/img/1-switch-to-feature-branch.png"
+import step2 from "@/assets/img/2-start-the-rebase.png"
+import step3 from "@/assets/img/3-handle-conflicts.png"
+import step4 from "@/assets/img/4-resolve-conflicts.png"
+import step5 from "@/assets/img/5-selecting-which-changes-to-keep.png"
+import step6 from "@/assets/img/6-continue-rebase.png"
+import step7 from "@/assets/img/7-finalize-and-push-changes.png"
+import step8 from "@/assets/img/8-force-push-since-history-has-been-rewritten.png"
+
+{/* todo: create new component with same concept of figcaption but for browser icons with image on it for how to do it */}
+## Select Elements with `pointer-events:none`
+
+Sometimes, you may need to select elements that have the `pointer-events:none` CSS property. 
+
+To do this, hold down the **Shift** key while hovering over the elements. This allows you to select them even if they are not normally clickable. 
+<FigBrowser 
+    firefox-src={select-pointer-events} 
+    chrome-src={select-pointer-events} 
+    safari-src={select-pointer-events} 
+    edge-src={select-pointer-events} 
+    alt="Select elements with pointer-events:none"
+/>
+<button>Demo button</button>
+
+## Simulate Pseudo CSS Classes
+
+Testing CSS pseudo-classes like `:hover` or `:active` can be tricky because you can't always use your mouse. In DevTools, you can easily simulate these states without any hassle. Simply inspect the element and click the **:hov** button to enable the desired pseudo-class.
+
+<FigBrowser 
+    firefox-src={select-pointer-events} 
+    chrome-src={select-pointer-events} 
+    safari-src={select-pointer-events} 
+    edge-src={select-pointer-events} 
+    alt="Use the :hov button to simulate pseudo-classes in DevTools"
+/>
+<button>Demo button</button>
+{/* to do */}
+I have also made another blog explaining how to debug JavaScript events like `mouseover` and `mouseout`. Check it out [here](#).
+
+## Zoom the DevTools UI
+
+<Figcaption src={zoom-devtools-ui} alt="Zoom DevTools UI">If you find the DevTools interface too small, you can zoom in or out. Click inside the DevTools and use `Ctrl` + `+` to zoom in or `Ctrl` + `-` to zoom out and `Ctrl` + `0` to reset (use `Cmd` on a Mac).</Figcaption>
+
+## Find and Export CSS Changes
+
+After modifying CSS in DevTools, you can save your changes. In Firefox, use the **Changes** panel to copy all edits. In Chrome and Edge, access the **Changes** panel from the command menu by pressing `Ctrl` + `Shift` + `P`.
+<FigBrowser 
+    firefox-src={select-pointer-events} 
+    chrome-src={select-pointer-events} 
+    safari-src={select-pointer-events} 
+    edge-src={select-pointer-events} 
+    alt="Use the Changes panel to copy your CSS modifications"
+/>
+
+## Test Slower Network Speeds
+
+It's important to see how your site performs on slower connections. In the **Network** panel, select a throttling option from the dropdown to simulate a slow network speed. This helps you understand how users with slower connections experience your site for both api and <span title="Like google's LCP, FCP, CLS...">SEO score</span>.
+<FigBrowser 
+    firefox-src={select-pointer-events} 
+    chrome-src={select-pointer-events} 
+    safari-src={select-pointer-events} 
+    edge-src={select-pointer-events} 
+    alt="Simulate slower network speeds to test your site’s performance"
+/>
+
+## Expand DOM Nodes Recursively
+
+<Figcaption src={expand-dom-nodes} alt="Expand DOM nodes recursively">To save time while navigating the DOM tree, you can expand all child nodes of a selected element at once. Right-click on the node and choose **Expand Recursively** (in Chrome and Edge) or **Expand All** (in Firefox and Safari).</Figcaption>
+
+## Search by Selector
+<Figcaption src={search-by-selector} alt="Search by selector">Use the search bar in the Inspector to find elements by their CSS selectors.</Figcaption>
+
+## Jump from Label to Input
+<Figcaption src={jump-from-label} alt="Jump from label to input">Click on a label’s `for` attribute to jump to the linked input field.</Figcaption>
+
+## Scroll Element into View
+<Figcaption src={scroll-element} alt="Scroll an element into view">Quickly scroll an element into view by right-clicking and selecting the option to bring it into focus.</Figcaption>
+
+## Drag and Drop Nodes
+<Figcaption src={drag-drop-nodes} alt="Drag and drop nodes in the DOM">Rearrange elements in the DOM tree by clicking and dragging them to your desired position.</Figcaption>
+
+---
+
+**That's all for now!**
+
+These tips can help you navigate DevTools more effectively, saving you time and effort while developing your web applications. Happy coding!

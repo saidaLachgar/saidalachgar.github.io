@@ -1,0 +1,61 @@
+---
+title: "Deploying a Static Website with a Custom Domain on GitHub"
+summary: In this guide, I'll walk you through how I hosted my portfolio website on GitHub Pages with a custom domain. It's simple, cost-effective, and perfect for static websites!
+date: '2024-09-19'
+audio: 'https://samplelib.com/lib/preview/mp3/sample-3s.mp3'
+duration: '2m 6s'
+---
+import Figcaption from "@/components/Figcaption.astro"
+import img1 from "@/assets/img/cname-file.png"
+import img2 from "@/assets/img/dns-section.png"
+import img3 from "@/assets/img/dns-settings.png"
+import img4 from "@/assets/img/repository-settings-github-pages.png"
+
+
+## 1. Get a Domain Name
+
+By default, GitHub provides a free domain in the form of `your-username.github.io`, but let's be honest, it’s not the best-looking URL. To get a cooler domain name, you have a couple of options:
+
+- **Purchase a domain:** I bought mine from Hostinger for just $1, but there are many domain providers out there.
+- **Free domain:** You can get a free domain from [Freenom](https://www.freenom.com/). They offer top-level domains (TLDs) like `.tk`, which works great for personal portfolios. Choose a domain name that reflects your brand, ideally including your name.
+
+## 2. Build Your Portfolio
+
+Next, develop your portfolio website. You can either:
+- Download a portfolio template from the web and customize it.
+- Or, if you want more control, create the entire website from scratch.
+
+Whichever method you choose, make sure your portfolio showcases your work well!
+
+## 3. Manage the Custom Domain
+
+<Figcaption src={img1} alt="Example of cname-file">To link your custom domain to GitHub Pages, you need to create a `CNAME` file in the root of your repository. This file should contain only your custom domain name, like `yourdomain.com`.</Figcaption>
+
+<Figcaption src={img2} alt="Example of DNS section">Next, log in to your domain provider's dashboard (e.g., Hostinger, Freenom, GoDaddy) and look for the DNS settings.</Figcaption>
+You’ll need to add the following IP addresses as **A** records for GitHub Pages:
+
+```
+185.199.108.153
+185.199.109.153
+185.199.110.153
+185.199.111.153
+```
+
+<Figcaption src={img3} alt="Example DNS settings">The final configuration should resemble this:</Figcaption>
+
+<br /><br /><br />
+## 4. Publish Your Portfolio
+
+Now that your domain and website are ready, it's time to deploy:
+
+1. Create a new repository on GitHub.
+2. Push your portfolio's code to this repository.
+
+<Figcaption src={img4} alt="repository settings for GitHub Pages">Finally, go to the repository settings, scroll to the **GitHub Pages** section, and enter your domain name and save.</Figcaption>
+
+And voilà! Your site is now live on your custom domain 🎉.
+
+---
+**Final Thoughts**
+
+This method is ideal for hosting static websites like portfolios. It's a quick and affordable way to get your site online with a professional-looking domain. Keep in mind, though, that GitHub Pages doesn't support back-end features like PHP. But for static sites, it's perfect!

@@ -5,9 +5,46 @@
 - [-] use drag of tots for work slider
 - [-] home playground mobile is broken
 - [-] blog content
-  - [-] Git flow for hotfix/merge using gui https://mohamed-kashif.medium.com/git-flow-for-hotfix-39ea74c488af
-  - [-] https://dev.to/rossellafer/seo-tips-for-your-developer-portfolio-26fm
-  - [-] 10 tips every frontend developer should know (see youtube page in notes)
+
+  - [-] The power of css variables for theming
+    - [-] seo meta
+    - [-] audio
+  - [-] 👉 deploy your personal portfolio with a custom domain on github
+    - [-] seo meta
+    - [-] audio
+  - [-] how to debug JavaScript events like `mouseover` and `mouseout`
+    - [-] generate content
+    - [-] insert & review content
+    - [-] make media
+    - [-] insert media
+    - [-] seo meta
+    - [-] audio
+  - [-] dev tools tips to boost your web development
+    - [-] make media
+    - [-] insert media
+    - [-] seo meta
+    - [-] audio
+  - [-] how to handle a hotfix using git fork
+    - [-] insert & review content
+    - [-] make media
+    - [-] insert media
+    - [-] seo meta
+    - [-] audio
+  - [-] how to target specific cells in css grid tip
+    - [-] make media
+    - [-] insert media
+    - [-] seo meta
+    - [-] audio
+  - [x] why rebase instead of merge step by step guide
+    - [-] seo meta
+    - [-] audio
+    ***
+  - [-] Introduction to React Hooks: A Quick Guide
+  - [-] Semantic HTML5 HN every frontend developer should know
+  - [-] img optmization https://www.industrialempathy.com/posts/image-optimizations/
+  - [-] how to use websockets for real-time communication
+  - [-] icons and svg
+
 - [-] projects bad images
   - [-] Planetary facts
   - [-] The Movie Vault
@@ -17,6 +54,7 @@
 
 - [-] change big image + fontsize 0
 - [-] scroll vertical project images or add a nice drag circle instead
+- [-] [Use document.designMode to spell check your webpage](https://devtoolstips.org/tips/en/use-designmode-to-spell-check/)
 
 <br><br>
 
@@ -24,6 +62,8 @@
 
 **IMPORTANT**
 
+- https://counterapi.dev/guide/get-started.html blog views count
+- submit blog content https://css-weekly.com/submit-a-link/
 - make video of many screenshots mini-video from websites
 
 - Social card

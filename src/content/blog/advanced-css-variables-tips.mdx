@@ -1,0 +1,94 @@
+---
+title: "CSS Tip: Mastering CSS Variables"
+summary: CSS variables (AKA custom properties) bring flexibility and dynamic control to your stylesheets. This guide highlights practical tips for leveraging CSS variables in real-world projects
+date: '2024-09-19'
+audio: 'https://samplelib.com/lib/preview/mp3/sample-3s.mp3'
+duration: '2m 6s'
+---
+
+Custom properties provide a powerful, flexible way to handle theming and dynamic styling. 
+
+here are some tips you should know :
+
+## Fallback Values for Robustness
+
+CSS variables support fallback values, which can be a lifesaver in environments where variables may not be supported or where a variable isn’t defined yet
+
+```scss
+color: var(--primary-color, #000); /* If --primary-color isn't set, default to black */
+```
+
+<br /><br />
+## Using JavaScript to Manipulate Variables
+
+You can dynamically manipulate CSS variables in real-time using JavaScript. This is useful for creating interactive UI changes based on user actions
+
+```javascript
+document.documentElement.style.setProperty('--primary-color', '#ff6347');
+```
+
+<br /><br />
+## Using Variables in Media Queries
+
+CSS variables work seamlessly with media queries, enabling responsive design adjustments without redundancy.
+
+```scss
+:root {
+    --font-size-base: 18px;
+    @media (min-width: 768px) {
+        --font-size-base: 16px;
+    }
+}
+
+p {
+    font-size: var(--font-size-base);
+}
+
+```
+
+<br /><br />
+## Dynamic Theming with Variables
+
+Switching between light and dark themes is easy by changing variables at the root level, without touching individual components
+
+```css
+:root {
+    --bg-color: #ffffff;
+    --text-color: #333333;
+}
+
+/* Dark Theme */
+[data-theme="dark"] {
+    --bg-color: #1e1e1e;
+    --text-color: #f5f5f5;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+}
+```
+
+Now you can use JavaScript to toggle themes by changing the `data-theme` attribute
+
+```javascript 
+document.documentElement.setAttribute('data-theme', 'dark');
+```
+
+<br /><br />
+## Component-Level Overrides
+
+CSS variables can be scoped to individual components for more granular control over styles.
+
+```scss
+:root {
+	--shadow-color: gray;
+}
+
+button {
+	box-shadow: .1em .1em .1em var(--shadow-color);
+    &:hover {
+        --shadow-color: skyblue;
+    }
+}
+```

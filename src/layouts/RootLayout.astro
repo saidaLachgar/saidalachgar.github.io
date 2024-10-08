@@ -9,7 +9,7 @@ import { useTranslations } from '@/i18n'
 
 const t = useTranslations()
 
-type Props = {
+interface Props {
   title: string
   description: string
   titleTemplate?: string
@@ -43,50 +43,54 @@ type Props = {
     <!-- <div id="revealPoint">Reveal Point</div> -->
     <script>
       document.addEventListener('click', (event) => {
-        if (event.target.closest('a')) {
+        const linkElement = event.target.closest('a')
+
+        if (linkElement) {
+          const href = linkElement.href
+          const currentUrl = window.location.href
+
+          // Parse the URLs to compare the pathnames
+          const linkUrl = new URL(href, currentUrl) // resolves relative URLs
+          const currentPathname = window.location.pathname
+          const linkPathname = linkUrl.pathname
+
+          // If the path is the same, and there's only a hash change (scroll), don't show the loader
+          if (currentPathname === linkPathname && linkUrl.hash) {
+            return
+          }
+
+          // If navigating to a different page, show the loader
           const loader = document.getElementById('loader')
           if (loader) {
-            loader.classList.remove('hidden')
+            document.getElementById('loader').style.display = 'flex'
+            document.getElementById('main').style.display = 'none'
+
+            // Greeting loading
+            const loadingMessages = [
+              'Loading...',
+              'Cargando...',
+              'Chargement...',
+              'Laden...',
+              'Caricamento...',
+              '読み込み中...',
+              '로딩 중...',
+              '加载中...',
+              'Загрузка...',
+              'Carregando...',
+              'جار التحميل...',
+              'लोड हो रहा है...',
+            ]
+
+            let currentGreeting = 0
+            setInterval(() => {
+              loader.textContent = loadingMessages[currentGreeting]
+              currentGreeting = (currentGreeting + 1) % loadingMessages.length
+            }, 120)
           }
         }
       })
+
       document.addEventListener('astro:page-load', () => {
-        const loader = document.getElementById('loader')
-        if (loader) {
-          loader.classList.add('hidden')
-        }
-        // greeting loading
-        const greetings = [
-          'Hello',
-          'Hola',
-          'Bonjour',
-          'Hallo',
-          'Ciao',
-          'こんにちは',
-          '안녕하세요',
-          '您好',
-          'Здравствуйте',
-          'Olá',
-          'مرحبا',
-          'नमस्ते',
-        ]
-
-        let currentGreeting = 0
-        const greetingElement = document.getElementById('loader')
-
-        function changeGreeting() {
-          greetingElement.textContent = greetings[currentGreeting]
-          currentGreeting = (currentGreeting + 1) % greetings.length
-        }
-
-        const intervalId = setInterval(changeGreeting, 120)
-
-        setTimeout(function () {
-          clearInterval(intervalId)
-          document.getElementById('loader').style.display = 'none'
-          document.getElementById('main').style.display = 'block'
-        }, 1500)
-
         // reveal
         document.addEventListener('scroll', () => {
           const revealPoint = 200

@@ -211,6 +211,18 @@ import TimeComponent from './TimeComponent.astro'
       }
     }
   }
+  header {
+    &,
+    .logo {
+      pointer-events: none;
+    }
+    .navigation,
+    .info,
+    .logo a,
+    .skip-links {
+      pointer-events: all;
+    }
+  }
 </style>
 
 <script>

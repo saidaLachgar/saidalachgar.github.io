@@ -4,17 +4,18 @@ summary: This guide walks you through managing a hotfix in Git using the Git For
 date: '2024-09-19'
 audio: 'https://samplelib.com/lib/preview/mp3/sample-3s.mp3'
 duration: '2m 6s'
-cover: '@/assets/img/rewriting-history-git-rebase.png'
 ---
+
 import Figcaption from "@/components/Figcaption.astro"
-import step1 from "@/assets/img/1-switch-to-feature-branch.png"
-import step2 from "@/assets/img/2-start-the-rebase.png"
-import step3 from "@/assets/img/3-handle-conflicts.png"
-import step4 from "@/assets/img/4-resolve-conflicts.png"
-import step5 from "@/assets/img/5-selecting-which-changes-to-keep.png"
-import step6 from "@/assets/img/6-continue-rebase.png"
-import step7 from "@/assets/img/7-finalize-and-push-changes.png"
-import step8 from "@/assets/img/8-force-push-since-history-has-been-rewritten.png"
+import asset_1 from "@/assets/img/branches-overview.png"
+import asset_2 from "@/assets/img/create-hotfix-branch.png"
+import asset_3 from "@/assets/img/push-hotfix-branch.png"
+import asset_4 from "@/assets/img/merge-hotfix-to-master.png"
+import asset_5 from "@/assets/img/git-history-before.png"
+import asset_6 from "@/assets/img/delete-hotfix-branch.png"
+import asset_7 from "@/assets/img/git-history-after.png"
+import asset_8 from "@/assets/img/create-tag-for-hotfix.png"
+import asset_9 from "@/assets/img/tag-overview-in-history.png"
 
 
 ## Why Use a Hotfix?
@@ -25,7 +26,7 @@ Hotfix branches allow you to quickly fix critical issues in production while kee
 
 First, make sure you’re on the correct branch before starting the hotfix.
 
-<Figcaption src={step1} alt="branch-overview">Open the **Branches** pane in Git Fork to view your branches. The branch with a checkmark is your current branch.</Figcaption>
+<Figcaption src={asset_1} alt="branches-overview">In the **Branches** pane in Git Fork, the branch with a checkmark is your current branch.</Figcaption>
 
 Ensure you’re on the `master` branch since hotfixes are based off of the production code.
 
@@ -33,61 +34,57 @@ Ensure you’re on the `master` branch since hotfixes are based off of the produ
 
 Next, you need to create a new branch specifically for your hotfix.
 
-<Figcaption src={step2} alt="create-hotfix-branch">Right-click on `master` and select **Create new branch**. Name the branch `hotfix/x.x.x` (where `x.x.x` is your version number, like `1.0.1`).</Figcaption>
+<Figcaption src={asset_2} alt="create-hotfix-branch">Right-click on `master` and select **New branch..**. Name the branch `hotfix/x.x.x`.</Figcaption>
 
-The new hotfix branch is now created and checked out, ready for you to apply your changes.
+where `x.x.x` is your version number, eg : `1.4.1`
+
+<br /><br />
 
 ## Step 3: Push the Hotfix Branch
 
-Once you’ve made your changes locally, it’s time to push the new branch to the remote repository.
+<Figcaption src={asset_3} alt="push-hotfix-branch">Once you’ve made your changes locally, it’s time to commit and push the new branch to the remote repository.</Figcaption>
 
-<Figcaption src={step3} alt="push-hotfix-branch">Click the **Push** button in the toolbar and ensure your new `hotfix/x.x.x` branch is selected.</Figcaption>
-
-Git Fork will now push your hotfix branch to the remote repository.
+_If you have a `CHANGELOG.md` file, make sure to update it with the new app version and changes made._
 
 ## Step 4: Merge the Hotfix Into Master
 
-With the hotfix branch ready, it’s time to merge it back into `master` to apply the fix to production.
+With the hotfix branch ready, it’s time to merge it into `master` to apply the fix to production.
 
-<Figcaption src={step4} alt="merge-hotfix-to-master">Right-click on `master` and select **Merge**. Choose your `hotfix/x.x.x` branch from the list, ensuring the merge option is set to **--no-ff** (no fast-forward).</Figcaption>
+<Figcaption src={asset_4} alt="merge-hotfix-to-master">Click twice on `master` to check out then right-click on `hotfix/x.x.x` and select **Merge into 'master'...**, ensuring the merge option is set to **--no-ff** (no fast-forward).</Figcaption>
 
-This merge applies the hotfix to the production branch while keeping the history intact.
+This will create a new commit on `master` with the message `Merge branch 'hotfix/x.x.x'`, you can then click **Push**.
 
-## Step 5: Tag the Hotfix
+## Step 5: Clean Up
+
+<Figcaption src={asset_5} alt="git-history-before">Once you’ve pushed `master`, the history may look messy like this:</Figcaption> 
+
+Let’s clean it up!
+
+### Delete Hotfix Branch
+
+Now that your hotfix has been applied and merged into `master`, it’s safe to remove the branch.
+
+<Figcaption src={asset_6} alt="delete-hotfix-branch">Click on the branch, then click **Delete 'hotfix/x.x.x'...**.</Figcaption> 
+
+Ensure you check the option **Also delete remote branch 'origin/hotfix/x.x.x'** in the popup.
+
+### Rebase `develop`
+
+To keep your `develop` branch up to date, rebase it onto `master`. For more details on rebasing, check out [this tutorial](/blog/why-rebase-instead-of-merge-step-by-step-guide).
+
+<Figcaption src={asset_7} alt="git-history-before-after">After the rebase, the Git history will look cleaner like this:</Figcaption> 
+
+<br /><br />
+
+## Step 6: Tag the Hotfix
 
 Next, you’ll want to tag this new release version for future reference.
 
-<Figcaption src={step5} alt="create-tag-for-hotfix">Right-click on the latest commit and select **Create tag**. Name it according to your release version, e.g., `1.0.1`.</Figcaption>
+Right-click on the latest commit in `master` and select **New tag...**.
 
-This will create a versioned tag in Git that marks the hotfix in your history.
+<Figcaption src={asset_8} alt="create-tag-for-hotfix">Name it according to your release version, e.g., `1.4.1`, ensure **Push** is checked, and click on **Create and push**.</Figcaption>
 
-## Step 6: Verify the Tag
-
-Now, ensure that your tag has been successfully created.
-
-<Figcaption src={step6} alt="verify-tag">Click on the **Tags** tab in the Git Fork interface. You should see your newly created tag `1.0.1` listed there.</Figcaption>
-
-## Step 7: Push Master and Tags to Remote
-
-After merging and tagging, you’ll need to push these changes to the remote repository.
-
-<Figcaption src={step7} alt="push-master-and-tags">Click **Push** again, and make sure to push both `master` and the new tag to the remote.</Figcaption>
-
-Git Fork will sync your local changes to the remote repository, ensuring everything is up to date.
-
-## Step 8: Merge Hotfix Into Develop
-
-To keep your `develop` branch up to date, merge the hotfix into it as well.
-
-<Figcaption src={step8} alt="merge-hotfix-to-develop">Switch to `develop` and right-click to **Merge** the `hotfix/x.x.x` branch.</Figcaption>
-
-Push the updated `develop` branch to the remote repository once the merge is complete.
-
-## Step 9: Clean Up the Hotfix Branch
-
-Now that your hotfix has been applied and merged into both `master` and `develop`, it’s safe to remove the branch.
-
-<Figcaption src={step9} alt="cleanup-hotfix-branch">Right-click on the `hotfix/x.x.x` branch and select **Delete** to remove it from the local repo, then push the deletion to the remote repository.</Figcaption>
+<Figcaption src={asset_9} alt="tag-overview-in-history">This will create a versioned tag in Git that marks the hotfix in your history.</Figcaption>
 
 ---
 **Done!**

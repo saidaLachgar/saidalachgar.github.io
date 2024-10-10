@@ -9,7 +9,7 @@
   - [-] The power of css variables for theming
     - [-] seo meta
     - [-] audio
-  - [-] 👉 deploy your personal portfolio with a custom domain on github
+  - [-] deploy your personal portfolio with a custom domain on github
     - [-] seo meta
     - [-] audio
   - [-] how to debug JavaScript events like `mouseover` and `mouseout`
@@ -24,10 +24,7 @@
     - [-] insert media
     - [-] seo meta
     - [-] audio
-  - [-] how to handle a hotfix using git fork
-    - [-] insert & review content
-    - [-] make media
-    - [-] insert media
+  - [-] 👉 how to handle a hotfix using git fork
     - [-] seo meta
     - [-] audio
   - [-] how to target specific cells in css grid tip

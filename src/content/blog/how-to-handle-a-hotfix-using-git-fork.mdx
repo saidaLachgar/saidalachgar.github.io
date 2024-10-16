@@ -1,5 +1,5 @@
 ---
-title: "How to Handle a Hotfix Using Git Fork"
+title: "How to Properly Handle a Hotfix Using a Git Fork: Step-by-Step Gitflow Guide"
 summary: This guide walks you through managing a hotfix in Git using the Git Fork GUI. A hotfix is an urgent update made to fix bugs in the production codebase. We’ll use a Gitflow-inspired process to handle the hotfix efficiently without touching the command line.
 date: '2024-09-19'
 audio: 'https://samplelib.com/lib/preview/mp3/sample-3s.mp3'
@@ -40,7 +40,7 @@ where `x.x.x` is your version number, eg : `1.4.1`
 
 <br /><br />
 
-## Step 3: Push the Hotfix Branch
+## Step 3: Push the Hotfix Branch to Remote
 
 <Figcaption src={asset_3} alt="push-hotfix-branch">Once you’ve made your changes locally, it’s time to commit and push the new branch to the remote repository.</Figcaption>
 
@@ -58,9 +58,9 @@ This will create a new commit on `master` with the message `Merge branch 'hotfix
 
 <Figcaption src={asset_5} alt="git-history-before">Once you’ve pushed `master`, the history may look messy like this:</Figcaption> 
 
-Let’s clean it up!
+Let’s clean it up! 🧹
 
-### Delete Hotfix Branch
+### &#x2022; Delete Hotfix Branch
 
 Now that your hotfix has been applied and merged into `master`, it’s safe to remove the branch.
 
@@ -68,7 +68,7 @@ Now that your hotfix has been applied and merged into `master`, it’s safe to r
 
 Ensure you check the option **Also delete remote branch 'origin/hotfix/x.x.x'** in the popup.
 
-### Rebase `develop`
+### &#x2022; Rebase `develop`
 
 To keep your `develop` branch up to date, rebase it onto `master`. For more details on rebasing, check out [this tutorial](/blog/why-rebase-instead-of-merge-step-by-step-guide).
 
@@ -87,6 +87,8 @@ Right-click on the latest commit in `master` and select **New tag...**.
 <Figcaption src={asset_9} alt="tag-overview-in-history">This will create a versioned tag in Git that marks the hotfix in your history.</Figcaption>
 
 ---
-**Done!**
+**Done! 🎉**
 
 You’ve successfully handled a hotfix using Git Fork, ensuring the fix is applied to both production and development branches.
+
+> 💡 TIP : You could simply commit directly to master and rebase your branches, but this blog shows the right way to handle it using the <u title="Gitflow Workflow is a Git branching model that organizes development into two main branches: master (for production-ready code) and develop (for ongoing development). Feature branches are created from develop for new features, while release and hotfix branches are used for finalizing versions and fixing critical issues, respectively. It helps manage large projects with structured and parallel development.">Gitflow Workflow</u>

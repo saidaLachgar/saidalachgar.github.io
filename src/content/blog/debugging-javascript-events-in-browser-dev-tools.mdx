@@ -1,0 +1,49 @@
+---
+title: "Debugging JavaScript Events in Browser DevTools"
+summary: Debugging JavaScript events like `mouseover` and `mouseout` can be tricky, but browser DevTools offers powerful features to help you pause and inspect event-driven behavior. let's see explore how to set breakpoints and disable events to make debugging easier
+date: '2024-09-19'
+audio: 'https://samplelib.com/lib/preview/mp3/sample-3s.mp3'
+duration: '2m 6s'
+cover: '@/assets/img/rewriting-history-git-rebase.png'
+---
+import Figcaption from "@/components/Figcaption.astro"
+import step1 from "@/assets/img/1-switch-to-feature-branch.png"
+
+
+## Setting Event Breakpoints
+
+When dealing with events like `mouseover` and `mouseleave`, you can set breakpoints in the **Debugger** tab of DevTools to pause your code at the exact moment an event is triggered.
+
+For example, if you have a menu that appears on `mouseover` and hides on `mouseleave`, setting a breakpoint on the `mouseover` event allows yout to work on your menu without being bothered. 
+
+The advantage here is that even if you **leave** the hoverable item, the menu won’t hide immediately because the browser pauses the execution. You can resume the code by clicking the **Play** button in the Debugger when you're ready to continue. here is a demonstration :
+<FigBrowser
+    as-video 
+    firefox-src={select-pointer-events} 
+    chrome-src={select-pointer-events} 
+    edge-src={select-pointer-events} 
+    alt="Set event breakpoints for mouseover"
+/>
+
+## Disabling Events (Firefox)
+
+<Figcaption src={disable-events-firefox} alt="Disable mouseleave event in Firefox">In **Firefox**, you can disable event listeners directly without needing breakpoints. When inspecting an element with events like `mouseover` or `mouseleave`, you'll see an **"Event"** badge in the Elements tab.</Figcaption>
+
+- Click the **"Event"** badge on the element.
+- A dropdown shows all event listeners attached to that element.
+- Uncheck the `mouseleave` event to disable it temporarily.
+
+## Use Cases for Event Debugging
+
+Event debugging is incredibly useful in many scenarios:
+- **Menu interactions**: Debug `mouseover` and `mouseleave` events when menus show or hide unexpectedly.
+- **Form submissions**: Forms often use events like `submit` or `focus` for validation or interaction. If your form isn't behaving as expected—like not submitting properly or misfiring validation—you can pause the `submit` event and examine the process step by step. This can help identify why the form doesn't submit or why certain fields aren't validating correctly.
+- **Custom animations**: Custom animations triggered by user actions, such as dragging or scrolling, often rely on events like `dragstart` or `scroll`. If your animations are glitchy or not starting as they should, setting breakpoints on these events allows you to check the exact moment they fire and see what goes wrong in the animation sequence.
+
+---
+
+**Conclusion**
+
+Using DevTools to set event breakpoints and disable event listeners can significantly improve your debugging process. Whether you're dealing with menus, buttons, or custom interactions, these techniques help you track down bugs quickly and efficiently.
+
+Happy debugging!

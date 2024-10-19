@@ -6,15 +6,13 @@
 - [-] home playground mobile is broken
 - [-] blog content
 
-  - [-] 👉 The power of css variables for theming
+  - [-] The power of css variables for theming
     - [-] seo meta
     - [-] audio
   - [-] deploy your personal portfolio with a custom domain on github
     - [-] seo meta
     - [-] audio
   - [-] how to debug JavaScript events like `mouseover` and `mouseout`
-    - [-] make media
-    - [-] insert media
     - [-] seo meta
     - [-] audio
   - [-] dev tools tips to boost your web development

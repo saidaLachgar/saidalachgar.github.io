@@ -1,0 +1,52 @@
+button.demo-btn {
+  display: inline-block;
+  text-align: center;
+  color: #1a1e24;
+  background: #eee;
+  font-weight: bold;
+  padding: 1.18em 1.32em 1.03em;
+  line-height: 1;
+  border-radius: 1em;
+  position: relative;
+  min-width: 8.23em;
+  text-decoration: none;
+  font-family: Montserrat, Roboto, Helvetica, Arial, sans-serif;
+  font-size: 1.25rem;
+  margin: 20px 0;
+  box-shadow: none;
+  border: 3px solid #1a1e24;
+  transition: all 0s ease;
+
+  &:hover {
+    background-color: #d7d7d7;
+    transition-duration: 0.04s;
+  }
+
+  &:focus {
+    outline: 3px dashed #0a84ff;
+    transition-duration: 0.05s;
+  }
+
+  &:focus-within,
+  &:focus-visible {
+    outline: 3px dashed #ff9f0a;
+    transition-duration: 0.06s;
+  }
+
+  &:active {
+    outline: 3px dashed #32d74b;
+    transition-duration: 0.07s;
+  }
+
+  &:visited {
+    color: purple;
+  }
+
+  &:target {
+    color: #0a84ff;
+  }
+
+  &.untouchable {
+    pointer-events: none;
+  }
+}

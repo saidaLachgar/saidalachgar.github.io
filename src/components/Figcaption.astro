@@ -9,18 +9,29 @@ interface Props {
   alt: string
   width: number
   height: number
+  asVideo?: boolean,
   metadata: ImageMetadata
 }
 
-const props = Astro.props
+const {asVideo, ...props} = Astro.props
 ---
 
 <figure class="blog-figure">
   <figcaption>
     <span>
       <slot />
-      <Icon name="picture-in-picture" class="picture-in-picture" width={18} height={18} />
+      {!asVideo && (
+        <Icon name="picture-in-picture" class="picture-in-picture" width={18} height={18} />
+      )}
     </span>
   </figcaption>
-  <Image {...props} class="" />
+  
+  {
+    asVideo ? (
+      <video muted playsinline controls>
+        <source {...props}  type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
+    ) : <Image {...props} class="" />
+  }
 </figure>

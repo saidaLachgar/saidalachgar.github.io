@@ -24,6 +24,7 @@ const blog = defineCollection({
     audio: z.string().optional(),
     duration: z.string().optional(),
     cover: image().optional(),
+    magnifier: z.boolean().optional(),
     date: z.coerce.date(),
     tags: z.array(reference('tags')).default(['default']),
     lastmod: z.coerce.date().optional(),

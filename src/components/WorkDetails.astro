@@ -2,7 +2,7 @@
 import type { Project } from '@/data/projects'
 import type { ImageMetadata } from 'astro'
 import { Icon } from 'astro-icon/components'
-import { Image } from 'astro:assets'
+import { Image, Picture } from 'astro:assets'
 import drag from '../assets/img/drag-left.gif'
 
 const imagesProjects = import.meta.glob<{ default: ImageMetadata }>('../assets/img/project-*.png')
@@ -75,28 +75,44 @@ const { data } = Astro.props
             )}
           </ul>
         </div>
-        <div class="carousel-outer">
-          <ul class="carousel">
-            {(project.status === 'PLAYGROUND' ? project.images!.slice(0, -1) : project.images)?.map((src: string) => (
-              <li class:list={[{ video: !Number(src) }]}>
-                {!!Number(src) ? (
-                  <Image
-                    src={imagesProjects[`../assets/img/project-${src}.png`]()}
-                    alt={project.name}
-                    width="557"
-                    height="317"
-                  />
-                ) : (
-                  <video autoplay muted loop playsinline>
-                    <source src={videos[`../assets/videos/${src}.mp4`]?.default} type="video/mp4" />
-                    Your browser does not support the video tag.
-                  </video>
-                )}
-              </li>
-            ))}
-          </ul>
-          <Icon class="carousel-cursor" name="drag-cursor" width={80} height={80} />
-        </div>
+        {project.status === 'STUDY CASE' ? (
+          project
+            .images!.slice(0, -1)
+            ?.map((src: string) => (
+              <Picture
+                widths={[300, 600, 800, 1000, 1728]}
+                sizes="100vw"
+                src={imagesProjects[`../assets/img/project-${src}.png`]()}
+                alt={project.name}
+                formats={['avif', 'webp']}
+                loading="lazy"
+                class="study-case"
+              />
+            ))
+        ) : (
+          <div class="carousel-outer">
+            <ul class="carousel">
+              {(project.status === 'PLAYGROUND' ? project.images!.slice(0, -1) : project.images)?.map((src: string) => (
+                <li class:list={[{ video: !Number(src) }]}>
+                  {!!Number(src) ? (
+                    <Image
+                      src={imagesProjects[`../assets/img/project-${src}.png`]()}
+                      alt={project.name}
+                      width="557"
+                      height="317"
+                    />
+                  ) : (
+                    <video autoplay muted loop playsinline>
+                      <source src={videos[`../assets/videos/${src}.mp4`]?.default} type="video/mp4" />
+                      Your browser does not support the video tag.
+                    </video>
+                  )}
+                </li>
+              ))}
+            </ul>
+            <Icon class="carousel-cursor" name="drag-cursor" width={80} height={80} />
+          </div>
+        )}
         <Image src={drag} alt="drag" width="30" height="30" class="drag-mobile" format="gif" />
         <div class="actions">
           <button class="prev">
@@ -291,7 +307,7 @@ const { data } = Astro.props
     }
 
     video,
-    img {
+    .carousel-outer img {
       pointer-events: none;
       height: 317px;
       width: auto;
@@ -300,6 +316,14 @@ const { data } = Astro.props
       background-color: transparent;
       color: #fff;
       font: inherit;
+    }
+    .study-case {
+      margin-bottom: 120px;
+      border-radius: 10px;
+      border: 1px solid #2c2c2d;
+      @media (max-width: 900px) {
+        margin-bottom: 20px;
+      }
     }
     .title {
       margin-bottom: 54px;
@@ -391,6 +415,7 @@ const { data } = Astro.props
       margin: 0 auto;
       user-select: none;
       max-width: calc(100vw - 45px);
+      scroll-behavior: smooth;
 
       @media (max-width: 655px) {
         max-width: calc(100vw - 25px);

@@ -526,7 +526,7 @@ const playground: Project[] = [
     year: 2023,
     status: 'STUDY CASE',
     role: 'Design',
-    images: ['41', '41', '41', 'playground-the-movie-vault'],
+    images: ['100', '101', '102', '103', '104', '105', '106', 'playground-the-movie-vault'],
     industry: 'Entertainment, Movies',
     subtitle: 'Shows and movies filter and more (study case)',
     description: 'The Movie Vault is a conceptual design for a tool aimed at improving movie search experiences with advanced filtering options, tracking shows, creating wishlists, and managing favorites lists. It addresses the limitations of streaming services and IMDb by providing a user-friendly interface and robust search functionality. This project was designed for fun, with the potential to develop into a real hobby project',
@@ -549,7 +549,7 @@ const playground: Project[] = [
     platform: 'Three.js',
     status: 'PLAYGROUND',
     role: 'Frontend, Design',
-    images: ['42', '26', '17', '8', 'playground-planetary-facts'],
+    images: ['42', '17', '8', 'playground-planetary-facts'],
     industry: 'Interactive Learning, Astronomy',
     techs: ['JavaScript', 'Three.js', 'nPoint'],
     subtitle: 'Infos about the planets in our solar system',
@@ -632,7 +632,7 @@ const playground: Project[] = [
 const projectStats: ProjectStats[] = [
   {
     label: 'Codecraft Mastery',
-    value: 4,
+    value: 5,
     caption: 'Years',
   },
   {
@@ -645,7 +645,7 @@ const projectStats: ProjectStats[] = [
   },
   {
     label: 'Supervised projects',
-    value: 10,
+    value: 12,
   },
 ]
 

@@ -1,9 +1,11 @@
 ---
-title: "How to Properly Handle a Hotfix Using a Git Fork: Step-by-Step Gitflow Guide"
+title: "How to Properly Handle a Hotfix Using GUI: Step-by-Step Gitflow Guide"
 summary: This guide walks you through managing a hotfix in Git using the Git Fork GUI. A hotfix is an urgent update made to fix bugs in the production codebase. We’ll use a Gitflow-inspired process to handle the hotfix efficiently without touching the command line.
-date: '2024-09-19'
-audio: 'https://samplelib.com/lib/preview/mp3/sample-3s.mp3'
-duration: '2m 6s'
+date: '2024-10-17'
+audio: 'how-to-properly-handle-a-hotfix-using-gui-step-by-step-gitflow-guide.mp3'
+duration: '4m 44s'
+cover: '@/assets/img/how-to-properly-handle-a-hotfix-using-gui-step-by-step-gitflow-guide.png'
+tags: ['git']
 ---
 
 import Figcaption from "@/components/Figcaption.astro"
@@ -89,6 +91,38 @@ Right-click on the latest commit in `master` and select **New tag...**.
 ---
 **Done! 🎉**
 
-You’ve successfully handled a hotfix using Git Fork, ensuring the fix is applied to both production and development branches.
+You’ve successfully handled a hotfix using the <u title="Gitflow Workflow is a Git branching model that organizes development into two main branches: master (for production-ready code) and develop (for ongoing development). Feature branches are created from develop for new features, while release and hotfix branches are used for finalizing versions and fixing critical issues, respectively. It helps manage large projects with structured and parallel development.">Gitflow Workflow</u>, ensuring the fix is applied to both production and development branches.
 
-> 💡 TIP : You could simply commit directly to master and rebase your branches, but this blog shows the right way to handle it using the <u title="Gitflow Workflow is a Git branching model that organizes development into two main branches: master (for production-ready code) and develop (for ongoing development). Feature branches are created from develop for new features, while release and hotfix branches are used for finalizing versions and fixing critical issues, respectively. It helps manage large projects with structured and parallel development.">Gitflow Workflow</u>
+<br />
+
+💡 I personally like using [Git Fork](https://git-fork.com/), but feel free to use any Git client or command line tool that suits you best. For those who prefer command line, here’s a minimal set of commands to achieve the same steps:
+
+```bash
+# Step 1: Ensure you're on the master branch
+git checkout master
+
+# Step 2: Create the hotfix branch
+git checkout -b hotfix/x.x.x
+
+# Step 3: Push the hotfix branch to remote
+git commit -am "Your hotfix message"
+git push origin hotfix/x.x.x
+
+# Step 4: Merge into master
+git checkout master
+git merge --no-ff hotfix/x.x.x
+git push origin master
+
+# Step 5: Delete hotfix branch
+git branch -d hotfix/x.x.x
+git push origin --delete hotfix/x.x.x
+
+# Step 6: Rebase develop onto master
+git checkout develop
+git rebase master
+git push origin develop
+
+# Step 7: Tag the release
+git tag -a x.x.x -m "Release x.x.x"
+git push origin --tags
+```

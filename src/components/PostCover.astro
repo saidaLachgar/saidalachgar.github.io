@@ -10,20 +10,67 @@ type Props = {
 const { post } = Astro.props
 ---
 
-<Picture
-  widths={[300, 600, 1000, 2000, 3000, 4000]}
-  sizes="100vw"
-  src={post.data.cover!}
-  alt={post.data.title}
-  formats={['avif', 'webp']}
-  loading="eager"
-/>
+<div class="cover">
+  {
+    post.data.magnifier ? (
+      <div class="zoom-box">
+        <div class="zoomed-img" style={`background-image:url(${post.data.cover?.src});`} />
+        <Picture
+          widths={[300, 600, 1000, 2000, 3000, 4000]}
+          sizes="100vw"
+          src={post.data.cover!}
+          alt={post.data.title}
+          formats={['avif', 'webp']}
+          loading="eager"
+          class="original-img"
+        />
+      </div>
+    ) : (
+      <Picture
+        widths={[300, 600, 1000, 2000, 3000, 4000]}
+        sizes="100vw"
+        src={post.data.cover!}
+        alt={post.data.title}
+        formats={['avif', 'webp']}
+        loading="eager"
+      />
+    )
+  }
+</div>
 
 <style>
   img {
     width: 100%;
     height: auto;
     object-fit: cover;
+  }
+
+  .cover {
     margin: 30px 0;
+  }
+
+  .zoom-box {
+    position: relative;
+  }
+  .zoomed-img {
+    width: 340px;
+    height: 340px;
+    pointer-events: none;
+    position: absolute;
+    opacity: 0;
+    border: 2px solid white;
+    z-index: 99;
+    display: block;
+    transition: opacity 0.2s;
+    background-size: 900%;
+    transition: all .2s linear;
+  }
+
+  .zoom-box:hover .zoomed-img {
+    opacity: 1;
+  }
+
+  .magnify {
+    position: relative;
   }
 </style>

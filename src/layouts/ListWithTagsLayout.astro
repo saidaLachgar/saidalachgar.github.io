@@ -29,9 +29,6 @@ function tagCount(slug: CollectionEntry<'tags'>['slug']) {
 }
 
 function isSamePath(path: string) {
-  console.log(Astro.url.pathname)
-  console.log('path', Astro.url.pathname === path)
-
   return Astro.url.pathname === path
 }
 
@@ -63,7 +60,7 @@ const isBlogPage = Astro.url.pathname.startsWith('/blog')
         }
       </li>
       {
-        tags.map(({ slug, data }) => (
+        tags.filter(({slug}) => !!tagCount(slug)).map(({ slug, data }) => (
           <li>
             {isSamePath(`/tags/${slug}`) ? (
               <p class="tag-link active">{`${data.name} (${tagCount(slug)})`}</p>

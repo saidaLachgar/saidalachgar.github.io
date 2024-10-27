@@ -99,24 +99,23 @@ const items = Array(9).fill('PLAYGROUND')
     })
 
     // carousel (scroll)
-    document.addEventListener('scroll', horizontalScroll)
     let sticky = document.querySelector('.playground .carousel-outer')
-    let stickyParent = document.querySelector('.playground .carousel-container')
-    let scrollWidth = sticky.scrollWidth
-    let verticalScrollHeight = stickyParent.getBoundingClientRect().height - sticky.getBoundingClientRect().height
-    let topOffset = window.innerHeight / 2 - 282
-
-    //Scroll function
-    function horizontalScroll() {
-      //Checking whether the sticky element has entered into view or not
-      let stickyPosition = sticky.getBoundingClientRect().top - topOffset
-      if (stickyPosition > 1) {
-        sticky.classList.remove('is-sticky')
-      } else {
-        let scrolled = stickyParent.getBoundingClientRect().top //how much is scrolled?
-        sticky.scrollLeft = (scrollWidth / verticalScrollHeight) * -scrolled * 0.5
-        sticky.classList.add('is-sticky')
-      }
+    if (sticky) {
+      let stickyParent = document.querySelector('.playground .carousel-container')
+      let scrollWidth = sticky.scrollWidth
+      let verticalScrollHeight = stickyParent.getBoundingClientRect().height - sticky.getBoundingClientRect().height
+      let topOffset = window.innerHeight / 2 - 282
+      document.addEventListener('scroll', () => {
+        //Checking whether the sticky element has entered into view or not
+        let stickyPosition = sticky.getBoundingClientRect().top - topOffset
+        if (stickyPosition > 1) {
+          sticky.classList.remove('is-sticky')
+        } else {
+          let scrolled = stickyParent.getBoundingClientRect().top //how much is scrolled?
+          sticky.scrollLeft = (scrollWidth / verticalScrollHeight) * -scrolled * 0.5
+          sticky.classList.add('is-sticky')
+        }
+      })
     }
   })
 </script>

@@ -1,9 +1,10 @@
 ---
 title: "CSS Tip: Mastering CSS Variables"
 summary: CSS variables (AKA custom properties) bring flexibility and dynamic control to your stylesheets. This guide highlights practical tips for leveraging CSS variables in real-world projects
-date: '2024-09-19'
-audio: 'https://samplelib.com/lib/preview/mp3/sample-3s.mp3'
-duration: '2m 6s'
+date: '2023-11-19'
+audio: 'css-tip-mastering-css-variables.mp3'
+duration: '2m 11s'
+tags: ['css', 'tips']
 ---
 
 Custom properties provide a powerful, flexible way to handle theming and dynamic styling. 
@@ -82,11 +83,11 @@ CSS variables can be scoped to individual components for more granular control o
 
 ```scss
 :root {
-	--shadow-color: gray;
+    --shadow-color: gray;
 }
 
 button {
-	box-shadow: .1em .1em .1em var(--shadow-color);
+    box-shadow: .1em .1em .1em var(--shadow-color);
     &:hover {
         --shadow-color: skyblue;
     }

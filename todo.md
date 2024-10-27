@@ -2,58 +2,22 @@
 
 **IMPORTANT**
 
-- [-] use drag of tots for work slider
-- [-] home playground mobile is broken
-- [-] blog content
-
-  - [-] The power of css variables for theming
-    - [-] seo meta
-    - [-] audio
-  - [-] deploy your personal portfolio with a custom domain on github
-    - [-] seo meta
-    - [-] audio
-  - [-] how to debug JavaScript events like `mouseover` and `mouseout`
-    - [-] seo meta
-    - [-] audio
-  - [-] dev tools tips to boost your web development
-    - [-] make media
-    - [-] insert media
-    - [-] seo meta
-    - [-] audio
-  - [-] how to handle a hotfix using git fork
-    - [-] seo meta
-    - [-] audio
-  - [-] how to target specific cells in css grid tip
-    - [-] make media
-    - [-] insert media
-    - [-] seo meta
-    - [-] audio
-  - [x] why rebase instead of merge step by step guide
-    - [-] seo meta
-    - [-] audio
-    ***
-  - [-] Introduction to React Hooks: A Quick Guide
-  - [-] Semantic HTML5 HN every frontend developer should know
-  - [-] img optmization https://www.industrialempathy.com/posts/image-optimizations/
-  - [-] how to use websockets for real-time communication
-  - [-] icons and svg
-
-- [-] projects bad images
-  - [-] Planetary facts
-  - [-] The Movie Vault
-- [-] fix loading issue while navigating
+- ackee stats
+- Zzz.. bug
+- [-] corss-browser testing
+  - [-] SAFARRI MOBILE home playground is broken
 
 **NOT IMPORTANT**
-
-- [-] change big image + fontsize 0
-- [-] scroll vertical project images or add a nice drag circle instead
-- [-] [Use document.designMode to spell check your webpage](https://devtoolstips.org/tips/en/use-designmode-to-spell-check/)
-
-<br><br>
 
 # 👉 AFTER DEPLOY ✨
 
 **IMPORTANT**
+
+- promote website https://chatgpt.com/c/6716b6c4-0c10-800b-b412-bdbca662e734
+
+I’ve just dropped a blog post showcasing my complete dev setup that keep me efficient 💻✨
+Shoutout to @Firefox for being my go-to browser for web dev 🦊🔥
+Checkout the blog post here 🔗 #ProductivityHacks
 
 - https://counterapi.dev/guide/get-started.html blog views count
 - submit blog content https://css-weekly.com/submit-a-link/
@@ -74,6 +38,12 @@
 - Terminal exprience https://github.com/Cveinnt/LiveTerm
   https://liveterm.vercel.app/
   https://terminal.satnaing.dev/
+- [-] blog content
+  - [-] Introduction to React Hooks: A Quick Guide
+  - [-] Semantic HTML5 HN every frontend developer should know
+  - [-] img optmization https://www.industrialempathy.com/posts/image-optimizations/
+  - [-] how to use websockets for real-time communication
+  - [-] icons and svg
 
 ## inspiration
 
@@ -82,7 +52,13 @@
 - playground https://studiofables.com/fr/projets + https://www.humanastudio.com/
 - blog hover https://nelson.co/
 - grid style https://format-3.co/work
+  https://vucko.co/
+
+## chat gpt
+
 - token https://chatgpt.com/share/ef2d4a2d-3666-4616-8023-55f7f1c2e87c
+- TTS https://chatgpt.com/c/67151fcb-d4dc-800b-98f9-df57b17b288b
+- blog content https://chatgpt.com/c/6701064b-dccc-800b-a851-55551c44038e
 
 ## should i?
 

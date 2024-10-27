@@ -3,18 +3,19 @@ import { useTranslations } from '@/i18n'
 import { Icon } from 'astro-icon/components'
 
 const t = useTranslations()
+const audios = import.meta.glob<{ default: string }>('../assets/audios/*.mp3', { eager: true })
 
 const { audio } = Astro.props
 ---
 
 <div class="audio-player">
-  <div class="play-pause-btn" id="play-pause" onclick="toggleAudio()">
+  <div class="play-pause-btn" id="play-pause">
     <Icon name="pause" class="pause" />
     <Icon name="play" class="play" />
     <span class="label">{t('layouts.postLayout.listen')}</span>
     <span class="time" id="time-remaining">00:00</span>
   </div>
-  <audio id="audio" src={audio} preload="auto" hidden></audio>
+  <audio id="audio" src={audios[`../assets/audios/${audio}`]?.default} preload="auto" preload="none" hidden></audio>
 </div>
 
 <style lang="scss">
@@ -40,46 +41,3 @@ const { audio } = Astro.props
     }
   }
 </style>
-
-<script is:inline>
-  const audio = document.getElementById('audio')
-  const playPauseBtn = document.getElementById('play-pause')
-  const timeRemaining = document.getElementById('time-remaining')
-
-  // Toggle play and pause
-  const pauseAudio = () => {
-    audio.pause()
-    playPauseBtn.classList.remove('playing')
-  }
-
-  const toggleAudio = () => {
-    if (audio.paused) {
-      audio.play()
-      playPauseBtn.classList.add('playing')
-      return
-    }
-    pauseAudio()
-  }
-
-  // Format time in MM:SS
-  const formatTime = (seconds) => {
-    const mins = Math.floor(seconds / 60)
-    const secs = seconds % 60
-    return `${mins}:${parseInt(secs, 10).toString().padStart(2, '0')}`
-  }
-
-  // Update time remaining
-  audio.addEventListener('timeupdate', () => {
-    const timeLeft = Math.ceil(audio.duration - audio.currentTime)
-    timeRemaining.textContent = formatTime(timeLeft)
-  })
-  //
-  audio.addEventListener('ended', () => {
-    playPauseBtn.classList.remove('playing')
-  })
-
-  // Set initial duration once the metadata is loaded
-  audio.addEventListener('loadedmetadata', () => {
-    timeRemaining.textContent = formatTime(audio.duration)
-  })
-</script>

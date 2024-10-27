@@ -194,182 +194,264 @@ const { Content, headings } = await post.render()
 </RootLayout>
 
 <style lang="scss" is:global>
-  .blog-article {
-    padding: 80px 0 120px;
-    line-height: 1.4;
-    font-size: 16px;
-    &.no-cover > header {
-      padding-bottom: 100px;
-    }
-    @media (max-width: 992px) {
-      padding: 80px 0;
-    }
-    .article-title {
-      font-size: 33px;
-      margin-top: 20px;
-    }
+ .blog-article {
+  padding: 80px 0 120px;
+  line-height: 1.4;
+  font-size: 16px;
+  &.no-cover > header {
+    padding-bottom: 100px;
+  }
+  @media (max-width: 992px) {
+    padding: 80px 0;
+  }
+  .article-title {
+    font-size: 33px;
+    margin-top: 20px;
+  }
 
-    .article-infos {
-      border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-      padding-bottom: 30px;
-      margin: 30px 0;
-      display: flex;
-      column-gap: 25px;
-      font-size: 14px;
-      opacity: 0.8;
-    }
+  .article-infos {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    padding-bottom: 30px;
+    margin: 30px 0;
+    display: flex;
+    column-gap: 25px;
+    font-size: 14px;
+    opacity: 0.8;
+  }
 
-    .article-summary {
-      opacity: 0.8;
-      line-height: 1.3;
-      max-width: 1300px;
-    }
+  .article-summary {
+    opacity: 0.8;
+    line-height: 1.3;
+    max-width: 1300px;
+  }
 
-    .article-tags {
-      display: flex;
-      column-gap: 10px;
-      margin-top: 20px;
-    }
+  .article-tags {
+    display: flex;
+    column-gap: 10px;
+    margin-top: 20px;
+  }
 
-    .article-content {
-      display: flex;
-      column-gap: 80px;
-      align-items: flex-start;
+  .article-content {
+    display: flex;
+    column-gap: 80px;
+    align-items: flex-start;
 
-      hr {
-        border: none;
-        height: 1px;
-        color: #fff; /* old IE */
-        background-color: #fff;
-        margin: 70px 0 40px;
-        opacity: 0.2;
-      }
-    }
-
-    .article-slot {
-      flex: 1;
-      max-width: 1300px;
-      position: relative;
-      blockquote {
-        margin-bottom: 20px;
-        color: #999999;
-      }
-      figure + p {
-        margin-top: 15px;
-      }
-      p {
-        margin-bottom: 15px;
-      }
-      h2,
-      h3,
-      h4 {
-        margin-bottom: 25px;
-        line-height: 1.3;
-        font-weight: 600;
-      }
-
-      p + h2,
-      p + h3,
-      p + h4,
-      ul + h2,
-      ul + h3,
-      ul + h4,
-      ol + h2,
-      ol + h3,
-      ol + h4 {
-        margin-top: 50px;
-      }
-      a{
-        text-decoration: underline;
-        background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' fill='none' viewBox='0 0 23 23'%3e%3cpath fill='%23fff' d='M1.77 0v3.538h15.197L0 20.505 2.495 23 19.46 6.033v15.198H23V0H1.77Z'/%3e%3c/svg%3e ");
-        padding-right: 24px;
-        background-position: top 5px right 5px;
-        background-repeat: no-repeat;
-        background-size: 12px;
-        &:hover{
-          opacity: 0.9;
-        }
-      }
-
-      h2 {
-        font-size: 30px;
-      }
-      h3 {
-        font-size: 25px;
-      }
-      h4 {
-        font-size: 30px;
-      }
-
-      li {
-        margin-bottom: 6px;
-      }
-
-      ol,
-      ul {
-        margin-bottom: 25px;
-        margin-left: 16px;
-        text-indent: 5px;
-      }
-
-      ol {
-        list-style: decimal;
-      }
-
-      ul {
-        list-style: disc;
-      }
-
-      figcaption code ,
-      p code {
-        background-color: rgba(255, 255, 255, 0.2);
-        transition: background-color 0.3s ease-in;
-        border-radius: 5px;
-        padding: 2px 5px;
-      }
-    }
-
-    .article-sidebar {
-      position: sticky;
-      padding-top: 20px;
-      top: 40px;
-      max-width: 320px;
-      font-size: 14px;
-      flex: 1;
-      @media (max-width: 992px) {
-        display: none;
-      }
-      b {
-        display: block;
-        font-size: 15px;
-        margin-bottom: 10px;
-      }
-
-      hr {
-        margin: 40px 0;
-        opacity: 0.15;
-      }
-    }
-
-    .article-back {
-      font-size: 16px;
-      svg {
-        margin-right: 7px;
-        transform: scale(-1, 1);
-        vertical-align: 0px;
-      }
-    }
-
-    .astro-code {
-      padding: 15px;
-      border-radius: 5px;
-      margin-bottom: 20px;
-      background-color: #121212 !important;
+    hr {
+      border: none;
+      height: 1px;
+      color: #fff; /* old IE */
+      background-color: #fff;
+      margin: 70px 0 40px;
+      opacity: 0.2;
     }
   }
+
+  .article-slot {
+    flex: 1;
+    max-width: 1300px;
+    position: relative;
+    blockquote {
+      margin-bottom: 20px;
+      color: #999999;
+    }
+    figure + p {
+      margin-top: 15px;
+    }
+    p {
+      margin-bottom: 15px;
+    }
+    h2,
+    h3,
+    h4 {
+      margin-bottom: 25px;
+      line-height: 1.3;
+      font-weight: 600;
+    }
+
+    p + h2,
+    p + h3,
+    p + h4,
+    ul + h2,
+    ul + h3,
+    ul + h4,
+    ol + h2,
+    ol + h3,
+    ol + h4 {
+      margin-top: 50px;
+    }
+    a {
+      text-decoration: underline;
+      background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' fill='none' viewBox='0 0 23 23'%3e%3cpath fill='%23fff' d='M1.77 0v3.538h15.197L0 20.505 2.495 23 19.46 6.033v15.198H23V0H1.77Z'/%3e%3c/svg%3e ");
+      padding-right: 18px;
+      background-position: top 5px right 3px;
+      background-repeat: no-repeat;
+      background-size: 10px;
+      &:hover {
+        opacity: 0.9;
+      }
+    }
+
+    h2 {
+      font-size: 30px;
+    }
+    h3 {
+      font-size: 25px;
+    }
+    h4 {
+      font-size: 30px;
+    }
+
+    li {
+      margin-bottom: 6px;
+    }
+
+    ol,
+    ul {
+      margin-bottom: 25px;
+      margin-left: 16px;
+      text-indent: 5px;
+    }
+
+    ol {
+      list-style: decimal;
+    }
+
+    ul {
+      list-style: disc;
+    }
+
+    figcaption code,
+    p code {
+      background-color: rgba(255, 255, 255, 0.2);
+      transition: background-color 0.3s ease-in;
+      border-radius: 5px;
+      padding: 2px 5px;
+    }
+  }
+
+  .article-sidebar {
+    position: sticky;
+    padding-top: 20px;
+    top: 40px;
+    max-width: 320px;
+    font-size: 14px;
+    flex: 1;
+    @media (max-width: 992px) {
+      display: none;
+    }
+    b {
+      display: block;
+      font-size: 15px;
+      margin-bottom: 10px;
+    }
+
+    hr {
+      margin: 40px 0;
+      opacity: 0.15;
+    }
+  }
+
+  .article-back {
+    font-size: 16px;
+    svg {
+      margin-right: 7px;
+      transform: scale(-1, 1);
+      vertical-align: 0px;
+    }
+  }
+
+  .astro-code {
+    padding: 15px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    background-color: #121212 !important;
+  }
+}
+
 </style>
 <style is:inline>
   header {
     position: static !important;
   }
 </style>
+
+<script>
+  document.addEventListener('astro:page-load', () => {
+    // audio
+    const audioTag = document.getElementById('audio')
+    if (audioTag) {
+      const playPauseBtn = document.getElementById('play-pause')
+      const timeRemaining = document.getElementById('time-remaining')
+  
+      // Toggle play and pause
+      const pauseAudio = () => {
+        audioTag.pause()
+        playPauseBtn.classList.remove('playing')
+      }
+  
+      // Format time in MM:SS
+      const formatTime = (seconds) => {
+        const mins = Math.floor(seconds / 60)
+        const secs = seconds % 60
+        return `${mins}:${parseInt(secs, 10).toString().padStart(2, '0')}`
+      }
+  
+      // Update time remaining
+      audioTag.addEventListener('timeupdate', () => {
+        const timeLeft = Math.ceil(audioTag.duration - audioTag.currentTime)
+        timeRemaining.textContent = formatTime(timeLeft)
+      })
+      //
+      audioTag.addEventListener('ended', () => {
+        playPauseBtn.classList.remove('playing')
+      })
+  
+      // Set initial duration once the metadata is loaded
+      audioTag.addEventListener('loadedmetadata', () => {
+        timeRemaining.textContent = formatTime(audioTag.duration)
+      })
+  
+      // toggle audio
+      playPauseBtn.addEventListener('click', () => {
+        if (audioTag.paused) {
+          audioTag.play()
+          playPauseBtn.classList.add('playing')
+          return
+        }
+        pauseAudio()
+      })
+    }
+
+    // magnified cover
+    const imageBox = document.querySelector(".zoom-box");
+    const original = document.querySelector(".original-img");
+    const magnified = document.querySelector(".zoomed-img");
+
+    function handleMouseMoves(e) {
+      const style = magnified.style;
+      const x = e.pageX - this.offsetLeft;
+      const y = e.pageY - this.offsetTop;
+      const imgWidth = original.offsetWidth;
+      const imgHeight = original.offsetHeight;
+      let xperc = (x / imgWidth) * 100;
+      let yperc = (y / imgHeight) * 100;
+
+      //lets user scroll past right edge of image
+      if (x >= 0.01 * imgWidth) {
+        xperc *= 1.15;
+      }
+
+      //lets user scroll past bottom edge of image
+      if (y >= 0.01 * imgHeight) {
+        yperc *= 1.15;
+      }
+
+      style.backgroundPositionX = `${xperc - 9}%`;
+      style.backgroundPositionY = `${yperc - 9}%`;
+      style.left = `${x - 180}px`;
+      style.top = `${y - 180}px`;
+    }
+
+    imageBox && imageBox.addEventListener("mousemove", handleMouseMoves);
+})
+</script>

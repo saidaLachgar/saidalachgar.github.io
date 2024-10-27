@@ -45,7 +45,7 @@ interface Props {
       document.addEventListener('click', (event) => {
         const linkElement = event.target.closest('a')
 
-        if (linkElement) {
+        if (linkElement && !linkElement.hasAttribute('target')) {
           const href = linkElement.href
           const currentUrl = window.location.href
 

@@ -1,0 +1,14 @@
+---
+
+export interface Props {
+    domainId: string;
+  src?: string;
+}
+
+const { domainId, src } = Astro.props;
+---
+
+<script type="module" define:vars={{ domainId, src }}>
+    import * as ackeeTracker from 'ackee-tracker';
+    ackeeTracker.create(src).record(domainId);
+</script>

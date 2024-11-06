@@ -2,8 +2,6 @@
 
 **IMPORTANT**
 
-- ackee stats
-- Zzz.. bug
 - [-] corss-browser testing
   - [-] SAFARRI MOBILE home playground is broken
 

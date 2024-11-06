@@ -28,7 +28,7 @@ const { data } = Astro.props
               <Icon name="arrow-top-right" width={10} height={10} />
             </a>
           ) : (
-            Object.entries(project.link).map(([key, value]) => <a href={value}>{key}</a>)
+            Object.entries(project.link).map(([key, value]) => <a class="links" target="_blank" href={'https://' + value}>{key}</a>)
           ))}
         <div class="info">
           <div class="details">
@@ -39,11 +39,11 @@ const { data } = Astro.props
                 {project.industry}
               </li>
               <li>
-                <b>Status</b>
+                <b>Classification</b>
                 {project.status}
               </li>
               <li>
-                <b>Technologies</b>
+                <b>Technologies I Used</b>
                 {project.techs?.join(', ')}
               </li>
               <li>
@@ -75,6 +75,14 @@ const { data } = Astro.props
             )}
           </ul>
         </div>
+        {project.demo && (
+          <div class="demo">
+            <video controls>
+              <source src={videos[`../assets/videos/french-reading-tool.mp4`]?.default} type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
+          </div>
+        )}
         {project.status === 'STUDY CASE' ? (
           project
             .images!.slice(0, -1)
@@ -317,6 +325,27 @@ const { data } = Astro.props
       color: #fff;
       font: inherit;
     }
+    .demo {
+      position: relative;
+
+      max-height: 80vh;
+      &:before {
+        display: block;
+        content: '';
+        width: 100%;
+        padding-top: calc(9 / 16) * 100%;
+      }
+      video {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        height: 100%;
+        width: 100%;
+        pointer-events: all;
+      }
+    }
     .study-case {
       margin-bottom: 120px;
       border-radius: 10px;
@@ -383,8 +412,14 @@ const { data } = Astro.props
         margin-left: 5px;
       }
     }
+    .links {
+      text-transform: uppercase;
+      &:not(:last-of-type)::after{
+        content: " - ";
+      }
+    }
     .challenges {
-      max-width: 433px;
+      max-width: 500px;
       > li {
         text-indent: -10px;
         padding-left: 10px;

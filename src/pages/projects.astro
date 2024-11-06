@@ -69,7 +69,7 @@ const badge = (status: string) => (['PLAYGROUND', 'STUDY CASE'].includes(status)
                   <span class="year">{project.year ?? '-'}</span>
                   <span class="role">{project.role ?? '-'}</span>
                   <h2 class="name">
-                    {project.name ?? '-'}&nbsp;
+                    {project.name ?? '-'}&nbsp;{ project.star ? '★' : ''}
                     <span class="badge">{badge(project.status)}</span>
                   </h2>
                   <span class="platform">{project.platform ?? '-'}</span>
@@ -80,6 +80,8 @@ const badge = (status: string) => (['PLAYGROUND', 'STUDY CASE'].includes(status)
           }
         </ul>
       </div>
+      <br>
+      <p data-reveal>★ <i>Highlights projects of notable complexity</i></p>
     </section>
     <div></div>
     <WorkDetails data={[...projects, ...playground]} />
@@ -269,6 +271,7 @@ const badge = (status: string) => (['PLAYGROUND', 'STUDY CASE'].includes(status)
       background-color: #000;
       color: #fff;
       border: 0;
+      font-family: var(--font-family-default);
       &:focus-visible,
       &:focus {
         box-shadow: none;

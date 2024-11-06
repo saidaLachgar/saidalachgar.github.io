@@ -1,5 +1,5 @@
 import mdx from '@astrojs/mdx'
-import netlify from '@astrojs/netlify'
+// import netlify from '@astrojs/netlify'
 import sitemap from '@astrojs/sitemap'
 import compress from 'astro-compress'
 import icon from 'astro-icon'
@@ -7,11 +7,11 @@ import astroMetaTags from 'astro-meta-tags'
 import metaTags from 'astro-meta-tags'
 import robotsTxt from 'astro-robots-txt'
 import { defineConfig } from 'astro/config'
-import { SITE_URL } from './src/data/config'
+import { SITE_METADATA } from './src/consts.ts'
 
 // https://astro.build/config
 export default defineConfig({
-  site: SITE_URL,
+  site: SITE_METADATA.siteUrl,
   prefetch: true,
   compressHTML: true,
   integrations: [
@@ -25,6 +25,4 @@ export default defineConfig({
       iconDir: 'src/assets/icons',
     }),
   ],
-  output: 'server',
-  adapter: netlify(),
 })

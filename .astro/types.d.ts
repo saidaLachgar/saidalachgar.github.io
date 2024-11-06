@@ -194,43 +194,64 @@ declare module 'astro:content' {
 } & { render(): Render[".mdx"] };
 };
 "blog": {
-"exploring-gpt.mdx": {
-	id: "exploring-gpt.mdx";
-  slug: "exploring-gpt";
+"advanced-css-variables-tips.mdx": {
+	id: "advanced-css-variables-tips.mdx";
+  slug: "advanced-css-variables-tips";
   body: string;
   collection: "blog";
   data: InferEntrySchema<"blog">
 } & { render(): Render[".mdx"] };
-"sample-post.mdx": {
-	id: "sample-post.mdx";
-  slug: "sample-post";
+"deploying-a-static-website-with-a-custom-domain-on-github.mdx": {
+	id: "deploying-a-static-website-with-a-custom-domain-on-github.mdx";
+  slug: "deploying-a-static-website-with-a-custom-domain-on-github";
   body: string;
   collection: "blog";
   data: InferEntrySchema<"blog">
 } & { render(): Render[".mdx"] };
-"simple-layout-with-cover.mdx": {
-	id: "simple-layout-with-cover.mdx";
-  slug: "simple-layout-with-cover";
+"dev-tools-tips-to-boost-your-web-development.mdx": {
+	id: "dev-tools-tips-to-boost-your-web-development.mdx";
+  slug: "dev-tools-tips-to-boost-your-web-development";
   body: string;
   collection: "blog";
   data: InferEntrySchema<"blog">
 } & { render(): Render[".mdx"] };
-"simple-layout.mdx": {
-	id: "simple-layout.mdx";
-  slug: "simple-layout";
+"how-to-handle-a-hotfix-using-git-fork.mdx": {
+	id: "how-to-handle-a-hotfix-using-git-fork.mdx";
+  slug: "how-to-handle-a-hotfix-using-git-fork";
   body: string;
   collection: "blog";
   data: InferEntrySchema<"blog">
 } & { render(): Render[".mdx"] };
-"two-columns-with-cover.mdx": {
-	id: "two-columns-with-cover.mdx";
-  slug: "two-columns-with-cover";
+"how-to-target-specific-cells-in-css-grid-css-tip.mdx": {
+	id: "how-to-target-specific-cells-in-css-grid-css-tip.mdx";
+  slug: "how-to-target-specific-cells-in-css-grid-css-tip";
+  body: string;
+  collection: "blog";
+  data: InferEntrySchema<"blog">
+} & { render(): Render[".mdx"] };
+"my-developer-workspace-tools-extensions-and-setup.mdx": {
+	id: "my-developer-workspace-tools-extensions-and-setup.mdx";
+  slug: "my-developer-workspace-tools-extensions-and-setup";
+  body: string;
+  collection: "blog";
+  data: InferEntrySchema<"blog">
+} & { render(): Render[".mdx"] };
+"why-rebase-instead-of-merge-step-by-step-guide.mdx": {
+	id: "why-rebase-instead-of-merge-step-by-step-guide.mdx";
+  slug: "why-rebase-instead-of-merge-step-by-step-guide";
   body: string;
   collection: "blog";
   data: InferEntrySchema<"blog">
 } & { render(): Render[".mdx"] };
 };
 "tags": {
+"css.mdx": {
+	id: "css.mdx";
+  slug: "css";
+  body: string;
+  collection: "tags";
+  data: InferEntrySchema<"tags">
+} & { render(): Render[".mdx"] };
 "default.mdx": {
 	id: "default.mdx";
   slug: "default";
@@ -241,6 +262,13 @@ declare module 'astro:content' {
 "git.mdx": {
 	id: "git.mdx";
   slug: "git";
+  body: string;
+  collection: "tags";
+  data: InferEntrySchema<"tags">
+} & { render(): Render[".mdx"] };
+"tips.mdx": {
+	id: "tips.mdx";
+  slug: "tips";
   body: string;
   collection: "tags";
   data: InferEntrySchema<"tags">

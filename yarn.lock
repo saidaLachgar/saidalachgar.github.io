@@ -1433,6 +1433,13 @@ accessible-astro-components@^2.3.5:
   resolved "https://registry.npmjs.org/accessible-astro-components/-/accessible-astro-components-2.3.5.tgz"
   integrity sha512-QlDkCCWQ2uOJhTOtnP2xWlli2hT3DVWhvg1233yLvwycnxyzaVj4JxyG9Wn0KffkJN3G+M1TRpJh5FB4tsAn/w==
 
+ackee-tracker@^5.1.0:
+  version "5.1.0"
+  resolved "https://registry.yarnpkg.com/ackee-tracker/-/ackee-tracker-5.1.0.tgz#6c41ea5357973347c7c67a26009053bcc0345def"
+  integrity sha512-A7iKkGyUnEXuOzxultQB7hnm4bStYCo1c38MYRRihBfqUP8AImhtZOODb00t9xrXs/BTsg06bz1MKpXeMs9sYw==
+  dependencies:
+    platform "^1.3.6"
+
 acorn-jsx@^5.0.0, acorn-jsx@^5.3.2:
   version "5.3.2"
   resolved "https://registry.npmjs.org/acorn-jsx/-/acorn-jsx-5.3.2.tgz"
@@ -5107,6 +5114,11 @@ pkg-dir@^4.2.0:
   integrity sha512-HRDzbaKjC+AOWVXxAU/x54COGeIv9eb+6CkDSQoNTt4XyWoIJvuPsXizxu/Fr23EiekbtZwmh1IcIG/l/a10GQ==
   dependencies:
     find-up "^4.0.0"
+
+platform@^1.3.6:
+  version "1.3.6"
+  resolved "https://registry.yarnpkg.com/platform/-/platform-1.3.6.tgz#48b4ce983164b209c2d45a107adb31f473a6e7a7"
+  integrity sha512-fnWVljUchTro6RiCFvCXBbNhJc2NijN7oIQxbwsyL0buWJPG85v81ehlHI9fXrJsMNgTofEoWIQeClKpgxFLrg==
 
 postcss-selector-parser@^6.0.10:
   version "6.0.15"

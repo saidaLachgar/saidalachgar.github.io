@@ -5,35 +5,39 @@
  */
 export const SITE_METADATA = {
   theme: "system", // Options: system, light, dark
-  siteUrl: "https://tasb.yon.fun/",
-  siteRepo: "https://github.com/wanoo21/tailwind-astro-starting-blog",
+  siteUrl: "https://saidalachgar.github.io/",
+  siteRepo: "https://github.com/saidaLachgar/saidalachgar.github.io",
   robots: "index, follow", // Options: index, noindex, follow, nofollow
   language: "en", // Options: index, noindex, follow, nofollow
 
   // These are not supported yet
   analytics: {
-    fathom: {
-      site: "", // Add your site id here
-      src: "https://cdn.usefathom.com/fathom.js",
+    ackee: {
+      domainId: "", // Add your domain here
+      src: "https://saida-analytics.netlify.app",
     },
-    googleAnalyticsId: null, // Add your Google Analytics id here
-    metricalApp: null, // Add your Metrical app here
-    plausible: {
-      domain: "", // Add your domain here
-      src: "https://plausible.io/js/plausible.js",
-    },
-    simpleAnalytics: false, // Activate Simple Analytics
-    umami: {
-      site: "", // Add your site id here
-      dataId: "", // Add your data id here
-      host: "/umami.js", // Add your host here
-    },
-    // amplitudeApiKey: null, // Add your Amplitude Api Key here, not yet implemented
-    matomo: {
-      id: "", // Add your Matomo id here
-      url: "", // Add your Matomo url here
-    },
-    minimalAnalyticsId: null, // Add your Minimal Analytics id here
+    // fathom: {
+    //   site: "", // Add your site id here
+    //   src: "https://cdn.usefathom.com/fathom.js",
+    // },
+    // googleAnalyticsId: null, // Add your Google Analytics id here
+    // metricalApp: null, // Add your Metrical app here
+    // plausible: {
+    //   domain: "", // Add your domain here
+    //   src: "https://plausible.io/js/plausible.js",
+    // },
+    // simpleAnalytics: false, // Activate Simple Analytics
+    // umami: {
+    //   site: "", // Add your site id here
+    //   dataId: "", // Add your data id here
+    //   host: "/umami.js", // Add your host here
+    // },
+    // // amplitudeApiKey: null, // Add your Amplitude Api Key here, not yet implemented
+    // matomo: {
+    //   id: "", // Add your Matomo id here
+    //   url: "", // Add your Matomo url here
+    // },
+    // minimalAnalyticsId: null, // Add your Minimal Analytics id here
   },
   // newsletter: {
   //     // supports mailchimp, buttondown, convertkit, klaviyo, revue, emailoctopus

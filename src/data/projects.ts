@@ -7,9 +7,11 @@ export type Project = {
   images?: string[]
   role: string
   status: string
+  demo?: string
   industry?: string
   subtitle?: string
   description?: string
+  star?: boolean
   challenges?: string[]
   solutions?: string[]
 }
@@ -25,12 +27,13 @@ const projects: Project[] = [
   {
     name: 'SysGlad-hta',
     year: 2023,
+    star: true,
     platform: 'Symfony/Angular',
     status: 'RELEASED',
     images: ['39', '54', '31', '30'],
     role: 'Full Stack, Design',
     industry: 'Electricity control, ONEE',
-    techs: ['Symfony', 'Angular', 'API Platform', 'Chart.js'],
+    techs: ['Symfony', 'Angular', 'API Platform', 'ApexCharts.js'],
     description: 'Electric Power Quality Monitoring System, facilitating the tracking and management of electricity production, transmission, and distribution. It employs an algorithm for anomaly detection and network performance analysis.',
     challenges: [
       'Designing a database schema to accurately represent the electricity distribution network',
@@ -53,7 +56,7 @@ const projects: Project[] = [
     role: 'Frontend',
     images: ['47', '25', 'mff', '7'],//, '16'
     industry: 'Food',
-    techs: ['Prestashop'],
+    techs: ['Prestashop', 'Webpack'],
     description: 'An e-commerce platform. It offers a diverse range of items such as fragrant teas, carefully roasted coffees, crispy shortbread and wafers, and more..',
     challenges: [
       "Convert Figma designs into a custom PrestaShop theme",
@@ -72,10 +75,10 @@ const projects: Project[] = [
     name: 'Agadir Oufella',
     link: {
       'Website': 'agadir-oufella.ma',
-      'History': 'https://www.agadir-oufella.ma/fr/histoire-et-heritage/',
+      'History': 'www.agadir-oufella.ma/fr/histoire-et-heritage/',
       'Tickets': 'tickets.agadir-oufella.ma',
-      'App store': 'https://apps.apple.com/fr/app/agadir-oufella/id6450891651',
-      'Google play': 'https://play.google.com/store/apps/details?id=com.agadiroufella.app204353&pli=1'
+      'App store': 'apps.apple.com/fr/app/agadir-oufella/id6450891651',
+      'Google play': 'play.google.com/store/apps/details?id=com.agadiroufella.app204353&pli=1'
     },
     year: 2023,
     platform: 'Multi-platform',
@@ -83,7 +86,7 @@ const projects: Project[] = [
     role: 'Frontend',
     images: ['64', '63', '62', '61'],
     industry: 'Tourism',
-    techs: ['WordPress', "Symfony", "React Native", 'GSAP', 'OpenSeadragon'],
+    techs: ['WordPress', "React Native", 'GSAP', 'OpenSeadragon', 'Webpack'],
     description: 'Developed a multi-platform project for Agadir Oufella, a historical touristic site. The project includes a WordPress website for general information, a Symfony-based platform for ticket sales, and a React Native app for an audio guide',
     challenges: [
       "Implementing smooth animations and interactive elements",
@@ -105,7 +108,7 @@ const projects: Project[] = [
     role: 'Frontend',
     images: ['43', '27', '18', 'tots', '9'],
     industry: 'Bathroom Furniture and Accessories',
-    techs: ['PHP', 'Webpack', 'Algolia'],
+    techs: ['Handlebars', 'SCSS/ES6+ JS', 'Webpack', 'Algolia'],
     description: 'tots.fr is an e-commerce website specializing in the online sales of bathroom furniture, and all accessories needed to create or renovate bathroom.',
     challenges: [
       "Complex Product Page Requirements",
@@ -129,7 +132,7 @@ const projects: Project[] = [
     role: 'Frontend',
     images: ['3', '21', '12', '40'],
     industry: 'Digital Agency',
-    techs: ['GSAP', 'webpack'],
+    techs: ['Handlebars', 'SCSS/ES6+ JS', 'Webpack', 'GSAP'],
     description: "A digital agency website showcasing web development, digital strategy, and consulting services",
     challenges: [
       "Ensuring Smooth Animations",
@@ -146,13 +149,14 @@ const projects: Project[] = [
   {
     name: 'Dunforce',
     link: 'dunforce.com',
+    star: true,
     year: 2024,
     platform: 'React',
     status: 'RELEASED',
     images: ['57', '56', '52', '32'],
     role: 'Frontend',
     industry: 'Social housing',
-    techs: ['Symfony', 'React', 'API Platform', 'AWS'],
+    techs: ['React', 'Chart.js', 'WebSocket', 'React query', 'Axios'],
     description: 'An application focused on big data solutions for social housing. It uses machine learning to predict invoice payment timelines, automates collection processes, integrates with ERPs, and supports various financial services through an open architecture.',
     challenges: [
       'Coordinating frontend changes with backend updates during the migration from v1 to v2',
@@ -175,7 +179,7 @@ const projects: Project[] = [
     role: 'Full Stack',
     images: ['45', '22', '13', '4'],
     industry: 'Self-Storage, Real Estate',
-    techs: ['Symfony'],
+    techs: ['SCSS/ES6+ JS', 'Webpack', 'Symfony'],
     description: 'Yesbox is a self-storage company located in Hauts-de-France. The website provides information about their storage units and automates the process of requesting quotes and checking box availability.',
     challenges: [
       'Automating the process of checking storage unit availability and requesting quotes',
@@ -198,7 +202,7 @@ const projects: Project[] = [
     role: 'Frontend',
     images: ['51', '55', '34', '33'],
     industry: 'Golf',
-    techs: ['Symfony', 'Webpack', 'SCSS', 'Google map API'],
+    techs: ['Handlebars', 'SCSS/ES6+ JS', 'Webpack', 'Google map API'],
     description: 'A website dedicated to promoting golf tourism in Morocco. The website provides information about various golf courses, travel packages, accommodation options, and related services.',
     challenges: [
       "Implement interfaces for customizing golf trip packages",
@@ -215,6 +219,7 @@ const projects: Project[] = [
   {
     name: 'HIFI FILTER',
     link: 'hifi-filter.com',
+    star: true,
     year: 2021,
     platform: 'WordPress',
     status: 'RELEASED',
@@ -238,13 +243,14 @@ const projects: Project[] = [
   {
     name: 'Laboratoires de Biarritz',
     link: 'laboratoires-biarritz.com',
+    star: true,
     year: 2023,
     platform: 'Prestashop',
     status: 'RELEASED',
     role: 'Frontend',
     images: ['50', '38', '36', 'ldb', '35'],
     industry: 'Cosmetics',
-    techs: ['Prestashop'],
+    techs: ['Prestashop', 'Webpack', 'Creative Elements'],
     challenges: [
       "Customizing checkout process to improve user experience",
       "Integrating third-party modules with custom frontend",
@@ -265,7 +271,7 @@ const projects: Project[] = [
     role: 'Frontend',
     images: ['28', '19', '10', '49'],
     industry: 'Construction, Renovation',
-    techs: ['React Native'],
+    techs: ['React Native', 'React query', 'Axios'],
     description: "A French app that connects individuals and businesses with professionals in the construction, renovation, and home improvement sectors. The platform allows users to find and hire experts such as builders, plumbers, electricians, painters, and other tradespeople for various projects. Key features include service listings, project showcases, and customer reviews, helping users make informed decisions when selecting contractors.",
     challenges: [
       "Developing the app to work seamlessly across iOS, Android, and web platforms",
@@ -278,7 +284,7 @@ const projects: Project[] = [
       "Building robust components and leveraging third-party libraries for features like listings and reviews"
     ],
   },
-  // todo 🏁
+  // Portfolio
   {
     name: 'Portfolio',
     link: 'saidalachgar.dev',
@@ -328,7 +334,7 @@ const projects: Project[] = [
     role: 'Full Stack',
     // images: ['xx', 'xx', 'xx', 'xx'],
     industry: 'Removals & Relocations',
-    techs: ['Wordpress'],
+    techs: ['Wordpress', "Enfold"],
     description: "It's a company specialized in national and international removals for individuals as well as companies",
     challenges: [
       "Customizing the Enfold Theme to match the brand's colors and design specifications",
@@ -407,6 +413,7 @@ const projects: Project[] = [
   {
     name: 'Myseelver',
     year: 2024,
+    star: true,
     platform: 'React',
     status: 'RELEASED',
     role: 'Frontend',
@@ -477,7 +484,7 @@ const projects: Project[] = [
     role: 'Frontend',
     // images: ['xx', 'xx', 'xx', 'xx'],
     industry: 'eCommerce',
-    techs: ['Sylius', 'Symfony', 'Stripe'],
+    techs: ['Sylius', 'SCSS/ES6+ JS', 'Webpack'],
     description: 'European platform for online golf equipment sales, featuring a unique catalog with exclusive brands',
     challenges: [
       "Overriding Sylius to create a highly customized and unique interface",
@@ -500,7 +507,7 @@ const projects: Project[] = [
     role: 'Frontend',
     // images: ['xx', 'xx', 'xx', 'xx'],
     industry: 'Healthcare',
-    techs: ['xx'],
+    techs: ['Handlebars', 'SCSS/ES6+ JS', 'Webpack'],
     description: 'A platform connecting patients seeking home healthcare with independent nurses, physiotherapists, and speech therapists. The WordPress site provides comprehensive information about the Inzee Care platform, detailing services, solutions, and pricing for professionals, establishments, and patients.',
     challenges: [
       "Creating a wide range of custom Gutenberg components that align with the brand's design",
@@ -510,6 +517,25 @@ const projects: Project[] = [
     solutions: [
       "Developing custom JS and CSS for each component to minimize asset file sizes",
       "Achieving a high Google PageSpeed score by optimizing the site’s performance"
+    ],
+  },
+  // French Reading Tool
+  {
+    name: 'French Reading Tool',
+    link: 'french-reading-tool.netlify.app',
+    year: 2024,
+    platform: 'React',
+    status: 'Tool',
+    role: 'Fullstack',
+    demo: 'french-reading-tool',
+    industry: 'Education & Language Learning',
+    techs: ['Vite.js', 'React', 'Primer UI', 'Axios'],
+    subtitle: 'French Reading and Pronunciation',
+    description: 'A language-learning companion designed to help my little sister (and anyone learning French!) tackle the challenges of reading and pronouncing French. With this tool, users can snap a picture of any French text, instantly see the translation, and even hear how to pronounce each word, making language practice more accessible and enjoyable',
+    solutions: [
+      "Built a smooth, multi-step workflow using React Query to manage data from OCR, translation, and TTS APIs",
+      "Ensuring the tool provides accurate translations and clear audio for pronunciation",
+      "Added interactive text features so users can click on any word for instant pronunciation, empowering them to learn at their own pace"
     ],
   },
   // OCEAMIC II
@@ -573,7 +599,7 @@ const playground: Project[] = [
     role: 'Full Stack, Design',
     images: ['41', '53', '1', '2', 'playground-what-if'],
     industry: 'Innovation and Creativity',
-    techs: ['MongoDB', 'Express.js', 'React', 'Node.js', 'Vercel'],
+    techs: ['MongoDB', 'Express.js', 'React', 'Vite.js', 'React query', 'Axios'],
     subtitle: 'Websites and app ideas platform',
     description: 'A playground website where people can share their ideas for websites and apps, fostering creativity and innovation. It serves as a valuable resource for developers and entrepreneurs looking for new project ideas or opportunities to improve existing platforms. ',
     challenges: [
@@ -595,7 +621,7 @@ const playground: Project[] = [
     role: 'Full Stack',
     images: ['46', '14', '23', '5', 'playground-notes'],
     industry: 'Productivity',
-    techs: ['Vite.js', 'Firebase', 'Markdown', 'CSS'],
+    techs: ['Vite.js', 'Firebase', 'Markdown'],
     subtitle: 'Personal minimalistic notes taking app',
     description: 'A minimalistic notes taking application designed for personal use, featuring a clean interface with a markdown editor and preview',
     challenges: [

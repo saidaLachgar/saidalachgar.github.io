@@ -13,7 +13,7 @@ export const SITE_METADATA = {
   // These are not supported yet
   analytics: {
     ackee: {
-      domainId: "", // Add your domain here
+      domainId: "ad53c52b-1b11-4050-abc2-062c1460ce7e",
       src: "https://saida-analytics.netlify.app",
     },
     // fathom: {

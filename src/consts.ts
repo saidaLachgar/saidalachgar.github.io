@@ -5,7 +5,7 @@
  */
 export const SITE_METADATA = {
   theme: "system", // Options: system, light, dark
-  siteUrl: "https://saidalachgar.github.io/",
+  siteUrl: "https://saidalachgar.dev/",
   siteRepo: "https://github.com/saidaLachgar/saidalachgar.github.io",
   robots: "index, follow", // Options: index, noindex, follow, nofollow
   language: "en", // Options: index, noindex, follow, nofollow

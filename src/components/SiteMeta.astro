@@ -46,8 +46,8 @@ if (article?.cover) {
   const importedOgImage = await import(`../assets/img/og-image.png`).then((m) => m.default)
   openGraphImage = await getImage({
     src: importedOgImage,
-    width: 1200,
-    height: 630,
+    width: 1280,
+    height: 640,
   })
 }
 
@@ -95,7 +95,7 @@ const isProduction = import.meta.env.PROD
         creator: twitterCreator.replace('https://twitter.com/', '@'),
         title,
         description,
-        image: openGraphImage.src,
+        image: `${SITE_METADATA.siteUrl}${openGraphImage.src}`,
       }) ||
         {}),
     }}
@@ -104,10 +104,10 @@ const isProduction = import.meta.env.PROD
         type: 'website',
         url: Astro.url,
         title,
-        image: openGraphImage.src,
+        image: `${SITE_METADATA.siteUrl}${openGraphImage.src}`,
       },
       image: {
-        url: openGraphImage.src,
+        url: `${SITE_METADATA.siteUrl}${openGraphImage.src}`,
         type: `image/${openGraphImage.options.format}`,
         width: openGraphImage.options.width,
         height: openGraphImage.options.height,

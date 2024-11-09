@@ -45,8 +45,8 @@ import TimeComponent from './TimeComponent.astro'
         <li><p>{presentation.location} <TimeComponent /></p></li>
       </ul>
       <ul class="contact">
-        <li class="click-to-copy"><a href={`mailto:${presentation.mail}`} target="_blank">{presentation.mail}</a><i/></li>
-        <li><a href={`sms:${presentation.sms_link}`}>text {presentation.sms}</a></li>
+        <li class="click-to-copy"><a href={`mailto:${presentation.mail}`} target="_self">{presentation.mail}</a><i/></li>
+        <li><a href={`sms:${presentation.sms_link}`} target="_self">text {presentation.sms}</a></li>
       </ul>
     </div>
   </div>

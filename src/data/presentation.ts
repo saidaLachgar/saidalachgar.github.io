@@ -15,7 +15,7 @@ type Presentation = {
 };
 
 const presentation: Presentation = {
-  mail: "hello@saidalachgar.com",
+  mail: "contact@saidalachgar.dev",
   sms_link: "+212641346928",
   sms: "(212) 641-346928",
   location: 'morocco, ag',

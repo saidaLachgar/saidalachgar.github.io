@@ -45,24 +45,24 @@ import TimeComponent from './TimeComponent.astro'
         <li><p>{presentation.location} <TimeComponent /></p></li>
       </ul>
       <ul class="contact">
-        <li class="click-to-copy"><a href={`mailto:${presentation.mail}`} target="_self">{presentation.mail}</a><i/></li>
-        <li><a href={`sms:${presentation.sms_link}`} target="_self">text {presentation.sms}</a></li>
+        <li><a href={`mailto:${presentation.mail}`} target="_self">{presentation.mail}</a><i/></li>
+        <li><a href={`sms:${presentation.sms_link}`} target="_self">text {presentation.sms}</a><i/></li>
       </ul>
     </div>
   </div>
 </header>
 
 <script>
-  const mail = document.querySelector('.click-to-copy')
-  if (mail) {
-    const mailLink = mail.querySelector('a')
-    const copyMessage = mail.querySelector('i')
-    mailLink.addEventListener('click', (e) => {
+  const contactLinks = document.querySelectorAll('header .contact a')
+  contactLinks.forEach(contact => {
+    const mailLink = contact.href.replace('mailto:', '').replace('sms:', '')
+    const copyMessage = contact.nextElementSibling
+    contact.addEventListener('click', (e) => {
       e.preventDefault();
       if (!navigator.clipboard) {
         return
       }
-      navigator.clipboard.writeText(mailLink.innerText || mailLink.textContent).then(
+      navigator.clipboard.writeText(mailLink).then(
         () => {
           copyMessage.textContent = '(copied!)'
         },
@@ -75,7 +75,7 @@ import TimeComponent from './TimeComponent.astro'
         copyMessage.textContent = ''
       }, 2000)
     })
-  }
+  });
 </script>
 
 <!-- Cal element-click embed code begins -->
@@ -222,12 +222,14 @@ import TimeComponent from './TimeComponent.astro'
       flex: 1;
       min-width: 100px;
     }
-    .click-to-copy i{
-      position: absolute;
-      white-space: nowrap;
-      font-size: 10px;
-      margin-top: 2px;
-      margin-left: 10px;
+    .contact{
+      i{
+        position: absolute;
+        white-space: nowrap;
+        font-size: 10px;
+        margin-top: 2px;
+        margin-left: 10px;
+      }
     }
     @media (max-width: 655px) {
       .logo {

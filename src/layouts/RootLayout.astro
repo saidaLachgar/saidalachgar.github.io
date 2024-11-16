@@ -25,9 +25,7 @@ interface Props {
 ---
 
 <html lang={t('siteMetadata.language')} dir="ltr">
-  <head>
-    <SiteMeta {...Astro.props} />
-  </head>
+  <SiteMeta {...Astro.props} />
   <body style="background-color: #000;">
     <div id="loader" style="display: none;"></div>
     <div id="main">

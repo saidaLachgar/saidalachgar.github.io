@@ -232,6 +232,7 @@ import TimeComponent from './TimeComponent.astro'
       }
     }
     @media (max-width: 655px) {
+    position: static !important;
       .logo {
         width: 100%;
         svg {
@@ -240,7 +241,6 @@ import TimeComponent from './TimeComponent.astro'
           width: auto;
         }
       }
-      .navigation,
       .info {
         display: none;
       }

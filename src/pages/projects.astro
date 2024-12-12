@@ -103,7 +103,14 @@ const badge = (status: string) => (['PLAYGROUND', 'STUDY CASE'].includes(status)
       })
     })
 
-    const validateToken = (token) => {
+    const allowAccess = () => {
+      document.querySelector('.passcode').style.display = 'none'
+      setTimeout(() => {
+        document.querySelector('#projects').style.display = 'block'
+      }, 10)
+    };
+
+    const validateToken = async (token) => {
       try {
         // Decode the token
         const decodedPayload = JSON.parse(atob(token))
@@ -114,11 +121,9 @@ const badge = (status: string) => (['PLAYGROUND', 'STUDY CASE'].includes(status)
           document.getElementById('form-message').textContent = 'Token expired. Please request a new token.'
           return
         }
+
         localStorage.setItem('passcode', token)
-        document.querySelector('.passcode').style.display = 'none'
-        setTimeout(() => {
-          document.querySelector('#projects').style.display = 'block'
-        }, 10)
+        allowAccess();
       } catch (error) {
         document.getElementById('form-message').textContent = 'Invalid token.'
       }
@@ -132,12 +137,35 @@ const badge = (status: string) => (['PLAYGROUND', 'STUDY CASE'].includes(status)
     document.querySelector('.passcode').addEventListener('submit', (e) => {
       e.preventDefault()
       document.getElementById('token-check').dispatchEvent(new Event('click'))
-    })
+    });
 
-    const storedToken = localStorage.getItem('passcode')
-    if (storedToken) {
-      validateToken(storedToken)
-    }
+    (async function() {
+      const storedToken = localStorage.getItem('passcode')
+      if (storedToken) {
+        validateToken(storedToken)
+        return;
+      } 
+
+      const notRestricted = localStorage.getItem('notRestricted')
+      if (notRestricted) {
+        allowAccess();
+        return;
+      } 
+
+      try {
+        const response = await fetch('https://ipinfo.io/json?token=3f62e9055140fe');
+        const data = await response.json();
+        const restrictedCountries = ['MA']; 
+        const userCountry = data.country;
+
+        if (!restrictedCountries.includes(userCountry)) {
+          localStorage.setItem('notRestricted', 'true')
+          allowAccess();
+        }
+      } catch (error) {
+        console.error('Failed to fetch location data:', error);
+      }
+    })();
   })
 </script>
 

@@ -28,7 +28,11 @@ const { data } = Astro.props
               <Icon name="arrow-top-right" width={10} height={10} />
             </a>
           ) : (
-            Object.entries(project.link).map(([key, value]) => <a class="links" target="_blank" href={'https://' + value}>{key}</a>)
+            Object.entries(project.link).map(([key, value]) => (
+              <a class="links" target="_blank" href={'https://' + value}>
+                {key}
+              </a>
+            ))
           ))}
         <div class="info">
           <div class="details">
@@ -42,10 +46,12 @@ const { data } = Astro.props
                 <b>Classification</b>
                 {project.status}
               </li>
-              <li>
-                <b>Technologies I Used</b>
-                {project.techs?.join(', ')}
-              </li>
+              {project.techs?.length && (
+                <li>
+                  <b>Technologies I Used</b>
+                  {project.techs?.join(', ')}
+                </li>
+              )}
               <li>
                 <b>Role</b>
                 {project.role}
@@ -108,7 +114,7 @@ const { data } = Astro.props
                       alt={project.name}
                       width="557"
                       height="317"
-                      loading="lazy" 
+                      loading="lazy"
                     />
                   ) : (
                     <video autoplay muted loop playsinline preload="none">
@@ -415,8 +421,19 @@ const { data } = Astro.props
     }
     .links {
       text-transform: uppercase;
-      &:not(:last-of-type)::after{
-        content: " - ";
+      position: relative;
+
+      &:not(:first-of-type) {
+        padding-left: 25px;
+        &::before {
+          content: ' - ';
+          position: absolute;
+          left: 9px;
+        }
+      }
+      &:hover {
+        text-decoration: underline;
+        opacity: 0.9;
       }
     }
     .challenges {

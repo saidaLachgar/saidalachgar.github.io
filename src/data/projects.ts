@@ -74,11 +74,11 @@ const projects: Project[] = [
   {
     name: 'Agadir Oufella',
     link: {
-      'Website': 'agadir-oufella.ma',
-      'History': 'www.agadir-oufella.ma/fr/histoire-et-heritage/',
-      'Tickets': 'tickets.agadir-oufella.ma',
-      'App store': 'apps.apple.com/fr/app/agadir-oufella/id6450891651',
-      'Google play': 'play.google.com/store/apps/details?id=com.agadiroufella.app204353&pli=1'
+      'Official Website': 'agadir-oufella.ma',
+      'History Website': 'www.agadir-oufella.ma/fr/histoire-et-heritage/',
+      'Tickets Website': 'tickets.agadir-oufella.ma',
+      'ios App': 'apps.apple.com/fr/app/agadir-oufella/id6450891651',
+      'Android App ': 'play.google.com/store/apps/details?id=com.agadiroufella.app204353&pli=1'
     },
     year: 2023,
     platform: 'Multi-platform',
@@ -658,7 +658,7 @@ const playground: Project[] = [
 const projectStats: ProjectStats[] = [
   {
     label: 'Codecraft Mastery',
-    value: 5,
+    value: new Date().getFullYear() - 2019 - (new Date().getMonth() < 9 ? 1 : 0), // Calculate years since Oct 2019,
     caption: 'Years',
   },
   {
@@ -667,7 +667,7 @@ const projectStats: ProjectStats[] = [
   },
   {
     label: 'Contributed projects',
-    value: 16,
+    value: 15,
   },
   {
     label: 'Supervised projects',

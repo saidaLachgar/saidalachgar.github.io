@@ -4,6 +4,6 @@ import { Icon } from 'astro-icon/components'
 const URL = `https://www.linkedin.com/sharing/share-offsite/?url=${Astro.request.url}`
 ---
 
-<a class="social-share-btn" target="_blank" href={URL} rel="noopener noreferrer">
+<a class="social-share-btn" target="_blank" href={URL} aria-label="share on linkedin" rel="noopener noreferrer">
   <Icon name="linkedin" width={20} height={20} />
 </a>

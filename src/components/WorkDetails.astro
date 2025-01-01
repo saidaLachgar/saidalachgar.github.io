@@ -173,7 +173,7 @@ const { data } = Astro.props
     // show details
     document.querySelectorAll('[data-target]').forEach((project) => {
       project.addEventListener('click', () => {
-        let target = document.querySelector(`#${project.dataset.target}`)
+        const target = document.querySelector(`#${project.dataset.target}`)
         target.classList.add('show')
         document.body.style.overflow = 'hidden'
       })
@@ -182,7 +182,7 @@ const { data } = Astro.props
     // close
     document.querySelectorAll('.work-description .close').forEach((button) => {
       button.addEventListener('click', () => {
-        let target = button.closest('.work-description')
+        const target = button.closest('.work-description')
         target.classList.remove('show')
         document.body.style.overflow = 'unset'
       })
@@ -190,10 +190,10 @@ const { data } = Astro.props
 
     // next/prev
     const navigate = (button, next) => {
-      let target = button.closest('.work-description')
-      let current = document.querySelector(`[data-target=${target.id}]`)
-      let currentLi = current.closest('li')
-      let nextOrPrev = next ? currentLi.nextElementSibling : currentLi.previousElementSibling
+      const target = button.closest('.work-description')
+      const current = document.querySelector(`[data-target=${target.id}]`)
+      const currentLi = current.closest('li')
+      const nextOrPrev = next ? currentLi.nextElementSibling : currentLi.previousElementSibling
       if (nextOrPrev && !nextOrPrev.classList.contains('thead')) {
         ;(nextOrPrev.querySelector('[data-target]') ?? nextOrPrev).click()
       } else {

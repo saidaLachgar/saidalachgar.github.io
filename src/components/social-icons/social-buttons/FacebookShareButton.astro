@@ -4,6 +4,6 @@ import { Icon } from 'astro-icon/components'
 const URL = `https://www.facebook.com/sharer/sharer.php?u=${Astro.request.url}`
 ---
 
-<a class="social-share-btn" target="_blank" href={URL} rel="noopener noreferrer">
+<a class="social-share-btn" target="_blank" href={URL} aria-label="share on facebook" rel="noopener noreferrer">
   <Icon name="facebook" width={20} height={20} />
 </a>

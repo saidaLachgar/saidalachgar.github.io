@@ -90,27 +90,38 @@ const badge = (status: string) => (['PLAYGROUND', 'STUDY CASE'].includes(status)
 
 <script>
   document.addEventListener('astro:page-load', () => {
+    const passcode = document.querySelector('.passcode');
     const cells = ['year', 'role', 'name', 'platform', 'industry']
     document.addEventListener('input', () => {
-      const filters = cells.map((id) => document.getElementById(`filter-${id}`).value.toLowerCase())
+      const filters = cells.map((id) => {
+        const filterInput = document.getElementById(`filter-${id}`);
+        if (filterInput) {
+          return filterInput.value.toLowerCase();
+        }
+      })
 
       document.querySelectorAll('.project').forEach((project) => {
-        const matches = cells.every((id, i) =>
-          project.querySelector(`.${id}`).textContent.toLowerCase().includes(filters[i])
-        )
-        console.log('matches', matches)
+        const matches = cells.every((id, i) => {
+          const  projectText = project.querySelector(`.${id}`);
+          if (projectText) {
+            return projectText.textContent.toLowerCase().includes(filters[i])
+          }
+        })
         project.classList.toggle('hidden', !matches)
       })
     })
 
     const allowAccess = () => {
-      document.querySelector('.passcode').style.display = 'none'
-      setTimeout(() => {
-        document.querySelector('#projects').style.display = 'block'
+      const projects = document.querySelector('#projects');
+      passcode && (passcode.style.display = 'none');
+      projects && setTimeout(() => {
+        projects.style.display = 'block'
       }, 10)
     };
 
     const validateToken = async (token) => {
+      const formMessage = document.getElementById('form-message');
+
       try {
         // Decode the token
         const decodedPayload = JSON.parse(atob(token))
@@ -118,25 +129,26 @@ const badge = (status: string) => (['PLAYGROUND', 'STUDY CASE'].includes(status)
 
         // Check if the token has expired
         if (now > decodedPayload.exp) {
-          document.getElementById('form-message').textContent = 'Token expired. Please request a new token.'
+          formMessage && (formMessage.textContent = 'Token expired. Please request a new token.')
           return
         }
 
         localStorage.setItem('passcode', token)
         allowAccess();
       } catch (error) {
-        document.getElementById('form-message').textContent = 'Invalid token.'
+        formMessage && (formMessage.textContent = 'Invalid token.')
       }
     }
 
-    document.getElementById('token-check').addEventListener('click', () => {
+    const tokenCheck = document.getElementById('token-check')
+    tokenCheck && tokenCheck.addEventListener('click', () => {
       const inputToken = document.getElementById('token-input')?.value
       validateToken(inputToken)
     })
 
-    document.querySelector('.passcode').addEventListener('submit', (e) => {
+    passcode && passcode.addEventListener('submit', (e) => {
       e.preventDefault()
-      document.getElementById('token-check').dispatchEvent(new Event('click'))
+      tokenCheck && tokenCheck.dispatchEvent(new Event('click'))
     });
 
     (async function() {

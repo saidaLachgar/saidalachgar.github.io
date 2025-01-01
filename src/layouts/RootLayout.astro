@@ -78,7 +78,7 @@ interface Props {
               'लोड हो रहा है...',
             ]
 
-            let currentGreeting = 0
+            var currentGreeting = 0
             setInterval(() => {
               loader.textContent = loadingMessages[currentGreeting]
               currentGreeting = (currentGreeting + 1) % loadingMessages.length

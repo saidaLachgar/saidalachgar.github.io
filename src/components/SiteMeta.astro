@@ -4,6 +4,7 @@ import { ViewTransitions } from 'astro:transitions'
 import { SEO } from 'astro-seo'
 import { getEntry, type CollectionEntry } from 'astro:content'
 import Favicon from '../../public/favicon.svg'
+import OgImage from '../../public/og-image.png'
 import { getImage } from 'astro:assets'
 import Analytics from './Analytics.astro'
 
@@ -43,9 +44,8 @@ if (article?.cover) {
     height: 630,
   })
 } else {
-  const importedOgImage = await import(`../assets/img/og-image.png`).then((m) => m.default)
   openGraphImage = await getImage({
-    src: importedOgImage,
+    src: OgImage,
     width: 1280,
     height: 640,
   })
@@ -59,11 +59,9 @@ const isProduction = import.meta.env.PROD
   <SEO
     title={title}
     {titleTemplate}
-    titleDefault={SITE_METADATA.title}
     description={description}
     nofollow={robots.includes('nofollow')}
     noindex={robots.includes('noindex')}
-    url={Astro.url}
     charset="utf-8"
     extend={{
       meta: [
@@ -84,7 +82,7 @@ const isProduction = import.meta.env.PROD
         { rel: 'apple-touch-icon', sizes: '76x76', href: appleTouchIcon.src },
         { rel: 'icon', type: 'image/svg', sizes: '32x32', href: favicon32.src },
         { rel: 'icon', type: 'image/svg', sizes: '16x16', href: favicon16.src },
-        { rel: 'mask-icon', href: favicon16.src, color: 'black' },
+        { rel: 'mask-icon', href: favicon16.src },
         { rel: 'alternate', type: 'application/rss+xml', href: '/rss.xml' },
       ],
     }}

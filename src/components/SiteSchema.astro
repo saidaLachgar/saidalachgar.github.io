@@ -1,0 +1,19 @@
+---
+import { Schema } from "astro-seo-schema";
+
+interface Props {
+  primarySchema?: any
+  secondarySchema?: any
+}
+
+const { primarySchema, secondarySchema } = Astro.props
+
+---
+
+{primarySchema && (
+  <Schema item={primarySchema} />
+)}
+
+{secondarySchema && (
+  <Schema item={secondarySchema} />
+)}

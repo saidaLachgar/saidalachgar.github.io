@@ -1,3 +1,5 @@
+import { PERSON } from "@/consts"
+
 export type Project = {
   link?: string | { [key: string]: string }
   name: string
@@ -658,7 +660,7 @@ const playground: Project[] = [
 const projectStats: ProjectStats[] = [
   {
     label: 'Codecraft Mastery',
-    value: new Date().getFullYear() - 2019 - (new Date().getMonth() < 9 ? 1 : 0), // Calculate years since Oct 2019,
+    value: PERSON.yearsOfExperience,
     caption: 'Years',
   },
   {

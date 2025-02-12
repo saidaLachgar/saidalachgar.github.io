@@ -1,8 +1,8 @@
 ---
-import presentation from '@/data/presentation'
 import { Icon } from 'astro-icon/components'
 import SkipToContent from '../components/SkipToContent.astro'
 import TimeComponent from './TimeComponent.astro'
+import { PERSON } from '@/consts'
 ---
 
 <header>
@@ -42,11 +42,11 @@ import TimeComponent from './TimeComponent.astro'
             data-cal-link="saidalachgar/15min">Let's Collaborate – Book a Call</button
           >
         </li>
-        <li><p>{presentation.location} <TimeComponent /></p></li>
+        <li><p>{PERSON.location} <TimeComponent /></p></li>
       </ul>
       <ul class="contact">
-        <li><a href={`mailto:${presentation.mail}`} target="_self">{presentation.mail}</a><i/></li>
-        <li><a href={`sms:${presentation.sms_link}`} target="_self">text {presentation.sms}</a><i/></li>
+        <li><a href={`mailto:${PERSON.mail}`} target="_self">{PERSON.mail}</a><i/></li>
+        <li><a href={`sms:${PERSON.sms_link}`} target="_self">text {PERSON.sms}</a><i/></li>
       </ul>
     </div>
   </div>

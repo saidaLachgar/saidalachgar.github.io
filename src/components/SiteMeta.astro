@@ -7,6 +7,7 @@ import Favicon from '../../public/favicon.svg'
 import OgImage from '../../public/og-image.png'
 import { getImage } from 'astro:assets'
 import Analytics from './Analytics.astro'
+import SiteSchema from './SiteSchema.astro'
 
 interface Props {
   title: string
@@ -14,6 +15,9 @@ interface Props {
   ogImage?: string
   robots?: string // default to SITE_METADATA.robots
   titleTemplate?: string
+  keywords?: string
+  primarySchema?: any
+  secondarySchema?: any
   article?: {
     publishedTime: Date
     modifiedTime?: Date
@@ -24,7 +28,16 @@ interface Props {
   }
 }
 
-const { title, description, robots = SITE_METADATA.robots, article, titleTemplate } = Astro.props
+const { 
+  title, 
+  description, 
+  robots = SITE_METADATA.robots, 
+  article, 
+  titleTemplate, 
+  keywords, 
+  primarySchema, 
+  secondarySchema 
+} = Astro.props
 
 // The default author is the site creator
 const creator = await getEntry('authors', 'default')
@@ -57,9 +70,9 @@ const isProduction = import.meta.env.PROD
 
 <head>
   <SEO
-    title={title}
+    {title}
     {titleTemplate}
-    description={description}
+    {description}
     nofollow={robots.includes('nofollow')}
     noindex={robots.includes('noindex')}
     charset="utf-8"
@@ -93,7 +106,7 @@ const isProduction = import.meta.env.PROD
         creator: twitterCreator.replace('https://twitter.com/', '@'),
         title,
         description,
-        image: `${SITE_METADATA.siteUrl}${openGraphImage.src}`,
+        image: `${SITE_METADATA.siteUrl}og-image.png`,
       }) ||
         {}),
     }}
@@ -102,10 +115,10 @@ const isProduction = import.meta.env.PROD
         type: 'website',
         url: Astro.url,
         title,
-        image: `${SITE_METADATA.siteUrl}${openGraphImage.src}`,
+        image: `${SITE_METADATA.siteUrl}og-image.png`,
       },
       image: {
-        url: `${SITE_METADATA.siteUrl}${openGraphImage.src}`,
+        url: `${SITE_METADATA.siteUrl}og-image.png`,
         type: `image/${openGraphImage.options.format}`,
         width: openGraphImage.options.width,
         height: openGraphImage.options.height,
@@ -125,6 +138,10 @@ const isProduction = import.meta.env.PROD
       }),
     }}
   />
+  <link rel="sitemap" href="/sitemap-index.xml" />
+  <meta name="keywords" content={keywords} />
+  <meta name="publisher" content="Saida Lachgar" />
   {isProduction && <Analytics />}
+  <SiteSchema {primarySchema} {secondarySchema} />
   <ViewTransitions />
 </head>

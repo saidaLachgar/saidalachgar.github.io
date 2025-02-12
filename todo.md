@@ -1,6 +1,7 @@
 # 👉 BEFORE DEPLOY 🔥
 
 **IMPORTANT**
+[-] clicking on email could copy it
 
 - [-] corss-browser testing
   - [-] SAFARRI MOBILE home playground is broken
@@ -17,14 +18,8 @@ I’ve just dropped a blog post showcasing my complete dev setup that keep me ef
 Shoutout to @Firefox for being my go-to browser for web dev 🦊🔥
 Checkout the blog post here 🔗 #ProductivityHacks
 
-- https://counterapi.dev/guide/get-started.html blog views count
-- submit blog content https://css-weekly.com/submit-a-link/
-- make video of many screenshots mini-video from websites
-
 - Social card
   https://x.com/DannPetty/status/1783714260578672991/video/1
-
-- SVG Automatically optimized sprites https://www.astroicon.dev/guides/components/#automatically-optimized-sprites
 
 **NOT IMPORTANT**
 
@@ -42,6 +37,9 @@ Checkout the blog post here 🔗 #ProductivityHacks
   - [-] img optmization https://www.industrialempathy.com/posts/image-optimizations/
   - [-] how to use websockets for real-time communication
   - [-] icons and svg
+- submit blog content https://css-weekly.com/submit-a-link/
+  - x CSS Tip: Mastering CSS Variables
+  - x DevTools Tips to Boost Your Web Development
 
 ## inspiration
 
@@ -62,3 +60,7 @@ Checkout the blog post here 🔗 #ProductivityHacks
 
 > **messagge mounir** ?
 > i wanna submit a website on awwword hopping for wining a nominee, the website am submitting is my portfolio where in a specific section i wanna add some selected work, but scence Picaxel worK AS white brand with most of businesse i wanted to ask if it's applies on employer too, if so, here are websites that i would present, please et me know which ones i can't include
+
+mail
+saidalachgar.r@gmail.com
+https://dash.cloudflare.com/51ecbc3b19d1f42aef3b6858fabc5a4d/saidalachgar.dev/email/routing/routes

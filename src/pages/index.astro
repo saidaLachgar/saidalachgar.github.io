@@ -8,17 +8,102 @@ import Services from '../components/Services.astro'
 import Figure from '../components/Figure.astro'
 import RootLayout from '@/layouts/RootLayout.astro'
 import { useTranslations } from '@/i18n'
+import { SITE_METADATA, PERSON } from '@/consts'
 
 const t = useTranslations()
+
+
+const faqSchema = {
+  "@type": "FAQPage",
+  "mainEntity": [
+  {
+      "@type": "Question",
+      "name": "Who is Saida?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": `Saida is a Senior Frontend Web Developer based in Agadir, Morocco, with over ${PERSON.yearsOfExperience} years of experience in developing responsive and high-performance websites.`
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What technologies does Saida specialize in?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Saida specializes in React, Wordpress, Symfony, Prestashop and SEO optimization."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How can I contact Saida?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": `You can contact Saida via email at ${PERSON.mail} or connect through LinkedIn at ${PERSON.socials.linkedin}.`
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does Saida offer freelance services?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, Saida has experience in freelance full-stack development and is open to working on exciting projects."
+      }
+    }
+  ]
+};
+
+const profileSchema = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Saida Lachgar",
+  "url": SITE_METADATA.siteUrl,
+  "image": `${SITE_METADATA.siteUrl}/profile-picture.png`,
+  "jobTitle": t('siteMetadata.jobTitle'),
+  // "worksFor": {
+  //   "@type": "Organization",
+  //   "name": "Picaxel"
+  // },
+  "alumniOf": [
+    {
+      "@type": "CollegeOrUniversity",
+      "name": "Faculty of Science and Technology, Settat",
+      "sameAs": "https://www.fsts.ac.ma"
+    },
+    {
+      "@type": "CollegeOrUniversity",
+      "name": "Specialized Institute of Applied Technology, Agadir",
+      "sameAs": "https://www.ofppt.ma/"
+    }
+  ],
+  "email": `mailto:${PERSON.mail}`,
+  "sameAs": [
+    PERSON.socials.linkedin,
+    PERSON.socials.dribbble,
+  ],
+  "knowsAbout": [
+    "React",
+    "SEO Optimization",
+    "Web Performance",
+    "Symfony",
+    "Prestashop",
+    "Three.js",
+    "GSAP"
+  ]
+};
 ---
 
-<RootLayout title={t('siteMetadata.title')} description={t('siteMetadata.description')}>
+<RootLayout 
+  title={t('siteMetadata.title')} 
+  description={t('siteMetadata.description')}
+  keywords="frontend developer, senior frontend developer, web developer, React developer, JavaScript expert, SEO optimization, Prestashop developer, Three.js, GSAP, full-stack developer, web performance, UI/UX, Agadir Morocco developer"
+  primarySchema={profileSchema}
+  secondarySchema={faqSchema}
+>
   <Hero />
   <About />
   <Stats />
   <Services />
   <Figure />
   <Work />
-  <!-- <Work client:visible /> -->
   <Blog />
+  <!-- <Work client:visible /> -->
 </RootLayout>

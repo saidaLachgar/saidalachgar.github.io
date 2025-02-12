@@ -34,6 +34,7 @@
     "astro-meta-tags": "^0.2.1",
     "astro-robots-txt": "^1.0.0",
     "astro-seo": "^0.8.4",
+    "astro-seo-schema": "^5.0.0",
     "sharp": "^0.33.5"
   },
   "main": "index.js",

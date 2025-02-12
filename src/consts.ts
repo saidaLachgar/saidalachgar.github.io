@@ -8,7 +8,7 @@ export const SITE_METADATA = {
   siteUrl: "https://saidalachgar.dev/",
   siteRepo: "https://github.com/saidaLachgar/saidalachgar.github.io",
   robots: "index, follow", // Options: index, noindex, follow, nofollow
-  language: "en", // Options: index, noindex, follow, nofollow
+  language: "en",
 
   // These are not supported yet
   analytics: {
@@ -120,4 +120,30 @@ export const POST_METADATA = {
   showAuthors: true, // Show authors in blog post, TODO: Add support for hiding authors
   showRelatedPosts: true, // Show related posts in blog post, TODO: Add support for hiding related posts
   showTableOfContents: true, // Show table of contents in blog post
+};
+
+
+type Presentation = {
+  mail: string;
+  sms: string;
+  sms_link: string;
+  location: string;
+  yearsOfExperience: number;
+  socials: Record<string, string>;
+};
+
+const YEARS_OF_EXPERIENCE = new Date().getFullYear() - 2019 - (new Date().getMonth() < 9 ? 1 : 0); // Calculate years since Oct 2019,
+
+export const PERSON: Presentation = {
+  mail: "contact@saidalachgar.dev",
+  sms_link: "+212641346928",
+  sms: "(212) 641-346928",
+  location: 'morocco, ag',
+  yearsOfExperience: YEARS_OF_EXPERIENCE,
+  socials: {
+    linkedin: "https://www.linkedin.com/in/saida-lachgar/",
+    dribbble: "https://dribbble.com/saidaLachgar",
+    upwork: "https://www.upwork.com/freelancers/~015eaa0f55b69f0d72",
+    fiverr: "https://www.fiverr.com/s/1qko54z"
+  },
 };

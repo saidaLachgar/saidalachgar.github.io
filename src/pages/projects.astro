@@ -1,5 +1,5 @@
 ---
-import presentation from '@/data/presentation'
+import { PERSON } from '@/consts'
 import WorkDetails from '@/components/WorkDetails.astro'
 import { playground, projects } from '@/data/projects'
 import { Icon } from 'astro-icon/components'
@@ -30,7 +30,7 @@ const badge = (status: string) => (['PLAYGROUND', 'STUDY CASE'].includes(status)
           <br />Please enter the passcode to continue. If you need access, please request a passcode via
           <a
             target="_blank"
-            onClick={`javascript:window.open('mailto:${presentation.mail}?subject=Token Request&body=Hello,%0D%0A%0D%0AMy name is [Your Name] and I would like to request access to the projects page for [Reason].%0D%0A%0D%0AThank you!', 'mail');event.preventDefault();`}
+            onClick={`javascript:window.open('mailto:${PERSON.mail}?subject=Token Request&body=Hello,%0D%0A%0D%0AMy name is [Your Name] and I would like to request access to the projects page for [Reason].%0D%0A%0D%0AThank you!', 'mail');event.preventDefault();`}
             href="#">this link</a
           > and share your details
         </p>

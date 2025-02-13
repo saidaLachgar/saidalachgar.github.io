@@ -24,7 +24,7 @@ const posts = await getCollection('blog', excludeDrafts).then(sortBlogPosts)
       {
         posts.slice(0, ITEMS_PER_PAGE).map(({ slug, data }) => (
           <li data-reveal>
-            <Link href={`/blog/${slug}`}>
+            <Link href={`/blog/${slug}/`}>
               <span class="date">
                 <FormattedDate date={data.date} />
               </span>
@@ -36,7 +36,7 @@ const posts = await getCollection('blog', excludeDrafts).then(sortBlogPosts)
       }
     </ul>
 
-    <a href="/blog" class="more" data-reveal data-astro-prefetch="viewport">
+    <a href="/blog/" class="more" data-reveal data-astro-prefetch="viewport">
       <u>See all articles</u>
       <sup>({posts.length})</sup>
     </a>

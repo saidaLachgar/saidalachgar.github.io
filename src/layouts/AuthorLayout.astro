@@ -68,7 +68,7 @@ const authorPosts = await getCollection('blog', ({ data: { authors, draft } }) =
               <ul class="space-y-4 mt-4">
                 {authorPosts.map(({ slug, title }) => (
                   <li>
-                    <Link href={`/blog/${slug}`}>{title}</Link>
+                    <Link href={`/blog/${slug}/`}>{title}</Link>
                   </li>
                 ))}
               </ul>

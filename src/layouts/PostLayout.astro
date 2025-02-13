@@ -43,7 +43,7 @@ const { Content, headings } = await post.render()
   <SectionContainer>
     <article class="blog-article" class:list={[{ 'no-cover': !post.data.cover }]} id="main-content">
       <header>
-        <Link href="/blog" class="article-back" aria-label={t('layouts.postLayout.backToBlog')}>
+        <Link href="/blog/" class="article-back" aria-label={t('layouts.postLayout.backToBlog')}>
           <Icon name="arrow-top-right" width={11} height={11} />{t('layouts.postLayout.backToBlog')}
         </Link>
         <!-- title -->
@@ -101,7 +101,7 @@ const { Content, headings } = await post.render()
               <div>
                 <b>{t('layouts.postLayout.previousPost')}</b>
                 <div>
-                  <Link href={`/blog/${prev.slug}`}>{prev.data.title}</Link>
+                  <Link href={`/blog/${prev.slug}/`}>{prev.data.title}</Link>
                 </div>
                 {next && <br />}
               </div>
@@ -112,7 +112,7 @@ const { Content, headings } = await post.render()
               <div>
                 <b>{t('layouts.postLayout.nextPost')}</b>
                 <div>
-                  <Link href={`/blog/${next.slug}`}>{next.data.title}</Link>
+                  <Link href={`/blog/${next.slug}/`}>{next.data.title}</Link>
                 </div>
               </div>
             )
@@ -127,7 +127,7 @@ const { Content, headings } = await post.render()
                 <ul>
                   {related.map((post) => (
                     <li>
-                      <Link href={`/blog/${post.slug}`}>{post.data.title}</Link>
+                      <Link href={`/blog/${post.slug}/`}>{post.data.title}</Link>
                     </li>
                   ))}
                 </ul>

@@ -144,6 +144,6 @@ export const PERSON: Presentation = {
     linkedin: "https://www.linkedin.com/in/saida-lachgar/",
     dribbble: "https://dribbble.com/saidaLachgar",
     upwork: "https://www.upwork.com/freelancers/~015eaa0f55b69f0d72",
-    fiverr: "https://www.fiverr.com/s/1qko54z"
+    fiverr: "https://www.fiverr.com/lachgarsaida"
   },
 };

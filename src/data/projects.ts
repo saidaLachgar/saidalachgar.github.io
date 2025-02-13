@@ -13,6 +13,7 @@ export type Project = {
   industry?: string
   subtitle?: string
   description?: string
+  link_href?: string
   star?: boolean
   challenges?: string[]
   solutions?: string[]
@@ -76,11 +77,11 @@ const projects: Project[] = [
   {
     name: 'Agadir Oufella',
     link: {
-      'Official Website': 'agadir-oufella.ma',
-      'History Website': 'www.agadir-oufella.ma/fr/histoire-et-heritage/',
-      'Tickets Website': 'tickets.agadir-oufella.ma',
-      'ios App': 'apps.apple.com/fr/app/agadir-oufella/id6450891651',
-      'Android App ': 'play.google.com/store/apps/details?id=com.agadiroufella.app204353&pli=1'
+      'Official Website': 'https://www.agadir-oufella.ma/fr/',
+      'History Website': 'https://www.agadir-oufella.ma/fr/histoire-et-heritage/',
+      'Tickets Website': 'https://tickets.agadir-oufella.ma/fr/',
+      'ios App': 'https://apps.apple.com/fr/app/agadir-oufella/id6450891651',
+      'Android App ': 'https://play.google.com/store/apps/details?id=com.picaxel.agof2025'
     },
     year: 2023,
     platform: 'Multi-platform',
@@ -104,6 +105,7 @@ const projects: Project[] = [
   {
     name: 'Tots',
     link: 'tots.fr',
+    link_href: 'https://www.tots.fr/',
     year: 2022,
     platform: 'Php',
     status: 'RELEASED',
@@ -128,6 +130,7 @@ const projects: Project[] = [
   {
     name: 'Picaxel',
     link: 'picaxel.com',
+    link_href: 'https://www.picaxel.com/',
     year: 2022,
     platform: 'Wordpress',
     status: 'RELEASED',
@@ -151,6 +154,7 @@ const projects: Project[] = [
   {
     name: 'Dunforce',
     link: 'dunforce.com',
+    link_href: 'https://www.dunforce.com/',
     star: true,
     year: 2024,
     platform: 'React',
@@ -175,6 +179,7 @@ const projects: Project[] = [
   {
     name: 'Yesbox',
     link: 'yes-box.fr',
+    link_href: 'https://www.yes-box.fr/',
     year: 2021,
     platform: 'Symfony',
     status: 'RELEASED',
@@ -198,6 +203,7 @@ const projects: Project[] = [
   {
     name: 'IGolf Morocco',
     link: 'igolfmorocco.com',
+    link_href: 'https://www.igolfmorocco.com/fr/',
     year: 2023,
     platform: 'Symfony',
     status: 'RELEASED',

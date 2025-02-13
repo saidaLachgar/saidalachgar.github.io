@@ -23,13 +23,13 @@ const { data } = Astro.props
         <p class="title">{project.name}</p>
         {project.link &&
           (typeof project.link !== 'object' ? (
-            <a class="link" rel="noopener noreferrer" target="_blank" href={'https://' + project.link}>
+            <a class="link" rel="noopener noreferrer" target="_blank" href={project.link_href ?? `https://${project.link}`}>
               {project.link}
               <Icon name="arrow-top-right" width={10} height={10} />
             </a>
           ) : (
             Object.entries(project.link).map(([key, value]) => (
-              <a class="links" rel="noopener noreferrer" target="_blank" href={'https://' + value}>
+              <a class="links" rel="noopener noreferrer" target="_blank" href={value}>
                 {key}
               </a>
             ))

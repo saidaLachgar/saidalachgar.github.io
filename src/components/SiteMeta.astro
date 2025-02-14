@@ -100,15 +100,14 @@ const isProduction = import.meta.env.PROD
       ],
     }}
     twitter={{
+      card: 'summary_large_image',
+      title,
+      description,
+      image: `${SITE_METADATA.siteUrl}og-image.png`,
       ...((twitterCreator && {
-        card: 'summary_large_image',
-        // site: creator.data.twitter,
         creator: twitterCreator.replace('https://twitter.com/', '@'),
-        title,
-        description,
-        image: `${SITE_METADATA.siteUrl}og-image.png`,
-      }) ||
-        {}),
+        // site: creator.data.twitter,
+      }) || {}),
     }}
     openGraph={{
       basic: {

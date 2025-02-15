@@ -14,6 +14,7 @@ interface Props {
   title: string
   description: string
   titleTemplate?: string
+  pageTitle?: string
   page: Page<CollectionEntry<'blog'>>
   robots?: string
 }
@@ -29,7 +30,7 @@ function isSamePath(path: string) {
   return Astro.url.pathname === path
 }
 
-const { title, description, robots, page, titleTemplate } = Astro.props
+const { title, pageTitle, description, robots, page, titleTemplate } = Astro.props
 const hasDefaultSlot = Astro.slots.has('default')
 const isBlogPage = Astro.url.pathname.startsWith('/blog')
 ---
@@ -37,8 +38,9 @@ const isBlogPage = Astro.url.pathname.startsWith('/blog')
 <RootLayout {title} {description} {robots} {titleTemplate}>
   <section class="blog container">
     <div class="header">
-      <h1 class="title">{title}</h1>
+      <p class="title">{pageTitle}</p>
       <div class="sr-only">
+        <h1>{title}</h1>
         {isBlogPage && t('pages.blog.intro')}
         {hasDefaultSlot && <slot />}
       </div>

@@ -25,7 +25,7 @@ const blog = defineCollection({
     cover: image().optional(),
     magnifier: z.boolean().optional(),
     date: z.coerce.date(),
-    tags: z.array(reference('tags')).default(['default']),
+    tags: z.array(reference('tags')).default([]),
     lastmod: z.coerce.date().optional(),
     draft: z.boolean().default(false),
     summary: z.string(),
@@ -42,6 +42,7 @@ const tags = defineCollection({
   schema: z.object({
     name: z.string(),
     description: z.string(),
+    title: z.string(),
     // TODO: Add support for images and layout
     // image: z.string().optional(),
     // layout: z.string().optional(),

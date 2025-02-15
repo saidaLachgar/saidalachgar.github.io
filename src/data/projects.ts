@@ -10,7 +10,7 @@ export type Project = {
   role: string
   status: string
   demo?: string
-  industry?: string
+  industry: string
   subtitle?: string
   description?: string
   link_href?: string
@@ -53,6 +53,7 @@ const projects: Project[] = [
   {
     name: 'Marrakech Fine Food',
     link: 'ma.marrakechfinefood.com',
+    subtitle: 'E-commerce Moroccan platform',
     year: 2022,
     platform: 'Prestashop',
     status: 'RELEASED',
@@ -76,6 +77,7 @@ const projects: Project[] = [
   // Agadir Oufella
   {
     name: 'Agadir Oufella',
+    subtitle: 'Historical touristic site',
     link: {
       'Official Website': 'https://www.agadir-oufella.ma/fr/',
       'History Website': 'https://www.agadir-oufella.ma/fr/histoire-et-heritage/',
@@ -202,6 +204,7 @@ const projects: Project[] = [
   // IGolf Morocco
   {
     name: 'IGolf Morocco',
+    subtitle: 'Golf tourism in Morocco',
     link: 'igolfmorocco.com',
     link_href: 'https://www.igolfmorocco.com/fr/',
     year: 2023,
@@ -296,6 +299,7 @@ const projects: Project[] = [
   {
     name: 'Portfolio',
     link: 'saidalachgar.dev',
+    subtitle: 'Personal portfolio showcases',
     year: 2024,
     platform: 'Astro',
     status: 'RELEASED',
@@ -485,6 +489,7 @@ const projects: Project[] = [
   // Golf market place todo
   {
     name: 'Golf market place',
+    subtitle: 'Online golf equipment sales',
     link: 'golfmarketplace.com',
     year: 2023,
     platform: 'Sylius',
@@ -509,6 +514,7 @@ const projects: Project[] = [
   {
     name: 'Inzee.Care',
     link: 'inzee.care',
+    subtitle: 'Healthcare Innovation Platform',
     year: 2022,
     platform: 'Wordpress',
     status: 'RELEASED',

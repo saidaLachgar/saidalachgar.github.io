@@ -13,7 +13,7 @@ const tagCount = (slug: CollectionEntry<'tags'>['slug']) =>
   posts?.flatMap(({ data }) => data.tags).filter(({ id }) => id === slug).length || 0
 ---
 
-<RootLayout title={t('pages.tags.title')} description={t('pages.tags.description')}>
+<RootLayout title={t('pages.tags.metaTitle')} description={t('pages.tags.description')}>
   <section class="tags container">
     <div class="header">
       <h1 class="title">{t('pages.tags.allTags')}</h1>

@@ -46,21 +46,23 @@ const badge = (status: string) => (['PLAYGROUND', 'STUDY CASE'].includes(status)
     </form>
     <section class="projects" id="projects" style="display: none">
       <div class="header">
-        <h1 class="title">All<br />Projects</h1>
-        <p class="sr-only">
-          Welcome to my portfolio! Discover the projects that demonstrate my expertise in web development,
-          problem-solving, and innovative solutions across various industries.
-        </p>
+        <p class="title">All<br />Projects</p>
+        <div class="sr-only">
+          <h1>Saida lachgar's portfolio of creative and high-performance web projects</h1>
+          <p>
+            Welcome to my portfolio! Discover the projects that demonstrate my expertise in web development,
+            problem-solving, and innovative solutions across various industries.
+          </p>
+        </div>
       </div>
-
       <div class="content">
         <ul class="table">
           <li class="thead">
-            <input type="text" id="filter-year" placeholder="Year" />
-            <input type="text" id="filter-role" placeholder="Role" />
-            <input type="text" id="filter-name" placeholder="Name" />
-            <input type="text" id="filter-platform" placeholder="Platform" />
-            <input type="text" id="filter-industry" placeholder="Industry" />
+            <input type="text" id="filter-year" autocomplete="off" placeholder="Year" />
+            <input type="text" id="filter-role" autocomplete="off" placeholder="Role" />
+            <input type="text" id="filter-name" autocomplete="off" placeholder="Name" />
+            <input type="text" id="filter-platform" autocomplete="off" placeholder="Platform" />
+            <input type="text" id="filter-industry" autocomplete="off" placeholder="Industry" />
           </li>
           {
             allProjects.map((project) => (
@@ -68,10 +70,10 @@ const badge = (status: string) => (['PLAYGROUND', 'STUDY CASE'].includes(status)
                 <div class="project" data-target={`project-${project.key}`}>
                   <span class="year">{project.year ?? '-'}</span>
                   <span class="role">{project.role ?? '-'}</span>
-                  <h2 class="name">
+                  <div class="name">
                     {project.name ?? '-'}&nbsp;{ project.star ? '★' : ''}
                     <span class="badge">{badge(project.status)}</span>
-                  </h2>
+                  </div>
                   <span class="platform">{project.platform ?? '-'}</span>
                   <span class="industry">{project.industry ?? '-'}</span>
                 </div>
@@ -84,7 +86,7 @@ const badge = (status: string) => (['PLAYGROUND', 'STUDY CASE'].includes(status)
       <p data-reveal>★ <i>Highlights projects of notable complexity</i></p>
     </section>
     <div></div>
-    <WorkDetails data={[...projects, ...playground]} />
+    <WorkDetails data={[...projects, ...playground]} addHn />
   </SectionContainer>
 </RootLayout>
 
@@ -103,8 +105,8 @@ const badge = (status: string) => (['PLAYGROUND', 'STUDY CASE'].includes(status)
       document.querySelectorAll('.project').forEach((project) => {
         const matches = cells.every((id, i) => {
           const  projectText = project.querySelector(`.${id}`);
-          if (projectText && filters[i]) {
-            return projectText.textContent?.toLowerCase().includes(filters[i])
+          if (projectText) {
+            return projectText.textContent?.toLowerCase().includes(filters[i]!)
           }
         })
         project.classList.toggle('hidden', !matches)

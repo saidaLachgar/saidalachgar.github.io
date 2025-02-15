@@ -652,9 +652,9 @@ const playground: Project[] = [
     role: 'Frontend, Design',
     images: ['playground-top-global-music'],
     industry: 'Entertainment, Music',
-    techs: ['Vite.js', 'Spotify API'],
-    subtitle: 'Top songs right now on spotify',
-    description: 'A playful one-page website display trending music, features a modern interactive design to explore the latest hits around the world. This project was created as a personal experiment in using Vite.js and Spotify API',
+    techs: ['Vite.js', 'iTunes API'],
+    subtitle: 'Top songs right now on iTunes',
+    description: 'A playful one-page website display trending music, features a modern interactive design to explore the latest hits around the world. This project was created as a personal experiment in using Vite.js and iTunes API',
     solutions: [
       "Experimented with Vite.js for rapid development and hot module replacement",
       "Focused on creating a visually appealing and interactive design",

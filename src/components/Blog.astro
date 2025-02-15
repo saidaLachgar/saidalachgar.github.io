@@ -12,7 +12,7 @@ const posts = await getCollection('blog', excludeDrafts).then(sortBlogPosts)
 <SectionContainer>
   <div class="blog" id="blog">
     <div class="header" data-reveal>
-      <h2 class="title">Blog</h2>
+      <h2 class="title">Journal</h2>
       <p class="description">
         Get cozy with my digital storytelling. My blogs are like warm, friendly chats about web development.
       </p>
@@ -43,7 +43,8 @@ const posts = await getCollection('blog', excludeDrafts).then(sortBlogPosts)
 
 <style lang="scss">
   .blog {
-    margin-top: 200px;
+    padding-top: 50px;
+    margin-top: 150px;
     .title {
       font-size: 64px;
       margin: 30px 0;

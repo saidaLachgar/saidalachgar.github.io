@@ -9,6 +9,7 @@ import Figure from '../components/Figure.astro'
 import RootLayout from '@/layouts/RootLayout.astro'
 import { useTranslations } from '@/i18n'
 import { SITE_METADATA, PERSON } from '@/consts'
+import Playground from '@/components/Playground.astro'
 
 const t = useTranslations()
 
@@ -99,11 +100,12 @@ const profileSchema = {
   secondarySchema={faqSchema}
 >
   <Hero />
+  <Work />
+  <Figure />
+  <Services />
+  <Playground />
   <About />
   <Stats />
-  <Services />
-  <Figure />
-  <Work />
   <Blog />
   <!-- <Work client:visible /> -->
 </RootLayout>

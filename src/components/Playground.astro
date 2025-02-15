@@ -1,0 +1,155 @@
+---
+import { playground, type Project } from '@/data/projects'
+import type { ImageMetadata } from 'astro'
+import { Icon } from 'astro-icon/components'
+import { Image } from 'astro:assets'
+
+const imagesPlayground = import.meta.glob<{ default: ImageMetadata }>('../assets/img/playground-*.png')
+const items = Array(9).fill('PLAYGROUND')
+---
+
+<section class="playground" id="playground">
+  <div class="infinite-text" data-reveal>
+    {items.map((item) => <p>{item} &nbsp;</p>)}
+  </div>
+  <div class="carousel-container">
+    <div class="carousel-outer">
+      <ul data-reveal class="carousel-inner">
+        {
+          playground.map((project: Project, key: number) => (
+            <li data-target={`project-${key + 8}`}>
+              {/* 8 is total shown projects in work section */}
+              <div class="project">
+                {project.images && (
+                  <Image
+                    src={imagesPlayground[`../assets/img/${project.images[project.images.length - 1]}.png`]()}
+                    alt={project.name}
+                    width="557"
+                    height="533"
+                    loading="lazy"
+                  />
+                )}
+                <div class="infos">
+                  <span class="name">{project.name}</span>
+                  <span class="subtitle">{project.subtitle}</span>
+                </div>
+              </div>
+              <div class="cursor">
+                <Icon class="inner" name="cursor-top-right" width={104} height={104} />
+                <Icon class="outer" name="playground-text" width={140} height={140} />
+              </div>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </div>
+</section>
+
+<style lang="scss">
+  .playground {
+    max-width: 2270px;
+    margin: 200px auto 0;
+    min-height: 100vh;
+    --slide-width: 557px;
+    --slide-marge: 40px;
+    --slide-count: 4;
+    --slides-width: calc((var(--slide-width) + var(--slide-marge)) * var(--slide-count));
+    @media (max-width: 600px) {
+      --slide-width: 80vw;
+    }
+    .carousel-container {
+      height: var(--slides-width);
+    }
+    .carousel-outer {
+      position: sticky;
+      top: calc(50% - 282px);
+      padding: 70px 0;
+      padding-left: var(--slide-marge);
+      max-height: 100vh;
+      overflow: hidden;
+    }
+    .carousel-inner {
+      list-style: none;
+      display: flex;
+    }
+    .cursor {
+      position: absolute;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease, scale 0.3s ease;
+      transition-delay: 0s;
+      transform: translate(-50%, -50%);
+      scale: 0.4;
+      top: 50%;
+      left: 50%;
+      white-space: nowrap;
+      will-change: transform;
+      z-index: 10;
+      transform-origin: 0 0;
+      .outer {
+        animation: rotating 30s linear infinite;
+      }
+      .inner {
+        position: absolute;
+        left: 18px;
+        top: 18px;
+        opacity: 0.9;
+      }
+    }
+
+    li {
+      min-width: var(--slide-width);
+      margin-right: var(--slide-marge);
+      cursor: pointer;
+      position: relative;
+      &:hover .cursor {
+        transition-delay: 0.3s;
+        transform: translate(-50%, -50%);
+        opacity: 1;
+        scale: 1;
+      }
+    }
+
+    .infos {
+      padding-top: 15px;
+      font-size: 14px;
+    }
+
+    .name {
+      text-transform: uppercase;
+      font-weight: 600;
+    }
+
+    .subtitle {
+      opacity: 0.8;
+    }
+
+    img {
+      border-radius: 10px;
+    }
+    .infinite-text {
+      display: flex;
+      background-color: #000;
+      color: #fff;
+      white-space: nowrap;
+      overflow: hidden;
+      p {
+        font-size: 57px;
+        text-transform: uppercase;
+        font-weight: 700;
+        will-change: transform;
+        animation: loopText 2s infinite linear;
+        transform: translate3d(0, 0, 0);
+      }
+    }
+    @media (max-width: 655px) {
+      .infinite-text p {
+        animation-duration: 4s;
+      }
+      .cursor {
+        display: none;
+      }
+    }
+  }
+</style>

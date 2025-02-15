@@ -23,7 +23,12 @@ const { data } = Astro.props
         <p class="title">{project.name}</p>
         {project.link &&
           (typeof project.link !== 'object' ? (
-            <a class="link" rel="noopener noreferrer" target="_blank" href={project.link_href ?? `https://${project.link}`}>
+            <a
+              class="link"
+              rel="noopener noreferrer"
+              target="_blank"
+              href={project.link_href ?? `https://${project.link}`}
+            >
               {project.link}
               <Icon name="arrow-top-right" width={10} height={10} />
             </a>
@@ -145,10 +150,11 @@ const { data } = Astro.props
 <script>
   document.addEventListener('astro:page-load', () => {
     // cursor
-    document.querySelectorAll('.work-description .carousel-outer').forEach((carousel) => {
-      const cursor = carousel.querySelector('.carousel-cursor')
-      const carouselInner = carousel.querySelector('.carousel')
-      if (!cursor) {
+    const carouselOuter: NodeListOf<HTMLDivElement> = document.querySelectorAll('.work-description .carousel-outer')
+    carouselOuter.forEach((carousel) => {
+      const cursor: HTMLElement | null = carousel.querySelector('.carousel-cursor')
+      const carouselInner: HTMLUListElement | null = carousel.querySelector('.carousel')
+      if (!cursor || !carouselInner) {
         return
       }
 
@@ -173,8 +179,8 @@ const { data } = Astro.props
     // show details
     document.querySelectorAll('[data-target]').forEach((project) => {
       project.addEventListener('click', () => {
-        const target = document.querySelector(`#${project.dataset.target}`)
-        target.classList.add('show')
+        const target = document.querySelector(`#${(project as HTMLLIElement).dataset.target}`)
+        target?.classList.add('show')
         document.body.style.overflow = 'hidden'
       })
     })
@@ -183,40 +189,48 @@ const { data } = Astro.props
     document.querySelectorAll('.work-description .close').forEach((button) => {
       button.addEventListener('click', () => {
         const target = button.closest('.work-description')
-        target.classList.remove('show')
+        target?.classList.remove('show')
         document.body.style.overflow = 'unset'
       })
     })
 
     // next/prev
-    const navigate = (button, next) => {
+    const navigate = (button: HTMLButtonElement | null, next: boolean) => {
+      if (!button) {
+        return
+      }
+
       const target = button.closest('.work-description')
-      const current = document.querySelector(`[data-target=${target.id}]`)
-      const currentLi = current.closest('li')
-      const nextOrPrev = next ? currentLi.nextElementSibling : currentLi.previousElementSibling
+      const current = document.querySelector(`[data-target=${target?.id}]`)
+      const currentLi = current?.closest('li')
+      const nextOrPrev = next ? currentLi?.nextElementSibling : currentLi?.previousElementSibling
       if (nextOrPrev && !nextOrPrev.classList.contains('thead')) {
-        ;(nextOrPrev.querySelector('[data-target]') ?? nextOrPrev).click()
+        ;((nextOrPrev.querySelector('[data-target]') ?? nextOrPrev) as HTMLLIElement).click()
       } else {
-        const ul = current.closest('ul')
+        const ul = current?.closest('ul')
         // Go to first/last item in ul depnding on prev/next (where if it's a table go to 2nd to skip thead)
-        const isTable = ul.classList.contains('table')
-        const isCarousel = ul.classList.contains('carousel-inner')
-        ul.querySelector(
-          `li:${next ? (isTable ? 'nth-child(2)' : 'first-child') : 'last-child'}${isCarousel ? '' : ' [data-target]'}`
+        const isTable = ul?.classList.contains('table')
+        const isCarousel = ul?.classList.contains('carousel-inner')
+        ;(
+          ul?.querySelector(
+            `li:${next ? (isTable ? 'nth-child(2)' : 'first-child') : 'last-child'}${
+              isCarousel ? '' : ' [data-target]'
+            }`
+          ) as HTMLLIElement
         ).click()
-        target.classList.remove('show')
+        target?.classList.remove('show')
       }
       setTimeout(
         () => {
           // close current
-          target.classList.remove('show')
+          target?.classList.remove('show')
         },
         next ? 1000 : 0
       )
     }
     document.querySelectorAll('.work-description .actions button').forEach((button) => {
       button.addEventListener('click', () => {
-        navigate(button, button.classList.contains('next'))
+        navigate(button as HTMLButtonElement | null , button.classList.contains('next'))
       })
     })
     document.addEventListener(
@@ -233,7 +247,7 @@ const { data } = Astro.props
           if (Escape) {
             close?.dispatchEvent(new Event('click'))
           } else {
-            navigate(ArrowRight ? next : prev, ArrowRight)
+            navigate((ArrowRight ? next : prev) as HTMLButtonElement | null, ArrowRight)
           }
           return false
         }
@@ -242,13 +256,13 @@ const { data } = Astro.props
     )
 
     // carousel (drag)
-    const siders = document.querySelectorAll('.carousel')
+    const siders: NodeListOf<HTMLUListElement> = document.querySelectorAll('.carousel')
     siders?.forEach((sider) => {
       let pos = { top: 0, left: 0, x: 0, y: 0 }
       const cursor = sider.nextElementSibling
 
-      const mouseDownHandler = function (e) {
-        cursor.classList.add('grabbing')
+      const mouseDownHandler = function (e: { clientX: any; clientY: any }) {
+        cursor?.classList.add('grabbing')
 
         pos = {
           left: sider.scrollLeft,
@@ -262,7 +276,7 @@ const { data } = Astro.props
         document.addEventListener('mouseup', mouseUpHandler)
       }
 
-      const mouseMoveHandler = function (e) {
+      const mouseMoveHandler = function (e: { clientX: number; clientY: number }) {
         // How far the mouse has been moved
         const dx = e.clientX - pos.x
         const dy = e.clientY - pos.y
@@ -273,7 +287,7 @@ const { data } = Astro.props
       }
 
       const mouseUpHandler = function () {
-        cursor.classList.remove('grabbing')
+        cursor?.classList.remove('grabbing')
 
         document.removeEventListener('mousemove', mouseMoveHandler)
         document.removeEventListener('mouseup', mouseUpHandler)

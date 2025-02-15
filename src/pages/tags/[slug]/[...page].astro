@@ -1,12 +1,11 @@
 ---
 export const prerender = true
 import { getCollection, type CollectionEntry } from 'astro:content'
-// import ListLayout from "@/layouts/ListLayout.astro";
 import { ITEMS_PER_PAGE } from '@/consts'
 import { excludeDrafts, sortBlogPosts } from '@/functions'
 import { useTranslations } from '@/i18n'
 import ListWithTagsLayout from '@/layouts/ListWithTagsLayout.astro'
-import type { Page } from 'astro'
+import type { GetStaticPathsOptions, Page } from 'astro'
 
 const t = useTranslations()
 
@@ -15,18 +14,16 @@ interface Props {
   entry: CollectionEntry<'tags'>
 }
 
-export async function getStaticPaths({ paginate }) {
+export async function getStaticPaths({ paginate }: GetStaticPathsOptions) {
   const tags = await getCollection('tags')
   const posts = await getCollection('blog', excludeDrafts).then(sortBlogPosts)
 
-  return tags.flatMap((entry) => {
-    const tagPosts = posts.filter((post) => post.data.tags.some(({ slug }) => slug === entry.slug))
-    return paginate(tagPosts, {
-      pageSize: ITEMS_PER_PAGE,
-      params: { slug: entry.slug },
-      props: { entry },
-    })
-  })
+  return tags.flatMap((entry) => 
+    paginate(
+      posts.filter(({ data }) => data.tags.some(tag => tag.id === entry.slug)), 
+      { pageSize: ITEMS_PER_PAGE, params: { slug: entry.slug }, props: { entry } }
+    )
+  );
 }
 
 const { page, entry } = Astro.props

@@ -6,4 +6,4 @@ export interface Props {
 
 const { site, src = 'https://cdn.usefathom.com/script.js' } = Astro.props;
 ---
-<script src={src} data-site={site} defer></script>
+<script is:inline src={src} data-site={site} defer></script>

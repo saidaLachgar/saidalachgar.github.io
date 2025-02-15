@@ -1,6 +1,5 @@
 ---
 import { SITE_METADATA } from '@/consts'
-import { ViewTransitions } from 'astro:transitions'
 import { SEO } from 'astro-seo'
 import { getEntry, type CollectionEntry } from 'astro:content'
 import Favicon from '../../public/favicon.svg'
@@ -64,7 +63,7 @@ if (article?.cover) {
   })
 }
 
-const twitterCreator = article?.authorTwitter || creator.data.twitter
+const twitterCreator = article?.authorTwitter || creator?.data.twitter
 const isProduction = import.meta.env.PROD
 ---
 
@@ -142,5 +141,4 @@ const isProduction = import.meta.env.PROD
   <meta name="publisher" content="Saida Lachgar" />
   {isProduction && <Analytics />}
   <SiteSchema {primarySchema} {secondarySchema} />
-  <ViewTransitions />
 </head>

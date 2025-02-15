@@ -1,5 +1,4 @@
 import { defineCollection, reference, z } from 'astro:content';
-import { POST_METADATA } from "@/consts.ts";
 
 const authors = defineCollection({
   type: 'content',

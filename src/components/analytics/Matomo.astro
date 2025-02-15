@@ -10,8 +10,8 @@ const scriptUrl = new URL('matomo.js', url).href;
 const trackerUrl = new URL('matomo.php', url).href;
 ---
 
-<script async src={scriptUrl}></script>
-<script define:vars={{id, trackerUrl}}>
+<script is:inline async src={scriptUrl}></script>
+<script is:inline define:vars={{id, trackerUrl}}>
   var _paq = window._paq = window._paq || [];
   _paq.push(['disableCookies']);
   _paq.push(['trackPageView']);

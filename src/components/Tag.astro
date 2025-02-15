@@ -3,19 +3,22 @@ import Link from './Link.astro'
 import { type CollectionEntry, getEntry } from 'astro:content'
 
 interface Props {
+  count?: number,
   tag?: CollectionEntry<'tags'>
-  slug?: CollectionEntry<'tags'>['slug']
+  id?: string
 }
-let TagProp = Astro.props.tag
 
-if (!TagProp && Astro.props.slug) {
-  TagProp = await getEntry('tags', Astro.props.slug)
+let tag = Astro.props.tag
+
+if (!tag && Astro.props.id) {
+  tag = (await getEntry('tags', Astro.props.id)) as CollectionEntry<'tags'>
 }
-const { slug, data } = TagProp!
+
+const { count = 0 } = Astro.props;
 ---
 
-<Link href={`/tags/${slug}`} class="tag">
-  {data.name}
+<Link href={`/tags/${tag?.slug ?? ''}`} class="tag">
+  {tag?.data.name}{count ? ` (${count})` : ''}
 </Link>
 
 <style lang="scss">

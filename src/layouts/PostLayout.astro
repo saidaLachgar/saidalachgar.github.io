@@ -7,7 +7,7 @@ import PostCover from '@/components/PostCover.astro'
 import SectionContainer from '@/components/SectionContainer.astro'
 import TableOfContent from '@/components/TableOfContent.astro'
 import Tag from '@/components/Tag.astro'
-import SocialShareButtons from '@/components/social-icons/SocialShareButtons.astro'
+import SocialShareButtons from '@/components/social-icons/index.astro'
 import { POST_METADATA } from '@/consts'
 import { useTranslations } from '@/i18n'
 import { getEntries, type CollectionEntry } from 'astro:content'
@@ -150,7 +150,7 @@ const { Content, headings } = await post.render()
 
           <!-- share -->
           <hr />
-          <SocialShareButtons title={post.data.title} description={post.data.summary} />
+          <SocialShareButtons description={post.data.summary} />
         </aside>
         <!-- content -->
         <div class="article-slot">
@@ -378,10 +378,10 @@ const { Content, headings } = await post.render()
 <script>
   document.addEventListener('astro:page-load', () => {
     // audio
-    const audioTag = document.getElementById('audio')
-    if (audioTag) {
-      const playPauseBtn = document.getElementById('play-pause')
-      const timeRemaining = document.getElementById('time-remaining')
+    const audioTag = document.getElementById('audio') as HTMLAudioElement | null
+    const playPauseBtn = document.getElementById('play-pause')
+    const timeRemaining = document.getElementById('time-remaining')
+    if (audioTag && playPauseBtn && timeRemaining) {
   
       // Toggle play and pause
       const pauseAudio = () => {
@@ -390,7 +390,7 @@ const { Content, headings } = await post.render()
       }
   
       // Format time in MM:SS
-      const formatTime = (seconds) => {
+      const formatTime = (seconds: number) => {
         const mins = Math.floor(seconds / 60)
         const secs = seconds % 60
         return `${mins}:${parseInt(secs, 10).toString().padStart(2, '0')}`
@@ -423,11 +423,15 @@ const { Content, headings } = await post.render()
     }
 
     // magnified cover
-    const imageBox = document.querySelector(".zoom-box");
-    const original = document.querySelector(".original-img");
-    const magnified = document.querySelector(".zoomed-img");
+    const imageBox: HTMLElement | null = document.querySelector(".zoom-box");
+    const original: HTMLElement | null = document.querySelector(".original-img");
+    const magnified: HTMLElement | null = document.querySelector(".zoomed-img");
 
-    function handleMouseMoves(e) {
+    function handleMouseMoves(e: MouseEvent) {
+      if (!magnified || !original) {
+        return;
+      }
+
       const style = magnified.style;
       const x = e.pageX - this.offsetLeft;
       const y = e.pageY - this.offsetTop;

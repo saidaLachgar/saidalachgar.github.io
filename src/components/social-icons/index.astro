@@ -1,35 +1,45 @@
 ---
-import Mail from './icons/Mail.astro'
-import Github from './icons/Github.astro'
-import Facebook from './icons/Facebook.astro'
-import Youtube from './icons/Youtube.astro'
-import Linkedin from './icons/Linkedin.astro'
-import Twitter from './icons/Twitter.astro'
-import Mastodon from './icons/Mastodon.astro'
-
-const components = {
-  mail: Mail,
-  github: Github,
-  facebook: Facebook,
-  youtube: Youtube,
-  linkedin: Linkedin,
-  twitter: Twitter,
-  mastodon: Mastodon,
-}
+import FacebookShareButton from './social-buttons/FacebookShareButton.astro'
+import LinkedInShareButton from './social-buttons/LinkedInShareButton.astro'
+import TwitterShareButton from './social-buttons/TwitterShareButton.astro'
+import CopyShareButton from './social-buttons/CopyShareButton.astro'
 
 type Props = {
-  kind: keyof typeof components
-  href: string | undefined
-  size?: number
+  description: string
+  via?: string
+  class?: string
 }
 
-const { kind, href, size = 8 } = Astro.props
-const SocialSvg = components[kind]
+const { description, via } = Astro.props
 ---
 
-<a class="text-sm text-gray-500 transition hover:text-gray-600" target="_blank" rel="noopener noreferrer" href={href}>
-  <span class="sr-only">{kind}</span>
-  <SocialSvg
-    class={`fill-current text-gray-700 hover:text-primary-500 dark:text-gray-200 dark:hover:text-primary-400 h-${size} w-${size}`}
-  />
-</a>
+<div class="social-share-buttons" class:list={Astro.props.class}>
+  <CopyShareButton />
+  <FacebookShareButton />
+  <LinkedInShareButton />
+  <TwitterShareButton {description} {via} />
+</div>
+
+<style style="scss">
+  :global(.social-share-btn) {
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    background-color: rgba(255, 255, 255, 0.08);
+    transition: background-color 0.3s ease-in;
+    border-radius: 28px;
+    padding: 6px 12px;
+    font-size: 12px;
+    font-weight: 700;
+    &:not(.copy) {
+      width: 34px;
+      height: 34px;
+      padding: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+  .social-share-buttons {
+    display: flex;
+    column-gap: 10px;
+  }
+</style>

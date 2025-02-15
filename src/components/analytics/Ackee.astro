@@ -15,6 +15,7 @@ const { domainId, src } = Astro.props;
 
 <script
     async
+    is:inline
     src={`${src}/tracker.js`}
     data-ackee-server={src}
     data-ackee-domain-id={domainId}

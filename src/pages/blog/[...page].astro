@@ -1,12 +1,11 @@
 ---
 export const prerender = true
-import { getCollection } from 'astro:content'
-// import ListLayout from "@/layouts/ListLayout.astro";
 import { ITEMS_PER_PAGE } from '@/consts'
-import { sortBlogPosts, excludeDrafts } from '@/functions'
-import ListWithTagsLayout from '@/layouts/ListWithTagsLayout.astro'
-import type { Page } from 'astro'
+import { excludeDrafts, sortBlogPosts } from '@/functions'
 import { useTranslations } from '@/i18n'
+import ListWithTagsLayout from '@/layouts/ListWithTagsLayout.astro'
+import type { GetStaticPathsOptions, Page } from 'astro'
+import { getCollection } from 'astro:content'
 
 const t = useTranslations()
 
@@ -14,7 +13,7 @@ interface Props {
   page: Page
 }
 
-export async function getStaticPaths({ paginate }) {
+export async function getStaticPaths({ paginate }: GetStaticPathsOptions) {
   const posts = await getCollection('blog', excludeDrafts).then(sortBlogPosts)
   return paginate(posts, { pageSize: ITEMS_PER_PAGE })
 }

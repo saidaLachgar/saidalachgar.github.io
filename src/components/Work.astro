@@ -90,8 +90,9 @@ const years = projectStats.find(stat => stat.caption === 'Years')?.value || 'X';
 <script>
   document.addEventListener('astro:page-load', () => {
     // cursor
-    document.querySelectorAll('.playground li').forEach((container) => {
-      const cursor = container.querySelector('.cursor')
+    const playgroundItems: NodeListOf<HTMLLIElement> = document.querySelectorAll('.playground li')
+    playgroundItems.forEach((container) => {
+      const cursor: HTMLDivElement | null = container.querySelector('.cursor')
       if (!cursor) return
       container.addEventListener('mousemove', ({ clientX, clientY }) => {
         const { left, top } = container.getBoundingClientRect()
@@ -102,8 +103,8 @@ const years = projectStats.find(stat => stat.caption === 'Years')?.value || 'X';
 
     // carousel (scroll)
     const sticky = document.querySelector('.playground .carousel-outer')
-    if (sticky) {
-      const stickyParent = document.querySelector('.playground .carousel-container')
+    const stickyParent = document.querySelector('.playground .carousel-container')
+    if (sticky && stickyParent) {
       const scrollWidth = sticky.scrollWidth
       const verticalScrollHeight = stickyParent.getBoundingClientRect().height - sticky.getBoundingClientRect().height
       const topOffset = window.innerHeight / 2 - 282

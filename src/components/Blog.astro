@@ -2,12 +2,10 @@
 import { getCollection } from 'astro:content'
 import { excludeDrafts, sortBlogPosts } from '@/functions'
 import { ITEMS_PER_PAGE } from '@/consts'
-import { useTranslations } from '@/i18n'
 import Link from './Link.astro'
 import FormattedDate from './FormattedDate.astro'
 import SectionContainer from './SectionContainer.astro'
 
-const t = useTranslations()
 const posts = await getCollection('blog', excludeDrafts).then(sortBlogPosts)
 ---
 

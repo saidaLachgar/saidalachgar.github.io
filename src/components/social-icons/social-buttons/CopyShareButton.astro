@@ -8,7 +8,7 @@ import { Icon } from 'astro-icon/components'
   <span>copy link</span>
 </span>
 
-<script define:vars={{ url: Astro.request.url }}>
+<script is:inline define:vars={{ url: Astro.request.url }}>
   const shareButton = document.querySelector('.social-share-btn')
   const copyMessage = document.querySelector('.social-share-btn .copy-message')
   if (shareButton && copyMessage) {

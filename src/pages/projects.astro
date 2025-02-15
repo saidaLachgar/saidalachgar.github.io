@@ -90,21 +90,21 @@ const badge = (status: string) => (['PLAYGROUND', 'STUDY CASE'].includes(status)
 
 <script>
   document.addEventListener('astro:page-load', () => {
-    const passcode = document.querySelector('.passcode');
+    const passcode: HTMLElement | null = document.querySelector('.passcode');
     const cells = ['year', 'role', 'name', 'platform', 'industry']
     document.addEventListener('input', () => {
       const filters = cells.map((id) => {
         const filterInput = document.getElementById(`filter-${id}`);
         if (filterInput) {
-          return filterInput.value.toLowerCase();
+          return (filterInput as HTMLInputElement).value.toLowerCase();
         }
       })
 
       document.querySelectorAll('.project').forEach((project) => {
         const matches = cells.every((id, i) => {
           const  projectText = project.querySelector(`.${id}`);
-          if (projectText) {
-            return projectText.textContent.toLowerCase().includes(filters[i])
+          if (projectText && filters[i]) {
+            return projectText.textContent?.toLowerCase().includes(filters[i])
           }
         })
         project.classList.toggle('hidden', !matches)
@@ -112,14 +112,14 @@ const badge = (status: string) => (['PLAYGROUND', 'STUDY CASE'].includes(status)
     })
 
     const allowAccess = () => {
-      const projects = document.querySelector('#projects');
+      const projects: HTMLElement | null = document.querySelector('#projects');
       passcode && (passcode.style.display = 'none');
       projects && setTimeout(() => {
         projects.style.display = 'block'
       }, 10)
     };
 
-    const validateToken = async (token) => {
+    const validateToken = async (token: string) => {
       const formMessage = document.getElementById('form-message');
 
       try {
@@ -142,8 +142,10 @@ const badge = (status: string) => (['PLAYGROUND', 'STUDY CASE'].includes(status)
 
     const tokenCheck = document.getElementById('token-check')
     tokenCheck && tokenCheck.addEventListener('click', () => {
-      const inputToken = document.getElementById('token-input')?.value
-      validateToken(inputToken)
+      const inputToken = (
+        document.getElementById('token-input') as HTMLInputElement | null
+      )?.value
+      inputToken && validateToken(inputToken)
     })
 
     passcode && passcode.addEventListener('submit', (e) => {

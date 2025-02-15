@@ -1,4 +1,4 @@
-import type {CollectionEntry} from "astro:content";
+import type { CollectionEntry } from "astro:content";
 
 /**
  * Filter blog posts by published date and order them.
@@ -23,7 +23,6 @@ export const sortBlogPosts = (posts: CollectionEntry<'blog'>[] | null): Collecti
  * @param post Blog post
  * @returns True if the post is not a draft
  */
-export const excludeDrafts = ({data}: CollectionEntry<'blog'>): boolean => {
-    // Usually this should be like this - import.meta.env.PROD ? !data.draft : true; but for the purpose of the demo, we are displaying drafts as well
-    return import.meta.env.PROD ? true : true;
+export const excludeDrafts = ({ data }: CollectionEntry<'blog'>): boolean => {
+    return import.meta.env.PROD ? !data.draft : true;
 }

@@ -21,12 +21,9 @@ interface Props {
 const tags = await getCollection('tags')
 const posts = await getCollection('blog')
 
-function tagCount(slug: CollectionEntry<'tags'>['slug']) {
-  if (!posts) {
-    return 0
-  }
-  return posts.filter((post) => post.data.tags.some((tag) => tag.slug === slug)).length
-}
+const tagCount = (slug: CollectionEntry<'tags'>['slug']) => (
+  posts?.flatMap(({ data }) => data.tags).filter(({ id }) => id === slug).length || 0
+);
 
 function isSamePath(path: string) {
   return Astro.url.pathname === path
@@ -92,9 +89,7 @@ const isBlogPage = Astro.url.pathname.startsWith('/blog')
               </h2>
               <p class="summary">{summary}</p>
               <div class="tags">
-                {tags.map(({ slug }) => (
-                  <Tag slug={slug} />
-                ))}
+                {tags.map(({ id }) => (<Tag id={id} />))}
               </div>
             </article>
           </li>

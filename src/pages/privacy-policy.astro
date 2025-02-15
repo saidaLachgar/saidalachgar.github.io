@@ -1,0 +1,87 @@
+---
+import SectionContainer from '@/components/SectionContainer.astro'
+import { PERSON, SITE_METADATA } from '@/consts'
+import RootLayout from '@/layouts/RootLayout.astro'
+
+---
+
+<RootLayout title="Privacy Policy" description="">
+  <SectionContainer>
+    <div class="privacy-policy">
+        <h1>Privacy Policy</h1>
+        <p>Last updated: February 12, 2024</p>
+        <p>
+            Hello! I'm Saida Lachgar, and I want to be transparent about how I handle data on my portfolio website ({SITE_METADATA.siteUrl.replace('https://', '')}).
+        </p>
+    
+        <h1>Data Collection and Usage</h1> 
+        <p>I use a few tools to help me understand how visitors interact with my portfolio and to provide a better experience:</p>
+    
+        <p>1. <b>Analytics</b></p>
+        <ul>
+            <li>&nbsp;&nbsp;&#10139; I use Ackee Analytics (self hosted), a privacy-focused analytics tool that collects anonymous usage data</li>
+            <li>&nbsp;&nbsp;&#10139; Google Search Console helps me monitor how my portfolio appears in search results</li>
+        </ul>
+    
+        <p>2. <b>Scheduling</b></p>
+        <ul>
+            <li>&nbsp;&nbsp;&#10139; I use Cal.com for scheduling meetings and calls</li>
+            <li>&nbsp;&nbsp;&#10139; When you book a call, Cal.com will collect basic information (name and email) to facilitate our meeting</li>
+        </ul>
+    
+        <p>I want to emphasize that I:</p>
+        <ul>
+            <li>&nbsp;&nbsp;&#10139; Never sell or share your personal information</li>
+            <li>&nbsp;&nbsp;&#10139; Only collect what's necessary to maintain and improve the website</li>
+            <li>&nbsp;&nbsp;&#10139; Use this data solely to enhance your experience and improve my portfolio</li>
+        </ul>
+    
+        <h2>Your Privacy Rights</h2>
+    
+        <p>Your privacy matters to me. You have the right to:</p>
+        <ul>
+            <li>&nbsp;&nbsp;&#10139; Know what personal data I have about you</li>
+            <li>&nbsp;&nbsp;&#10139; Request deletion of your data</li>
+            <li>&nbsp;&nbsp;&#10139; Ask for modifications to your data</li>
+        </ul>
+    
+        <p>If you have any questions or concerns, please reach out to me at {PERSON.mail}.</p>
+    
+        <h2>Third-Party Services</h2>
+    
+        <p>For complete transparency, here are the privacy policies of the third-party services I use:</p>
+        <ul>
+            <li>&nbsp;&nbsp;&#10139; Google Search Console: <a href="https://policies.google.com/privacy">Google Privacy Policy</a></li>
+            <li>&nbsp;&nbsp;&#10139; Cal.com: <a href="https://cal.com/privacy">Cal.com Privacy Policy</a></li>
+        </ul>
+    
+        <h2>Updates to This Policy</h2>
+        <p>I may occasionally update this policy to reflect changes in how I handle data. You can always find the latest version at {SITE_METADATA.siteUrl.replace('https://', '')}privacy-policy.</p>
+    
+        <h2>Contact</h2>
+    
+        <p>If you have any questions about this privacy policy or how I handle data, please don't hesitate to contact me at {PERSON.mail}.</p>
+    </div>
+  </SectionContainer>
+</RootLayout>
+<style lang="scss">
+    .privacy-policy {
+      padding: 30px;
+      font-size: 12px;
+      border: 1px solid rgb(255, 255, 255, 0.08);
+        background-color: rgb(255, 255, 255, 0.08);
+      border-radius: 7px;
+      margin: 100px auto 20px;
+      width: 90%;
+      max-width: 900px;
+  
+      > * {
+        margin-bottom: 15px;
+      }
+
+      a{
+        text-decoration: underline;
+      }
+    }
+  </style>
+  

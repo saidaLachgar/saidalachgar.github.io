@@ -1,6 +1,0 @@
-
-import __ASTRO_IMAGE_IMPORT_Z112gRA from "@/assets/img/how-to-properly-handle-a-hotfix-using-gui-step-by-step-gitflow-guide.png?astroContentImageFlag=&importer=src%2Fcontent%2Fblog%2Fhow-to-handle-a-hotfix-using-git-fork.mdx";
-import __ASTRO_IMAGE_IMPORT_EjhuJ from "@/assets/img/my-developer-workspace-tools-extensions-and-setup.png?astroContentImageFlag=&importer=src%2Fcontent%2Fblog%2Fmy-developer-workspace-tools-extensions-and-setup.mdx";
-import __ASTRO_IMAGE_IMPORT_Z2MXUJ from "@/assets/img/rewriting-history-git-using-rebase.png?astroContentImageFlag=&importer=src%2Fcontent%2Fblog%2Fwhy-rebase-instead-of-merge-step-by-step-guide.mdx";
-export default new Map([["@/assets/img/how-to-properly-handle-a-hotfix-using-gui-step-by-step-gitflow-guide.png?astroContentImageFlag=&importer=src%2Fcontent%2Fblog%2Fhow-to-handle-a-hotfix-using-git-fork.mdx", __ASTRO_IMAGE_IMPORT_Z112gRA], ["@/assets/img/my-developer-workspace-tools-extensions-and-setup.png?astroContentImageFlag=&importer=src%2Fcontent%2Fblog%2Fmy-developer-workspace-tools-extensions-and-setup.mdx", __ASTRO_IMAGE_IMPORT_EjhuJ], ["@/assets/img/rewriting-history-git-using-rebase.png?astroContentImageFlag=&importer=src%2Fcontent%2Fblog%2Fwhy-rebase-instead-of-merge-step-by-step-guide.mdx", __ASTRO_IMAGE_IMPORT_Z2MXUJ]]);
-		

@@ -12,11 +12,13 @@ const t = useTranslations()
   <SectionContainer>
     <div class="page-404">
       <h1 class="title">404</h1>
-      <p class="text">{t('pages.404.title')}<br />{t('pages.404.description')}</p>
-      <Link href="/" class="link">
-        <Icon name="arrow-top-right" width={12} height={12} />
-        {t('pages.404.backToHome')}
-      </Link>
+      <div data-reveal>
+        <p class="text">{t('pages.404.title')}<br />{t('pages.404.description')}</p>
+        <Link href="/" class="link">
+          <Icon name="arrow-top-right" width={12} height={12} />
+          {t('pages.404.backToHome')}
+        </Link>
+      </div>
     </div>
   </SectionContainer>
 </RootLayout>

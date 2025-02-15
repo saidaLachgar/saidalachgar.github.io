@@ -17,7 +17,7 @@ if (!tag && Astro.props.id) {
 const { count = 0 } = Astro.props;
 ---
 
-<Link href={`/tags/${tag?.slug ?? ''}`} class="tag">
+<Link href={`/tags/${tag?.slug ?? ''}/`} class="tag">
   {tag?.data.name}{count ? ` (${count})` : ''}
 </Link>
 

@@ -62,7 +62,7 @@ const isBlogPage = Astro.url.pathname.startsWith('/blog')
             {isSamePath(`/tags/${slug}`) ? (
               <p class="tag-link active">{`${data.name} (${tagCount(slug)})`}</p>
             ) : (
-              <Link href={`/tags/${slug}`} class="tag-link" aria-label={`View posts tagged ${data.name}`}>
+              <Link href={`/tags/${slug}/`} class="tag-link" aria-label={`View posts tagged ${data.name}`}>
                 {`${data.name} (${tagCount(slug)})`}
               </Link>
             )}

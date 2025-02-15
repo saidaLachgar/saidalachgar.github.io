@@ -22,7 +22,7 @@ const {
   {!prev && <span class="disabled">{t('components.pagination.previous')}</span>}
   {
     prev && (
-      <Link href={`${prev}#content`} rel="prev">
+      <Link href={`${prev}/#content`} rel="prev">
         {t('components.pagination.previous')}
       </Link>
     )
@@ -33,7 +33,7 @@ const {
   {!next && <span class="disabled">{t('components.pagination.next')}</span>}
   {
     next && (
-      <Link href={`${next}#content`} rel="next">
+      <Link href={`${next}/#content`} rel="next">
         {t('components.pagination.next')}
       </Link>
     )

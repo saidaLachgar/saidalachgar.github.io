@@ -87,10 +87,10 @@ import { Icon } from 'astro-icon/components'
     }
 
     @media (max-width: 1070px) {
-      margin-top: 150px;
-      margin-bottom: 50px;
       flex-direction: column;
+      margin-top: 100px;
     }
+
     @media (max-width: 1230px) {
       .header {
         padding-bottom: 20px;
@@ -98,25 +98,33 @@ import { Icon } from 'astro-icon/components'
         .description {
           max-width: unset;
           opacity: 0.7;
+          margin: 0 0 40px;
+        }
+        .title {
+          font-size: 35px;
+          margin: 10px 0;
         }
       }
       .item {
         flex-direction: column;
         align-items: flex-start;
-        row-gap: 40px;
+        row-gap: 30px;
 
         .subtitle {
-          font-size: 18px;
+          font-size: 15px;
           line-height: 1.2;
           text-transform: unset;
         }
         svg {
-          max-width: 110px;
+          max-width: 80px;
           margin-right: auto;
         }
+        &:not(:last-child) {
+  margin-bottom: 55px;
+}
       }
       .description {
-        font-size: 14px;
+        font-size: 13px;
       }
       .content {
         max-width: unset;

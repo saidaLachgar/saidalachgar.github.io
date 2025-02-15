@@ -192,7 +192,15 @@ const years = projectStats.find(stat => stat.caption === 'Years')?.value || 'X';
     }
     @media (max-width: 655px) {
       margin-top: 60px;
-      margin-bottom: 110px;
+
+      .title {
+        margin: 10px 0;
+        font-size: 35px;
+      }
+
+      .description {
+        margin-bottom: 15px;
+      }
     }
   }
 </style>

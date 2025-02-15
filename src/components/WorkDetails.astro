@@ -150,7 +150,7 @@ const { data } = Astro.props
 <script>
   document.addEventListener('astro:page-load', () => {
     // cursor
-    const carouselOuter: NodeListOf<HTMLDivElement> = document.querySelectorAll('.work-description .carousel-outer')
+    const carouselOuter = document.querySelectorAll('.work-description .carousel-outer')
     carouselOuter.forEach((carousel) => {
       const cursor: HTMLElement | null = carousel.querySelector('.carousel-cursor')
       const carouselInner: HTMLUListElement | null = carousel.querySelector('.carousel')
@@ -256,7 +256,7 @@ const { data } = Astro.props
     )
 
     // carousel (drag)
-    const siders: NodeListOf<HTMLUListElement> = document.querySelectorAll('.carousel')
+    const siders = document.querySelectorAll('.carousel')
     siders?.forEach((sider) => {
       let pos = { top: 0, left: 0, x: 0, y: 0 }
       const cursor = sider.nextElementSibling
@@ -527,17 +527,9 @@ const { data } = Astro.props
         z-index: 10;
         transform-origin: 0 0;
         mix-blend-mode: difference;
-        scale: 0.4;
-        &.grabbing {
-          scale: 0.8 !important;
-        }
       }
       &-outer {
         position: relative;
-        &:hover .carousel-cursor {
-          opacity: 1;
-          scale: 1;
-        }
       }
     }
     .drag-mobile {
@@ -549,5 +541,17 @@ const { data } = Astro.props
         display: block;
       }
     }
+  }
+</style>
+<style>
+  .work-description .carousel-cursor {
+    scale: 0.4;
+  }
+  .work-description .carousel-outer:hover .carousel-cursor{
+    opacity: 1;
+    scale: 1;
+  }
+  .work-description .carousel-cursor.grabbing {
+    scale: 0.8 !important;
   }
 </style>

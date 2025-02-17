@@ -5,7 +5,6 @@ import SiteMeta from '../components/SiteMeta.astro'
 import Header from '../components/Header.astro'
 import Footer from '../components/Footer.astro'
 import { useTranslations } from '@/i18n'
-import { ClientRouter } from 'astro:transitions';
 
 const t = useTranslations()
 
@@ -29,7 +28,6 @@ interface Props {
 ---
 
 <html lang={t('siteMetadata.language')} dir="ltr">
-  <ClientRouter />
   <SiteMeta {...Astro.props} />
   <body style="background-color: #000;">
     <div id="loader" style="display: none;"></div>

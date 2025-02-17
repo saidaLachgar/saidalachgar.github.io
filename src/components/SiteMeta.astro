@@ -1,5 +1,6 @@
 ---
 import { SITE_METADATA } from '@/consts'
+import { join } from "node:path"
 import { SEO } from 'astro-seo'
 import { getEntry, type CollectionEntry } from 'astro:content'
 import Favicon from '../../public/favicon.svg'
@@ -7,6 +8,8 @@ import OgImage from '../../public/og-image.png'
 import { getImage } from 'astro:assets'
 import Analytics from './Analytics.astro'
 import SiteSchema from './SiteSchema.astro'
+import { AstroFont } from 'astro-font'
+import { ClientRouter } from 'astro:transitions';
 
 interface Props {
   title: string
@@ -136,9 +139,57 @@ const isProduction = import.meta.env.PROD
       }),
     }}
   />
+  <AstroFont
+    config={[
+      {
+        name: "Inter",
+        src: [
+          {
+            style: 'normal',
+            weight: '400',
+            path: join(process.cwd(), 'public', 'fonts', 'inter-v13-latin-regular.woff2')
+          },
+          {
+            style: 'medium',
+            weight: '500',
+            path: join(process.cwd(), 'public', 'fonts', 'inter-v13-latin-500.woff2')
+          },
+          {
+            style: 'medium',
+            weight: '600',
+            path: join(process.cwd(), 'public', 'fonts', 'inter-v13-latin-600.woff2')
+          },
+          {
+            style: 'medium',
+            weight: '700',
+            path: join(process.cwd(), 'public', 'fonts', 'inter-v13-latin-700.woff2')
+          },
+        ],
+        preload: false,
+        display: "swap",
+        selector: "body",
+        fallback: "sans-serif",
+      },
+      {
+        name: "Roxie Rossa",
+        src: [
+          {
+            style: 'normal',
+            weight: '400',
+            path: join(process.cwd(), 'public', 'fonts', 'roxie-rossa.woff2')
+          },
+        ],
+        preload: false,
+        display: "swap",
+        selector: "body",
+        fallback: "serif",
+      },
+    ]}
+  />
   <link rel="sitemap" href="/sitemap-index.xml" />
   <meta name="keywords" content={keywords} />
   <meta name="publisher" content="Saida Lachgar" />
   {isProduction && <Analytics />}
   <SiteSchema {primarySchema} {secondarySchema} />
+  <ClientRouter />
 </head>

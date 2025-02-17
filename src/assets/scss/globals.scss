@@ -3,14 +3,13 @@
 // | -------------------------------------------------------------
 
 @use 'base/mixins';
-@use 'base/typography';
+// @use 'base/typography'; moved to siteMeta
 @use 'base/reset';
 @use 'base/root';
 @use 'base/container';
 @use 'base/breakpoint';
 @use 'base/outline';
 @use 'base/animations';
-@use 'base/space-content';
 
 #overlay,
 #loader {

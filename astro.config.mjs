@@ -29,7 +29,7 @@ export default defineConfig({
       },
     }),
     sitemap({
-      filter: (page) => page !== `${SITE_METADATA.siteUrl}/privacy-policy/` && !/\/blog\/\d+\/$/.test(page),
+      filter: (page) => !page.includes('/privacy-policy/') && !/\/blog\/\d+\/$/.test(page),
     }),
     metaTags(),
     robotsTxt(),

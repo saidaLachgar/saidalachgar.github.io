@@ -80,6 +80,10 @@ const posts = await getCollection('blog', excludeDrafts).then(sortBlogPosts)
     .name {
       font-size: 20px;
       font-weight: 500;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      height: 23px;
+      white-space: nowrap;
     }
 
     .date,

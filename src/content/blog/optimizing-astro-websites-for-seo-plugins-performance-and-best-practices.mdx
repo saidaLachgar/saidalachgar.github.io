@@ -1,0 +1,80 @@
+---
+title: "Optimizing Astro Websites for SEO: Plugins, Performance, and Best Practices"
+date: "2025-02-17"
+summary: "Learn how to supercharge your Astro.js website's SEO with practical tips, plugins, and best practices for better search engine rankings."
+tags: ["performance"]
+---
+
+## Sitemaps and RSS Feeds
+
+Make it easy for search engines to crawl your site
+
+```bash
+yarn add @astrojs/sitemap @astrojs/rss astro-robots-txt
+```
+
+`@astrojs/sitemap` Automatically generates a sitemap.xml - crucial for search engines to understand your site structure.
+
+`@astrojs/rss` Add an RSS feed for blogs or frequently updated content.
+
+`astro-robots-txt` Generates a `robots.txt` file. This tells search engines which pages to crawl and which to ignore.
+
+## Meta Tags and Structured Data
+
+Search engines love metadata. Use these tools to make your site stand out:
+
+```bash
+yarn add astro-meta-tags astro-seo-schema
+```
+
+`astro-meta-tags`: Easily add meta tags for titles, descriptions, and Open Graph (OG) tags for better control over how your content appears in search results
+
+`astro-seo-schema`: Add structured data for rich snippets. JSON-LD helps search engines understand your content better, potentially resulting in rich snippets. Use tools like [Schema Markup Generator](https://technicalseo.com/tools/schema-markup-generator/) to create JSON-LD scripts.
+
+## Performance Optimization
+
+Speed matters for SEO! Here's how to optimize performance:
+
+```bash
+yarn add astro-compress astro-purgecss
+```
+
+`astro-compress`: Compresses your HTML, CSS, and JavaScript files. Smaller files = faster load times.
+
+`astro-purgecss`: Removes unused CSS, keeping your stylesheets lean.
+
+## Astro Image Optimization
+
+Images affect both user experience and search rankings.
+
+### Where to store images ? `src/` vs `public/`
+
+Use `src/` when possible so that Astro can transform, optimize and bundle your files. 
+
+Use `/public` folder if you want to avoid any processing or to have a direct public link.
+
+### Display optimized images with Astro’s native components
+
+Use `<Image />` and `<Picture />` components for optimized images. Astro syntax also supports writing `<img>` tag directly, which **skips** image processing.
+
+```astro
+---
+import { Picture, Image } from 'astro:assets';
+import myImage from '../src/images/my-image.jpg';
+---
+<Image src={myImage} width={800} height={600} alt="Descriptive alt text" />
+<!-- Use modern formats like WebP or AVIF for better compression. -->
+<Picture src={myImage} formats={['avif', 'webp']} alt="Descriptive alt text" />
+```
+
+## Keep Astro Updated
+
+The Astro team consistently improves performance with each update. Staying current ensures you benefit from these optimizations.
+
+```bash
+yarn upgrade astro --latest
+```
+
+---
+
+For more advanced techniques, check out the [Complete Guide to SEO Optimization](/blog/developer-handbook-for-seo-for-higher-ranking/).

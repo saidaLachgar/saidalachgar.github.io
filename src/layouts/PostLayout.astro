@@ -337,6 +337,11 @@ const { Content, headings } = await post.render()
     max-width: 320px;
     font-size: 14px;
     flex: 1;
+    opacity: .8;
+    transition: opacity 0.3s ease-in;
+    &:hover{
+      opacity: 1;
+    }
     @media (max-width: 992px) {
       display: none;
     }

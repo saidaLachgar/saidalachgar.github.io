@@ -204,6 +204,6 @@ _(Translation: "Your code is slow. Here’s why.")_
 
 ---
 
-**Want me to add even _more_ obscure terms?** Like **"CI/CD"** or **"WebAssembly"**? DM me on Twitter (@yourhandle) and let me know! 😄
+**Want me to add even _more_ obscure terms?** Like **"CI/CD"** or **"WebAssembly"**? DM me on (@saida_codes) and let me know! 😄
 
 _Want this as a PDF cheat sheet?_ <a href="/dev-vocabulary-cheat-sheet.pdf" target="_blink">Download</a> _900+ devs already stole it ;)_

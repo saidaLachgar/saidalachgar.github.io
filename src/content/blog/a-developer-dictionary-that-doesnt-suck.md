@@ -91,9 +91,8 @@ _(Translation: "Let’s wrap our app in a digital burrito so it runs anywhere.")
 _(Translation: "Our app is now a brick.")_
 
 - **API** = A way for apps to talk to each other. Like a waiter taking orders between the kitchen (server) and your table (frontend).
-- **REST** = A common API design style. **GraphQL** = REST’s hipster sibling—asks for _exactly_ the data it wants. GET, POST, PUT...
-
-- **GraphQL** = REST’s hipster cousin. Only wants the data it needs, with zero extra calories
+- **REST** = A common API design style. you ask for stuff via URLs, and the server delivers, plain and simple.
+- **GraphQL** = REST’s hipster cousin. Only wants the data it needs, with zero extra calories.
 - **Endpoint** = A URL where an API "listens" (e.g., `https://api.cats.com/v1/meow`).
 - **Rate Limiting** = When an API says _"slow down, buddy"_ after you spam it too much.
 

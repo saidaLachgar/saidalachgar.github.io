@@ -28,7 +28,7 @@ const years = projectStats.find(stat => stat.caption === 'Years')?.value || 'X';
                 <i />
               </p>
               <span class="role">{project.role}</span>
-              <span class="year">{project.year}</span>
+              <span class="year">{project.year}{project.present ? ' – Present' : ''}</span>
             </div>
           </li>
         ))

@@ -68,7 +68,7 @@ const badge = (status: string) => (['PLAYGROUND', 'STUDY CASE'].includes(status)
             allProjects.map((project) => (
               <li data-reveal>
                 <div class="project" data-target={`project-${project.key}`}>
-                  <span class="year">{project.year ?? '-'}</span>
+                  <span class="year">{project.year ?? '-'}{project.present ? ' – Present' : ''}</span>
                   <span class="role">{project.role ?? '-'}</span>
                   <div class="name">
                     {project.name ?? '-'}&nbsp;{ project.star ? '★' : ''}

@@ -1,0 +1,308 @@
+---
+title: "Stop Slowing Your Site Down: The Practical Image Optimization Guide"
+summary: A practical guide to modern image optimization using AVIF, WebP, responsive images, CDNs, compression pipelines, caching, and Core Web Vitals best practices.
+date: "2026-02-16"
+tags: ["tips", "performance"]
+---
+
+## 1) Use Modern Formats (But Keep Fallbacks)
+### Rule: AVIF → WebP → JPEG/PNG
+
+- **AVIF** → Best compression, best quality-to-size ratio
+- **WebP** → Excellent fallback
+- **JPEG/PNG** → Legacy fallback only
+
+In 2026, AVIF has strong browser support. It should be your default output format.
+
+### Example (correct way to serve formats)
+
+```html
+<picture>
+  <source srcset="/img/photo.avif" type="image/avif">
+  <source srcset="/img/photo.webp" type="image/webp">
+  <img 
+    src="/img/photo.jpg" 
+    alt="Mountain landscape at sunset"
+    width="1200"
+    height="800"
+    loading="lazy"
+  >
+</picture>
+```
+
+### Why this matters
+
+Browsers automatically pick the **first supported format**.  
+Modern browsers download AVIF. Older ones fall back gracefully.
+
+No JS required.
+
+---
+
+## 2) Always Serve the Right Size (Responsive Images)
+
+Serving a 2000px image to a 390px phone is pure waste.
+
+Use `srcset` and `sizes` so the browser downloads only what it needs.
+
+```html
+<img
+  src="/img/photo-800.avif"
+  srcset="
+    /img/photo-400.avif 400w,
+    /img/photo-800.avif 800w,
+    /img/photo-1600.avif 1600w
+  "
+  sizes="(max-width: 768px) 90vw, 800px"
+  width="800"
+  height="533"
+  alt="Product preview"
+/>
+```
+
+### What happens here?
+
+- Small screen → downloads 400px version
+- Tablet → 800px
+- Large display → 1600px
+- Retina screens → browser automatically accounts for DPR
+
+This alone can cut image bytes by **50–80%**.
+
+---
+
+## 3) Fix Your LCP (Hero Image Optimization)
+
+Your hero image is often your **Largest Contentful Paint (LCP)** element.
+
+If it loads slowly → your Core Web Vitals suffer → SEO suffers.
+
+### Optimize it like this:
+
+1. Compress it properly  
+2. Use AVIF  
+3. Preload it  
+4. Do NOT lazy-load it  
+
+```html
+<link rel="preload" as="image" href="/img/hero.avif">
+
+<img
+  src="/img/hero.avif"
+  alt="Dashboard preview"
+  width="1600"
+  height="900"
+  loading="eager"
+  fetchpriority="high"
+/>
+```
+
+### Important
+- Use `fetchpriority="high"` for the hero
+- Never use `loading="lazy"` on LCP images
+
+---
+
+## 4) Compress Images Properly (Quality Sweet Spot)
+
+Higher quality ≠ better performance.
+
+Start here:
+
+| Format | Recommended Quality |
+|--------|--------------------|
+| AVIF   | 50–70 |
+| WebP   | 75–90 |
+| JPEG   | 70–85 |
+
+Most developers over-compress JPEGs and under-compress AVIF.
+
+---
+
+## 5) Don’t Just Resize — Generate Multiple Variants
+
+A common mistake:
+- Resize once
+- Serve same size to everyone
+
+Better approach:
+Generate multiple widths at build time:
+
+- 400w
+- 800w
+- 1200w
+- 1600w
+
+Then connect them with `srcset`.
+
+---
+
+## 6) Let an Image CDN Handle It
+
+Manual optimization works — but image CDNs save time.
+
+Popular options:
+- Cloudflare Images
+- ImageKit
+- imgix
+- Fastly Image Optimizer
+
+What they do automatically:
+- Convert to AVIF/WebP
+- Resize on the fly
+- Serve from edge locations
+- Cache globally
+- Strip metadata
+- Optimize per device
+
+---
+
+## 7) Prevent Layout Shift (CLS)
+
+If you don’t define image dimensions, your layout jumps while loading.
+
+That hurts UX and Core Web Vitals.
+
+### Always do one of these:
+
+**Option A (recommended):**
+```html
+<img width="800" height="533" ...>
+```
+
+**Option B:**
+```css
+img {
+  aspect-ratio: 16 / 9;
+}
+```
+
+This reserves space before the image loads.
+
+---
+
+## 8) Lazy-Load Everything Below the Fold
+
+Below-the-fold images should use:
+
+```html
+loading="lazy"
+```
+
+This delays loading until the image is near the viewport.
+
+Never lazy-load:
+- Hero image
+- Above-the-fold visuals
+- Critical UI images
+
+---
+
+## 9) Use Proper Caching
+
+Images rarely change. So cache them aggressively.
+
+```
+Cache-Control: public, max-age=31536000, immutable
+```
+
+Then use hashed filenames:
+
+```
+photo.8f3a21.avif
+```
+
+When the image changes → filename changes → browser fetches new version.
+
+---
+
+## 10) Consider Client Hints (Advanced)
+
+Instead of complex `srcset`, you can let the server decide image size using **Client Hints**.
+
+Example response header:
+
+```
+Accept-CH: DPR, Width, Viewport-Width
+```
+
+Then the browser sends:
+- Device pixel ratio
+- Viewport width
+
+Your server returns the perfectly sized image.
+
+This works best with image CDNs.
+
+---
+
+## 11) Strip Metadata
+
+Images often contain:
+- Camera data
+- GPS location
+- Editing software info
+
+Remove EXIF metadata unless you truly need it.
+
+Most CDNs and Sharp can strip metadata automatically.
+
+---
+
+## 12) Measure the Right Way
+
+Use:
+
+- Lighthouse
+- Chrome DevTools → Network tab
+- WebPageTest
+- Core Web Vitals report
+
+Check:
+- LCP time
+- Total image bytes
+- Number of image requests
+
+Your goal:
+- Fast LCP
+- Smaller total transfer size
+- No CLS from images
+
+---
+
+## The Real Optimization Mindset
+
+Image optimization is not just:
+> “Convert to WebP and done.”
+
+It’s about:
+- Serving the correct format
+- Serving the correct size
+- Loading it at the correct time
+- Caching it correctly
+- Preventing layout shifts
+- Prioritizing critical images
+
+Do all of these → your site feels instantly faster.
+
+---
+
+## Final Copy-Paste Checklist
+
+- [ ] Convert images to **AVIF** with WebP fallback  
+- [ ] Generate multiple responsive widths  
+- [ ] Use `<picture>` or `srcset`  
+- [ ] Preload and prioritize hero image  
+- [ ] Never lazy-load LCP  
+- [ ] Lazy-load below-the-fold images  
+- [ ] Add width/height or aspect-ratio  
+- [ ] Compress using recommended quality ranges  
+- [ ] Strip metadata  
+- [ ] Use long-term caching with hashed filenames  
+- [ ] Consider an image CDN  
+- [ ] Measure with Lighthouse & WebPageTest  
+
+---
+
+If images are 60–80% of your page weight (they usually are),  
+fixing them can be the single biggest performance win on your site.

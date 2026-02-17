@@ -1,42 +1,15 @@
-# 👉 BEFORE DEPLOY 🔥
-
-**IMPORTANT**
-[-] clicking on email could copy it
-
-- [-] corss-browser testing
-  - [-] SAFARRI MOBILE home playground is broken
-
-**NOT IMPORTANT**
-
-# 👉 AFTER DEPLOY ✨
-
-**IMPORTANT**
-
-- promote website https://chatgpt.com/c/6716b6c4-0c10-800b-b412-bdbca662e734
-
-I’ve just dropped a blog post showcasing my complete dev setup that keep me efficient 💻✨
-Shoutout to @Firefox for being my go-to browser for web dev 🦊🔥
-Checkout the blog post here 🔗 #ProductivityHacks
-
 - Social card
   https://x.com/DannPetty/status/1783714260578672991/video/1
-
-**NOT IMPORTANT**
-
 - ar fr en version
 - tab navigation
 - dark/light mode
 - infinit scroll wearemotto.com
 - minimap
-- Terminal exprience https://github.com/Cveinnt/LiveTerm
-  https://liveterm.vercel.app/
-  https://terminal.satnaing.dev/
 - [-] blog content
-  - [-] Introduction to React Hooks: A Quick Guide
-  - [-] Semantic HTML5 HN every frontend developer should know
-  - [-] img optmization https://www.industrialempathy.com/posts/image-optimizations/
   - [-] how to use websockets for real-time communication
   - [-] icons and svg
+  - [-] prestashop code splitting
+    make me an astro mdx blog article about code splitting in prestashop. wher blog artcile is gonna posted in my portfolio so am using a informal content where i explaine things like am talking to you. so for this blog article am gonna talk about how i do code splitting as a senior developer, so it all start with installing latest stable prestashop version, it usely came with classic theme, but what i do instead is i got to download classic theme from github so i get theme with source, i also get core prestashop js with it source, so i feel free to change anything and override anything without felling blocked, after that i make a child theme of classic, and call it with project name, i move all styles and override of modules to child theme and i create a con
 - submit blog content https://css-weekly.com/submit-a-link/
   - x CSS Tip: Mastering CSS Variables
   - x DevTools Tips to Boost Your Web Development
@@ -55,11 +28,7 @@ Checkout the blog post here 🔗 #ProductivityHacks
 - token https://chatgpt.com/share/ef2d4a2d-3666-4616-8023-55f7f1c2e87c
 - TTS https://chatgpt.com/c/67151fcb-d4dc-800b-98f9-df57b17b288b
 - blog content https://chatgpt.com/c/6701064b-dccc-800b-a851-55551c44038e
-
-## should i?
-
-> **messagge mounir** ?
-> i wanna submit a website on awwword hopping for wining a nominee, the website am submitting is my portfolio where in a specific section i wanna add some selected work, but scence Picaxel worK AS white brand with most of businesse i wanted to ask if it's applies on employer too, if so, here are websites that i would present, please et me know which ones i can't include
+- promote website https://chatgpt.com/c/6716b6c4-0c10-800b-b412-bdbca662e734
 
 mail
 saidalachgar.r@gmail.com

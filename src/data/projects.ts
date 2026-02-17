@@ -15,6 +15,7 @@ export type Project = {
   description?: string
   link_href?: string
   star?: boolean
+  present?: boolean
   challenges?: string[]
   solutions?: string[]
 }
@@ -109,6 +110,7 @@ const projects: Project[] = [
     link: 'tots.fr',
     link_href: 'https://www.tots.fr/',
     year: 2022,
+    present: true,
     platform: 'Php',
     status: 'RELEASED',
     role: 'Frontend',
@@ -158,6 +160,7 @@ const projects: Project[] = [
     link: 'dunforce.com',
     link_href: 'https://www.dunforce.com/',
     star: true,
+    present: true,
     year: 2024,
     platform: 'React',
     status: 'RELEASED',
@@ -274,27 +277,27 @@ const projects: Project[] = [
     ],
   },
   // Fryvy
-  {
-    name: 'Fryvy',
-    year: 2024,
-    platform: 'React Native',
-    status: 'UNRELEASED',
-    role: 'Frontend',
-    images: ['28', '19', '10', '49'],
-    industry: 'Construction, Renovation',
-    techs: ['React Native', 'React query', 'Axios'],
-    description: "A French app that connects individuals and businesses with professionals in the construction, renovation, and home improvement sectors. The platform allows users to find and hire experts such as builders, plumbers, electricians, painters, and other tradespeople for various projects. Key features include service listings, project showcases, and customer reviews, helping users make informed decisions when selecting contractors.",
-    challenges: [
-      "Developing the app to work seamlessly across iOS, Android, and web platforms",
-      "Ensuring a consistent user experience and performance across all platforms",
-      "Integrating comprehensive features like service listings, project showcases, and customer reviews"
-    ],
-    solutions: [
-      "Utilizing React Native for cross-platform development, ensuring compatibility with iOS, Android, and web",
-      "Implementing responsive design and adaptive features to maintain a consistent experience across devices",
-      "Building robust components and leveraging third-party libraries for features like listings and reviews"
-    ],
-  },
+  // {
+  //   name: 'Fryvy',
+  //   year: 2024,
+  //   platform: 'React Native',
+  //   status: 'UNRELEASED',
+  //   role: 'Frontend',
+  //   images: ['28', '19', '10', '49'],
+  //   industry: 'Construction, Renovation',
+  //   techs: ['React Native', 'React query', 'Axios'],
+  //   description: "A French app that connects individuals and businesses with professionals in the construction, renovation, and home improvement sectors. The platform allows users to find and hire experts such as builders, plumbers, electricians, painters, and other tradespeople for various projects. Key features include service listings, project showcases, and customer reviews, helping users make informed decisions when selecting contractors.",
+  //   challenges: [
+  //     "Developing the app to work seamlessly across iOS, Android, and web platforms",
+  //     "Ensuring a consistent user experience and performance across all platforms",
+  //     "Integrating comprehensive features like service listings, project showcases, and customer reviews"
+  //   ],
+  //   solutions: [
+  //     "Utilizing React Native for cross-platform development, ensuring compatibility with iOS, Android, and web",
+  //     "Implementing responsive design and adaptive features to maintain a consistent experience across devices",
+  //     "Building robust components and leveraging third-party libraries for features like listings and reviews"
+  //   ],
+  // },
   // Portfolio
   {
     name: 'Portfolio',
@@ -445,26 +448,26 @@ const projects: Project[] = [
     ],
   },
   // Centre dentaire founty
-  {
-    name: 'Centre dentaire founty',
-    link: 'centredentairefounty.ma',
-    year: 2023,
-    platform: 'WordPress',
-    status: 'RELEASED',
-    role: 'Full Stack',
-    images: ['65', '66', '67', '68'],
-    industry: 'Dental',
-    techs: ['WordPress', 'GSAP', 'Google maps'],
-    description: "A local dental clinic. The site showcases the dentist's specialties and provides detailed information about the doctor and her office",
-    challenges: [
-      "Integrating GSAP for smooth animations without compromising site performance",
-      "Implementing multi-language support, including preparation for RTL languages"
-    ],
-    solutions: [
-      "Configuring contact forms and location maps for enhanced client interaction",
-      "Developing intuitive navigation and clear calls-to-action to enhance user experience"
-    ],
-  },
+  // {
+  //   name: 'Centre dentaire founty',
+  //   link: 'centredentairefounty.ma',
+  //   year: 2023,
+  //   platform: 'WordPress',
+  //   status: 'RELEASED',
+  //   role: 'Full Stack',
+  //   images: ['65', '66', '67', '68'],
+  //   industry: 'Dental',
+  //   techs: ['WordPress', 'GSAP', 'Google maps'],
+  //   description: "A local dental clinic. The site showcases the dentist's specialties and provides detailed information about the doctor and her office",
+  //   challenges: [
+  //     "Integrating GSAP for smooth animations without compromising site performance",
+  //     "Implementing multi-language support, including preparation for RTL languages"
+  //   ],
+  //   solutions: [
+  //     "Configuring contact forms and location maps for enhanced client interaction",
+  //     "Developing intuitive navigation and clear calls-to-action to enhance user experience"
+  //   ],
+  // },
   // Centre Dentaire Essaoui
   {
     name: 'Centre Dentaire Essaoui',
@@ -534,29 +537,33 @@ const projects: Project[] = [
     ],
   },
   // French Reading Tool
-  {
-    name: 'French Reading Tool',
-    link: 'french-reading-tool.netlify.app',
-    year: 2024,
-    platform: 'React',
-    status: 'Tool',
-    role: 'Fullstack',
-    demo: 'french-reading-tool',
-    industry: 'Education & Language Learning',
-    techs: ['Vite.js', 'React', 'Primer UI', 'Axios'],
-    subtitle: 'French Reading and Pronunciation',
-    description: 'A language-learning companion designed to help my little sister (and anyone learning French!) tackle the challenges of reading and pronouncing French. With this tool, users can snap a picture of any French text, instantly see the translation, and even hear how to pronounce each word, making language practice more accessible and enjoyable',
-    solutions: [
-      "Built a smooth, multi-step workflow using React Query to manage data from OCR, translation, and TTS APIs",
-      "Ensuring the tool provides accurate translations and clear audio for pronunciation",
-      "Added interactive text features so users can click on any word for instant pronunciation, empowering them to learn at their own pace"
-    ],
-  },
+  // {
+  //   name: 'French Reading Tool',
+  //   link: 'french-reading-tool.netlify.app',
+  //   year: 2024,
+  //   platform: 'React',
+  //   status: 'Tool',
+  //   role: 'Fullstack',
+  //   demo: 'french-reading-tool',
+  //   industry: 'Education & Language Learning',
+  //   techs: ['Vite.js', 'React', 'Primer UI', 'Axios'],
+  //   subtitle: 'French Reading and Pronunciation',
+  //   description: 'A language-learning companion designed to help my little sister (and anyone learning French!) tackle the challenges of reading and pronouncing French. With this tool, users can snap a picture of any French text, instantly see the translation, and even hear how to pronounce each word, making language practice more accessible and enjoyable',
+  //   solutions: [
+  //     "Built a smooth, multi-step workflow using React Query to manage data from OCR, translation, and TTS APIs",
+  //     "Ensuring the tool provides accurate translations and clear audio for pronunciation",
+  //     "Added interactive text features so users can click on any word for instant pronunciation, empowering them to learn at their own pace"
+  //   ],
+  // },
   // OCEAMIC II
   // congres
   // Marquis Transports et Logistique
   // nTask
   // Otman Elhadeg Law-firm
+  // Les Massages d'Agadir https://www.massagesagadir.com/fr/
+  // Les Massages d'Agadir https://www.massagesagadir.com/fr/
+  // domusvigroup https://www.domusvigroup.com/
+  // eliauide https://www.domusvigroup.com/
 ]
 
 const playground: Project[] = [
@@ -685,7 +692,7 @@ const projectStats: ProjectStats[] = [
   },
   {
     label: 'Supervised projects',
-    value: 12,
+    value: 13,
   },
 ]
 

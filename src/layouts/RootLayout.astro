@@ -32,8 +32,8 @@ interface Props {
   <body style="background-color: #000;">
     <div id="loader" style="display: none;"></div>
     <div id="main">
-      <Header />
       <main id="main-content" transition:animate="fade">
+        <Header />
         <slot />
         <i id="overlay"></i>
       </main>

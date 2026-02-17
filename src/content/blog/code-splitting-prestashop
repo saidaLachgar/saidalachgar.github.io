@@ -1,0 +1,229 @@
+---
+title: "Code splitting in PrestaShop: per-page CSS & JS"
+summary: Practical, copy-paste recipe for per-page code splitting in a PrestaShop
+date: '2026-02-17'
+tags: ['performance', 'tips']
+---
+
+## TL;DR — the approach in one line
+
+Make a child theme of **classic**, swap the theme folder with the GitHub source so you have source SCSS/JS, structure your dev folder with *one file per page* + shared chunks, use per-page entries in Webpack to output page-specific CSS/JS, then specify them in child theme config.
+
+---
+
+## Why This Approach is a Game-Changer for PrestaShop
+
+* PrestaShop package from the web often comes precompiled (vendor + built assets) which is annoying when you want to change internals. Downloading the theme and core from GitHub gives you uncompiled, editable source.
+* Having one entry per page (index, product, category, cart, ...) means the browser only fetches page-specific JS/CSS.
+* Splitting vendor/runtime into separate chunks improves caching.
+* Dynamic imports (`import()`) let me lazy-load optional features (e.g., fancy product viewer, admin widgets, big analytics libs).
+
+---
+
+## Step-by-Step: Building a Split-Code PrestaShop Child Theme
+
+Here is the exact flow I use for every project.
+
+### 1. Project Setup: Grab the Source Code
+
+1.  Install the latest stable [PrestaShop](https://prestashop.com/versions/).
+2.  Delete the default `themes/classic` folder.
+3.  Download the **Classic theme source** from the [official GitHub releases page](https://github.com/PrestaShop/classic-theme/releases) (ensure the version matches your PrestaShop version).
+4.  Place the source code in `themes/classic`. This folder now contains your raw, uncompiled assets (`_dev` folder).
+5.  Create your child theme: `themes/mychildtheme/`.
+6.  Move the `_dev` folder from the parent theme into your child theme. This is where you will do all your development work.
+
+### 2. The Secret Sauce: Your `theme.yml` Configuration
+
+This is where the magic happens. PrestaShop uses this file to know which assets to load. I define a **critical CSS** file to be inlined (for that instant first paint) and then defer per-page CSS and JS.
+
+**File:** `themes/mychildtheme/config/theme.yml`
+
+```yaml
+parent: classic
+name: mychildtheme
+display_name: My Child Theme
+version: 1.0.0
+author:
+  name: "Your Name/Company"
+assets:
+  css:
+    all:
+      - id: critical-style
+        path: assets/css/critical.css
+        media: all
+        priority: 0
+        inline: true # <-- INLINED for instant render
+    product:
+      - id: product-custom-style
+        path: assets/css/product.css
+        media: all
+        priority: 100
+    category:
+      - id: category-custom-style
+        path: assets/css/category.css
+    index: # Homepage
+      - id: index-custom-style
+        path: assets/css/index.css
+    cart:
+      - id: cart-custom-style
+        path: assets/css/cart.css
+    # ... (add order, authentication, cms, contact, account, etc.)
+  js:
+    product:
+      - id: product-custom-script
+        path: assets/js/product.js
+        position: bottom
+        priority: 200
+        attributes: defer # <-- DEFER non-critical JS
+    category:
+      - id: category-custom-script
+        path: assets/js/category.js
+        position: bottom
+        priority: 200
+        attributes: defer
+    index:
+      - id: index-custom-script
+        path: assets/js/index.js
+        position: bottom
+        priority: 200
+        attributes: defer
+    # ... (add cart, order, authentication, etc.)
+```
+
+**Why this works:**
+- **`inline: true`** on `critical.css` puts that CSS directly in the HTML, eliminating a render-blocking request.
+- **`attributes: defer`** tells the browser to download the JS in the background and only execute it after the HTML is parsed.
+- By listing files per page, PrestaShop’s native asset manager handles the conditional loading for you.
+
+### 3. The Build Tool: Webpack Configuration for True Splitting
+
+Your `theme.yml` defines *what* to load. Webpack defines *how* those files are built. This config creates separate bundles and intelligently splits shared code.
+
+**File:** `themes/mychildtheme/_dev/webpack.config.js`
+
+```js
+const path = require('path');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const TerserPlugin = require('terser-webpack-plugin');
+
+// Define your pages. These must match the names in your theme.yml!
+const pages = [
+  'product','index','category','cart','order','authentication',
+  'cms','contact','account','pagenotfound','critical', 'theme'
+];
+
+const config = {
+  entry: pages.reduce((entries, page) => {
+    // Assuming you have a JS and SCSS file for each page in ./js/pages/ and ./scss/pages/
+    entries[page] = [`./js/pages/${page}.js`, `./scss/pages/${page}.scss`];
+    return entries;
+  }, {}),
+  output: {
+    path: path.resolve(__dirname, '../assets/js'),
+    filename: '[name].js',
+    clean: true,
+    // IMPORTANT: This must match your theme's URL path
+    publicPath: '/themes/mychildtheme/assets/js/',
+  },
+  module: {
+    rules: [
+      {
+        test: /\.js$/,
+        loader: 'esbuild-loader', // Fast JS transpilation
+        options: { target: 'es2015' },
+      },
+      {
+        test: /\.scss$/,
+        use: [
+          MiniCssExtractPlugin.loader,
+          'css-loader',
+          'postcss-loader', // For autoprefixer
+          'sass-loader',
+        ],
+      },
+    ],
+  },
+  plugins: [
+    new MiniCssExtractPlugin({
+        filename: path.join('..', 'css', '[name].css')
+    }),
+  ],
+  optimization: {
+    // 1. Extract Webpack's runtime into its own file
+    runtimeChunk: 'single',
+
+    // 2. The heart of code splitting
+    splitChunks: {
+      chunks: 'all',
+      cacheGroups: {
+        // Vendor: Groups all node_modules code into 'vendors.js'
+        vendor: {
+          test: /[\\/]node_modules[\\/]/,
+          name: 'vendors',
+          chunks: 'all',
+          priority: 20,
+        },
+        // Commons: Groups code used on at least 2 pages into 'commons.js'
+        commons: {
+          name: 'commons',
+          minChunks: 2,
+          priority: 10,
+          reuseExistingChunk: true,
+        },
+      },
+    },
+  },
+};
+
+module.exports = config;
+```
+
+### 4. Structuring Your SCSS/JS for Success
+
+To make this work, your `_dev` folder needs to be organized. This is my go-to structure:
+
+```
+_themes/mychildtheme/_dev/
+  scss/
+    pages/          # One file per page
+      product.scss
+      category.scss
+      critical.scss # Styles for above-the-fold content
+    components/     # Buttons, forms, modals
+      _buttons.scss
+    layout/         # Header, footer, sidebar
+      _header.scss
+    abstracts/      # Variables, mixins, functions
+      _variables.scss
+  js/
+    pages/          # One file per page
+      product.js
+      category.js
+    components/     # JS for specific components
+      productGallery.js
+    utils/          # Shared helpers
+      priceFormatter.js
+```
+
+- **`critical.scss`** should only contain fonts and styles needed for the header and above-the-fold content. It gets inlined.
+- **`pages/**.scss`** imports `abstracts/_variables.scss` and then only the components that specific page needs (e.g., gallery, add-to-cart).
+
+---
+
+## My Performance Checklist 
+
+1.  **Critical CSS:** Always inline it. This is non-negotiable for a good FCP.
+2.  **Defer JS:** Use `attributes: defer` on all non-critical JS in `theme.yml`.
+3.  **Split Vendors:** Your `node_modules` code should be in a stable `vendors.js` file for long-term caching.
+4.  **Split Commons:** Don't repeat yourself. Extract shared internal code into `commons.js`.
+5.  **Dynamic Imports:** Use `import()` for heavy features that aren't needed immediately (chat widgets, 3D viewers, advanced filters).
+6.  **Verify Paths:** A 404 on `vendors.js` breaks your site. Double-check `output.publicPath` in Webpack.
+
+---
+
+## Wrap-up: Your Fast PrestaShop Site Starts Here
+
+This method gives you complete, surgical control over your frontend assets. By combining a source-based child theme, a smart `theme.yml`, and a Webpack config that prioritizes splitting, you're not just making a theme—you're engineering a high-performance user experience.
+
+Try this on your next PrestaShop project. Your Lighthouse scores (and your users) will thank you.

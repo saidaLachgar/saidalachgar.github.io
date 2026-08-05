@@ -561,9 +561,10 @@ const projects: Project[] = [
   // nTask
   // Otman Elhadeg Law-firm
   // Les Massages d'Agadir https://www.massagesagadir.com/fr/
-  // Les Massages d'Agadir https://www.massagesagadir.com/fr/
   // domusvigroup https://www.domusvigroup.com/
-  // eliauide https://www.domusvigroup.com/
+  // eliquidandco https://www.eliquidandco.com/
+  // Electrodary electrodary.com
+  // Roches Marines roches-marines.fr
 ]
 
 const playground: Project[] = [

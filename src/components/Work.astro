@@ -61,18 +61,33 @@ const years = projectStats.find(stat => stat.caption === 'Years')?.value || 'X';
     // carousel (scroll)
     const sticky = document.querySelector('.playground .carousel-outer')
     const stickyParent = document.querySelector('.playground .carousel-container')
-    if (sticky && stickyParent) {
-      const scrollWidth = sticky.scrollWidth
-      const verticalScrollHeight = stickyParent.getBoundingClientRect().height - sticky.getBoundingClientRect().height
-      const topOffset = window.innerHeight / 2 - 282
+    const carouselInner = document.querySelector('.playground .carousel-inner')
+    if (sticky && stickyParent && carouselInner) {
+      let scrollStart, scrollWidth, verticalScrollHeight
+
+      const recalc = () => {
+        const topOffset = window.innerHeight / 2 - 282
+        // Compute the scroll position at which the sticky zone begins.
+        // Using window.scrollY + getBoundingClientRect avoids stale values from
+        // getBoundingClientRect alone during iOS Safari momentum scrolling.
+        scrollStart = stickyParent.getBoundingClientRect().top + window.scrollY - topOffset
+        scrollWidth = sticky.scrollWidth
+        verticalScrollHeight = stickyParent.offsetHeight - sticky.offsetHeight
+      }
+
+      recalc()
+      window.addEventListener('resize', recalc)
+
       document.addEventListener('scroll', () => {
-        //Checking whether the sticky element has entered into view or not
-        const stickyPosition = sticky.getBoundingClientRect().top - topOffset
-        if (stickyPosition > 1) {
+        const scrolled = window.scrollY - scrollStart
+        if (scrolled <= 0) {
           sticky.classList.remove('is-sticky')
+          carouselInner.style.transform = 'translateX(0px)'
         } else {
-          const scrolled = stickyParent.getBoundingClientRect().top //how much is scrolled?
-          sticky.scrollLeft = (scrollWidth / verticalScrollHeight) * -scrolled * 0.5
+          // Clamp so the inner never moves past the last slide (mirrors scrollLeft clamping).
+          const maxTranslate = sticky.clientWidth - scrollWidth
+          const translateX = Math.max(maxTranslate, -(scrollWidth / verticalScrollHeight) * scrolled * 0.5)
+          carouselInner.style.transform = `translateX(${translateX}px)`
           sticky.classList.add('is-sticky')
         }
       })

@@ -93,6 +93,7 @@ const badge = (status: string) => (['PLAYGROUND', 'STUDY CASE'].includes(status)
 <script>
   document.addEventListener('astro:page-load', () => {
     const passcode: HTMLElement | null = document.querySelector('.passcode');
+    const footer: HTMLElement | null = document.querySelector('footer');
     const cells = ['year', 'role', 'name', 'platform', 'industry']
     document.addEventListener('input', () => {
       const filters = cells.map((id) => {
@@ -113,9 +114,12 @@ const badge = (status: string) => (['PLAYGROUND', 'STUDY CASE'].includes(status)
       })
     })
 
+    if (footer && passcode) footer.style.display = 'none'
+
     const allowAccess = () => {
       const projects: HTMLElement | null = document.querySelector('#projects');
       passcode && (passcode.style.display = 'none');
+      if (footer) footer.style.removeProperty('display')
       projects && setTimeout(() => {
         projects.style.display = 'block'
       }, 10)

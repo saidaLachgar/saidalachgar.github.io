@@ -28,7 +28,7 @@ export const ui = {
     'pages.blog.title': 'Blog',
     'pages.blog.metaTitle': 'Web Development Blog - CSS, Git, JavaScript & More',
     'pages.blog.description': 'Browse all blog posts covering web development, Git, CSS, SEO, and more. Tutorials, tips, and insights for developers of all levels',
-    'pages.blog.intro': 'Grab a coffee and explore my chill blogs on web development',
+    'pages.blog.intro': 'Grab a coffee and explore my thoughts on web development',
     'pages.404.title': '404 - Not Found',
     'pages.404.description': 'The page you are looking for does not exist.',
     'pages.404.backToHome': 'Back to home',
@@ -45,7 +45,7 @@ export const ui = {
 
     // Navigation
     'nav.home': 'Home',
-    'nav.blog': 'Blog',
+    'nav.blog': 'Journal',
     'nav.projects': 'Projects',
     'nav.tags': 'Tags',
     'nav.about': 'About',

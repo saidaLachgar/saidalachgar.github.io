@@ -13,40 +13,40 @@ import Playground from '@/components/Playground.astro'
 
 const t = useTranslations()
 
-
 const faqSchema = {
+  "@context": "https://schema.org",
   "@type": "FAQPage",
   "mainEntity": [
-  {
+    {
       "@type": "Question",
-      "name": "Who is Saida?",
+      "name": "What is Saida Lachgar's professional background?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": `Saida is a Senior Frontend Web Developer based in Agadir, Morocco, with over ${PERSON.yearsOfExperience} years of experience in developing responsive and high-performance websites.`
+        "text": `Saida Lachgar is a Senior Frontend Developer based in Agadir, Morocco, with over ${PERSON.yearsOfExperience} years of professional experience building responsive, high-performance web applications across e-commerce, healthcare, tourism, and enterprise sectors.`
       }
     },
     {
       "@type": "Question",
-      "name": "What technologies does Saida specialize in?",
+      "name": "What technologies and frameworks does Saida specialize in?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Saida specializes in React, Wordpress, Symfony, Prestashop and SEO optimization."
+        "text": "Saida specializes in React, TypeScript, Symfony, PrestaShop, and WordPress, with additional expertise in Three.js, GSAP animations, SEO optimization, and Core Web Vitals performance tuning."
       }
     },
     {
       "@type": "Question",
-      "name": "How can I contact Saida?",
+      "name": "What types of projects has Saida worked on?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": `You can contact Saida via email at ${PERSON.mail} or connect through LinkedIn at ${PERSON.socials.linkedin}.`
+        "text": "Saida has worked on custom e-commerce themes for PrestaShop and Sylius, full-stack Symfony applications including an electricity quality monitoring platform, healthcare systems, tourism websites, and interactive 3D web experiences using Three.js and GSAP."
       }
     },
     {
       "@type": "Question",
-      "name": "Does Saida offer freelance services?",
+      "name": "How can I get in touch with Saida?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Yes, Saida has experience in freelance full-stack development and is open to working on exciting projects."
+        "text": `You can reach Saida via email at ${PERSON.mail}, connect on LinkedIn at ${PERSON.socials.linkedin}, or book a discovery call directly through the portfolio.`
       }
     }
   ]
@@ -57,12 +57,8 @@ const profileSchema = {
   "@type": "Person",
   "name": "Saida Lachgar",
   "url": SITE_METADATA.siteUrl,
-  "image": `${SITE_METADATA.siteUrl}/profile-picture.png`,
-  "jobTitle": ["Frontend Developer", "Fullstack Developer", "React Developer", "Three.js Developer", "SEO Specialist"],
-  // "worksFor": {
-  //   "@type": "Organization",
-  //   "name": "Picaxel"
-  // },
+  "image": `${SITE_METADATA.siteUrl}profile-picture.png`,
+  "jobTitle": ["Senior Frontend Developer", "Fullstack Developer", "React Developer", "Three.js Developer", "SEO Specialist"],
   "alumniOf": [
     {
       "@type": "CollegeOrUniversity",
@@ -82,20 +78,22 @@ const profileSchema = {
   ],
   "knowsAbout": [
     "React",
-    "SEO Optimization",
-    "Web Performance",
+    "TypeScript",
     "Symfony",
-    "Prestashop",
+    "PrestaShop",
     "Three.js",
-    "GSAP"
+    "GSAP",
+    "SEO Optimization",
+    "Core Web Vitals",
+    "Web Performance"
   ]
 };
 ---
 
-<RootLayout 
-  title={t('siteMetadata.title')} 
+<RootLayout
+  title={t('siteMetadata.title')}
   description={t('siteMetadata.description')}
-  keywords="frontend developer, fullstack developer, web developer, React developer, GSAP animations, Three.js developer, Prestashop developer, WordPress developer, international developer, freelance web developer, Upwork developer, Fiverr developer, remote frontend developer, SEO optimization, Core Web Vitals expert, web performance optimization, fast and accessible websites, code review & refactoring, web designer, UI/UX developer, interactive website motions, responsive web design, cross-browser compatibility, web designer Morocco, hire developer in Morocco, developer Morocco"
+  keywords="frontend developer Morocco, React developer, Symfony developer, PrestaShop developer, Three.js developer, web performance optimization, Core Web Vitals"
   primarySchema={profileSchema}
   secondarySchema={faqSchema}
 >
@@ -107,5 +105,4 @@ const profileSchema = {
   <About />
   <Stats />
   <Blog />
-  <!-- <Work client:visible /> -->
 </RootLayout>

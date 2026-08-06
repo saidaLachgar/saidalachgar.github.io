@@ -1,17 +1,11 @@
 <section class="hero container">
-  <div class="sr-only">
-    <h1>Senior Frontend Web Developer Specializing in React and E-commerce Solutions</h1>
-    <p>
-      I specialize in crafting responsive, pixel-perfect websites that merge design and functionality. Passionate about innovation and inclusivity, I transform ideas into engaging digital experiences, breaking barriers and delivering exceptional results.
-    </p>
-  </div>
   <div class="content">
-    <div class="title">
-      <p><span>Frontend</span></p>
-      <p><span>developer &</span></p>
-      <p><span>full-stack</span></p>
-      <p><span>capable</span></p>
-    </div>
+    <h1 class="title">
+      <span class="line"><span>Frontend</span></span>
+      <span class="line"><span>developer &</span></span>
+      <span class="line"><span>full-stack</span></span>
+      <span class="line"><span>capable</span></span>
+    </h1>
     <div class="presentation">
       <p class="caption">expert in pixel-perfect<br />websites development</p>
     </div>
@@ -34,13 +28,14 @@
       line-height: 1.1;
 
       @include clamp(font-size, 60px, 9vw, 170px);
-      span {
+      span:not(.line) {
         display: block;
         animation: reveal 1.6s cubic-bezier(0.77, 0, 0.175, 1) 0s forwards;
         opacity: 0;
       }
-      p {
+      .line {
         overflow: hidden;
+        display: block;
         &:nth-child(2) span {
           animation-delay: 0.6s;
         }

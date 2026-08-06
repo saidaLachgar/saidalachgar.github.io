@@ -1,4 +1,4 @@
-import { PERSON } from "@/consts"
+import { PERSON } from '@/consts'
 
 export type Project = {
   link?: string | { [key: string]: string }
@@ -38,7 +38,8 @@ const projects: Project[] = [
     role: 'Full Stack, Design',
     industry: 'Electricity control, ONEE',
     techs: ['Symfony', 'Angular', 'API Platform', 'ApexCharts.js'],
-    description: 'Electric Power Quality Monitoring System, facilitating the tracking and management of electricity production, transmission, and distribution. It employs an algorithm for anomaly detection and network performance analysis.',
+    description:
+      'Electric Power Quality Monitoring System, facilitating the tracking and management of electricity production, transmission, and distribution. It employs an algorithm for anomaly detection and network performance analysis.',
     challenges: [
       'Designing a database schema to accurately represent the electricity distribution network',
       'Migrating client data from Excel sheets to an SQL database',
@@ -47,8 +48,8 @@ const projects: Project[] = [
     solutions: [
       'Integrating the Breadth-First Search (BFS) algorithm',
       'Implementing efficient caching strategies',
-      'Using Angular\'s powerful data-binding and visualization libraries for clear, interactive dashboards',
-    ]
+      "Using Angular's powerful data-binding and visualization libraries for clear, interactive dashboards",
+    ],
   },
   // Marrakech Fine Food
   {
@@ -59,20 +60,21 @@ const projects: Project[] = [
     platform: 'Prestashop',
     status: 'RELEASED',
     role: 'Frontend',
-    images: ['47', '25', 'mff', '7'],//, '16'
+    images: ['47', '25', 'mff', '7'], //, '16'
     industry: 'Food',
     techs: ['Prestashop', 'Webpack'],
-    description: 'An e-commerce platform. It offers a diverse range of items such as fragrant teas, carefully roasted coffees, crispy shortbread and wafers, and more..',
+    description:
+      'An e-commerce platform. It offers a diverse range of items such as fragrant teas, carefully roasted coffees, crispy shortbread and wafers, and more..',
     challenges: [
-      "Convert Figma designs into a custom PrestaShop theme",
-      "Customizing product listing layouts and filters",
-      "Implementing interactive product swatches for variant selection",
+      'Convert Figma designs into a custom PrestaShop theme',
+      'Customizing product listing layouts and filters',
+      'Implementing interactive product swatches for variant selection',
     ],
     solutions: [
-      "Implementing cross-selling product recommendation",
-      "Customizing checkout process for usability and conversion",
-      "Designing flexible homepage sections for promotions",
-      "Developing a customizable mega menu for navigation",
+      'Implementing cross-selling product recommendation',
+      'Customizing checkout process for usability and conversion',
+      'Designing flexible homepage sections for promotions',
+      'Developing a customizable mega menu for navigation',
     ],
   },
   // Agadir Oufella
@@ -84,7 +86,7 @@ const projects: Project[] = [
       'History Website': 'https://www.agadir-oufella.ma/fr/histoire-et-heritage/',
       'Tickets Website': 'https://tickets.agadir-oufella.ma/fr/',
       'ios App': 'https://apps.apple.com/fr/app/agadir-oufella/id6450891651',
-      'Android App ': 'https://play.google.com/store/apps/details?id=com.picaxel.agof2025'
+      'Android App ': 'https://play.google.com/store/apps/details?id=com.picaxel.agof2025',
     },
     year: 2023,
     platform: 'Multi-platform',
@@ -92,16 +94,17 @@ const projects: Project[] = [
     role: 'Frontend',
     images: ['64', '63', '62', '61'],
     industry: 'Tourism',
-    techs: ['WordPress', "React Native", 'GSAP', 'OpenSeadragon', 'Webpack'],
-    description: 'Developed a multi-platform project for Agadir Oufella, a historical touristic site. The project includes a WordPress website for general information, a Symfony-based platform for ticket sales, and a React Native app for an audio guide',
+    techs: ['WordPress', 'React Native', 'GSAP', 'OpenSeadragon', 'Webpack'],
+    description:
+      'Developed a multi-platform project for Agadir Oufella, a historical touristic site. The project includes a WordPress website for general information, a Symfony-based platform for ticket sales, and a React Native app for an audio guide',
     challenges: [
-      "Implementing smooth animations and interactive elements",
-      "Coordinating development across WordPress, Symfony, and React Native for seamless integration"
+      'Implementing smooth animations and interactive elements',
+      'Coordinating development across WordPress, Symfony, and React Native for seamless integration',
     ],
     solutions: [
-      "Using the GSAP library for dynamic and engaging historical content",
-      "Integrating OpenSeadragon for an interactive 3D map experience",
-      "Ensuring seamless multi-language support and RTL functionality for Arabic"
+      'Using the GSAP library for dynamic and engaging historical content',
+      'Integrating OpenSeadragon for an interactive 3D map experience',
+      'Ensuring seamless multi-language support and RTL functionality for Arabic',
     ],
   },
   // Tots
@@ -117,17 +120,18 @@ const projects: Project[] = [
     images: ['43', '27', '18', 'tots', '9'],
     industry: 'Bathroom Furniture and Accessories',
     techs: ['Handlebars', 'SCSS/ES6+ JS', 'Webpack', 'Algolia'],
-    description: 'tots.fr is an e-commerce website specializing in the online sales of bathroom furniture, and all accessories needed to create or renovate bathroom.',
+    description:
+      'tots.fr is an e-commerce website specializing in the online sales of bathroom furniture, and all accessories needed to create or renovate bathroom.',
     challenges: [
-      "Complex Product Page Requirements",
-      "Handling a Very Large Products Database",
-      "Building from Scratch with Scalability in Mind",
-      "Managing Extensive Features Leading to Website Size",
+      'Complex Product Page Requirements',
+      'Handling a Very Large Products Database',
+      'Building from Scratch with Scalability in Mind',
+      'Managing Extensive Features Leading to Website Size',
     ],
     solutions: [
-      "Developed Custom Product Pages with Interactive Features",
-      "Integrated Algolia for Efficient Search Functionality",
-      "Implemented SEO Best Practices, Including Optimized Image Handling",
+      'Developed Custom Product Pages with Interactive Features',
+      'Integrated Algolia for Efficient Search Functionality',
+      'Implemented SEO Best Practices, Including Optimized Image Handling',
     ],
   },
   // Picaxel
@@ -142,16 +146,16 @@ const projects: Project[] = [
     images: ['3', '21', '12', '40'],
     industry: 'Digital Agency',
     techs: ['Handlebars', 'SCSS/ES6+ JS', 'Webpack', 'GSAP'],
-    description: "A digital agency website showcasing web development, digital strategy, and consulting services",
+    description: 'A digital agency website showcasing web development, digital strategy, and consulting services',
     challenges: [
-      "Ensuring Smooth Animations",
-      "Optimizing Website Performance",
-      "Ensured consistent experience across different browsers"
+      'Ensuring Smooth Animations',
+      'Optimizing Website Performance',
+      'Ensured consistent experience across different browsers',
     ],
     solutions: [
-      "Used GSAP for high-performance animations",
-      "Employed caching, image optimization, and code minification",
-      "Followed SEO best practices and WCAG guidelines"
+      'Used GSAP for high-performance animations',
+      'Employed caching, image optimization, and code minification',
+      'Followed SEO best practices and WCAG guidelines',
     ],
   },
   // Dunforce
@@ -168,7 +172,8 @@ const projects: Project[] = [
     role: 'Frontend',
     industry: 'Social housing',
     techs: ['React', 'Chart.js', 'WebSocket', 'React query', 'Axios'],
-    description: 'An application focused on big data solutions for social housing. It uses machine learning to predict invoice payment timelines, automates collection processes, integrates with ERPs, and supports various financial services through an open architecture.',
+    description:
+      'An application focused on big data solutions for social housing. It uses machine learning to predict invoice payment timelines, automates collection processes, integrates with ERPs, and supports various financial services through an open architecture.',
     challenges: [
       'Coordinating frontend changes with backend updates during the migration from v1 to v2',
       'Maintaining consistent UI/UX across a large-scale application with diverse feature sets',
@@ -192,7 +197,8 @@ const projects: Project[] = [
     images: ['45', '22', '13', '4'],
     industry: 'Self-Storage, Real Estate',
     techs: ['SCSS/ES6+ JS', 'Webpack', 'Symfony'],
-    description: 'Yesbox is a self-storage company located in Hauts-de-France. The website provides information about their storage units and automates the process of requesting quotes and checking box availability.',
+    description:
+      'Yesbox is a self-storage company located in Hauts-de-France. The website provides information about their storage units and automates the process of requesting quotes and checking box availability.',
     challenges: [
       'Automating the process of checking storage unit availability and requesting quotes',
       'Integrating a real-time system to provide accurate rental estimates',
@@ -201,7 +207,7 @@ const projects: Project[] = [
     solutions: [
       'Developed a dynamic catalog of storage units by center, allowing sales reps to manage current rentals efficiently',
       'Implemented a 3-step quote request process that provides real-time estimates, streamlining the process for customers and sales reps',
-      'Created a comprehensive customer area that offers a personalized experience, making it easy for customers to manage their rentals and interact with the company'
+      'Created a comprehensive customer area that offers a personalized experience, making it easy for customers to manage their rentals and interact with the company',
     ],
   },
   // IGolf Morocco
@@ -217,16 +223,17 @@ const projects: Project[] = [
     images: ['51', '55', '34', '33'],
     industry: 'Golf',
     techs: ['Handlebars', 'SCSS/ES6+ JS', 'Webpack', 'Google map API'],
-    description: 'A website dedicated to promoting golf tourism in Morocco. The website provides information about various golf courses, travel packages, accommodation options, and related services.',
+    description:
+      'A website dedicated to promoting golf tourism in Morocco. The website provides information about various golf courses, travel packages, accommodation options, and related services.',
     challenges: [
-      "Implement interfaces for customizing golf trip packages",
-      "Create booking forms and calendars for professional golfers",
-      "Support multilingual and multi-currency options",
+      'Implement interfaces for customizing golf trip packages',
+      'Create booking forms and calendars for professional golfers',
+      'Support multilingual and multi-currency options',
     ],
     solutions: [
-      "Develop interactive maps and location-based features for showcasing golf courses.",
-      "Integrate intuitive navigation and user flows for seamless booking experiences",
-      "Implement advanced search and filtering options for golf courses and accommodation",
+      'Develop interactive maps and location-based features for showcasing golf courses.',
+      'Integrate intuitive navigation and user flows for seamless booking experiences',
+      'Implement advanced search and filtering options for golf courses and accommodation',
     ],
   },
   // Hifi Filter
@@ -243,14 +250,14 @@ const projects: Project[] = [
     techs: ['Wordpress', 'ACF', 'WPML', 'Gutenberg', 'WPRocket'],
     description: 'A dynamic website for HIFI FILTER, specializing in filtration and separation solutions.',
     challenges: [
-      "Managing a multi-language website with 7 different languages",
-      "Developing dynamic content blocks with unique designs",
-      "Handling a complex image-rich multi-level menu",
+      'Managing a multi-language website with 7 different languages',
+      'Developing dynamic content blocks with unique designs',
+      'Handling a complex image-rich multi-level menu',
     ],
     solutions: [
       "Using WordPress's ACF plugin for component-based block development",
-      "Creating a custom menu walker to handle the intricate menu structure",
-      "Implementing SEO best practices for efficient image handling",
+      'Creating a custom menu walker to handle the intricate menu structure',
+      'Implementing SEO best practices for efficient image handling',
     ],
   },
   // Laboratoires de Biarritz
@@ -266,14 +273,141 @@ const projects: Project[] = [
     industry: 'Cosmetics',
     techs: ['Prestashop', 'Webpack', 'Creative Elements'],
     challenges: [
-      "Customizing checkout process to improve user experience",
-      "Integrating third-party modules with custom frontend",
-      "Maintaining SEO best practices with dynamic content",
+      'Customizing checkout process to improve user experience',
+      'Integrating third-party modules with custom frontend',
+      'Maintaining SEO best practices with dynamic content',
     ],
     solutions: [
-      "Ensuring smooth integration of the custom live cart plugin",
-      "Achieving full customization of the frontend UI while maintaining performance",
-      "Making the website fully editable by non-developers",
+      'Ensuring smooth integration of the custom live cart plugin',
+      'Achieving full customization of the frontend UI while maintaining performance',
+      'Making the website fully editable by non-developers',
+    ],
+  },
+  // Roches Marines
+  {
+    name: 'Roches Marines',
+    subtitle: 'Compléments alimentaires marins',
+    link: 'roches-marines.fr',
+    link_href: 'https://www.roches-marines.fr/',
+    star: true,
+    year: 2026,
+    platform: 'PrestaShop',
+    status: 'RELEASED',
+    role: 'Full Stack',
+    images: [],
+    industry: 'Health, Nutrition, E-commerce',
+    techs: ['PrestaShop', 'Creative Elements', 'Custom Category Development'],
+    description:
+      'Roches Marines is a marine micronutrition e-commerce website focused on supplements made from marine active ingredients. The project includes a custom category architecture, with a tailored browsing experience for both product families and customer needs.',
+    challenges: [
+      'Designing a custom category tree with multiple display modes depending on category level',
+      'Building a flexible category layout system using Creative Elements and PrestaShop settings',
+      'Separating classic products from product packs',
+      'Keeping category pages consistent across desktop and mobile while preserving editorial flexibility',
+    ],
+    solutions: [
+      'Implemented a custom category structure centered on "Nos produits" as the main shop entry point',
+      'Configured category display modes to show either subcategories or products depending on the page level',
+      'Integrated Creative Elements templates for category descriptions and product page content',
+      'Built a reusable product presentation system with short benefits, badges, and structured category visuals',
+    ],
+  },
+  {
+    name: 'DomusVi Group',
+    subtitle: 'Senior living and care services group',
+    link: 'domusvigroup.com',
+    link_href: 'https://www.domusvigroup.com/',
+    year: 2026,
+    platform: 'WordPress',
+    status: 'RELEASED',
+    role: 'Frontend',
+    images: [],
+    industry: 'Healthcare, Senior Living, Care Services',
+    techs: ['WordPress', 'ACF'],
+    description:
+      'DomusVi is a leading company focused on housing, services, and care for older adults, with content centered on senior well-being, family involvement, sustainability, and corporate news.',
+    challenges: [
+      'Structuring a large content-driven corporate website for multiple audiences',
+      'Presenting senior-care services, values, and institutional content clearly',
+      'Keeping the experience readable and accessible across many pages',
+    ],
+    solutions: [
+      'Built reusable frontend sections to support editorial and corporate content',
+      'Integrated flexible content blocks with ACF for easier page management',
+      'Optimized the UI for clarity, accessibility, and responsive behavior',
+    ],
+  },
+  {
+    name: 'E-Liquid & Co',
+    subtitle: 'E-commerce store for vape products',
+    link: 'eliquidandco.com',
+    link_href: 'https://www.eliquidandco.com/',
+    star: true,
+    year: 2026,
+    platform: 'PrestaShop 8.2',
+    status: 'RELEASED',
+    role: 'Full Stack',
+    images: [],
+    industry: 'E-commerce, Vape, Retail',
+    techs: ['PrestaShop 8.2', 'SEO Optimization', 'Code Splitting'],
+    description:
+      'An online store for e-cigarettes, vape devices, accessories, and product guides, with a large catalog structure and category-based navigation.',
+    challenges: [
+      'Migrating the website from PrestaShop 1.6 to 8.2 without losing content or SEO value',
+      'Improving performance and maintaining a clean user experience on a large catalog site',
+      'Preserving rankings while modernizing the codebase',
+    ],
+    solutions: [
+      'Migrated the store to PrestaShop 8.2 with careful content and catalog preservation',
+      'Implemented SEO optimizations to protect and improve organic visibility',
+      'Added code splitting to improve loading performance and reduce bundle weight',
+    ],
+  },
+  {
+    name: 'Electrodary',
+    link: 'electrodary.com',
+    year: 2026,
+    platform: 'PrestaShop 9.1',
+    status: 'UNRELEASED',
+    role: 'Frontend',
+    images: [],
+    industry: 'Home Appliances, E-commerce',
+    techs: ['PrestaShop 9.1', 'Vite', 'RTL', 'Blog Integration', 'Custom UI Modules'],
+    description:
+      'Electrodary is a custom PrestaShop 9.1 storefront for home appliances, built with a modern RTL-ready theme, an integrated blog, and flexible UI modules for adding reusable content blocks across the site.',
+    challenges: [
+      'Designing a polished custom theme optimized for RTL layouts',
+      'Building a flexible UI system for reusable blocks and content sections',
+      'Integrating a blog experience that fits naturally inside the e-commerce flow',
+    ],
+    solutions: [
+      'Created a modern PrestaShop theme tailored for RTL presentation and visual consistency',
+      'Developed custom modules to extend the UI with reusable blocks and editable sections',
+      'Integrated blog pages and content layouts to support both SEO and brand storytelling',
+    ],
+  },
+  {
+    name: 'Les Massages d’Agadir',
+    subtitle: 'Massage & Wellness Center',
+    link: 'massagesagadir.com',
+    link_href: 'https://www.massagesagadir.com/fr/',
+    year: 2025,
+    platform: 'Symfony',
+    status: 'RELEASED',
+    role: 'Frontend',
+    industry: 'Wellness, Spa',
+    techs: ['Twig', 'SCSS/ES6+ JS', 'Webpack', 'Symfony'],
+    description:
+      'A multilingual website for a premium massage and wellness center in Agadir. The platform showcases massage treatments, Moroccan hammam experiences, beauty services, wellness packages, online booking, and educational blog content in multiple languages.',
+    challenges: [
+      'Building a premium, mobile-first user interface that reflects a luxury wellness brand',
+      'Creating responsive layouts for multilingual content and service catalogs',
+      'Designing intuitive booking flows and promotional landing pages',
+    ],
+    solutions: [
+      'Developed responsive and reusable frontend components integrated into a Symfony/Twig application',
+      'Implemented modern UI layouts for services, packages, blog, and booking experience',
+      'Optimized the interface for accessibility, performance, and a seamless experience across desktop and mobile devices',
     ],
   },
   // Fryvy
@@ -310,11 +444,12 @@ const projects: Project[] = [
     // images: ['xx', 'xx', 'xx', 'xx'],
     industry: 'Personal',
     techs: ['Astro'],
-    description: 'A personal portfolio showcasing a collection of projects across various platforms and industries, highlighting skills in web and app development. Built using Astro, the portfolio emphasizes performance, modern web standards, and showcases professional accomplishments with an interactive and engaging design',
+    description:
+      'A personal portfolio showcasing a collection of projects across various platforms and industries, highlighting skills in web and app development. Built using Astro, the portfolio emphasizes performance, modern web standards, and showcases professional accomplishments with an interactive and engaging design',
     challenges: [
-      "Customizable and lightweight, optimized for fast performance",
-      "Interactive project showcases with detailed descriptions and visuals",
-      "Responsive design ensuring compatibility across all devices"
+      'Customizable and lightweight, optimized for fast performance',
+      'Interactive project showcases with detailed descriptions and visuals',
+      'Responsive design ensuring compatibility across all devices',
     ],
   },
   // Les Sens de Marrakech
@@ -328,15 +463,16 @@ const projects: Project[] = [
     // images: ['47', 'xx', 'xx', 'xx'],
     industry: 'Cosmetics & Home Products',
     techs: ['Prestashop'],
-    description: 'Les Sens de Marrakech is a French brand based in Morocco, specializing in cosmetics and home products with natural ingredients. The project involves developing a custom PrestaShop theme to enhance the online store’s visibility, navigation, and user experience. The custom theme, designed based on a Figma mockup, aims to reflect the brand’s colors and streamline the ordering process.',
+    description:
+      'Les Sens de Marrakech is a French brand based in Morocco, specializing in cosmetics and home products with natural ingredients. The project involves developing a custom PrestaShop theme to enhance the online store’s visibility, navigation, and user experience. The custom theme, designed based on a Figma mockup, aims to reflect the brand’s colors and streamline the ordering process.',
     challenges: [
       'Enhancing user navigation and overall experience',
-      'Personalizing the ordering process while maintaining site performance'
+      'Personalizing the ordering process while maintaining site performance',
     ],
     solutions: [
-      'Developed a custom theme that reflects the brand\'s aesthetic',
-      "Streamlining the checkout process with intuitive UI elements and personalization options",
-      "Ensuring the theme’s performance and responsiveness across devices"
+      "Developed a custom theme that reflects the brand's aesthetic",
+      'Streamlining the checkout process with intuitive UI elements and personalization options',
+      'Ensuring the theme’s performance and responsiveness across devices',
     ],
   },
   // Evras déménagement
@@ -349,17 +485,18 @@ const projects: Project[] = [
     role: 'Full Stack',
     // images: ['xx', 'xx', 'xx', 'xx'],
     industry: 'Removals & Relocations',
-    techs: ['Wordpress', "Enfold"],
-    description: "It's a company specialized in national and international removals for individuals as well as companies",
+    techs: ['Wordpress', 'Enfold'],
+    description:
+      "It's a company specialized in national and international removals for individuals as well as companies",
     challenges: [
       "Customizing the Enfold Theme to match the brand's colors and design specifications",
-      "Ensuring the website effectively highlights various removal services and improves online visibility",
-      "Making the website user-friendly for non-developers to manage content",
+      'Ensuring the website effectively highlights various removal services and improves online visibility',
+      'Making the website user-friendly for non-developers to manage content',
     ],
     solutions: [
-      "Pixel-perfect customization of the Enfold Theme based on the Figma mockup",
-      "Implementing SEO best practices to enhance online visibility",
-      "Configuring theme settings and content management features to facilitate easy updates by non-developers",
+      'Pixel-perfect customization of the Enfold Theme based on the Figma mockup',
+      'Implementing SEO best practices to enhance online visibility',
+      'Configuring theme settings and content management features to facilitate easy updates by non-developers',
     ],
   },
   // Kinesil
@@ -375,12 +512,12 @@ const projects: Project[] = [
     techs: ['Wordpress'],
     description: 'Website for a local physiotherapist to showcase services and provide contact information',
     challenges: [
-      "Implementing a user-friendly layout to effectively present physiotherapy services",
-      "Ensuring the website is accessible in multiple languages"
+      'Implementing a user-friendly layout to effectively present physiotherapy services',
+      'Ensuring the website is accessible in multiple languages',
     ],
     solutions: [
-      "Configuring contact forms and location maps for enhanced client interaction",
-      "Developing intuitive navigation and clear calls-to-action to enhance user experience"
+      'Configuring contact forms and location maps for enhanced client interaction',
+      'Developing intuitive navigation and clear calls-to-action to enhance user experience',
     ],
   },
   // Bourdel et associés
@@ -393,15 +530,16 @@ const projects: Project[] = [
     role: 'Full Stack',
     // images: ['xx', 'xx', 'xx', 'xx'],
     industry: 'Accounting',
-    techs: ['Wordpress', "OpenStreetMap", "Enfold"],
-    description: 'Accounting firm providing expert support in accounting, tax, social, and legal management. The site features their services and methods',
+    techs: ['Wordpress', 'OpenStreetMap', 'Enfold'],
+    description:
+      'Accounting firm providing expert support in accounting, tax, social, and legal management. The site features their services and methods',
     challenges: [
       "Customizing a theme to align with the firm's brand and presentation needs",
-      "Ensuring the site offers clear information about their methods and support"
+      'Ensuring the site offers clear information about their methods and support',
     ],
     solutions: [
-      "Tailoring the Enfold Theme to match the firm’s branding and service offerings",
-      "Implementing features to facilitate easy navigation and access to key information"
+      'Tailoring the Enfold Theme to match the firm’s branding and service offerings',
+      'Implementing features to facilitate easy navigation and access to key information',
     ],
   },
   // Arganpalace
@@ -417,12 +555,12 @@ const projects: Project[] = [
     techs: ['Symfony', 'SonataAdmin'],
     description: 'A reservation website for a local Moroccan Hammam and Massage Center',
     challenges: [
-      "Developing a reservation system that integrates with the center’s scheduling",
-      "Creating an intuitive user interface that highlights services and pricing",
+      'Developing a reservation system that integrates with the center’s scheduling',
+      'Creating an intuitive user interface that highlights services and pricing',
     ],
     solutions: [
-      "Building a custom reservation system",
-      "Designing a user-friendly interface that effectively showcases services and pricing"
+      'Building a custom reservation system',
+      'Designing a user-friendly interface that effectively showcases services and pricing',
     ],
   },
   {
@@ -435,16 +573,17 @@ const projects: Project[] = [
     // images: ['xx','xx','xx','xx'],
     industry: 'Elderly Care, Residence Management',
     techs: ['React', 'Polyfills'],
-    description: 'A customizable app for elderly residences. Designed for TV screens, it displays weather, events, menus, news, and more, with automatic page transitions',
+    description:
+      'A customizable app for elderly residences. Designed for TV screens, it displays weather, events, menus, news, and more, with automatic page transitions',
     challenges: [
-      "Ensuring compatibility with very old browser versions across different types of TV screens",
-      "Creating a responsive and visually engaging interface suitable for display on TV screens",
-      "Integrating various data sources, including APIs for weather, news, and residence-specific information",
+      'Ensuring compatibility with very old browser versions across different types of TV screens',
+      'Creating a responsive and visually engaging interface suitable for display on TV screens',
+      'Integrating various data sources, including APIs for weather, news, and residence-specific information',
     ],
     solutions: [
-      "Implementing polyfills and using compatible libraries to ensure the app runs smoothly on outdated browsers",
-      "Designing a flexible and dynamic UI that adapts to various screen sizes and resolutions",
-      "Employing API integrations for real-time updates on weather, news, events, and other information",
+      'Implementing polyfills and using compatible libraries to ensure the app runs smoothly on outdated browsers',
+      'Designing a flexible and dynamic UI that adapts to various screen sizes and resolutions',
+      'Employing API integrations for real-time updates on weather, news, events, and other information',
     ],
   },
   // Centre dentaire founty
@@ -479,14 +618,15 @@ const projects: Project[] = [
     images: ['60', '37', '59', '58'],
     industry: 'Dental',
     techs: ['WordPress', 'Google maps'],
-    description: "A local dental clinic. The site showcases the dentist's specialties and provides detailed information about the doctor and her office",
+    description:
+      "A local dental clinic. The site showcases the dentist's specialties and provides detailed information about the doctor and her office",
     challenges: [
       "Creating a minimalist design that effectively highlights the doctor's specialties and office information",
-      "Implementing multi-language support, including RTL languages"
+      'Implementing multi-language support, including RTL languages',
     ],
     solutions: [
-      "Configuring contact forms and location maps for enhanced client interaction",
-      "Developing intuitive navigation and clear calls-to-action to enhance user experience"
+      'Configuring contact forms and location maps for enhanced client interaction',
+      'Developing intuitive navigation and clear calls-to-action to enhance user experience',
     ],
   },
   // Golf market place todo
@@ -503,14 +643,14 @@ const projects: Project[] = [
     techs: ['Sylius', 'SCSS/ES6+ JS', 'Webpack'],
     description: 'European platform for online golf equipment sales, featuring a unique catalog with exclusive brands',
     challenges: [
-      "Overriding Sylius to create a highly customized and unique interface",
-      "Ensuring the platform can handle a diverse and exclusive product catalog",
-      "Implementing multi-language support for various European languages"
+      'Overriding Sylius to create a highly customized and unique interface',
+      'Ensuring the platform can handle a diverse and exclusive product catalog',
+      'Implementing multi-language support for various European languages',
     ],
     solutions: [
-      "Customizing Sylius extensively to meet the specific design and functionality requirements",
-      "Optimizing the platform for a seamless user experience with an exclusive product catalog",
-      "Integrating multi-language support to cater to a European audience"
+      'Customizing Sylius extensively to meet the specific design and functionality requirements',
+      'Optimizing the platform for a seamless user experience with an exclusive product catalog',
+      'Integrating multi-language support to cater to a European audience',
     ],
   },
   // Inzee.Care
@@ -525,15 +665,41 @@ const projects: Project[] = [
     // images: ['xx', 'xx', 'xx', 'xx'],
     industry: 'Healthcare',
     techs: ['Handlebars', 'SCSS/ES6+ JS', 'Webpack'],
-    description: 'A platform connecting patients seeking home healthcare with independent nurses, physiotherapists, and speech therapists. The WordPress site provides comprehensive information about the Inzee Care platform, detailing services, solutions, and pricing for professionals, establishments, and patients.',
+    description:
+      'A platform connecting patients seeking home healthcare with independent nurses, physiotherapists, and speech therapists. The WordPress site provides comprehensive information about the Inzee Care platform, detailing services, solutions, and pricing for professionals, establishments, and patients.',
     challenges: [
       "Creating a wide range of custom Gutenberg components that align with the brand's design",
-      "Ensuring the website maintains high performance and SEO standards",
-      "Providing a user-friendly interface with detailed information about services and solutions",
+      'Ensuring the website maintains high performance and SEO standards',
+      'Providing a user-friendly interface with detailed information about services and solutions',
     ],
     solutions: [
-      "Developing custom JS and CSS for each component to minimize asset file sizes",
-      "Achieving a high Google PageSpeed score by optimizing the site’s performance"
+      'Developing custom JS and CSS for each component to minimize asset file sizes',
+      'Achieving a high Google PageSpeed score by optimizing the site’s performance',
+    ],
+  },
+  {
+    name: 'OCEAMIC II',
+    subtitle: 'Fish canning company in Morocco',
+    link: 'oceamic2.com',
+    link_href: 'https://www.oceamic2.com/',
+    year: 2021,
+    platform: 'WordPress',
+    status: 'RELEASED',
+    role: 'Frontend',
+    images: [],
+    industry: 'Food Processing, Seafood, Export',
+    techs: ['WordPress', 'Gutenberg'],
+    description:
+      'A Moroccan fish-canning website showcasing the company’s production process, product categories such as sardines, mackerel, and tuna, and its international distribution focus.',
+    challenges: [
+      'Presenting an industrial and product-heavy website in a clear, modern way',
+      'Structuring production steps and product pages for easy navigation',
+      'Making the site responsive and easy to update with editor blocks',
+    ],
+    solutions: [
+      'Built the interface with Gutenberg-friendly content sections',
+      'Created clear layouts for production, products, and company information',
+      'Optimized the frontend for readability, responsiveness, and maintainability',
     ],
   },
   // French Reading Tool
@@ -555,12 +721,11 @@ const projects: Project[] = [
   //     "Added interactive text features so users can click on any word for instant pronunciation, empowering them to learn at their own pace"
   //   ],
   // },
-  // OCEAMIC II
-  // congres
-  // Marquis Transports et Logistique
-  // nTask
-  // Otman Elhadeg Law-firm
-  // Les Massages d'Agadir https://www.massagesagadir.com/fr/
+  // OCEAMIC II -> wordpress project, should be added
+  // congres -> ugly, no need
+  // Marquis Transports et Logistique,  -> no need
+  // Otman Elhadeg Law-firm  -> no need
+  // Les Massages d'Agadir https://www.massagesagadir.com/fr/ -> should be added
   // domusvigroup https://www.domusvigroup.com/
   // eliquidandco https://www.eliquidandco.com/
   // Electrodary electrodary.com
@@ -577,16 +742,17 @@ const playground: Project[] = [
     images: ['100', '101', '102', '103', '104', '105', '106', 'playground-the-movie-vault'],
     industry: 'Entertainment, Movies',
     subtitle: 'Shows and movies filter and more (study case)',
-    description: 'The Movie Vault is a conceptual design for a tool aimed at improving movie search experiences with advanced filtering options, tracking shows, creating wishlists, and managing favorites lists. It addresses the limitations of streaming services and IMDb by providing a user-friendly interface and robust search functionality. This project was designed for fun, with the potential to develop into a real hobby project',
+    description:
+      'The Movie Vault is a conceptual design for a tool aimed at improving movie search experiences with advanced filtering options, tracking shows, creating wishlists, and managing favorites lists. It addresses the limitations of streaming services and IMDb by providing a user-friendly interface and robust search functionality. This project was designed for fun, with the potential to develop into a real hobby project',
     challenges: [
-      "Advanced filters for movie searches, allowing users to sort by genre, release date, ratings, and more",
-      "Options for tracking watched shows, creating wishlists, and saving favorites",
-      "A clean, user-friendly design that prioritizes ease of navigation and accessibility",
+      'Advanced filters for movie searches, allowing users to sort by genre, release date, ratings, and more',
+      'Options for tracking watched shows, creating wishlists, and saving favorites',
+      'A clean, user-friendly design that prioritizes ease of navigation and accessibility',
     ],
     solutions: [
-      "Designing a filtering system that surpasses the complexity of existing platforms",
-      "Creating an intuitive user interface that appeals to both casual and dedicated movie enthusiasts",
-      "Planning for a scalable architecture that could support future development into a functional application",
+      'Designing a filtering system that surpasses the complexity of existing platforms',
+      'Creating an intuitive user interface that appeals to both casual and dedicated movie enthusiasts',
+      'Planning for a scalable architecture that could support future development into a functional application',
     ],
   },
   // Planetary facts
@@ -601,14 +767,15 @@ const playground: Project[] = [
     industry: 'Interactive Learning, Astronomy',
     techs: ['JavaScript', 'Three.js', 'nPoint'],
     subtitle: 'Infos about the planets in our solar system',
-    description: 'Planetary Facts is an interactive website that provides information about the planets in our solar system. The standout feature of this site is the use of Three.js to create realistic 3D models of the planets. Each planet is textured and rendered on a 3D canvas that allows users to rotate and explore the planets, offering a visually engaging and immersive learning experience',
+    description:
+      'Planetary Facts is an interactive website that provides information about the planets in our solar system. The standout feature of this site is the use of Three.js to create realistic 3D models of the planets. Each planet is textured and rendered on a 3D canvas that allows users to rotate and explore the planets, offering a visually engaging and immersive learning experience',
     challenges: [
       'Integrating Three.js for realistic 3D planet rendering',
-      'Balancing educational content with interactivity to keep users engaged without overwhelming them'
+      'Balancing educational content with interactivity to keep users engaged without overwhelming them',
     ],
     solutions: [
       'Leveraged the Three.js library to create and animate the 3D models',
-      'Implemented lazy loading and optimized the rendering pipeline to ensure smooth performance'
+      'Implemented lazy loading and optimized the rendering pipeline to ensure smooth performance',
     ],
   },
   // What if
@@ -623,15 +790,16 @@ const playground: Project[] = [
     industry: 'Innovation and Creativity',
     techs: ['MongoDB', 'Express.js', 'React', 'Vite.js', 'React query', 'Axios'],
     subtitle: 'Websites and app ideas platform',
-    description: 'A playground website where people can share their ideas for websites and apps, fostering creativity and innovation. It serves as a valuable resource for developers and entrepreneurs looking for new project ideas or opportunities to improve existing platforms. ',
+    description:
+      'A playground website where people can share their ideas for websites and apps, fostering creativity and innovation. It serves as a valuable resource for developers and entrepreneurs looking for new project ideas or opportunities to improve existing platforms. ',
     challenges: [
-      "Designing an intuitive UI that encourages user engagement and idea sharing",
-      "Implementing real-time updates and interactions for a dynamic user experience",
-      "Managing and moderating content to maintain a positive and constructive community"
+      'Designing an intuitive UI that encourages user engagement and idea sharing',
+      'Implementing real-time updates and interactions for a dynamic user experience',
+      'Managing and moderating content to maintain a positive and constructive community',
     ],
     solutions: [
-      "Utilizing the MERN stack to build a responsive, real-time web application",
-      "Using MongoDB for flexible data storage and efficient querying of user submissions",
+      'Utilizing the MERN stack to build a responsive, real-time web application',
+      'Using MongoDB for flexible data storage and efficient querying of user submissions',
     ],
   },
   // Personal Notebook
@@ -645,15 +813,16 @@ const playground: Project[] = [
     industry: 'Productivity',
     techs: ['Vite.js', 'Firebase', 'Markdown'],
     subtitle: 'Personal minimalistic notes taking app',
-    description: 'A minimalistic notes taking application designed for personal use, featuring a clean interface with a markdown editor and preview',
+    description:
+      'A minimalistic notes taking application designed for personal use, featuring a clean interface with a markdown editor and preview',
     challenges: [
-      "Ensuring a smooth and responsive user interface with minimal latency",
-      "Managing user authentication and data storage securely in Firebase",
+      'Ensuring a smooth and responsive user interface with minimal latency',
+      'Managing user authentication and data storage securely in Firebase',
     ],
     solutions: [
-      "Utilizing Vite.js for fast and efficient front-end development and hot module replacement",
-      "Implementing Firebase Firestore for real-time database capabilities and seamless data synchronization",
-      "Designing a simple and intuitive user interface with CSS, focusing on usability and minimalism",
+      'Utilizing Vite.js for fast and efficient front-end development and hot module replacement',
+      'Implementing Firebase Firestore for real-time database capabilities and seamless data synchronization',
+      'Designing a simple and intuitive user interface with CSS, focusing on usability and minimalism',
     ],
   },
   // Top global music 🏁
@@ -668,11 +837,12 @@ const playground: Project[] = [
     industry: 'Entertainment, Music',
     techs: ['Vite.js', 'iTunes API'],
     subtitle: 'Top songs right now on iTunes',
-    description: 'A playful one-page website display trending music, features a modern interactive design to explore the latest hits around the world. This project was created as a personal experiment in using Vite.js and iTunes API',
+    description:
+      'A playful one-page website display trending music, features a modern interactive design to explore the latest hits around the world. This project was created as a personal experiment in using Vite.js and iTunes API',
     solutions: [
-      "Experimented with Vite.js for rapid development and hot module replacement",
-      "Focused on creating a visually appealing and interactive design",
-      "Used API integration to pull real-time data, enhancing the app’s dynamic nature"
+      'Experimented with Vite.js for rapid development and hot module replacement',
+      'Focused on creating a visually appealing and interactive design',
+      'Used API integration to pull real-time data, enhancing the app’s dynamic nature',
     ],
   },
 ]

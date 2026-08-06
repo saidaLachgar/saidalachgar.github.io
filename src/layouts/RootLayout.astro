@@ -16,6 +16,7 @@ interface Props {
   primarySchema?: any
   secondarySchema?: any
   keywords?: string
+  canonicalUrl?: string
   article?: {
     publishedTime: Date
     modifiedTime?: Date
@@ -35,37 +36,36 @@ interface Props {
       <main id="main-content" transition:animate="fade">
         <Header />
         <slot />
-        <i id="overlay"></i>
+        <i id="overlay" aria-hidden="true"></i>
       </main>
       <Footer />
     </div>
 
-    <!-- <div id="revealPoint">Reveal Point</div> -->
     <script>
+      let loadingInterval: ReturnType<typeof setInterval> | undefined
+
       document.addEventListener('click', (event) => {
+        if (!(event.target instanceof Element)) return
         const linkElement = event.target.closest('a')
 
         if (linkElement && !linkElement.hasAttribute('target')) {
           const href = linkElement.href
           const currentUrl = window.location.href
 
-          // Parse the URLs to compare the pathnames
-          const linkUrl = new URL(href, currentUrl) // resolves relative URLs
+          const linkUrl = new URL(href, currentUrl)
           const currentPathname = window.location.pathname
           const linkPathname = linkUrl.pathname
 
-          // If the path is the same, and there's only a hash change (scroll), don't show the loader
           if (currentPathname === linkPathname && linkUrl.hash) {
             return
           }
 
-          // If navigating to a different page, show the loader
           const loader = document.getElementById('loader')
           if (loader) {
-            document.getElementById('loader').style.display = 'flex'
-            document.getElementById('main').style.display = 'none'
+            loader.style.display = 'flex'
+            const mainEl = document.getElementById('main')
+            if (mainEl) mainEl.style.display = 'none'
 
-            // Greeting loading
             const loadingMessages = [
               'Loading...',
               'Cargando...',
@@ -81,8 +81,8 @@ interface Props {
               'लोड हो रहा है...',
             ]
 
-            var currentGreeting = 0
-            setInterval(() => {
+            let currentGreeting = 0
+            loadingInterval = setInterval(() => {
               loader.textContent = loadingMessages[currentGreeting]
               currentGreeting = (currentGreeting + 1) % loadingMessages.length
             }, 120)
@@ -91,17 +91,18 @@ interface Props {
       })
 
       document.addEventListener('astro:page-load', () => {
-        // reveal
+        clearInterval(loadingInterval)
+
         document.addEventListener('scroll', () => {
           const revealPoint = 200
-          const revealElement = document.querySelectorAll('[data-reveal]')
-          for (var i = 0; i < revealElement.length; i++) {
+          const revealElements = document.querySelectorAll('[data-reveal]')
+          for (let i = 0; i < revealElements.length; i++) {
             const windowHeight = window.innerHeight
-            const revealTop = revealElement[i].getBoundingClientRect().top
+            const revealTop = revealElements[i].getBoundingClientRect().top
             if (revealTop < windowHeight - revealPoint) {
-              revealElement[i].classList.add('active')
+              revealElements[i].classList.add('active')
             } else {
-              revealElement[i].classList.remove('active')
+              revealElements[i].classList.remove('active')
             }
           }
         })

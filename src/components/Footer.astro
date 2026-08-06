@@ -14,14 +14,14 @@ import { PERSON } from '@/consts'
   </div>
   <ul>
     <li class="link">
-      <a
-        href="javascript:void(0);"
-        target="_self"
-        rel="noopener noreferrer"
-        onclick="document.getElementById('book-a-call').click()"
+      <button
+        type="button"
+        data-cal-namespace="15min"
+        data-cal-link="saidalachgar/15min"
+        data-cal-config='{"layout":"month_view"}'
       >
         <Icon name="arrow-top-right" width={11} height={11} />Book a call
-      </a>
+      </button>
     </li>
     <li class="link">
       <a href="/cv-saida-en.pdf" target="_blank"><Icon name="arrow-top-right" width={11} height={11} />CV / Resume</a>
@@ -62,7 +62,8 @@ import { PERSON } from '@/consts'
       column-gap: 15px;
       justify-content: center;
 
-      .link > a {
+      .link > a,
+      .link > button {
         font-size: 14px;
         font-weight: 700;
         border: 1px solid rgb(255, 255, 255, 0.08);
@@ -70,6 +71,9 @@ import { PERSON } from '@/consts'
         transition: background-color 0.3s ease-in;
         border-radius: 28px;
         padding: 11px 20px 12px 15px;
+        color: #fff;
+        font-family: inherit;
+        cursor: pointer;
 
         svg {
           margin-right: 8px;
@@ -83,10 +87,10 @@ import { PERSON } from '@/consts'
         }
         + ul:hover,
         &:active + ul,
-        &:focus + ul   {
+        &:focus + ul {
           max-height: 155px;
           opacity: 1;
-       }
+        }
       }
 
       .link:last-child {

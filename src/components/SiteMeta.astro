@@ -15,9 +15,10 @@ interface Props {
   title: string
   description: string
   ogImage?: string
-  robots?: string // default to SITE_METADATA.robots
+  robots?: string
   titleTemplate?: string
   keywords?: string
+  canonicalUrl?: string
   primarySchema?: any
   secondarySchema?: any
   article?: {
@@ -30,44 +31,37 @@ interface Props {
   }
 }
 
-const { 
-  title, 
-  description, 
-  robots = SITE_METADATA.robots, 
-  article, 
-  titleTemplate, 
-  keywords, 
-  primarySchema, 
-  secondarySchema 
+const {
+  title,
+  description,
+  robots = SITE_METADATA.robots,
+  article,
+  titleTemplate,
+  keywords,
+  canonicalUrl,
+  primarySchema,
+  secondarySchema
 } = Astro.props
 
-// The default author is the site creator
 const creator = await getEntry('authors', 'default')
 
-// Optimize favicon and touch icons
-const favicon = await getImage({ src: Favicon, width: 16, height: 16 })
+// Favicon — one 16x16 shared between rel="icon" sizes
 const appleTouchIcon = await getImage({ src: Favicon, width: 76, height: 76 })
 const favicon32 = await getImage({ src: Favicon, width: 32, height: 32 })
 const favicon16 = await getImage({ src: Favicon, width: 16, height: 16 })
 
-// Optimize open graph image
+// Open graph image — use the article cover when present, fallback to static OG
 let openGraphImage
 if (article?.cover) {
-  openGraphImage = await getImage({
-    src: article.cover,
-    width: 1200,
-    height: 630,
-  })
+  openGraphImage = await getImage({ src: article.cover, width: 1200, height: 630 })
 } else {
-  openGraphImage = await getImage({
-    src: OgImage,
-    width: 1280,
-    height: 640,
-  })
+  openGraphImage = await getImage({ src: OgImage, width: 1280, height: 640 })
 }
 
+const ogImageUrl = new URL(openGraphImage.src, SITE_METADATA.siteUrl).href
 const twitterCreator = article?.authorTwitter || creator?.data.twitter
 const isProduction = import.meta.env.PROD
+const resolvedCanonical = canonicalUrl ?? Astro.url.href
 ---
 
 <head>
@@ -75,28 +69,21 @@ const isProduction = import.meta.env.PROD
     {title}
     {titleTemplate}
     {description}
+    canonical={resolvedCanonical}
     nofollow={robots.includes('nofollow')}
     noindex={robots.includes('noindex')}
     charset="utf-8"
     extend={{
       meta: [
-        {
-          name: 'theme-color',
-          content: '#fff',
-          media: '(prefers-color-scheme: light)',
-        },
-        {
-          name: 'theme-color',
-          content: '#000',
-          media: '(prefers-color-scheme: dark)',
-        },
+        { name: 'theme-color', content: '#fff', media: '(prefers-color-scheme: light)' },
+        { name: 'theme-color', content: '#000', media: '(prefers-color-scheme: dark)' },
         { name: 'viewport', content: 'width=device-width,initial-scale=1' },
       ],
       link: [
-        { rel: 'icon', type: `image/svg`, href: favicon.src },
+        { rel: 'icon', type: 'image/svg+xml', href: favicon16.src },
         { rel: 'apple-touch-icon', sizes: '76x76', href: appleTouchIcon.src },
-        { rel: 'icon', type: 'image/svg', sizes: '32x32', href: favicon32.src },
-        { rel: 'icon', type: 'image/svg', sizes: '16x16', href: favicon16.src },
+        { rel: 'icon', type: 'image/svg+xml', sizes: '32x32', href: favicon32.src },
+        { rel: 'icon', type: 'image/svg+xml', sizes: '16x16', href: favicon16.src },
         { rel: 'mask-icon', href: favicon16.src },
         { rel: 'alternate', type: 'application/rss+xml', href: '/rss.xml' },
       ],
@@ -105,21 +92,20 @@ const isProduction = import.meta.env.PROD
       card: 'summary_large_image',
       title,
       description,
-      image: `${SITE_METADATA.siteUrl}og-image.png`,
+      image: ogImageUrl,
       ...((twitterCreator && {
         creator: twitterCreator.replace('https://twitter.com/', '@'),
-        // site: creator.data.twitter,
       }) || {}),
     }}
     openGraph={{
       basic: {
-        type: 'website',
+        type: article ? 'article' : 'website',
         url: Astro.url,
         title,
-        image: `${SITE_METADATA.siteUrl}og-image.png`,
+        image: ogImageUrl,
       },
       image: {
-        url: `${SITE_METADATA.siteUrl}og-image.png`,
+        url: ogImageUrl,
         type: `image/${openGraphImage.options.format}`,
         width: openGraphImage.options.width,
         height: openGraphImage.options.height,
@@ -144,28 +130,12 @@ const isProduction = import.meta.env.PROD
       {
         name: "Inter",
         src: [
-          {
-            style: 'normal',
-            weight: '400',
-            path: join(process.cwd(), 'public', 'fonts', 'inter-v13-latin-regular.woff2')
-          },
-          {
-            style: 'medium',
-            weight: '500',
-            path: join(process.cwd(), 'public', 'fonts', 'inter-v13-latin-500.woff2')
-          },
-          {
-            style: 'medium',
-            weight: '600',
-            path: join(process.cwd(), 'public', 'fonts', 'inter-v13-latin-600.woff2')
-          },
-          {
-            style: 'medium',
-            weight: '700',
-            path: join(process.cwd(), 'public', 'fonts', 'inter-v13-latin-700.woff2')
-          },
+          { style: 'normal', weight: '400', path: join(process.cwd(), 'public', 'fonts', 'inter-v13-latin-regular.woff2') },
+          { style: 'medium', weight: '500', path: join(process.cwd(), 'public', 'fonts', 'inter-v13-latin-500.woff2') },
+          { style: 'medium', weight: '600', path: join(process.cwd(), 'public', 'fonts', 'inter-v13-latin-600.woff2') },
+          { style: 'medium', weight: '700', path: join(process.cwd(), 'public', 'fonts', 'inter-v13-latin-700.woff2') },
         ],
-        preload: false,
+        preload: true,
         display: "swap",
         selector: "body",
         cssVariable: "font-family-default",
@@ -174,11 +144,7 @@ const isProduction = import.meta.env.PROD
       {
         name: "Roxie Rossa",
         src: [
-          {
-            style: 'normal',
-            weight: '400',
-            path: join(process.cwd(), 'public', 'fonts', 'roxie-rossa.woff2')
-          },
+          { style: 'normal', weight: '400', path: join(process.cwd(), 'public', 'fonts', 'roxie-rossa.woff2') },
         ],
         preload: false,
         display: "swap",
@@ -188,7 +154,7 @@ const isProduction = import.meta.env.PROD
     ]}
   />
   <link rel="sitemap" href="/sitemap-index.xml" />
-  <meta name="keywords" content={keywords} />
+  {keywords && <meta name="keywords" content={keywords} />}
   <meta name="publisher" content="Saida Lachgar" />
   {isProduction && <Analytics />}
   <SiteSchema {primarySchema} {secondarySchema} />

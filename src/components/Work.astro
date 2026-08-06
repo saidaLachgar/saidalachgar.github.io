@@ -10,8 +10,8 @@ const years = projectStats.find(stat => stat.caption === 'Years')?.value || 'X';
     <p class="subtitle">Area of Expertise</p>
     <h2 class="title">Selected <br />Work</h2>
     <p class="description">
-      Over the past {years} years, I've had the privilege to work on so many cool projects, i’ve worked in areas including
-      APIs and Integration, responsive web design, eCommerce, CMS, SEO... Here's a few.
+      Over the past {years} years, I’ve shipped across e-commerce, enterprise monitoring, healthcare, and tourism —
+      from custom PrestaShop storefronts to full-stack Symfony platforms and interactive Three.js experiences. Here are a few highlights.
     </p>
   </div>
 
@@ -20,7 +20,7 @@ const years = projectStats.find(stat => stat.caption === 'Years')?.value || 'X';
       {
         projects.slice(0, 8).map((project: Project, key: number) => (
           <li data-reveal>
-            <div class="project" data-target={`project-${key}`}>
+            <div class="project" data-target={`project-${key}`} role="button" tabindex="0">
               <p class="name">
                 <span>
                   {project.name} - {project.platform}
@@ -44,7 +44,7 @@ const years = projectStats.find(stat => stat.caption === 'Years')?.value || 'X';
 
 <WorkDetails data={[...projects.slice(0, 8), ...playground]} />
 
-<script is:inline>
+<script>
   document.addEventListener('astro:page-load', () => {
     // cursor
     const playgroundItems= document.querySelectorAll('.playground li')
@@ -92,6 +92,16 @@ const years = projectStats.find(stat => stat.caption === 'Years')?.value || 'X';
         }
       })
     }
+
+    // keyboard accessibility for project rows
+    document.querySelectorAll<HTMLElement>('.work .project').forEach((row) => {
+      row.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault()
+          row.click()
+        }
+      })
+    })
   })
 </script>
 
@@ -185,6 +195,17 @@ const years = projectStats.find(stat => stat.caption === 'Years')?.value || 'X';
       cursor: pointer;
       padding: 20px 0;
       grid-template-columns: minmax(0, 1fr) repeat(2, auto);
+      background: none;
+      border: none;
+      color: inherit;
+      font: inherit;
+      text-align: left;
+      width: 100%;
+      &:focus-visible {
+        outline: 2px solid rgba(255, 255, 255, 0.5);
+        outline-offset: 4px;
+        border-radius: 2px;
+      }
     }
     .name {
       font-size: 18px;

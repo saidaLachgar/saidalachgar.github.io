@@ -78,18 +78,54 @@ import { PERSON } from '@/consts'
   });
 </script>
 
-<!-- Cal element-click embed code begins -->
-<script is:inline type="text/javascript" defer>
-  (function (C, A, L) { let p = function (a, ar) { a.q.push(ar); }; let d = C.document; C.Cal = C.Cal || function () { let cal = C.Cal; let ar = arguments; if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement("script")).src = A; cal.loaded = true; } if (ar[0] === L) { const api = function () { p(api, arguments); }; const namespace = ar[1]; api.q = api.q || []; if(typeof namespace === "string"){cal.ns[namespace] = cal.ns[namespace] || api;p(cal.ns[namespace], ar);p(cal, ["initNamespace", namespace]);} else p(cal, ar); return;} p(cal, ar); }; })(window, "https://app.cal.com/embed/embed.js", "init");
-  Cal("init", "15min", {origin:"https://cal.com"});
-  Cal.ns['15min']('ui', {
-    theme: 'dark',
-    styles: { branding: { brandColor: '#000000' } },
-    hideEventTypeDetails: true,
-    layout: 'month_view',
+<!-- Cal element-click embed — loaded lazily on first interaction -->
+<script>
+  function initCal() {
+    if ((window as any)._calLoaded) return
+    ;(window as any)._calLoaded = true
+    ;(function (C: any, A: string, L: string) {
+      const p = (a: any, ar: any) => { a.q.push(ar) }
+      const d = C.document
+      C.Cal = C.Cal || function (...args: any[]) {
+        const cal = C.Cal
+        if (!cal.loaded) {
+          cal.ns = {}; cal.q = cal.q || []
+          d.head.appendChild(d.createElement('script')).src = A
+          cal.loaded = true
+        }
+        if (args[0] === L) {
+          const api: any = (...a: any[]) => p(api, a)
+          const ns = args[1]
+          api.q = api.q || []
+          if (typeof ns === 'string') {
+            cal.ns[ns] = cal.ns[ns] || api
+            p(cal.ns[ns], args)
+            p(cal, ['initNamespace', ns])
+          } else p(cal, args)
+          return
+        }
+        p(cal, args)
+      }
+    })(window, 'https://app.cal.com/embed/embed.js', 'init')
+    const Cal = (window as any).Cal
+    Cal('init', '15min', { origin: 'https://cal.com' })
+    Cal.ns['15min']('ui', {
+      theme: 'dark',
+      styles: { branding: { brandColor: '#000000' } },
+      hideEventTypeDetails: true,
+      layout: 'month_view',
+    })
+  }
+
+  document.addEventListener('astro:page-load', () => {
+    const btn = document.getElementById('book-a-call')
+    if (!btn) return
+    btn.addEventListener('mouseenter', initCal, { once: true })
+    btn.addEventListener('focus', initCal, { once: true })
+    // Ensure Cal is ready before click fires the embed
+    btn.addEventListener('click', () => { if (!(window as any)._calLoaded) initCal() })
   })
 </script>
-<!-- Cal element-click embed code ends -->
 
 <style lang="scss">
   header {

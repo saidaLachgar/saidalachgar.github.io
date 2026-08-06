@@ -1,0 +1,225 @@
+---
+import RootLayout from '@/layouts/RootLayout.astro'
+import { PERSON, SITE_METADATA } from '@/consts'
+
+const aboutSchema = {
+  "@context": "https://schema.org",
+  "@type": "ProfilePage",
+  "mainEntity": {
+    "@type": "Person",
+    "name": "Saida Lachgar",
+    "jobTitle": "Senior Frontend Developer",
+    "url": SITE_METADATA.siteUrl,
+    "image": `${SITE_METADATA.siteUrl}profile-picture.png`,
+    "email": `mailto:${PERSON.mail}`,
+    "sameAs": [PERSON.socials.linkedin, PERSON.socials.dribbble],
+  }
+}
+---
+
+<RootLayout
+  title="About Saida Lachgar — Senior Frontend Developer"
+  description={`Senior Frontend Developer with ${PERSON.yearsOfExperience}+ years of experience. Specializing in React, Symfony, PrestaShop, and interactive web experiences. Based in Agadir, Morocco.`}
+  primarySchema={aboutSchema}
+>
+  <section class="about-page container">
+    <div class="intro" data-reveal>
+      <h1>About</h1>
+      <p class="meta">Senior Frontend Developer · {PERSON.yearsOfExperience}+ years</p>
+    </div>
+
+    <div class="body" data-reveal>
+      <div class="bio">
+        <p>
+          I've been building production web applications since 2019 — starting with e-commerce themes and growing into
+          full-stack development across a wide range of industries. I care deeply about performance, accessibility, and
+          code that is maintainable long after the first deploy.
+        </p>
+        <p>
+          My core stack is <strong>React</strong>, <strong>Symfony</strong>, and <strong>PrestaShop</strong>, with
+          strong fluency in TypeScript, SCSS, and MySQL. I also work with Three.js and GSAP for interactive animations,
+          and I treat Core Web Vitals and SEO as first-class engineering concerns — not post-launch checklists.
+        </p>
+        <p>
+          I've shipped across e-commerce storefronts, an electricity quality monitoring platform built on Symfony and Angular,
+          healthcare systems, tourism sites, and interactive 3D playgrounds. I'm comfortable owning both the design-to-code
+          translation and the full backend integration.
+        </p>
+      </div>
+
+      <div class="details">
+        <div class="block" data-reveal>
+          <h2>Tech Stack</h2>
+          <ul>
+            <li>React, TypeScript, JavaScript</li>
+            <li>Symfony, PHP, API Platform</li>
+            <li>PrestaShop, WordPress</li>
+            <li>Three.js, GSAP, Astro</li>
+            <li>SCSS, HTML5, CSS</li>
+            <li>MySQL, Angular</li>
+            <li>Git, Webpack, Docker</li>
+          </ul>
+        </div>
+
+        <div class="block" data-reveal>
+          <h2>Education</h2>
+          <ul>
+            <li>
+              <strong>Faculty of Science & Technology</strong>
+              <span>Settat, Morocco</span>
+            </li>
+            <li>
+              <strong>Specialized Institute of Applied Technology</strong>
+              <span>Agadir, Morocco</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="block" data-reveal>
+          <h2>Connect</h2>
+          <ul>
+            <li><a href={`mailto:${PERSON.mail}`}>{PERSON.mail}</a></li>
+            <li><a href={PERSON.socials.linkedin} target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
+            <li><a href={PERSON.socials.dribbble} target="_blank" rel="noopener noreferrer">Dribbble</a></li>
+          </ul>
+        </div>
+
+        <div class="block resume" data-reveal>
+          <h2>Resume</h2>
+          <div class="links">
+            <a href="/cv-saida-en.pdf" target="_blank">Download CV (EN)</a>
+            <a href="/cv-saida-fr.pdf" target="_blank">Download CV (FR)</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</RootLayout>
+
+<style lang="scss">
+  .about-page {
+    padding: 120px 0 160px;
+
+    .intro {
+      margin-bottom: 80px;
+
+      h1 {
+        font-size: clamp(64px, 12vw, 160px);
+        font-weight: 700;
+        text-transform: uppercase;
+        line-height: 1;
+        font-family: var(--font-family-secondary);
+      }
+
+      .meta {
+        font-size: 13px;
+        opacity: 0.5;
+        margin-top: 10px;
+      }
+    }
+
+    .body {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      column-gap: 80px;
+      align-items: start;
+    }
+
+    .bio {
+      p {
+        font-size: 18px;
+        line-height: 1.6;
+        margin-bottom: 30px;
+        opacity: 0.85;
+
+        strong {
+          font-weight: 600;
+          opacity: 1;
+        }
+      }
+    }
+
+    .details {
+      display: flex;
+      flex-direction: column;
+      row-gap: 50px;
+    }
+
+    .block {
+      h2 {
+        font-size: 11px;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        opacity: 0.4;
+        margin-bottom: 16px;
+      }
+
+      ul {
+        list-style: none;
+
+        li {
+          font-size: 15px;
+          line-height: 1.4;
+          margin-bottom: 10px;
+          display: flex;
+          flex-direction: column;
+
+          strong {
+            font-weight: 500;
+          }
+
+          span {
+            font-size: 12px;
+            opacity: 0.5;
+            margin-top: 2px;
+          }
+
+          a {
+            text-decoration: none;
+            opacity: 0.8;
+            transition: opacity 0.3s ease;
+
+            &:hover {
+              opacity: 1;
+            }
+          }
+        }
+      }
+    }
+
+    .resume .links {
+      display: flex;
+      column-gap: 16px;
+
+      a {
+        font-size: 13px;
+        font-weight: 600;
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        border-radius: 20px;
+        padding: 8px 16px;
+        transition: background-color 0.3s ease;
+
+        &:hover {
+          background-color: rgba(255, 255, 255, 0.08);
+        }
+      }
+    }
+
+    @media (max-width: 900px) {
+      padding: 80px 0 100px;
+
+      .body {
+        grid-template-columns: 1fr;
+        row-gap: 60px;
+      }
+
+      .bio p {
+        font-size: 15px;
+      }
+
+      .intro h1 {
+        font-size: clamp(48px, 14vw, 100px);
+      }
+    }
+  }
+</style>
